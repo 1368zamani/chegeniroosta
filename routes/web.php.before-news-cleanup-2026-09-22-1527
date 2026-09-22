@@ -1,0 +1,566 @@
+<?php
+
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VillageContactController;
+use App\Http\Controllers\VillageController;
+use App\Http\Controllers\VillageImageController;
+use App\Http\Controllers\VillageNewsController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| سایت روستا (صفحه عمومی — بدون نیاز به ورود)
+|--------------------------------------------------------------------------
+*/
+
+
+/*
+|--------------------------------------------------------------------------
+| ورود / خروج
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
+/*
+|--------------------------------------------------------------------------
+| پنل مدیریت
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/admin', [AdminController::class, 'index'])
+        ->name('admin.dashboard');
+
+    Route::get('/admin/villages/create', [\App\Http\Controllers\AdminVillageController::class, 'create'])
+        ->name('admin.villages.create');
+
+    Route::post('/admin/villages', [\App\Http\Controllers\AdminVillageController::class, 'store'])
+        ->name('admin.villages.store');
+
+    Route::get('/admin/village/{village}/images/create',
+        [VillageImageController::class, 'create'])
+        ->name('admin.images.create');
+
+    Route::post('/admin/village/{village}/images',
+        [VillageImageController::class, 'store'])
+        ->name('admin.images.store');
+
+    Route::get('/admin/village/{village}/news',
+        [VillageNewsController::class, 'index'])
+        ->name('admin.news.index');
+
+    Route::get('/admin/village/{village}/news/create',
+        [VillageNewsController::class, 'create'])
+        ->name('admin.news.create');
+
+    Route::post('/admin/village/{village}/news',
+        [VillageNewsController::class, 'store'])
+        ->name('admin.news.store');
+
+    Route::get('/admin/village/{village}/news/{news}/edit',
+        [VillageNewsController::class, 'edit'])
+        ->name('admin.news.edit');
+
+    Route::put('/admin/village/{village}/news/{news}',
+        [VillageNewsController::class, 'update'])
+        ->name('admin.news.update');
+
+    Route::delete('/admin/village/{village}/news/{news}',
+        [VillageNewsController::class, 'destroy'])
+        ->name('admin.news.destroy');
+
+    Route::get('/admin/village/{village}/contact',
+        [VillageContactController::class, 'edit'])
+        ->name('admin.contact.edit');
+
+    Route::put('/admin/village/{village}/contact',
+        [VillageContactController::class, 'update'])
+        ->name('admin.contact.update');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| تست روستا
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('village')->group(function () {
+    Route::get('/__village_test', function () {
+        $village = app('currentVillage');
+
+        return response()->json([
+            'status' => 'ok',
+            'village' => $village->name,
+            'slug' => $village->slug,
+            'subdomain' => $village->subdomain,
+        ]);
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| ادمین‌های village
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/villages', [\App\Http\Controllers\AdminVillageController::class, 'index'])
+        ->name('admin.villages.index');
+
+    Route::get('/villages/{village}/edit', [\App\Http\Controllers\AdminVillageController::class, 'edit'])
+        ->name('admin.villages.edit');
+
+    Route::put('/villages/{village}', [\App\Http\Controllers\AdminVillageController::class, 'update'])
+        ->name('admin.villages.update');
+});
+
+
+Route::middleware('auth')->prefix('admin/village/{village}/images')->group(function () {
+    Route::post('/{image}/cover', [\App\Http\Controllers\AdminVillageImageController::class, 'setCover'])
+        ->name('admin.village.images.setCover');
+});
+
+Route::middleware('auth')->prefix('admin/village/{village}/images')->group(function () {
+    Route::get('/', [\App\Http\Controllers\AdminVillageImageController::class, 'index'])
+        ->name('admin.village.images.index');
+
+    Route::get('/create', [\App\Http\Controllers\AdminVillageImageController::class, 'create'])
+        ->name('admin.village.images.create');
+
+    Route::post('/', [\App\Http\Controllers\AdminVillageImageController::class, 'store'])
+        ->name('admin.village.images.store');
+
+    Route::delete('/{image}', [\App\Http\Controllers\AdminVillageImageController::class, 'destroy'])
+        ->name('admin.village.images.destroy');
+});
+
+Route::get('/sitemap.xml', [\App\Http\Controllers\SeoController::class, 'sitemap'])
+    ->name('seo.sitemap');
+
+/*
+|--------------------------------------------------------------------------
+| Dispatcher اصلی برای '/'
+|--------------------------------------------------------------------------
+| اولویت: بخش > روستا > مرکزی
+*/
+
+Route::middleware(['section', 'village'])->get('/', function (\Illuminate\Http\Request $request) {
+
+    if (app()->bound('currentSection')) {
+        return app(\App\Http\Controllers\SectionSiteController::class)->home($request);
+    }
+
+    if (app()->bound('currentVillage')) {
+        return app(\App\Http\Controllers\VillageSiteController::class)->home($request);
+    }
+
+    return app(\App\Http\Controllers\CentralController::class)->home($request);
+
+})->name('home');
+
+
+/*
+|--------------------------------------------------------------------------
+| Bakhshdar Page
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('section')->get('/bakhshdar', [
+    \App\Http\Controllers\SectionSiteController::class,
+    'bakhshdar'
+])->name('section.bakhshdar');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Sections Management
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/sections', [\App\Http\Controllers\AdminSectionController::class, 'index'])
+        ->name('admin.sections.index');
+
+    Route::get('/sections/{id}/edit', [\App\Http\Controllers\AdminSectionController::class, 'edit'])
+        ->name('admin.sections.edit');
+
+    Route::put('/sections/{id}', [\App\Http\Controllers\AdminSectionController::class, 'update'])
+        ->name('admin.sections.update');
+
+    Route::post('/sections/{id}/photo', [\App\Http\Controllers\AdminSectionController::class, 'uploadPhoto'])
+        ->name('admin.sections.uploadPhoto');
+
+    Route::delete('/sections/{id}/photo', [\App\Http\Controllers\AdminSectionController::class, 'deletePhoto'])
+        ->name('admin.sections.deletePhoto');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Users Management
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/users', [\App\Http\Controllers\AdminUserController::class, 'index'])
+        ->name('admin.users.index');
+
+    Route::get('/users/create', [\App\Http\Controllers\AdminUserController::class, 'create'])
+        ->name('admin.users.create');
+
+    Route::post('/users', [\App\Http\Controllers\AdminUserController::class, 'store'])
+        ->name('admin.users.store');
+
+    Route::get('/users/{id}/edit', [\App\Http\Controllers\AdminUserController::class, 'edit'])
+        ->name('admin.users.edit');
+
+    Route::put('/users/{id}', [\App\Http\Controllers\AdminUserController::class, 'update'])
+        ->name('admin.users.update');
+
+    Route::delete('/users/{id}', [\App\Http\Controllers\AdminUserController::class, 'destroy'])
+        ->name('admin.users.destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin - روستاهای هر بخش
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/sections/{sectionId}/villages',
+        [\App\Http\Controllers\AdminVillageController::class, 'bySection'])
+        ->name('admin.sections.villages');
+
+    Route::delete('/villages/{id}',
+        [\App\Http\Controllers\AdminVillageController::class, 'destroy'])
+        ->name('admin.villages.destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Section News
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin/section-news')->group(function () {
+    Route::get('/', [\App\Http\Controllers\AdminSectionNewsController::class, 'index'])
+        ->name('admin.section-news.index');
+
+    Route::get('/create', [\App\Http\Controllers\AdminSectionNewsController::class, 'create'])
+        ->name('admin.section-news.create');
+
+    Route::post('/', [\App\Http\Controllers\AdminSectionNewsController::class, 'store'])
+        ->name('admin.section-news.store');
+
+    Route::get('/{id}/edit', [\App\Http\Controllers\AdminSectionNewsController::class, 'edit'])
+        ->name('admin.section-news.edit');
+
+    Route::put('/{id}', [\App\Http\Controllers\AdminSectionNewsController::class, 'update'])
+        ->name('admin.section-news.update');
+
+    Route::delete('/{id}', [\App\Http\Controllers\AdminSectionNewsController::class, 'destroy'])
+        ->name('admin.section-news.destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Public Section News
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('section')->get('/news', [
+    \App\Http\Controllers\PublicSectionNewsController::class,
+    'index'
+])->name('section.news.index');
+
+Route::middleware('section')->get('/news/{slug}', [
+    \App\Http\Controllers\PublicSectionNewsController::class,
+    'show'
+])->name('section.news.show');
+
+/*
+|--------------------------------------------------------------------------
+| SEO — Sitemap و RSS
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'sitemap'])
+    ->name('seo.sitemap.new');
+
+Route::get('/feed.xml', [\App\Http\Controllers\SitemapController::class, 'rss'])
+    ->name('seo.rss');
+
+/*
+|--------------------------------------------------------------------------
+| Global Search
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/search', [\App\Http\Controllers\SearchController::class, 'search'])
+    ->name('search.index');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Export
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin/export')->group(function () {
+    Route::get('/villages', [\App\Http\Controllers\AdminExportController::class, 'exportVillages'])
+        ->name('admin.export.villages');
+});
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/sections/{sectionId}/gallery',
+        [\App\Http\Controllers\AdminSectionGalleryController::class, 'index'])
+        ->name('admin.sections.gallery.index');
+    Route::get('/sections/{sectionId}/gallery/create',
+        [\App\Http\Controllers\AdminSectionGalleryController::class, 'create'])
+        ->name('admin.sections.gallery.create');
+    Route::post('/sections/{sectionId}/gallery',
+        [\App\Http\Controllers\AdminSectionGalleryController::class, 'store'])
+        ->name('admin.sections.gallery.store');
+    Route::delete('/sections/{sectionId}/gallery/{imageId}',
+        [\App\Http\Controllers\AdminSectionGalleryController::class, 'destroy'])
+        ->name('admin.sections.gallery.destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin per Section (Subdomain)
+|--------------------------------------------------------------------------
+*/
+
+// Admin subdomain route temporarily disabled
+
+/*
+|--------------------------------------------------------------------------
+| Admin Settings (Super Admin Only)
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/settings', [\App\Http\Controllers\AdminSettingsController::class, 'index'])
+        ->name('admin.settings.index');
+    Route::post('/settings', [\App\Http\Controllers\AdminSettingsController::class, 'update'])
+        ->name('admin.settings.update');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Backups
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/backups', function () {
+        if (!auth()->user()->isSuperAdmin()) abort(403);
+
+        $dir = storage_path('backups/auto');
+        $files = [];
+        if (is_dir($dir)) {
+            foreach (glob($dir . '/*') as $f) {
+                $files[] = [
+                    'name' => basename($f),
+                    'size' => filesize($f),
+                    'date' => filemtime($f),
+                ];
+            }
+            usort($files, fn($a, $b) => $b['date'] <=> $a['date']);
+        }
+
+        return view('admin.backups', compact('files'));
+    })->name('admin.backups.index');
+
+    Route::post('/backups/run', function () {
+        if (!auth()->user()->isSuperAdmin()) abort(403);
+
+        \Illuminate\Support\Facades\Artisan::call('app:backup');
+        $output = \Illuminate\Support\Facades\Artisan::output();
+
+        return back()->with('success', 'بکاپ اجرا شد.\n' . $output);
+    })->name('admin.backups.run');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Village Site (سامانه جامع روستاها)
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('village/{slug}')->group(function () {
+
+    Route::get('/', [\App\Http\Controllers\PublicVillageSiteController::class, 'home'])
+        ->name('village.site.home');
+
+    Route::get('/news', [\App\Http\Controllers\PublicVillageSiteController::class, 'newsList'])
+        ->name('village.site.news');
+
+    Route::get('/news/{newsSlug}', [\App\Http\Controllers\PublicVillageSiteController::class, 'newsShow'])
+        ->name('village.site.news.show');
+
+    Route::get('/projects', [\App\Http\Controllers\PublicVillageSiteController::class, 'projects'])
+        ->name('village.site.projects');
+
+    Route::get('/about', [\App\Http\Controllers\PublicVillageSiteController::class, 'about'])
+        ->name('village.site.about');
+
+    Route::get('/council', [\App\Http\Controllers\PublicVillageSiteController::class, 'council'])
+        ->name('village.site.council');
+
+    Route::get('/facilities', [\App\Http\Controllers\PublicVillageSiteController::class, 'facilities'])
+        ->name('village.site.facilities');
+
+    Route::get('/events', [\App\Http\Controllers\PublicVillageSiteController::class, 'events'])
+        ->name('village.site.events');
+
+    Route::get('/request', [\App\Http\Controllers\PublicVillageSiteController::class, 'requestCreate'])
+        ->name('village.site.request.create');
+
+    Route::post('/request', [\App\Http\Controllers\PublicVillageSiteController::class, 'requestStore'])
+        ->name('village.site.request.store');
+
+    Route::get('/request/success/{code}', [\App\Http\Controllers\PublicVillageSiteController::class, 'requestSuccess'])
+        ->name('village.site.request.success');
+
+    Route::get('/track', [\App\Http\Controllers\PublicVillageSiteController::class, 'requestTrack'])
+        ->name('village.site.request.track');
+
+    Route::post('/track', [\App\Http\Controllers\PublicVillageSiteController::class, 'requestTrackResult'])
+        ->name('village.site.request.track.result');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Public Village Profile
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/village/{slug}', [\App\Http\Controllers\PublicVillageController::class, 'show'])
+    ->where('slug', '[a-zA-Z0-9\-]+')
+    ->name('public.village.show');
+
+/*
+|--------------------------------------------------------------------------
+| Village Admin Panel
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'village-access'])->prefix('admin/village/{village}')->group(function () {
+
+    // داشبورد
+    Route::get('/', [\App\Http\Controllers\VillageAdmin\DashboardController::class, 'index'])
+        ->name('admin.village.dashboard');
+
+    // تنظیمات نمایش
+    Route::get('/settings', [\App\Http\Controllers\VillageAdmin\SettingsController::class, 'index'])
+        ->name('admin.village.settings.index');
+    Route::post('/settings', [\App\Http\Controllers\VillageAdmin\SettingsController::class, 'update'])
+        ->name('admin.village.settings.update');
+
+    // اخبار
+    Route::prefix('news')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'index'])
+            ->name('admin.village.news.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'create'])
+            ->name('admin.village.news.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'store'])
+            ->name('admin.village.news.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'edit'])
+            ->name('admin.village.news.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'update'])
+            ->name('admin.village.news.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'destroy'])
+            ->name('admin.village.news.destroy');
+    });
+
+    // پروژه‌ها
+    Route::prefix('projects')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\ProjectController::class, 'index'])
+            ->name('admin.village.projects.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\ProjectController::class, 'create'])
+            ->name('admin.village.projects.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\ProjectController::class, 'store'])
+            ->name('admin.village.projects.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\ProjectController::class, 'edit'])
+            ->name('admin.village.projects.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\ProjectController::class, 'update'])
+            ->name('admin.village.projects.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\ProjectController::class, 'destroy'])
+            ->name('admin.village.projects.destroy');
+    });
+
+    // رویدادها
+    Route::prefix('events')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\EventController::class, 'index'])
+            ->name('admin.village.events.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\EventController::class, 'create'])
+            ->name('admin.village.events.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\EventController::class, 'store'])
+            ->name('admin.village.events.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\EventController::class, 'edit'])
+            ->name('admin.village.events.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\EventController::class, 'update'])
+            ->name('admin.village.events.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\EventController::class, 'destroy'])
+            ->name('admin.village.events.destroy');
+    });
+
+    // امکانات
+    Route::prefix('facilities')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\FacilityController::class, 'index'])
+            ->name('admin.village.facilities.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\FacilityController::class, 'create'])
+            ->name('admin.village.facilities.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\FacilityController::class, 'store'])
+            ->name('admin.village.facilities.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\FacilityController::class, 'edit'])
+            ->name('admin.village.facilities.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\FacilityController::class, 'update'])
+            ->name('admin.village.facilities.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\FacilityController::class, 'destroy'])
+            ->name('admin.village.facilities.destroy');
+    });
+
+    // شورا
+    Route::prefix('council')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\CouncilController::class, 'index'])
+            ->name('admin.village.council.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\CouncilController::class, 'create'])
+            ->name('admin.village.council.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\CouncilController::class, 'store'])
+            ->name('admin.village.council.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\CouncilController::class, 'edit'])
+            ->name('admin.village.council.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\CouncilController::class, 'update'])
+            ->name('admin.village.council.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\CouncilController::class, 'destroy'])
+            ->name('admin.village.council.destroy');
+    });
+
+    // جاذبه‌ها
+    Route::prefix('attractions')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\AttractionController::class, 'index'])
+            ->name('admin.village.attractions.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\AttractionController::class, 'create'])
+            ->name('admin.village.attractions.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\AttractionController::class, 'store'])
+            ->name('admin.village.attractions.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\AttractionController::class, 'edit'])
+            ->name('admin.village.attractions.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\AttractionController::class, 'update'])
+            ->name('admin.village.attractions.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\AttractionController::class, 'destroy'])
+            ->name('admin.village.attractions.destroy');
+    });
+});

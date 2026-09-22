@@ -57,7 +57,16 @@
             text-decoration: none;
             padding: 10px 18px;
             border-radius: 7px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
         }
+        .btn-toggle-off { background: #e53935; }
+        .btn-toggle-off:hover { background: #c62828; }
+        .btn-toggle-on { background: #43a047; }
+        .btn-toggle-on:hover { background: #2e7d32; }
+        .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
         .active {
             color: #2e7d32;
@@ -111,11 +120,19 @@
                     @endif
                 </div>
 
-                <div>
+                <div class="actions">
                     <a class="btn"
                        href="{{ route('admin.villages.edit', $village) }}">
                         ویرایش اطلاعات
                     </a>
+                    <form method="POST" action="{{ route('admin.villages.toggle', $village->id) }}" style="display:inline;">
+                        @csrf
+                        @if($village->is_active)
+                            <button type="submit" class="btn btn-toggle-off" onclick="return confirm('روستای «{{ $village->name }}» را غیرفعال کنم؟')">🔒 غیرفعال</button>
+                        @else
+                            <button type="submit" class="btn btn-toggle-on">🔓 فعال</button>
+                        @endif
+                    </form>
                 </div>
 
             </div>

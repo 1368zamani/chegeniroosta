@@ -65,6 +65,20 @@ class AdminSectionController extends Controller
             ->with('success', 'اطلاعات بخش با موفقیت ذخیره شد.');
     }
 
+    public function toggleActive($id)
+    {
+        if (!auth()->user()->isSuperAdmin()) {
+            abort(403, 'فقط سوپرادمین می‌تواند وضعیت بخش را تغییر دهد.');
+        }
+
+        $section = Section::findOrFail($id);
+        $section->is_active = !$section->is_active;
+        $section->save();
+
+        $state = $section->is_active ? 'فعال' : 'غیرفعال';
+        return back()->with('success', "بخش «{$section->name}» {$state} شد.");
+    }
+
     public function uploadPhoto(Request $request, $id)
     {
         $section = Section::findOrFail($id);

@@ -21,8 +21,13 @@
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; }
         .badge-active { background: #c8e6c9; color: #2e7d32; }
         .badge-inactive { background: #ffcdd2; color: #c62828; }
-        .btn { display: inline-block; padding: 8px 16px; background: #1565c0; color: white; text-decoration: none; border-radius: 6px; font-size: 13px; }
+        .btn { display: inline-block; padding: 8px 16px; background: #1565c0; color: white; text-decoration: none; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-family: inherit; }
         .btn:hover { background: #0d47a1; }
+        .btn-toggle { padding: 8px 14px; font-size: 13px; border: none; cursor: pointer; font-family: inherit; border-radius: 6px; margin-right: 4px; }
+        .btn-toggle-off { background: #e53935; color: white; }
+        .btn-toggle-off:hover { background: #c62828; }
+        .btn-toggle-on { background: #43a047; color: white; }
+        .btn-toggle-on:hover { background: #2e7d32; }
         .photo-thumb { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #e3f2fd; }
         .photo-empty { width: 44px; height: 44px; border-radius: 50%; background: #cfd8dc; display: inline-flex; align-items: center; justify-content: center; color: #90a4ae; font-size: 18px; }
     </style>
@@ -77,8 +82,16 @@
                             <span class="badge badge-inactive">غیرفعال</span>
                         @endif
                     </td>
-                    <td>
+                    <td style="white-space: nowrap;">
                         <a href="{{ route('admin.sections.edit', $section->id) }}" class="btn">ویرایش</a>
+                        <form method="POST" action="{{ route('admin.sections.toggle', $section->id) }}" style="display:inline;">
+                            @csrf
+                            @if($section->is_active)
+                                <button type="submit" class="btn-toggle btn-toggle-off" onclick="return confirm('بخش «{{ $section->name }}» را غیرفعال کنم؟ سایت این بخش بسته می‌شود.')" title="غیرفعال کردن">🔒 غیرفعال</button>
+                            @else
+                                <button type="submit" class="btn-toggle btn-toggle-on" onclick="return confirm('بخش «{{ $section->name }}» را فعال کنم؟')" title="فعال کردن">🔓 فعال</button>
+                            @endif
+                        </form>
                     </td>
                 </tr>
             @endforeach

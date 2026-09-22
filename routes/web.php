@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-
 /*
 |--------------------------------------------------------------------------
 | ورود / خروج
@@ -55,30 +54,6 @@ Route::middleware('auth')->group(function () {
         [VillageImageController::class, 'store'])
         ->name('admin.images.store');
 
-    Route::get('/admin/village/{village}/news',
-        [VillageNewsController::class, 'index'])
-        ->name('admin.news.index');
-
-    Route::get('/admin/village/{village}/news/create',
-        [VillageNewsController::class, 'create'])
-        ->name('admin.news.create');
-
-    Route::post('/admin/village/{village}/news',
-        [VillageNewsController::class, 'store'])
-        ->name('admin.news.store');
-
-    Route::get('/admin/village/{village}/news/{news}/edit',
-        [VillageNewsController::class, 'edit'])
-        ->name('admin.news.edit');
-
-    Route::put('/admin/village/{village}/news/{news}',
-        [VillageNewsController::class, 'update'])
-        ->name('admin.news.update');
-
-    Route::delete('/admin/village/{village}/news/{news}',
-        [VillageNewsController::class, 'destroy'])
-        ->name('admin.news.destroy');
-
     Route::get('/admin/village/{village}/contact',
         [VillageContactController::class, 'edit'])
         ->name('admin.contact.edit');
@@ -115,6 +90,11 @@ Route::middleware('village')->group(function () {
 */
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+
+    // فعال/غیرفعال کردن بخش و روستا (سوپرادمین)
+    Route::post('sections/{id}/toggle', [\App\Http\Controllers\AdminSectionController::class, 'toggleActive'])->name('admin.sections.toggle');
+    Route::post('villages/{id}/toggle', [\App\Http\Controllers\AdminVillageController::class, 'toggleActive'])->name('admin.villages.toggle');
+
     Route::get('/villages', [\App\Http\Controllers\AdminVillageController::class, 'index'])
         ->name('admin.villages.index');
 
@@ -124,7 +104,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::put('/villages/{village}', [\App\Http\Controllers\AdminVillageController::class, 'update'])
         ->name('admin.villages.update');
 });
-
 
 Route::middleware('auth')->prefix('admin/village/{village}/images')->group(function () {
     Route::post('/{image}/cover', [\App\Http\Controllers\AdminVillageImageController::class, 'setCover'])
@@ -168,7 +147,6 @@ Route::middleware(['section', 'village'])->get('/', function (\Illuminate\Http\R
     return app(\App\Http\Controllers\CentralController::class)->home($request);
 
 })->name('home');
-
 
 /*
 |--------------------------------------------------------------------------

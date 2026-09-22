@@ -145,6 +145,21 @@ class AdminVillageController extends Controller
             ->with('success', 'اطلاعات روستا با موفقیت به‌روزرسانی شد.');
     }
 
+    public function toggleActive($id)
+    {
+        $village = Village::findOrFail($id);
+
+        if (!auth()->user()->canManageVillage($village)) {
+            abort(403);
+        }
+
+        $village->is_active = !$village->is_active;
+        $village->save();
+
+        $state = $village->is_active ? 'فعال' : 'غیرفعال';
+        return back()->with('success', "روستای «{$village->name}» {$state} شد.");
+    }
+
     public function destroy($id)
     {
         $village = Village::findOrFail($id);

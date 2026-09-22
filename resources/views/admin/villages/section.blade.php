@@ -95,6 +95,11 @@
         .btn-warning:hover { background: #f57f17; }
         .btn-danger { background: #e53935; color: white; }
         .btn-danger:hover { background: #c62828; }
+        .btn-toggle { padding: 7px 12px; border-radius: 6px; font-size: 12px; border: none; cursor: pointer; font-family: inherit; margin: 2px; }
+        .btn-toggle-off { background: #e53935; color: white; }
+        .btn-toggle-off:hover { background: #c62828; }
+        .btn-toggle-on { background: #43a047; color: white; }
+        .btn-toggle-on:hover { background: #2e7d32; }
 
         .badge {
             padding: 3px 8px;
@@ -182,6 +187,14 @@
                             <a href="{{ route('admin.villages.edit', $village->id) }}" class="btn btn-primary" title="ویرایش">✏️ ویرایش</a>
                             <a href="{{ route('admin.village.images.index', $village->id) }}" class="btn" style="background:#7b1fa2; color:white;" title="گالری">🖼 گالری</a>
                             <a href="{{ route('admin.village.news.index', $village->id) }}" class="btn btn-warning" title="اخبار">📰 اخبار</a>
+                            <form method="POST" action="{{ route('admin.villages.toggle', $village->id) }}" style="display:inline;">
+                                @csrf
+                                @if($village->is_active)
+                                    <button type="submit" class="btn-toggle btn-toggle-off" onclick="return confirm('روستای «{{ $village->name }}» را غیرفعال کنم؟')" title="غیرفعال کردن">🔒</button>
+                                @else
+                                    <button type="submit" class="btn-toggle btn-toggle-on" title="فعال کردن">🔓</button>
+                                @endif
+                            </form>
                             <form method="POST" action="{{ route('admin.villages.destroy', $village->id) }}" style="display:inline;" onsubmit="return confirm('حذف {{ $village->name }}؟');">
                                 @csrf
                                 @method('DELETE')
