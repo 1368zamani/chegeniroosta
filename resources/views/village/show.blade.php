@@ -342,7 +342,10 @@
         <h2 class="section-title">🖼 گالری تصاویر {{ $village->name }}</h2>
         <div class="v-gallery-grid">
             @foreach($images as $image)
-                <div class="v-gallery-item">
+                <div class="v-gallery-item"
+                     data-image-src="{{ asset('storage/' . $image->image) }}"
+                     data-title="{{ $image->title }}"
+                     data-description="{{ $image->description }}">
                     <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->title ?: $village->name }}" loading="lazy">
                     @if($image->title)
                         <div class="v-gallery-caption">{{ $image->title }}</div>
@@ -449,6 +452,7 @@
 @include('partials.gov-footer')
 @include('partials.dark-mode')
 @include('partials.back-to-top')
+@include('partials.gallery-lightbox')
 
 </body>
 </html>
