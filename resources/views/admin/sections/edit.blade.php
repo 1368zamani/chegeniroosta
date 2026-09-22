@@ -141,6 +141,16 @@
                 <textarea name="bakhshdar_bio" placeholder="توضیح کوتاه درباره بخشدار...">{{ old('bakhshdar_bio', $section->bakhshdar_bio) }}</textarea>
             </div>
 
+                <div class="form-group">
+                    <label>تحصیلات</label>
+                    <textarea name="bakhshdar_education" rows="3" placeholder="مثال: کارشناسی ارشد مدیریت دولتی از دانشگاه تهران">{{ old('bakhshdar_education', $section->bakhshdar_education) }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>سوابق شغلی</label>
+                    <textarea name="bakhshdar_experience" rows="4" placeholder="مثال: بخشدار ... — ۱۳۹۸ تا ۱۴۰۲">{{ old('bakhshdar_experience', $section->bakhshdar_experience) }}</textarea>
+                </div>
+
             <div class="row">
                 <div class="field">
                     <label>تلفن دفتر بخشدار</label>

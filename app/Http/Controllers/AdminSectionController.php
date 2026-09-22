@@ -56,6 +56,8 @@ class AdminSectionController extends Controller
             'bakhshdar_bio'     => 'nullable|string',
             'bakhshdar_phone'   => 'nullable|string|max:50',
             'bakhshdar_email'   => 'nullable|email|max:100',
+            'bakhshdar_education'  => 'nullable|string|max:1000',
+            'bakhshdar_experience' => 'nullable|string|max:2000',
         ]);
 
         $data['is_active'] = $request->boolean('is_active');
