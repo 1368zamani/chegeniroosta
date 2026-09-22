@@ -190,13 +190,8 @@ a[href^="tel:"] {
 
             <div class="profile-section">
                 <h3>🎓 تحصیلات</h3>
-                @php $edu = is_array($section->bakhshdar_education) ? $section->bakhshdar_education : (json_decode($section->bakhshdar_education ?? '[]', true) ?: []); @endphp
-                @if(count($edu) > 0)
-                    <ul class="timeline-list">
-                        @foreach($edu as $item)
-                            <li>{{ $item }}</li>
-                        @endforeach
-                    </ul>
+                @if(!empty(trim((string) ($section->bakhshdar_education ?? ''))))
+                    <p style="white-space: pre-line; line-height: 2; color: #546e7a;">{{ $section->bakhshdar_education }}</p>
                 @else
                     <p class="empty-note">اطلاعات تحصیلات در حال تکمیل است.</p>
                 @endif
@@ -204,13 +199,8 @@ a[href^="tel:"] {
 
             <div class="profile-section">
                 <h3>💼 سوابق شغلی</h3>
-                @php $exp = is_array($section->bakhshdar_experience) ? $section->bakhshdar_experience : (json_decode($section->bakhshdar_experience ?? '[]', true) ?: []); @endphp
-                @if(count($exp) > 0)
-                    <ul class="timeline-list">
-                        @foreach($exp as $item)
-                            <li>{{ $item }}</li>
-                        @endforeach
-                    </ul>
+                @if(!empty(trim((string) ($section->bakhshdar_experience ?? ''))))
+                    <p style="white-space: pre-line; line-height: 2; color: #546e7a;">{{ $section->bakhshdar_experience }}</p>
                 @else
                     <p class="empty-note">اطلاعات سوابق در حال تکمیل است.</p>
                 @endif
