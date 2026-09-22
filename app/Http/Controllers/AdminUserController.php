@@ -10,38 +10,66 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
+    private function ensureManagerAccess(): void
+    {
+        $u = auth()->user();
+        if (!$u->isSuperAdmin() && !$u->isSectionAdmin()) {
+            abort(403, 'دسترسی ندارید.');
+        }
+    }
+
+    private function isSuper(): bool
+    {
+        return auth()->user()->isSuperAdmin();
+    }
+
+    private function sectionId(): ?int
+    {
+        return $this->isSuper() ? null : (int) auth()->user()->section_id;
+    }
+
     public function index()
     {
-        if (!auth()->user()->isSuperAdmin()) {
-            abort(403, 'فقط سوپر ادمین می‌تواند کاربران را مدیریت کند.');
+        $this->ensureManagerAccess();
+
+        $q = User::with(['section', 'village'])->orderBy('id', 'desc');
+        if (!$this->isSuper()) {
+            $q->where('section_id', $this->sectionId());
         }
 
-        $users = User::with(['section', 'village'])->orderBy('id', 'desc')->get();
+        $users = $q->get();
         return view('admin.users.index', compact('users'));
     }
 
     public function create()
     {
-        if (!auth()->user()->isSuperAdmin()) {
-            abort(403);
+        $this->ensureManagerAccess();
+
+        if ($this->isSuper()) {
+            $sections = Section::orderBy('name')->get();
+            $villages = Village::orderBy('name')->get();
+        } else {
+            $sid = $this->sectionId();
+            $sections = Section::where('id', $sid)->get();
+            $villages = Village::where('section_id', $sid)->orderBy('name')->get();
         }
 
-        $sections = Section::orderBy('name')->get();
-        $villages = Village::orderBy('name')->get();
         return view('admin.users.create', compact('sections', 'villages'));
     }
 
     public function store(Request $request)
     {
-        if (!auth()->user()->isSuperAdmin()) {
-            abort(403);
-        }
+        $this->ensureManagerAccess();
+
+        $allowedRoles = $this->isSuper()
+            ? 'in:super_admin,section_admin,village_admin'
+            : 'in:village_admin';
 
         $data = $request->validate([
             'name'       => 'required|string|max:255',
             'email'      => 'required|email|unique:users,email',
             'password'   => 'required|string|min:6',
-            'role'       => 'required|in:super_admin,section_admin,village_admin',
+            'role'       => 'required|' . $allowedRoles,
             'section_id' => 'nullable|exists:sections,id',
             'village_id' => 'nullable|exists:villages,id',
         ]);
@@ -49,13 +77,20 @@ class AdminUserController extends Controller
         if ($data['role'] === 'section_admin' && empty($data['section_id'])) {
             return back()->withErrors(['section_id' => 'برای ادمین بخش، انتخاب بخش الزامی است.'])->withInput();
         }
-
         if ($data['role'] === 'village_admin' && empty($data['village_id'])) {
             return back()->withErrors(['village_id' => 'برای ادمین روستا، انتخاب روستا الزامی است.'])->withInput();
         }
 
-        $data['password'] = Hash::make($data['password']);
+        if (!$this->isSuper()) {
+            $data['section_id'] = $this->sectionId();
+            $v = Village::find($data['village_id']);
+            if (!$v || (int)$v->section_id !== $this->sectionId()) {
+                abort(403, 'این روستا در بخش شما نیست.');
+            }
+            $data['role'] = 'village_admin';
+        }
 
+        $data['password'] = Hash::make($data['password']);
         User::create($data);
 
         return redirect()->route('admin.users.index')
@@ -64,30 +99,35 @@ class AdminUserController extends Controller
 
     public function edit($id)
     {
-        if (!auth()->user()->isSuperAdmin()) {
-            abort(403);
-        }
+        $this->ensureManagerAccess();
+        $user = $this->findUserInScopeOrFail($id);
 
-        $user = User::findOrFail($id);
-        $sections = Section::orderBy('name')->get();
-        $villages = Village::orderBy('name')->get();
+        if ($this->isSuper()) {
+            $sections = Section::orderBy('name')->get();
+            $villages = Village::orderBy('name')->get();
+        } else {
+            $sid = $this->sectionId();
+            $sections = Section::where('id', $sid)->get();
+            $villages = Village::where('section_id', $sid)->orderBy('name')->get();
+        }
 
         return view('admin.users.edit', compact('user', 'sections', 'villages'));
     }
 
     public function update(Request $request, $id)
     {
-        if (!auth()->user()->isSuperAdmin()) {
-            abort(403);
-        }
+        $this->ensureManagerAccess();
+        $user = $this->findUserInScopeOrFail($id);
 
-        $user = User::findOrFail($id);
+        $allowedRoles = $this->isSuper()
+            ? 'in:super_admin,section_admin,village_admin'
+            : 'in:village_admin';
 
         $data = $request->validate([
             'name'       => 'required|string|max:255',
             'email'      => 'required|email|unique:users,email,' . $id,
             'password'   => 'nullable|string|min:6',
-            'role'       => 'required|in:super_admin,section_admin,village_admin',
+            'role'       => 'required|' . $allowedRoles,
             'section_id' => 'nullable|exists:sections,id',
             'village_id' => 'nullable|exists:villages,id',
         ]);
@@ -95,9 +135,17 @@ class AdminUserController extends Controller
         if ($data['role'] === 'section_admin' && empty($data['section_id'])) {
             return back()->withErrors(['section_id' => 'برای ادمین بخش، انتخاب بخش الزامی است.'])->withInput();
         }
-
         if ($data['role'] === 'village_admin' && empty($data['village_id'])) {
             return back()->withErrors(['village_id' => 'برای ادمین روستا، انتخاب روستا الزامی است.'])->withInput();
+        }
+
+        if (!$this->isSuper()) {
+            $data['section_id'] = $this->sectionId();
+            $v = Village::find($data['village_id']);
+            if (!$v || (int)$v->section_id !== $this->sectionId()) {
+                abort(403, 'این روستا در بخش شما نیست.');
+            }
+            $data['role'] = 'village_admin';
         }
 
         if (empty($data['password'])) {
@@ -114,11 +162,8 @@ class AdminUserController extends Controller
 
     public function destroy($id)
     {
-        if (!auth()->user()->isSuperAdmin()) {
-            abort(403);
-        }
-
-        $user = User::findOrFail($id);
+        $this->ensureManagerAccess();
+        $user = $this->findUserInScopeOrFail($id);
 
         if ($user->id === auth()->id()) {
             return back()->withErrors(['error' => 'نمی‌توانید حساب خودتان را حذف کنید.']);
@@ -128,5 +173,16 @@ class AdminUserController extends Controller
 
         return redirect()->route('admin.users.index')
             ->with('success', 'کاربر حذف شد.');
+    }
+
+    private function findUserInScopeOrFail($id): User
+    {
+        $u = User::findOrFail($id);
+        if ($this->isSuper()) return $u;
+
+        if ((int)$u->section_id !== $this->sectionId() || $u->isSuperAdmin()) {
+            abort(403, 'این کاربر در بخش شما نیست.');
+        }
+        return $u;
     }
 }
