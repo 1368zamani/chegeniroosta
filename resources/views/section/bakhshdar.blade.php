@@ -120,6 +120,31 @@
 
     </style>
     @include("partials.analytics")
+
+<style>
+/* CARD-HOVER-2026 */
+.info-item,
+.info-card,
+[class*="info-"] {
+    transition: transform .25s ease, box-shadow .25s ease !important;
+}
+.info-item:hover,
+.info-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 24px rgba(13,46,79,0.15) !important;
+}
+.v-gallery-item:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 30px rgba(13,46,79,0.18) !important;
+}
+/* tel: — لینک تماس */
+a[href^="tel:"] {
+    direction: ltr;
+    display: inline-block;
+    font-weight: 600;
+}
+</style>
+
 </head>
 <body>
 

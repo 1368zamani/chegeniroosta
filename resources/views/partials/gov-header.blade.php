@@ -1207,6 +1207,263 @@ img, iframe, video {
     height: auto !important;
 }
 
+
+    /* ============================================
+       MODERN-HEADER-2026 — Override
+       فقط خاصیت‌های ظاهری، بدون تغییر ساختار
+       ============================================ */
+
+    /* ۱. لایه تیره روی عکس پل — خوانایی متن سفید */
+    .gov-header::after {
+        background: linear-gradient(180deg,
+            rgba(13, 27, 42, 0.45) 0%,
+            rgba(13, 27, 42, 0.60) 50%,
+            rgba(13, 27, 42, 0.70) 100%) !important;
+    }
+
+    /* ۲. فونت استاندارد + عنوان سفید Bold */
+    .gov-main-title,
+    .gv-main-title,
+    .s-titles h1 {
+        font-family: 'Vazirmatn', 'B Nazanin', Tahoma, sans-serif !important;
+        color: #ffffff !important;
+        font-size: 40px !important;
+        font-weight: 800 !important;
+        text-shadow:
+            0 2px 4px rgba(0,0,0,0.55),
+            0 4px 24px rgba(0,0,0,0.35) !important;
+        letter-spacing: -0.3px !important;
+        line-height: 1.35 !important;
+    }
+
+    .gov-sub-title,
+    .gv-sub-title,
+    .s-titles p {
+        color: #f1f5f9 !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.6) !important;
+    }
+
+    /* حذف رنگ‌های ناهمگون سبز/قرمز — همه کرم روشن یا طلایی */
+    .gov-consensus-highlight {
+        color: #ffd54f !important;
+    }
+    .gov-slogan-tag {
+        color: #ffd54f !important;
+        background: rgba(13,46,79,0.75) !important;
+        font-size: 10.5px !important;
+        padding: 3px 10px !important;
+    }
+    .gov-slogan-text {
+        color: #ffffff !important;
+        font-size: 12px !important;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.6) !important;
+    }
+
+    /* ۳. پاک‌سازی هدر — عکس رهبری کوچیک‌تر و نامحسوس */
+    .gov-leader-square-wrap {
+        width: 100px !important;
+        height: 100px !important;
+        filter: drop-shadow(0 3px 10px rgba(0,0,0,0.35)) brightness(1.05) !important;
+    }
+    .gov-slogan-side {
+        max-width: 150px !important;
+    }
+
+    /* ۴. منو برجسته‌تر */
+    .gov-navbar {
+        border-top: 2px solid rgba(255,213,79,0.55) !important;
+        box-shadow: 0 6px 20px rgba(13,46,79,0.25) !important;
+    }
+    .gov-nav-item {
+        font-size: 15.5px !important;
+        font-weight: 700 !important;
+        padding: 17px 24px !important;
+        letter-spacing: 0.1px !important;
+    }
+    .gov-nav-item:hover,
+    .gov-nav-item.active {
+        background: rgba(255,213,79,0.15) !important;
+        border-bottom-color: #ffd54f !important;
+        color: #ffd54f !important;
+    }
+
+    /* ۵. دکمه پنل مدیریت → آیکون چرخ‌دنده گرد */
+    .gov-action-btn {
+        width: 38px !important;
+        height: 38px !important;
+        padding: 0 !important;
+        font-size: 18px !important;
+        border-radius: 50% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background: rgba(255,213,79,0.12) !important;
+        border: 1px solid rgba(255,213,79,0.35) !important;
+        color: #ffd54f !important;
+    }
+    .gov-action-btn:hover {
+        background: rgba(255,213,79,0.25) !important;
+        transform: rotate(30deg);
+        transition: transform .25s ease;
+    }
+    .gov-nav-actions {
+        padding-left: 12px !important;
+    }
+
+    /* ============ موبایل ============ */
+    @media (max-width: 1000px) {
+        .gov-main-title { font-size: 30px !important; }
+        .gov-leader-square-wrap { width: 90px !important; height: 90px !important; }
+        .gov-slogan-side { max-width: 130px !important; }
+    }
+    @media (max-width: 700px) {
+        .gov-main-title { font-size: 22px !important; text-align: center !important; }
+        .gov-sub-title { font-size: 11px !important; justify-content: center !important; }
+        .gov-leader-square-wrap { width: 70px !important; height: 70px !important; }
+        .gov-slogan-side { max-width: 110px !important; text-align: center !important; }
+        .gov-slogan-text { font-size: 10.5px !important; }
+        .gov-slogan-tag { font-size: 9.5px !important; padding: 2px 7px !important; }
+        .gov-nav-item {
+            font-size: 13px !important;
+            padding: 12px 14px !important;
+        }
+        .gov-action-btn {
+            width: 34px !important;
+            height: 34px !important;
+            font-size: 15px !important;
+        }
+    }
+
+    /* پایان MODERN-HEADER-2026 */
+
+    /* ============================================
+   HEADER-V2.1 — کارت شعار تمیز
+   ============================================ */
+
+.gov-slogan-card {
+    background: rgba(13, 27, 42, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-right: 3px solid #ffd54f;
+    border-radius: 10px;
+    padding: 16px 22px;
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    max-width: 360px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+.gov-slogan-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 213, 79, 0.06) 0%, transparent 55%);
+    pointer-events: none;
+}
+.gov-slogan-card-text {
+    color: #ffffff;
+    font-family: 'Vazirmatn', 'IRANSans', Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 2;
+    letter-spacing: 0.2px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* لوگو بزرگ‌تر و متعادل */
+.gov-emblem {
+    width: 110px !important;
+    height: 110px !important;
+}
+
+/* ============ عنوان اصلی — فونت بهتر ============ */
+.gov-main-title,
+.gv-main-title,
+.s-titles h1 {
+    font-family: 'Vazirmatn', 'IRANSans', Tahoma, sans-serif !important;
+    font-size: 34px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.5px !important;
+    line-height: 1.5 !important;
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.55),
+        0 4px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.gov-sub-title,
+.gv-sub-title,
+.s-titles p {
+    font-family: 'Vazirmatn', 'IRANSans', Tahoma, sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    color: #f1f5f9 !important;
+    letter-spacing: 0.1px !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* ============ منوی مدرن‌تر ============ */
+.gov-action-btn {
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: rgba(255, 213, 79, 0.15) !important;
+    border: 1px solid rgba(255, 213, 79, 0.45) !important;
+    color: #ffd54f !important;
+    display: inline-flex !important;
+}
+.gov-action-btn:hover {
+    background: rgba(255, 213, 79, 0.3) !important;
+    color: #ffffff !important;
+    transform: scale(1.08) !important;
+    transition: all .25s ease !important;
+}
+
+/* ============ موبایل ============ */
+@media (max-width: 1000px) {
+    .gov-slogan-card {
+        padding: 12px 16px;
+        max-width: 260px;
+    }
+    .gov-slogan-card-text {
+        font-size: 13px;
+        line-height: 1.9;
+    }
+    .gov-emblem { width: 88px !important; height: 88px !important; }
+    .gov-main-title { font-size: 28px !important; }
+}
+@media (max-width: 700px) {
+    .gov-slogan-card {
+        padding: 12px 16px;
+        max-width: 100%;
+        text-align: center;
+        border-right: none;
+        border-top: 3px solid #ffd54f;
+    }
+    .gov-slogan-card-text {
+        font-size: 12.5px;
+        text-align: center;
+        line-height: 1.85;
+    }
+    .gov-emblem { width: 70px !important; height: 70px !important; }
+    .gov-main-title { font-size: 21px !important; text-align: center !important; }
+    .gov-sub-title { font-size: 11px !important; justify-content: center !important; }
+}
+
+/* پایان HEADER-V2.1 */
+
+
 </style>
 
 {{-- ================ TOP BAR ================ --}}
@@ -1256,15 +1513,9 @@ img, iframe, video {
             </div>
         </div>
 
-        {{-- سمت چپ (آخر در RTL): عکس رهبری + شعار --}}
-        <div class="gov-leader-block">
-            <div class="gov-slogan-side">
-                <div class="gov-slogan-tag">📜 شعار سال ۱۴۰۵</div>
-                <div class="gov-slogan-text">«امنیت ملی و وحدت ملی<br>در سایه اقتصاد مقاومتی»</div>
-            </div>
-            <div class="gov-leader-square-wrap">
-                <img src="{{ asset('images/gov/leader.jpg') }}" alt="رهبر معظم انقلاب" class="gov-leader-square-img">
-            </div>
+        {{-- سمت چپ (آخر در RTL): کارت شعار سال --}}
+        <div class="gov-slogan-card">
+            <div class="gov-slogan-card-text">امنیت ملی و وحدت ملی<br>در سایه اقتصاد مقاومتی</div>
         </div>
 
     </div>
@@ -1288,7 +1539,7 @@ img, iframe, video {
         <a href="{{ route('search.index') }}" class="gov-nav-item">🔍 جستجو</a>
         <div class="gov-nav-actions">
             @auth
-                <a href="{{ route('admin.dashboard') }}" class="gov-action-btn">⚙️ پنل مدیریت</a>
+                <a href="{{ route('admin.dashboard') }}" class="gov-action-btn">⚙️</a>
             @else
                 <a href="{{ route('login') }}" class="gov-action-btn">🔐 ورود</a>
             @endauth
