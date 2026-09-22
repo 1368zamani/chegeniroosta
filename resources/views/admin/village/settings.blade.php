@@ -147,6 +147,19 @@
             </div>
         </div>
 
+        <div class="row-2">
+            <div class="field">
+                <label>عرض جغرافیایی (Latitude)</label>
+                <input type="text" name="latitude" value="{{ old('latitude', $village->latitude) }}" dir="ltr" placeholder="مثال: 33.49857115">
+                <small style="color:#64748b; font-size:12px;">از گوگل مپ، روی روستا کلیک راست کنید → مختصات را کپی کنید</small>
+            </div>
+            <div class="field">
+                <label>طول جغرافیایی (Longitude)</label>
+                <input type="text" name="longitude" value="{{ old('longitude', $village->longitude) }}" dir="ltr" placeholder="مثال: 48.02885012">
+                <small style="color:#64748b; font-size:12px;">اولین عدد = lat، دومین عدد = lng</small>
+            </div>
+        </div>
+
         <div class="field">
             <label>شناسه پرداخت</label>
             <input type="text" name="payment_id" value="{{ old('payment_id', $village->payment_id) }}" dir="ltr">

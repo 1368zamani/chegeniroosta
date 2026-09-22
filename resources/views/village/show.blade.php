@@ -354,8 +354,7 @@
             @endforeach
         </div>
     @endif
-
-    {{-- ============ پروژه‌ها ============ --}}
+{{-- ============ پروژه‌ها ============ --}}
     @if(isset($projects) && $projects->count() > 0)
         <h2 class="section-title">🏗 پروژه‌های عمرانی</h2>
         <div class="v-news-grid">
@@ -448,6 +447,12 @@
     </div>
 
 </div>
+
+{{-- ============ موقعیت روی نقشه ============ --}}
+@if(!empty($village->latitude) && !empty($village->longitude))
+    <h2 class="section-title">📍 موقعیت {{ $village->name }} روی نقشه</h2>
+    @include('partials.village-map', ['village' => $village])
+@endif
 
 @include('partials.gov-footer')
 @include('partials.dark-mode')

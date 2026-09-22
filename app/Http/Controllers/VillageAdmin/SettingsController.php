@@ -44,6 +44,8 @@ class SettingsController extends Controller
             'bank_name'      => 'nullable|string|max:255',
             'bank_account'   => 'nullable|string|max:255',
             'payment_id'     => 'nullable|string|max:255',
+            'latitude'       => 'nullable|numeric|between:-90,90',
+            'longitude'      => 'nullable|numeric|between:-180,180',
         ]);
 
         $village->update(array_merge($data, $baseData));
