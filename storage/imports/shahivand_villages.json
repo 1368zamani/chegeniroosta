@@ -1,0 +1,383 @@
+{
+  "villages": [
+    {
+      "name": "پير صمدين / پير سيد احمد",
+      "slug": "pyr-smdyn-pyr-syd-ahmd",
+      "dehestan": "کشکان شمالي",
+      "households": 49,
+      "population": 196,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "گرمورت ميرزاخاني",
+      "slug": "grmvrt-myrzakhany",
+      "dehestan": "کشکان شمالي",
+      "households": 128,
+      "population": 460,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "گرمورت نصرتي",
+      "slug": "grmvrt-nsrty",
+      "dehestan": "کشکان شمالي",
+      "households": 54,
+      "population": 198,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "بلوط بان / مراد علي",
+      "slug": "blvt-ban-mrad-aly",
+      "dehestan": "کشکان شمالي",
+      "households": 33,
+      "population": 135,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ملک ميرزاچم دشتي",
+      "slug": "mlk-myrzachm-dshty",
+      "dehestan": "کشکان شمالي",
+      "households": 60,
+      "population": 221,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چم خوشه شير کش",
+      "slug": "chm-khvshh-shyr-ksh",
+      "dehestan": "کشکان شمالي",
+      "households": 256,
+      "population": 785,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "خانه سرخ",
+      "slug": "khanh-srkh",
+      "dehestan": "کشکان شمالي",
+      "households": 222,
+      "population": 772,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چم پلک",
+      "slug": "chm-plk",
+      "dehestan": "کشکان شمالي",
+      "households": 186,
+      "population": 707,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "طالقان2",
+      "slug": "talghan2",
+      "dehestan": "کشکان شمالي",
+      "households": 42,
+      "population": 165,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "طالقان يک",
+      "slug": "talghan-yk",
+      "dehestan": "کشکان شمالي",
+      "households": 60,
+      "population": 221,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سياه چم",
+      "slug": "syah-chm",
+      "dehestan": "کشکان شمالي",
+      "households": 33,
+      "population": 123,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ژريژبان",
+      "slug": "zhryzhban",
+      "dehestan": "کشکان شمالي",
+      "households": 125,
+      "population": 490,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "هودر بساط علي",
+      "slug": "hvdr-bsat-aly",
+      "dehestan": "کشکان شمالي",
+      "households": 39,
+      "population": 150,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چناران / حسين خان",
+      "slug": "chnaran-hsyn-khan",
+      "dehestan": "کشکان شمالي",
+      "households": 68,
+      "population": 297,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ولدکش",
+      "slug": "vldksh",
+      "dehestan": "کشکان شمالي",
+      "households": 74,
+      "population": 314,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "درمره",
+      "slug": "drmrh",
+      "dehestan": "کشکان شمالي",
+      "households": 170,
+      "population": 645,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "زنگي بان/شترمل",
+      "slug": "zngy-ban-shtrml",
+      "dehestan": "کشکان شمالي",
+      "households": 35,
+      "population": 132,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کرگز",
+      "slug": "krgz",
+      "dehestan": "کشکان شمالي",
+      "households": 34,
+      "population": 122,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کرم / ميان کنان",
+      "slug": "krm-myan-knan",
+      "dehestan": "کشکان شمالي",
+      "households": 45,
+      "population": 169,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ريخته کوه ورپل",
+      "slug": "rykhth-kvh-vrpl",
+      "dehestan": "کشکان شمالي",
+      "households": 32,
+      "population": 118,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چهاراب",
+      "slug": "chharab",
+      "dehestan": "کشکان شمالي",
+      "households": 54,
+      "population": 216,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "شيخ گل",
+      "slug": "shykh-gl",
+      "dehestan": "کشکان شمالي",
+      "households": 34,
+      "population": 122,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "گاوگيرچمدانه",
+      "slug": "gavgyrchmdanh",
+      "dehestan": "کشکان شمالي",
+      "households": 132,
+      "population": 497,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ورپل",
+      "slug": "vrpl",
+      "dehestan": "کشکان شمالي",
+      "households": 93,
+      "population": 345,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "هفت ‌چشمه",
+      "slug": "hft-chshmh",
+      "dehestan": "کشکان شمالي",
+      "households": 54,
+      "population": 190,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "بنارکبوددو",
+      "slug": "bnarkbvddv",
+      "dehestan": "کشکان جنوبي",
+      "households": 73,
+      "population": 273,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "بنارکبودسه",
+      "slug": "bnarkbvdsh",
+      "dehestan": "کشکان جنوبي",
+      "households": 32,
+      "population": 121,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سرزمان",
+      "slug": "srzman",
+      "dehestan": "کشکان جنوبي",
+      "households": 47,
+      "population": 190,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چشمه زمزم",
+      "slug": "chshmh-zmzm",
+      "dehestan": "کشکان جنوبي",
+      "households": 101,
+      "population": 364,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چمداود",
+      "slug": "chmdavd",
+      "dehestan": "کشکان جنوبي",
+      "households": 135,
+      "population": 445,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سياه دره 1  فرهادي",
+      "slug": "syah-drh-1-frhady",
+      "dehestan": "کشکان جنوبي",
+      "households": 37,
+      "population": 114,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سياه دره 3 کوسه",
+      "slug": "syah-drh-3-kvsh",
+      "dehestan": "کشکان جنوبي",
+      "households": 39,
+      "population": 159,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کچکان",
+      "slug": "kchkan",
+      "dehestan": "کشکان جنوبي",
+      "households": 56,
+      "population": 200,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چشمه سرده/ دره نورمراد",
+      "slug": "chshmh-srdh-drh-nvrmrad",
+      "dehestan": "کشکان جنوبي",
+      "households": 43,
+      "population": 149,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "شهبازبک",
+      "slug": "shhbazbk",
+      "dehestan": "کشکان جنوبي",
+      "households": 61,
+      "population": 229,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کله بان / کله بان 2",
+      "slug": "klh-ban-klh-ban-2",
+      "dehestan": "کشکان جنوبي",
+      "households": 41,
+      "population": 154,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ولي آباد شيري",
+      "slug": "vly-abad-shyry",
+      "dehestan": "کشکان جنوبي",
+      "households": 55,
+      "population": 226,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ملک آباد سماق",
+      "slug": "mlk-abad-smagh",
+      "dehestan": "کشکان جنوبي",
+      "households": 193,
+      "population": 703,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "خاطره",
+      "slug": "khatrh",
+      "dehestan": "کشکان جنوبي",
+      "households": 147,
+      "population": 399,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چرخستانه",
+      "slug": "chrkhstanh",
+      "dehestan": "کشکان جنوبي",
+      "households": 49,
+      "population": 158,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چم خوشه صفرعلي",
+      "slug": "chm-khvshh-sfraly",
+      "dehestan": "کشکان جنوبي",
+      "households": 195,
+      "population": 728,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کله هو",
+      "slug": "klh-hv",
+      "dehestan": "کشکان جنوبي",
+      "households": 301,
+      "population": 1107,
+      "county": "چگنی",
+      "province": "لرستان"
+    }
+  ],
+  "total": 42
+}

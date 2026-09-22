@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+#[Fillable(['name', 'username', 'email', 'password', 'role', 'section_id', 'village_id'])]
+#[Hidden(['password', 'remember_token'])]
+class User extends Authenticatable
+{
+    use HasFactory, Notifiable;
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(\App\Models\Section::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(\App\Models\Village::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super_admin';
+    }
+
+    public function isSectionAdmin(): bool
+    {
+        return $this->role === 'section_admin';
+    }
+
+    public function isVillageAdmin(): bool
+    {
+        return $this->role === 'village_admin';
+    }
+
+    public function canManageSection($sectionId): bool
+    {
+        if ($this->isSuperAdmin()) return true;
+
+        if ($this->isSectionAdmin()) {
+            return (int) $this->section_id === (int) $sectionId;
+        }
+
+        return false;
+    }
+
+    public function canManageVillage($village): bool
+    {
+        if ($this->isSuperAdmin()) return true;
+
+        $villageModel = is_object($village) ? $village : \App\Models\Village::find($village);
+        if (!$villageModel) return false;
+
+        if ($this->isSectionAdmin()) {
+            return (int) $this->section_id === (int) $villageModel->section_id;
+        }
+
+        if ($this->isVillageAdmin()) {
+            return (int) $this->village_id === (int) $villageModel->id;
+        }
+
+        return false;
+    }
+}

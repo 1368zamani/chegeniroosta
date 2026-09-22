@@ -1,0 +1,392 @@
+{
+  "villages": [
+    {
+      "name": "آزادخان",
+      "slug": "azadkhan",
+      "dehestan": "تشکن",
+      "households": 51,
+      "population": 160,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سراب‌رفتخان",
+      "slug": "srab-rftkhan",
+      "dehestan": "تشکن",
+      "households": 119,
+      "population": 461,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "پير شمس الدين",
+      "slug": "pyr-shms-aldyn",
+      "dehestan": "تشکن",
+      "households": 43,
+      "population": 153,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "تاف تافينه  شمس علي",
+      "slug": "taf-tafynh-shms-aly",
+      "dehestan": "تشکن",
+      "households": 71,
+      "population": 249,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کريه دو/ عباس آباد",
+      "slug": "kryh-dv-abas-abad",
+      "dehestan": "تشکن",
+      "households": 45,
+      "population": 157,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چاه ذوالفقار",
+      "slug": "chah-zvalfghar",
+      "dehestan": "تشکن",
+      "households": 134,
+      "population": 492,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "طولابي‌برآفتاب",
+      "slug": "tvlaby-braftab",
+      "dehestan": "تشکن",
+      "households": 77,
+      "population": 285,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "قاسمعلي برافتاب",
+      "slug": "ghasmaly-braftab",
+      "dehestan": "تشکن",
+      "households": 54,
+      "population": 170,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "امير آباد",
+      "slug": "amyr-abad",
+      "dehestan": "تشکن",
+      "households": 123,
+      "population": 456,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کي برافتاب",
+      "slug": "ky-braftab",
+      "dehestan": "تشکن",
+      "households": 38,
+      "population": 137,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "پانسارتشکن",
+      "slug": "pansartshkn",
+      "dehestan": "تشکن",
+      "households": 105,
+      "population": 415,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "خير آباد پايين",
+      "slug": "khyr-abad-payyn",
+      "dehestan": "تشکن",
+      "households": 31,
+      "population": 114,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "اسلام اباد",
+      "slug": "aslam-abad",
+      "dehestan": "تشکن",
+      "households": 56,
+      "population": 209,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سرانبارکلانتري",
+      "slug": "sranbarklantry",
+      "dehestan": "تشکن",
+      "households": 98,
+      "population": 342,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "قلعه بهادر",
+      "slug": "ghlah-bhadr",
+      "dehestan": "تشکن",
+      "households": 56,
+      "population": 182,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سرانبار سادات و نصرتي",
+      "slug": "sranbar-sadat-v-nsrty",
+      "dehestan": "تشکن",
+      "households": 75,
+      "population": 245,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "بن مزرعه",
+      "slug": "bn-mzrah",
+      "dehestan": "تشکن",
+      "households": 54,
+      "population": 204,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "دره‌زيرگر/ زوران چم",
+      "slug": "drh-zyrgr-zvran-chm",
+      "dehestan": "تشکن",
+      "households": 39,
+      "population": 144,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سراب ناوه کش",
+      "slug": "srab-navh-ksh",
+      "dehestan": "دوره",
+      "households": 275,
+      "population": 983,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سراب کي حاتم",
+      "slug": "srab-ky-hatm",
+      "dehestan": "دوره",
+      "households": 39,
+      "population": 135,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "درب‌چاه",
+      "slug": "drb-chah",
+      "dehestan": "دوره",
+      "households": 71,
+      "population": 245,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "پاکدشت",
+      "slug": "pakdsht",
+      "dehestan": "دوره",
+      "households": 35,
+      "population": 115,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "نرگسه",
+      "slug": "nrgsh",
+      "dehestan": "دوره",
+      "households": 30,
+      "population": 101,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سراب کي ميرزاوند دو",
+      "slug": "srab-ky-myrzavnd-dv",
+      "dehestan": "دوره",
+      "households": 40,
+      "population": 143,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "شهرک دامپروري",
+      "slug": "shhrk-damprvry",
+      "dehestan": "دوره",
+      "households": 87,
+      "population": 312,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "حسيوند",
+      "slug": "hsyvnd",
+      "dehestan": "دوره",
+      "households": 141,
+      "population": 483,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سراب چگه",
+      "slug": "srab-chgh",
+      "dehestan": "دوره",
+      "households": 221,
+      "population": 801,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چهارمله گل سرخه",
+      "slug": "chharmlh-gl-srkhh",
+      "dehestan": "دوره",
+      "households": 49,
+      "population": 174,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "دره بادام",
+      "slug": "drh-badam",
+      "dehestan": "دوره",
+      "households": 157,
+      "population": 542,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "گل زار",
+      "slug": "gl-zar",
+      "dehestan": "دوره",
+      "households": 34,
+      "population": 109,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "هرفته",
+      "slug": "hrfth",
+      "dehestan": "دوره",
+      "households": 57,
+      "population": 209,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "بزاب",
+      "slug": "bzab",
+      "dehestan": "دوره",
+      "households": 45,
+      "population": 146,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چنارميشاخور",
+      "slug": "chnarmyshakhvr",
+      "dehestan": "دوره",
+      "households": 35,
+      "population": 131,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "سه کره",
+      "slug": "sh-krh",
+      "dehestan": "دوره",
+      "households": 44,
+      "population": 155,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "کله ني",
+      "slug": "klh-ny",
+      "dehestan": "دوره",
+      "households": 106,
+      "population": 372,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "مله بلوط",
+      "slug": "mlh-blvt",
+      "dehestan": "دوره",
+      "households": 122,
+      "population": 424,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "برکه",
+      "slug": "brkh",
+      "dehestan": "دوره",
+      "households": 166,
+      "population": 554,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ريخان",
+      "slug": "rykhan",
+      "dehestan": "دوره",
+      "households": 141,
+      "population": 465,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "مله اميري",
+      "slug": "mlh-amyry",
+      "dehestan": "دوره",
+      "households": 35,
+      "population": 104,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "زرين چغا",
+      "slug": "zryn-chgha",
+      "dehestan": "دوره",
+      "households": 93,
+      "population": 330,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "چاه چراغ",
+      "slug": "chah-chragh",
+      "dehestan": "دوره",
+      "households": 31,
+      "population": 127,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "گندابه",
+      "slug": "gndabh",
+      "dehestan": "دوره",
+      "households": 147,
+      "population": 517,
+      "county": "چگنی",
+      "province": "لرستان"
+    },
+    {
+      "name": "ميشکر",
+      "slug": "myshkr",
+      "dehestan": "دوره",
+      "households": 87,
+      "population": 304,
+      "county": "چگنی",
+      "province": "لرستان"
+    }
+  ],
+  "total": 43
+}
