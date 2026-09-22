@@ -10,6 +10,12 @@ class AdminController extends Controller
 {
     public function index()
     {
+        // ادمین روستا → پنل روستای خودش
+        $user = auth()->user();
+        if ($user && $user->isVillageAdmin() && $user->village_id) {
+            return redirect()->route('admin.village.dashboard', $user->village_id);
+        }
+
         $user = auth()->user();
 
         if ($user->isSuperAdmin()) {

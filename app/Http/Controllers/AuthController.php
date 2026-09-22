@@ -49,11 +49,16 @@ class AuthController extends Controller
 
     protected function redirectAfterLogin($user)
     {
-        return match ($user->role) {
-            'super_admin',
-            'section_admin',
-            'village_admin' => redirect()->intended(route('admin.dashboard')),
-            default         => redirect('/'),
-        };
+        // ادمین روستا → پنل روستای خودش
+        if ($user->isVillageAdmin() && $user->village_id) {
+            return redirect()->intended(route('admin.village.dashboard', $user->village_id));
+        }
+
+        // سوپرادمین و بخش‌دار → پنل مرکزی / بخش
+        if ($user->isSuperAdmin() || $user->isSectionAdmin()) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        return redirect('/');
     }
 }

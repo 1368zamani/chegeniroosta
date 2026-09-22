@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Village;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,11 @@ class CheckVillageAccess
             return $next($request);
         }
 
+        // پارامتر route ممکن است مدل Village باشد یا رشته (بسته به route binding)
         $village = $request->route('village');
+        if (is_string($village) || is_numeric($village)) {
+            $village = Village::find($village);
+        }
 
         if (
             $user->role !== 'village_admin' ||
