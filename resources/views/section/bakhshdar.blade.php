@@ -173,6 +173,15 @@ a[href^="tel:"] {
                     @if($section->bakhshdar_email)
                         <div>✉️ <a href="mailto:{{ $section->bakhshdar_email }}">{{ $section->bakhshdar_email }}</a></div>
                     @endif
+                    @if($section->bakhshdar_instagram)
+                        @php
+                            $ig = $section->bakhshdar_instagram;
+                            $igUrl = \Illuminate\Support\Str::startsWith($ig, ['http://', 'https://'])
+                                ? $ig
+                                : 'https://instagram.com/' . ltrim($ig, '@/');
+                        @endphp
+                        <div>📷 <a href="{{ $igUrl }}" target="_blank" rel="noopener">صفحه اینستاگرام بخشدار</a></div>
+                    @endif
                 </div>
             </div>
         </div>

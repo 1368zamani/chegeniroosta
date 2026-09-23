@@ -145,6 +145,12 @@
                     <label>نام دهیار</label>
                     <input type="text" name="dehyar_name" value="{{ old('dehyar_name') }}">
                 </div>
+
+                <div class="field">
+                    <label>لینک اینستاگرام دهیار</label>
+                    <input type="text" name="dehyar_instagram" value="{{ old('dehyar_instagram') }}" dir="ltr" placeholder="مثال: dehyar_abuzar">
+                    <div class="hint">بدون @ — نام کاربری یا آدرس کامل</div>
+                </div>
                 <div class="field">
                     <label>نام رئیس شورا</label>
                     <input type="text" name="council_head_name" value="{{ old('council_head_name') }}">

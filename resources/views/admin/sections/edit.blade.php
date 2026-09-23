@@ -162,6 +162,12 @@
                 </div>
             </div>
 
+            <div class="field">
+                <label>لینک اینستاگرام بخشدار</label>
+                <input type="text" name="bakhshdar_instagram" value="{{ old('bakhshdar_instagram', $section->bakhshdar_instagram) }}" dir="ltr" placeholder="مثال: bakhshdari_visian یا https://instagram.com/...">
+                <div class="hint">بدون @ — فقط نام کاربری یا آدرس کامل اینستاگرام</div>
+            </div>
+
             <div class="actions">
                 <button type="submit" class="btn btn-primary">💾 ذخیره تغییرات</button>
                 <a href="{{ route('admin.sections.index') }}" class="btn btn-secondary">انصراف</a>

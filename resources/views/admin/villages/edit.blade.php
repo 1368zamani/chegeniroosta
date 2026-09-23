@@ -186,6 +186,12 @@
                            value="{{ old('dehyar_name', $village->dehyar_name) }}">
                 </div>
 
+                <div class="field">
+                    <label>لینک اینستاگرام دهیار</label>
+                    <input type="text" name="dehyar_instagram" value="{{ old('dehyar_instagram', $village->dehyar_instagram ?? '') }}" dir="ltr" placeholder="مثال: dehyar_abuzar">
+                    <div class="hint">بدون @ — نام کاربری یا آدرس کامل</div>
+                </div>
+
                 <div>
                     <label>رئیس شورا</label>
                     <input type="text"
