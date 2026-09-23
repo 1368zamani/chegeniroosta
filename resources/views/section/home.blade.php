@@ -878,6 +878,9 @@ a[href^="tel:"] {
 
 @include('partials.gov-header', ['headerTitle' => 'پایگاه اطلاع‌رسانی بخشداری ' . $section->name])
 
+{{-- اسلایدر گالری بخش (زیر هدر) --}}
+@include('partials.section-gallery-slider', ['section' => $section])
+
 <div class="s-container">
 
     <div class="two-columns">
