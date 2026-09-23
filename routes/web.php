@@ -459,6 +459,8 @@ Route::middleware(['auth', 'village-access'])->prefix('admin/village/{village}')
         Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'update'])
             ->name('admin.village.news.update');
         Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'destroy'])
+        Route::delete('/{id}/image/{imageId}', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'destroyImage'])
+            ->name('admin.village.news.image.destroy');
             ->name('admin.village.news.destroy');
     });
 

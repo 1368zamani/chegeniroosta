@@ -35,6 +35,11 @@ class VillageNews extends Model
         return $this->belongsTo(Village::class);
     }
 
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(VillageNewsImage::class, 'news_id')->orderBy('sort_order');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

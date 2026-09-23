@@ -79,6 +79,7 @@ class AdminVillageController extends Controller
             'households'        => 'nullable|integer|min:0',
             'area'              => 'nullable|numeric|min:0',
             'dehyar_name'       => 'nullable|string|max:255',
+            'dehyar_instagram'  => 'nullable|string|max:255',
             'council_head_name' => 'nullable|string|max:255',
             'is_active'         => 'nullable|boolean',
         ]);

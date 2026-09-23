@@ -5,6 +5,7 @@ namespace App\Http\Controllers\VillageAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\Village;
 use App\Models\VillageNews;
+use App\Models\VillageNewsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -14,7 +15,8 @@ class NewsController extends Controller
     public function index($villageId)
     {
         $village = $this->authorizeVillage($villageId);
-        $news = VillageNews::where('village_id', $village->id)
+        $news = VillageNews::with('images')
+            ->where('village_id', $village->id)
             ->orderBy('created_at', 'desc')
             ->paginate(20);
         return view('admin.village.news.index', compact('village', 'news'));
@@ -34,7 +36,9 @@ class NewsController extends Controller
             'title'        => 'required|string|max:255',
             'excerpt'      => 'nullable|string|max:500',
             'body'         => 'required|string',
-            'image'        => 'nullable|image|max:5120',
+            'image'        => 'nullable|image|max:25600',
+            'images'       => 'nullable|array',
+            'images.*'     => 'image|max:25600',
             'is_pinned'    => 'nullable|boolean',
             'is_published' => 'nullable|boolean',
             'published_at' => 'nullable|date',
@@ -52,7 +56,20 @@ class NewsController extends Controller
             $data['image'] = $request->file('image')->store('village-news/' . $village->id, 'public');
         }
 
-        VillageNews::create($data);
+        $news = VillageNews::create($data);
+
+        // ذخیره‌ی عکس‌های چندگانه
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $i => $file) {
+                if (!$file || !$file->isValid()) continue;
+                $path = $file->store('village-news/' . $village->id . '/gallery', 'public');
+                VillageNewsImage::create([
+                    'news_id'    => $news->id,
+                    'image'      => $path,
+                    'sort_order' => $i,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.village.news.index', $village->id)
             ->with('success', 'خبر با موفقیت ثبت شد.');
@@ -61,7 +78,9 @@ class NewsController extends Controller
     public function edit($villageId, $id)
     {
         $village = $this->authorizeVillage($villageId);
-        $news = VillageNews::where('village_id', $village->id)->findOrFail($id);
+        $news = VillageNews::with('images')
+            ->where('village_id', $village->id)
+            ->findOrFail($id);
         return view('admin.village.news.form', compact('village', 'news'));
     }
 
@@ -74,7 +93,9 @@ class NewsController extends Controller
             'title'        => 'required|string|max:255',
             'excerpt'      => 'nullable|string|max:500',
             'body'         => 'required|string',
-            'image'        => 'nullable|image|max:5120',
+            'image'        => 'nullable|image|max:25600',
+            'images'       => 'nullable|array',
+            'images.*'     => 'image|max:25600',
             'is_pinned'    => 'nullable|boolean',
             'is_published' => 'nullable|boolean',
             'published_at' => 'nullable|date',
@@ -92,6 +113,20 @@ class NewsController extends Controller
 
         $news->update($data);
 
+        // اضافه کردن عکس‌های جدید
+        if ($request->hasFile('images')) {
+            $maxOrder = $news->images()->max('sort_order') ?? 0;
+            foreach ($request->file('images') as $i => $file) {
+                if (!$file || !$file->isValid()) continue;
+                $path = $file->store('village-news/' . $village->id . '/gallery', 'public');
+                VillageNewsImage::create([
+                    'news_id'    => $news->id,
+                    'image'      => $path,
+                    'sort_order' => $maxOrder + $i + 1,
+                ]);
+            }
+        }
+
         return redirect()->route('admin.village.news.index', $village->id)
             ->with('success', 'خبر به‌روزرسانی شد.');
     }
@@ -99,12 +134,39 @@ class NewsController extends Controller
     public function destroy($villageId, $id)
     {
         $village = $this->authorizeVillage($villageId);
-        $news = VillageNews::where('village_id', $village->id)->findOrFail($id);
+        $news = VillageNews::with('images')
+            ->where('village_id', $village->id)
+            ->findOrFail($id);
+
+        // حذف عکس‌های گالری
+        foreach ($news->images as $img) {
+            if ($img->image && Storage::disk('public')->exists($img->image)) {
+                Storage::disk('public')->delete($img->image);
+            }
+            $img->delete();
+        }
+
+        // حذف عکس اصلی
         if ($news->image && Storage::disk('public')->exists($news->image)) {
             Storage::disk('public')->delete($news->image);
         }
+
         $news->delete();
         return back()->with('success', 'خبر حذف شد.');
+    }
+
+    public function destroyImage($villageId, $id, $imageId)
+    {
+        $village = $this->authorizeVillage($villageId);
+        $news = VillageNews::where('village_id', $village->id)->findOrFail($id);
+        $img = VillageNewsImage::where('news_id', $news->id)->findOrFail($imageId);
+
+        if ($img->image && Storage::disk('public')->exists($img->image)) {
+            Storage::disk('public')->delete($img->image);
+        }
+        $img->delete();
+
+        return back()->with('success', 'عکس حذف شد.');
     }
 
     private function authorizeVillage($villageId): Village

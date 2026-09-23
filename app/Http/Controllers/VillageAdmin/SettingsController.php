@@ -37,6 +37,7 @@ class SettingsController extends Controller
             'description'    => 'nullable|string',
             'dehyar_name'    => 'nullable|string|max:255',
             'dehyar_hours'   => 'nullable|string|max:255',
+            'dehyar_instagram' => 'nullable|string|max:255',
             'council_phone'  => 'nullable|string|max:50',
             'phone'          => 'nullable|string|max:50',
             'email'          => 'nullable|email|max:100',

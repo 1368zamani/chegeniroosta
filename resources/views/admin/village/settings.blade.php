@@ -107,6 +107,12 @@
                 <label>ساعات پاسخگویی</label>
                 <input type="text" name="dehyar_hours" value="{{ old('dehyar_hours', $village->dehyar_hours) }}" placeholder="مثلاً: ۸ صبح تا ۲ بعدازظهر">
             </div>
+
+<div class="field">
+    <label>لینک اینستاگرام دهیار</label>
+    <input type="text" name="dehyar_instagram" value="{{ old('dehyar_instagram', $village->dehyar_instagram) }}" dir="ltr" placeholder="مثال: dehyar_abuzar">
+    <div class="hint">بدون @ — نام کاربری یا آدرس کامل اینستاگرام</div>
+</div>
         </div>
 
         <div class="row-2">
