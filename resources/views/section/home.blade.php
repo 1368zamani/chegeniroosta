@@ -878,8 +878,8 @@ a[href^="tel:"] {
 
 @include('partials.gov-header', ['headerTitle' => 'پایگاه اطلاع‌رسانی بخشداری ' . $section->name])
 
-{{-- اسلایدر گالری بخش (زیر هدر) --}}
-@include('partials.section-gallery-slider', ['section' => $section])
+{{-- نوار باریک اخبار زیر هدر --}}
+@include('partials.news-ticker', ['news' => $news ?? collect()])
 
 <div class="s-container">
 
@@ -925,7 +925,7 @@ a[href^="tel:"] {
                     @endif
                 </div>
             </div>
-        </main>
+
             {{-- گالری تصاویر بخش --}}
             @if(isset($gallery) && count($gallery) > 0)
                 <div class="box">
@@ -936,7 +936,9 @@ a[href^="tel:"] {
                     <div class="box-body">
                         <div class="gallery-grid-mini">
                             @foreach($gallery as $img)
-                                <div class="gallery-item-mini">
+                                <div class="gallery-item-mini sg-lightbox-trigger"
+                                     data-image="{{ asset('storage/' . $img->image_path) }}"
+                                     data-caption="{{ $img->caption ?: $section->name }}">
                                     <img src="{{ asset('storage/' . $img->image_path) }}" alt="{{ $img->caption ?: $section->name }}" loading="lazy">
                                     @if($img->caption)
                                         <div class="gallery-caption-mini">{{ $img->caption }}</div>
@@ -948,6 +950,7 @@ a[href^="tel:"] {
                 </div>
             @endif
 
+        </main>
 
         {{-- سایدبار --}}
         <aside>
@@ -1000,6 +1003,148 @@ a[href^="tel:"] {
     </div>
 
 </div>
+
+
+{{-- section-gallery-lightbox --}}
+<style>
+    .sg-lightbox-trigger { cursor: pointer; position: relative; }
+    .sg-lightbox-trigger::after {
+        content: '🔍';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: rgba(13,46,79,.75);
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        opacity: 0;
+        transition: opacity .2s;
+        pointer-events: none;
+    }
+    .sg-lightbox-trigger:hover::after { opacity: 1; }
+
+    .sg-lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.92);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: sgFadeIn .2s ease;
+    }
+    .sg-lightbox-overlay.active { display: flex; }
+    @keyframes sgFadeIn { from{opacity:0} to{opacity:1} }
+
+    .sg-lightbox-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sg-lightbox-image {
+        max-width: 90vw;
+        max-height: 78vh;
+        border-radius: 10px;
+        box-shadow: 0 15px 50px rgba(0,0,0,.6);
+        object-fit: contain;
+    }
+    .sg-lightbox-caption {
+        background: rgba(255,255,255,.95);
+        color: #1e293b;
+        padding: 12px 24px;
+        border-radius: 10px;
+        margin-top: 15px;
+        font-family: 'Vazirmatn', Tahoma, sans-serif;
+        direction: rtl;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        max-width: 90vw;
+    }
+    .sg-lightbox-close {
+        position: absolute;
+        top: -55px;
+        left: 0;
+        background: rgba(255,255,255,.15);
+        color: #fff;
+        border: none;
+        font-size: 26px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        cursor: pointer;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background .15s;
+    }
+    .sg-lightbox-close:hover { background: rgba(255,255,255,.3); }
+    @media (max-width: 700px) {
+        .sg-lightbox-close { top: 8px; left: 8px; }
+        .sg-lightbox-image { max-height: 65vh; }
+    }
+</style>
+
+<div class="sg-lightbox-overlay" id="sgLightbox" role="dialog" aria-modal="true">
+    <div class="sg-lightbox-content">
+        <button class="sg-lightbox-close" id="sgLightboxClose" aria-label="بستن">×</button>
+        <img src="" alt="" class="sg-lightbox-image" id="sgLightboxImage">
+        <div class="sg-lightbox-caption" id="sgLightboxCaption" style="display:none"></div>
+    </div>
+</div>
+
+<script>
+(function(){
+    var overlay = document.getElementById('sgLightbox');
+    if (!overlay) return;
+    var img = document.getElementById('sgLightboxImage');
+    var cap = document.getElementById('sgLightboxCaption');
+    var closeBtn = document.getElementById('sgLightboxClose');
+
+    function open(src, caption) {
+        img.src = src;
+        if (caption && caption.trim()) {
+            cap.textContent = caption;
+            cap.style.display = 'block';
+        } else {
+            cap.style.display = 'none';
+        }
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function(e) {
+        var trigger = e.target.closest('.sg-lightbox-trigger');
+        if (trigger) {
+            e.preventDefault();
+            open(trigger.dataset.image || '', trigger.dataset.caption || '');
+        }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) close();
+    });
+})();
+</script>
 
 @include('partials.gov-footer')
 @include('partials.dark-mode')
