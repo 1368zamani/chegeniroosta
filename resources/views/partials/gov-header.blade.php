@@ -774,7 +774,6 @@ button, a, input[type="submit"] {
     touch-action: manipulation;
 }
 
-
     /* ============ عکس رهبری - بزرگ و واضح ============ */
     
     
@@ -785,10 +784,8 @@ button, a, input[type="submit"] {
     
     
 
-
     /* ============ فونت ایران نستعلیق برای عنوان ============ */
     @font-face {
-        font-family: 'IranNastaliq';
         src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
         font-display: swap;
     }
@@ -800,7 +797,7 @@ button, a, input[type="submit"] {
     .gov-main-title,
     .gv-main-title,
     .s-titles h1 {
-        font-family: 'IranNastaliq', 'B Nazanin', 'Vazirmatn', Tahoma, serif !important;
+        font-family: 'B Nazanin', 'Vazirmatn', Tahoma, serif !important;
         font-size: 34px !important;
         font-weight: 900 !important;
         color: #ffffff !important;
@@ -851,7 +848,6 @@ button, a, input[type="submit"] {
     .gov-center-block,
     
 
-
     /* ============ هدر - ارتفاع ثابت ============ */
     
 
@@ -894,7 +890,7 @@ button, a, input[type="submit"] {
     .gv-main-title,
     .s-titles h1 {
         margin: 0 0 6px 0 !important;
-        font-family: 'B Nazanin', 'IranNastaliq', 'Tahoma', serif !important;
+        font-family: 'B Nazanin', 'Tahoma', serif !important;
         font-size: 32px !important;
         font-weight: 900 !important;
         color: #ffffff !important;
@@ -955,7 +951,6 @@ button, a, input[type="submit"] {
         
         
     }
-
 
     /* ============================================
        هدر رسمی - بازنویسی کامل
@@ -1047,7 +1042,7 @@ button, a, input[type="submit"] {
     /* عنوان - قرمز بزرگ بدون کادر */
     .gov-main-title {
         margin: 0 0 8px 0;
-        font-family: 'B Nazanin', 'IranNastaliq', Tahoma, serif;
+        font-family: 'B Nazanin', Tahoma, serif;
         font-size: 34px;
         font-weight: 900;
         color: #c62828;
@@ -1175,7 +1170,6 @@ button, a, input[type="submit"] {
         .gov-slogan-text { font-size: 10px; }
     }
 
-
 /* ============================================
    MOBILE OVERRIDE - نمایش بهتر
    ============================================ */
@@ -1206,7 +1200,6 @@ img, iframe, video {
     max-width: 100% !important;
     height: auto !important;
 }
-
 
     /* ============================================
        MODERN-HEADER-2026 — Override
@@ -1462,7 +1455,6 @@ img, iframe, video {
 }
 
 /* پایان HEADER-V2.1 */
-
 
 </style>
 
