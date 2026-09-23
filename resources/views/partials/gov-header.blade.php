@@ -1522,13 +1522,13 @@ img, iframe, video {
         @if(isset($section))
             <a href="/#villages" class="gov-nav-item">🏘 روستاهای بخش</a>
             <a href="/news" class="gov-nav-item {{ str_contains(request()->path(), 'news') ? 'active' : '' }}">📰 اخبار</a>
-            @if($section->bakhshdar_name ?? false)
-                <a href="/bakhshdar" class="gov-nav-item {{ str_contains(request()->path(), 'bakhshdar') ? 'active' : '' }}">👤 معرفی بخشدار</a>
-            @endif
         @else
             <a href="/#sections" class="gov-nav-item">📁 بخش‌ها</a>
         @endif
         <a href="{{ route('search.index') }}" class="gov-nav-item">🔍 جستجو</a>
+        @if(isset($section) && ($section->bakhshdar_name ?? false))
+            <a href="/bakhshdar" class="gov-nav-item {{ str_contains(request()->path(), 'bakhshdar') ? 'active' : '' }}">👤 معرفی بخشدار</a> {{-- menu-moved-2026 --}}
+        @endif
         <div class="gov-nav-actions">
             @auth
                 <a href="{{ route('admin.dashboard') }}" class="gov-action-btn">⚙️</a>

@@ -315,6 +315,20 @@ a[href^="tel:"] {
                 <span class="value">{{ $village->dehyar_name }}</span>
             </div>
         @endif
+        @if($village->dehyar_instagram)
+            @php
+                $ig = $village->dehyar_instagram;
+                $igUrl = \Illuminate\Support\Str::startsWith($ig, ['http://', 'https://'])
+                    ? $ig
+                    : 'https://instagram.com/' . ltrim($ig, '@/');
+            @endphp
+            <div class="info-item">
+                <span class="label">📷 اینستاگرام</span>
+                <span class="value">
+                    <a href="{{ $igUrl }}" target="_blank" rel="noopener" style="color:#e91e63;text-decoration:none;font-weight:600;direction:ltr;display:inline-block;">صفحه دهیار</a>
+                </span>
+            </div>
+        @endif
         @if($village->council_head_name)
             <div class="info-item">
                 <span class="label">👥 رئیس شورا</span>
