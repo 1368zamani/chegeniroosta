@@ -485,7 +485,7 @@ a[href^="tel:"] {
 </head>
 <body>
 
-@include('partials.gov-header', ['headerTitle' => 'پایگاه اطلاع‌رسانی ' . $section->name])
+@include('partials.gov-header', ['headerTitle' => 'پایگاه اطلاع‌رسانی بخش‌داری ' . $section->name])
 
 <div class="s-container">
     <div class="two-columns">

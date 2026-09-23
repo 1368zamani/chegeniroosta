@@ -148,7 +148,7 @@ a[href^="tel:"] {
 </head>
 <body>
 
-@include('partials.gov-header', ['headerTitle' => isset($section) ? 'پایگاه اطلاع‌رسانی ' . $section->name : 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی'])
+@include('partials.gov-header', ['headerTitle' => isset($section) ? 'پایگاه اطلاع‌رسانی بخش‌داری ' . $section->name : 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی'])
 
 <div class="container">
     <div class="profile-card">
