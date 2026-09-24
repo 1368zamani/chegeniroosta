@@ -91,6 +91,16 @@ Route::middleware('village')->group(function () {
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 
+    // داشبورد یکپارچه بخشداری
+    Route::get('sections/{id}/dashboard', [\App\Http\Controllers\AdminSectionDashboardController::class, 'index'])
+        ->name('admin.sections.dashboard');
+
+    // درخواست‌های همه روستاهای بخش (فاز ۲)
+    Route::get('sections/{id}/all-requests', [\App\Http\Controllers\AdminSectionRequestController::class, 'allRequests'])
+        ->name('admin.sections.all-requests');
+    Route::get('sections/{id}/all-requests/{requestId}', [\App\Http\Controllers\AdminSectionRequestController::class, 'showVillageRequest'])
+        ->name('admin.sections.all-requests.show');
+
     // درخواست‌های مردمی بخشداری
     Route::get('sections/{id}/requests', [\App\Http\Controllers\AdminSectionRequestController::class, 'index'])
         ->name('admin.sections.requests.index');

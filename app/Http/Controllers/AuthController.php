@@ -54,8 +54,13 @@ class AuthController extends Controller
             return redirect()->intended(route('admin.village.dashboard', $user->village_id));
         }
 
-        // سوپرادمین و بخش‌دار → پنل مرکزی / بخش
-        if ($user->isSuperAdmin() || $user->isSectionAdmin()) {
+        // بخشدار → داشبورد اختصاصی بخشداری
+        if ($user->isSectionAdmin() && $user->section_id) {
+            return redirect()->intended(route('admin.sections.dashboard', $user->section_id));
+        }
+
+        // سوپرادمین → پنل مرکزی
+        if ($user->isSuperAdmin()) {
             return redirect()->intended(route('admin.dashboard'));
         }
 
