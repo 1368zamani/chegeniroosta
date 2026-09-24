@@ -91,6 +91,14 @@ Route::middleware('village')->group(function () {
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 
+    // درخواست‌های مردمی بخشداری
+    Route::get('sections/{id}/requests', [\App\Http\Controllers\AdminSectionRequestController::class, 'index'])
+        ->name('admin.sections.requests.index');
+    Route::get('sections/{id}/requests/{requestId}', [\App\Http\Controllers\AdminSectionRequestController::class, 'show'])
+        ->name('admin.sections.requests.show');
+    Route::put('sections/{id}/requests/{requestId}', [\App\Http\Controllers\AdminSectionRequestController::class, 'update'])
+        ->name('admin.sections.requests.update');
+
     // فعال/غیرفعال کردن بخش و روستا (سوپرادمین)
     Route::post('sections/{id}/toggle', [\App\Http\Controllers\AdminSectionController::class, 'toggleActive'])->name('admin.sections.toggle');
     Route::post('villages/{id}/toggle', [\App\Http\Controllers\AdminVillageController::class, 'toggleActive'])->name('admin.villages.toggle');
@@ -435,6 +443,13 @@ Route::get('/village/{slug}', [\App\Http\Controllers\PublicVillageController::cl
 */
 
 Route::middleware(['auth', 'village-access'])->prefix('admin/village/{village}')->group(function () {
+
+    Route::get('/requests', [\App\Http\Controllers\VillageAdmin\RequestController::class, 'index'])
+        ->name('admin.village.requests.index');
+    Route::get('/requests/{id}', [\App\Http\Controllers\VillageAdmin\RequestController::class, 'show'])
+        ->name('admin.village.requests.show');
+    Route::put('/requests/{id}', [\App\Http\Controllers\VillageAdmin\RequestController::class, 'update'])
+        ->name('admin.village.requests.update');
 
     // داشبورد
     Route::get('/', [\App\Http\Controllers\VillageAdmin\DashboardController::class, 'index'])
