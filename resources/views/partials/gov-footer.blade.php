@@ -735,3 +735,119 @@ img, iframe, video {
     </div>
 
 </footer>
+
+
+<style>
+    /* ============================================
+       LIGHT-BLUE-FOOTER-2026 — هماهنگ با هدر
+       ============================================ */
+
+    /* فوتر اصلی — آبی روشن مثل هدر */
+    .gov-footer,
+    .s-footer,
+    footer.gov-footer,
+    .gov-footer-main {
+        background: linear-gradient(135deg, #1e5b9c 0%, #2470b8 100%) !important;
+        color: #ffffff !important;
+        border-top: 4px solid #ffd54f !important;
+    }
+
+    /* اگر فوتر نوار بالایی دارد */
+    .gov-footer-top,
+    .gov-footer-header {
+        background: rgba(13, 46, 79, 0.25) !important;
+        border-bottom: 1px solid rgba(255, 213, 79, 0.3) !important;
+    }
+
+    /* عناوین ستون‌ها — طلایی */
+    .gov-footer h3,
+    .gov-footer h4,
+    .gov-footer .footer-title,
+    .s-footer h3,
+    .s-footer h4 {
+        color: #ffd54f !important;
+        font-weight: 700 !important;
+        text-shadow: 0 1px 3px rgba(13, 46, 79, 0.4) !important;
+    }
+
+    /* متن‌ها و لینک‌ها — سفید */
+    .gov-footer p,
+    .gov-footer span,
+    .gov-footer li,
+    .gov-footer a,
+    .s-footer p,
+    .s-footer a,
+    .s-footer li {
+        color: #e8f0fa !important;
+    }
+
+    .gov-footer a:hover,
+    .s-footer a:hover {
+        color: #ffd54f !important;
+    }
+
+    /* خطوط جداکننده — طلایی کم‌رنگ */
+    .gov-footer hr,
+    .gov-footer .divider {
+        border-color: rgba(255, 213, 79, 0.3) !important;
+    }
+
+    /* آیکون‌ها */
+    .gov-footer .icon,
+    .gov-footer i {
+        color: #ffd54f !important;
+    }
+
+    /* شبکه‌های اجتماعی */
+    .gov-footer .social a,
+    .gov-footer .social-link {
+        background: rgba(255, 213, 79, 0.15) !important;
+        border: 1px solid rgba(255, 213, 79, 0.4) !important;
+        color: #ffd54f !important;
+        transition: all .2s !important;
+    }
+    .gov-footer .social a:hover,
+    .gov-footer .social-link:hover {
+        background: #ffd54f !important;
+        color: #14497f !important;
+    }
+
+    /* لوگوها و نمادها — پس‌زمینه سفید برای خوانایی */
+    .gov-footer-logos img,
+    .gov-footer .logo img {
+        background: #fff !important;
+        padding: 6px !important;
+        border-radius: 6px !important;
+        opacity: 0.95 !important;
+    }
+
+    /* آمار فوتر */
+    .gov-footer-stats,
+    .gov-footer .stats {
+        background: rgba(13, 46, 79, 0.25) !important;
+        border-radius: 8px !important;
+    }
+    .gov-footer-stats .number,
+    .gov-footer .stat-number {
+        color: #ffd54f !important;
+        font-weight: 800 !important;
+    }
+    .gov-footer-stats .label,
+    .gov-footer .stat-label {
+        color: #e8f0fa !important;
+    }
+
+    /* نوار پایین (copyright) — تیره‌تر */
+    .gov-footer-bottom,
+    .s-footer-bottom {
+        background: rgba(13, 46, 79, 0.35) !important;
+        border-top: 1px solid rgba(255, 213, 79, 0.25) !important;
+        color: #cbd8e8 !important;
+    }
+    .gov-footer-bottom a,
+    .s-footer-bottom a {
+        color: #ffd54f !important;
+    }
+
+    /* پایان LIGHT-BLUE-FOOTER-2026 */
+</style>

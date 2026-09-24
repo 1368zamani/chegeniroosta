@@ -1456,6 +1456,145 @@ img, iframe, video {
 
 /* پایان HEADER-V2.1 */
 
+
+
+
+    /* ============================================
+       LIGHT-BLUE-STYLE-2026 — آبی روشن (استانداری)
+       ============================================ */
+
+    /* ۱. نوار بالا */
+    .gov-topbar {
+        background: linear-gradient(90deg, #1e5b9c 0%, #2470b8 50%, #1e5b9c 100%) !important;
+        border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+    }
+
+    /* ۲. هدر — آبی روشن با گرادیان ملایم */
+    .gov-header {
+        background: linear-gradient(135deg, #1e5b9c 0%, #2470b8 100%) !important;
+    }
+
+    /* لایه روشن روی عکس پل — شفافیت کمتر */
+    .gov-header::after {
+        background: linear-gradient(180deg,
+            rgba(30, 91, 156, 0.45) 0%,
+            rgba(30, 91, 156, 0.65) 50%,
+            rgba(13, 46, 79, 0.80) 100%) !important;
+    }
+
+    /* عنوان — سفید با سایه ملایم */
+    .gov-main-title,
+    .gv-main-title,
+    .s-titles h1 {
+        color: #ffffff !important;
+        text-shadow:
+            0 2px 6px rgba(13, 46, 79, 0.6),
+            0 4px 15px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .gov-sub-title,
+    .gv-sub-title,
+    .s-titles p {
+        color: #e8f0fa !important;
+        text-shadow: 0 2px 5px rgba(13, 46, 79, 0.7) !important;
+    }
+
+    /* ۳. کارت شعار — شفاف‌تر و روشن‌تر */
+    .gov-slogan-card {
+        background: rgba(255, 255, 255, 0.12) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        backdrop-filter: blur(8px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-right: 4px solid #ffd54f !important;
+        box-shadow: 0 4px 14px rgba(13, 46, 79, 0.25) !important;
+    }
+    .gov-slogan-card::before {
+        display: none !important;
+    }
+    .gov-slogan-card-text {
+        color: #ffffff !important;
+        text-shadow: 0 1px 3px rgba(13, 46, 79, 0.6) !important;
+    }
+
+    /* ۴. نوار منو — آبی متوسط با خط طلایی */
+    .gov-navbar {
+        background: linear-gradient(90deg, #14497f 0%, #1e5b9c 100%) !important;
+        border-top: 3px solid #ffd54f !important;
+        box-shadow: 0 4px 14px rgba(13, 46, 79, 0.2) !important;
+    }
+
+    .gov-nav-item {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        padding: 16px 22px !important;
+        color: #ffffff !important;
+        transition: color .2s, background .2s, border-color .2s !important;
+    }
+
+    .gov-nav-item:hover {
+        background: rgba(255, 213, 79, 0.15) !important;
+        color: #ffd54f !important;
+        border-bottom-color: #ffd54f !important;
+    }
+
+    .gov-nav-item.active {
+        background: rgba(255, 213, 79, 0.12) !important;
+        color: #ffd54f !important;
+        border-bottom-color: #ffd54f !important;
+    }
+
+    /* ۵. دکمه‌ها */
+    .gov-action-btn {
+        background: rgba(255, 213, 79, 0.12) !important;
+        border: 1px solid rgba(255, 213, 79, 0.6) !important;
+        color: #ffd54f !important;
+        transition: all .2s !important;
+    }
+
+    .gov-action-btn:hover {
+        background: #ffd54f !important;
+        color: #14497f !important;
+        transform: none !important;
+    }
+
+    /* ۶. نوار دولت وفاق ملی — آبی روشن */
+    .gov-consensus-banner {
+        background: linear-gradient(90deg, #14497f 0%, #2470b8 50%, #14497f 100%) !important;
+        border-bottom: 2px solid #ffd54f !important;
+        box-shadow: 0 3px 10px rgba(13, 46, 79, 0.15) !important;
+    }
+    .gov-consensus-banner::before {
+        display: none !important;
+    }
+    .gov-consensus-text {
+        text-shadow: 0 1px 3px rgba(13, 46, 79, 0.5) !important;
+    }
+    .gov-consensus-star {
+        animation: none !important;
+    }
+
+    /* ۷. نوار تاریخ و شعر */
+    .gov-date-box {
+        color: #ffffff !important;
+    }
+    .daily-poem-inline .poem-text {
+        color: #ffd54f !important;
+        font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+        font-weight: 600 !important;
+    }
+    .daily-poem-inline .poem-poet {
+        color: rgba(255, 255, 255, 0.75) !important;
+    }
+    .gov-topbar-link {
+        color: rgba(255, 255, 255, 0.85) !important;
+    }
+    .gov-topbar-link:hover {
+        color: #ffd54f !important;
+        padding-right: 22px !important;
+    }
+
+    /* پایان LIGHT-BLUE-STYLE-2026 */
+
 </style>
 
 {{-- ================ TOP BAR ================ --}}

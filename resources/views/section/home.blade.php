@@ -1146,6 +1146,27 @@ a[href^="tel:"] {
 })();
 </script>
 
+
+{{-- باکس درخواست مردمی بخشداری --}}
+<div class="s-container" style="margin-bottom: 30px;">
+    <div class="section-request-box" style="background: linear-gradient(135deg, #1e5b9c, #2470b8); color: #fff; border-radius: 14px; padding: 30px 25px; box-shadow: 0 8px 25px rgba(13,46,79,0.15); text-align: center;">
+        <h3 style="margin: 0 0 10px; font-size: 20px; color: #fff;">📩 درخواست خود را ثبت کنید</h3>
+        <p style="margin: 0 0 20px; opacity: 0.9; font-size: 14px; line-height: 2;">
+            درخواست‌های خود در زمینه آب، برق، گاز، راه، عمران و ... را آنلاین ثبت کنید و با کد پیگیری دنبال کنید.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="{{ route('section.site.request.create') }}"
+               style="display: inline-block; background: #ffd54f; color: #14497f; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; transition: all .2s;">
+                ✍️ ثبت درخواست
+            </a>
+            <a href="{{ route('section.site.request.track') }}"
+               style="display: inline-block; background: rgba(255,255,255,0.15); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid rgba(255,255,255,0.3);">
+                🔍 پیگیری درخواست
+            </a>
+        </div>
+    </div>
+</div>
+
 @include('partials.gov-footer')
 @include('partials.dark-mode')
 @include('partials.back-to-top')
