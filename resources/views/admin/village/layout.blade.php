@@ -276,6 +276,11 @@ tr:hover { background: #f8fafc; }
     <aside class="sidebar">
         <ul class="sidebar-menu">
             <li><a href="{{ route('admin.village.dashboard', $village->id) }}" class="{{ request()->routeIs('admin.village.dashboard') ? 'active' : '' }}">📊 داشبورد</a></li>
+            <li>
+                <a href="{{ route('admin.village.requests.index', $village->id) }}">
+                    📩 <span>درخواست‌های مردمی</span>
+                </a>
+            </li>
             <li><a href="{{ route('admin.village.settings.index', $village->id) }}" class="{{ request()->routeIs('admin.village.settings.*') ? 'active' : '' }}">⚙️ تنظیمات نمایش</a></li>
             <li><a href="{{ route('admin.village.news.index', $village->id) }}" class="{{ request()->routeIs('admin.village.news.*') ? 'active' : '' }}">📰 اخبار</a></li>
             <li><a href="{{ route('admin.village.projects.index', $village->id) }}" class="{{ request()->routeIs('admin.village.projects.*') ? 'active' : '' }}">🏗 پروژه‌ها</a></li>

@@ -84,6 +84,9 @@
                     </td>
                     <td style="white-space: nowrap;">
                         <a href="{{ route('admin.sections.edit', $section->id) }}" class="btn">ویرایش</a>
+                        <a href="{{ route('admin.sections.requests.index', $section->id) }}" class="btn" style="background:#16a34a;color:white;" title="درخواست‌های مردمی">
+                            📩 درخواست‌ها
+                        </a>
                         <form method="POST" action="{{ route('admin.sections.toggle', $section->id) }}" style="display:inline;">
                             @csrf
                             @if($section->is_active)

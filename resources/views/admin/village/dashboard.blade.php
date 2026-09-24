@@ -44,11 +44,11 @@
         <span class="num">{{ $stats['gallery'] }}</span>
         <span class="label">تصویر</span>
     </a>
-    <div class="stat-card">
+    <a href="{{ route('admin.village.requests.index', $village->id) }}" class="stat-card">
         <span class="icon">📩</span>
         <span class="num">{{ $stats['requests'] }}</span>
         <span class="label">درخواست</span>
-    </div>
+    </a>
 </div>
 
 <div class="card">
