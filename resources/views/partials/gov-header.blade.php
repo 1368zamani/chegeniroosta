@@ -1589,6 +1589,106 @@ img, iframe, video {
 
     /* پایان LIGHT-BLUE-STYLE-2026 */
 
+
+    /* ============================================
+       RED-BLUE-THEME-2026
+       تیترها قرمز، متن‌ها آبی
+       ============================================ */
+
+    /* ═══ تیتر اصلی صفحه (h1, h2) → قرمز ═══ */
+    h1, h2,
+    .section-title,
+    .page-title h2 {
+        color: #c62828 !important;
+    }
+
+    /* ═══ تیترهای وسط (h3, h4) → آبی ═══ */
+    h3, h4, h5,
+    .box-header h3,
+    .card h3 {
+        color: #1565c0 !important;
+    }
+
+    /* ═══ متن عادی → سرمه‌ای روشن‌تر ═══ */
+    body {
+        color: #1a3a5c;
+    }
+
+    p, li, span, div {
+        color: #1a3a5c;
+    }
+
+    /* ═══ لینک‌ها → آبی متوسط ═══ */
+    a {
+        color: #1565c0;
+    }
+    a:hover {
+        color: #c62828;
+    }
+
+    /* ═══ کارت‌های اطلاعات روستا ═══ */
+    .info-item .label {
+        color: #c62828 !important;
+        font-weight: 700;
+    }
+    .info-item .value {
+        color: #1a3a5c !important;
+    }
+
+    /* ═══ عنوان کارت‌های اخبار / پروژه / شورا ═══ */
+    .v-news-card h4,
+    .v-project-card h4,
+    .v-council-card h5,
+    .v-attraction-card h5,
+    .v-facility-card .name {
+        color: #1565c0 !important;
+    }
+
+    /* ═══ عنوان اخبار بخشداری ═══ */
+    .news-list-item h4 a,
+    .news-list-item h4 {
+        color: #1565c0 !important;
+    }
+    .news-list-item h4 a:hover {
+        color: #c62828 !important;
+    }
+
+    /* ═══ متن کارت‌های مصوبات ═══ */
+    .res-title,
+    .res-card h3 {
+        color: #c62828 !important;
+    }
+
+    /* ═══ متن‌های کوچک ═══ */
+    .news-meta,
+    .news-meta span,
+    .date,
+    .v-news-card .meta {
+        color: #607d8b;
+    }
+
+    /* ═══ بج‌ها و برچسب‌ها ═══ */
+    .badge-active {
+        background: #c8e6c9 !important;
+        color: #2e7d32 !important;
+    }
+
+    /* ═══ متن روی پس‌زمینه‌های تیره (هدر، فوتر، منو) → سفید بماند ═══ */
+    .gov-header, .gov-header *,
+    .gov-navbar, .gov-navbar *,
+    .gov-topbar, .gov-topbar *,
+    .gov-footer, .gov-footer *,
+    .gov-consensus-banner, .gov-consensus-banner *,
+    .v-request-box, .v-request-box *,
+    .v-slide-caption,
+    .news-ticker-item *,
+    .s-slider, .s-slider *,
+    .v-slider, .v-slider * {
+        /* رنگ سفید بماند */
+    }
+
+    /* ═══ پایان RED-BLUE-THEME-2026 ═══ */
+
 </style>
 
 {{-- ================ TOP BAR ================ --}}
