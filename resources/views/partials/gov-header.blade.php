@@ -715,13 +715,7 @@
         right: 15px !important;
     }
 
-    /* ---- Dark mode toggle ---- */
-    #darkModeToggle {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 16px !important;
-    }
-}
+    /* ---- Dark mode toggle ---- */}
 
 /* ---------- تبلت (601px تا 900px) ---------- */
 @media (min-width: 601px) and (max-width: 900px) {

@@ -77,7 +77,7 @@
             @foreach($resolutions as $res)
                 <tr>
                     <td>{{ $res->session_number ?? '—' }}</td>
-                    <td style="font-size:12px;color:#64748b;">{{ $res->session_date ? $res->session_date->format('Y/m/d') : '—' }}</td>
+                    <td style="font-size:12px;color:#64748b;">{{ $res->session_date ? jalali($res->session_date) : '—' }}</td>
                     <td><strong>{{ $res->title }}</strong></td>
                     <td>
                         <span class="badge" style="background:{{ $res->status_bg }};color:{{ $res->status_color }};">

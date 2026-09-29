@@ -184,7 +184,7 @@
                         <a href="{{ request()->getScheme() }}://{{ $sec ? $sec->subdomain . '.' . config('app.base_domain') : config('app.base_domain') }}/news/{{ $item->slug }}" class="result-card">
                             <h3>{{ \Illuminate\Support\Str::limit($item->title, 80) }}</h3>
                             <div class="meta">
-                                🗓 {{ $item->published_at ? $item->published_at->format('Y/m/d') : $item->created_at->format('Y/m/d') }}
+                                🗓 {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}
                                 @if($sec) — {{ $sec->name }} @endif
                             </div>
                             <p>{{ \Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->content), 120) }}</p>

@@ -538,7 +538,7 @@ a[href^="tel:"] {
                     <h1 class="article-title">{{ $news->title }}</h1>
 
                     <div class="article-meta">
-                        <span>🗓 {{ $news->published_at ? $news->published_at->format('Y/m/d') : $news->created_at->format('Y/m/d') }}</span>
+                        <span>🗓 {{ $news->published_at ? jalali($news->published_at) : jalali($news->created_at) }}</span>
                         @if($news->user)
                             <span>✍️ {{ $news->user->name }}</span>
                         @endif

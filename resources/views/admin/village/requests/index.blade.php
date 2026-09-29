@@ -98,7 +98,7 @@
                                 {{ $b['label'] }}
                             </span>
                         </td>
-                        <td style="padding:12px;font-size:12px;color:#64748b;">{{ $req->created_at->format('Y/m/d H:i') }}</td>
+                        <td style="padding:12px;font-size:12px;color:#64748b;">{{ jalali($req->created_at, 'Y/m/d H:i') }}</td>
                         <td style="padding:12px;">
                             <a href="{{ route('admin.village.requests.show', [$village->id, $req->id]) }}"
                                style="display:inline-block;padding:6px 14px;background:#1e5b9c;color:white;text-decoration:none;border-radius:6px;font-size:12px;">

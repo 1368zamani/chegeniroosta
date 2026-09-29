@@ -68,7 +68,7 @@
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>
                         <td><span class="badge badge-{{ $req->status }}">{{ $req->status_label }}</span></td>
-                        <td style="font-size:12px;color:#64748b;">{{ $req->created_at->format('Y/m/d') }}</td>
+                        <td style="font-size:12px;color:#64748b;">{{ jalali($req->created_at) }}</td>
                         <td>
                             <a href="{{ route('admin.sections.requests.show', [$section->id, $req->id]) }}" class="btn btn-primary btn-sm">مشاهده</a>
                         </td>
@@ -107,7 +107,7 @@
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>
                         <td><span class="badge badge-{{ $req->status }}">{{ $req->status_label }}</span></td>
-                        <td style="font-size:12px;color:#64748b;">{{ $req->created_at->format('Y/m/d') }}</td>
+                        <td style="font-size:12px;color:#64748b;">{{ jalali($req->created_at) }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -28,7 +28,7 @@
                     <span class="badge badge-warning">⭐ مهم</span>
                 @endif
             </td>
-            <td>{{ $event->event_date->format('Y/m/d') }}</td>
+            <td>{{ jalali($event->event_date) }}</td>
             <td>{{ $event->location ?? '—' }}</td>
             <td>{{ $event->event_type ?? '—' }}</td>
             <td>

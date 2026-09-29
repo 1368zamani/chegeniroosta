@@ -36,7 +36,7 @@
         <span>{{ $request->subject }}</span>
 
         <strong style="color:#64748b;font-size:13px;">تاریخ ثبت:</strong>
-        <span>{{ $request->created_at->format('Y/m/d H:i') }}</span>
+        <span>{{ jalali($request->created_at, 'Y/m/d H:i') }}</span>
 
         <strong style="color:#64748b;font-size:13px;">IP:</strong>
         <span style="font-family:monospace;font-size:12px;color:#94a3b8;">{{ $request->ip_address ?? '—' }}</span>

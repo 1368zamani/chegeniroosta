@@ -110,7 +110,7 @@ tr:hover { background: #f8fafc; }
                             @endphp
                             <span class="badge" style="background:{{ $b['bg'] }};color:{{ $b['color'] }};">{{ $b['label'] }}</span>
                         </td>
-                        <td style="font-size:12px;color:#64748b;">{{ $req->created_at->format('Y/m/d H:i') }}</td>
+                        <td style="font-size:12px;color:#64748b;">{{ jalali($req->created_at, 'Y/m/d H:i') }}</td>
                         <td>
                             <a href="{{ route('admin.sections.requests.show', [$section->id, $req->id]) }}" class="btn">مشاهده و پاسخ</a>
                         </td>

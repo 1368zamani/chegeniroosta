@@ -505,7 +505,7 @@ a[href^="tel:"] {
                                     @endif
                                     <a href="{{ route('section.news.show', $item->slug) }}">{{ $item->title }}</a>
                                 </h4>
-                                <div class="meta">🗓 {{ $item->published_at ? $item->published_at->format('Y/m/d') : $item->created_at->format('Y/m/d') }}</div>
+                                <div class="meta">🗓 {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}</div>
                                 <p>{{ Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->content), 200) }}</p>
                             </div>
                         @endforeach

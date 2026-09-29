@@ -66,7 +66,7 @@
                         @endif
                     </td>
                     <td style="font-size:12px; color:#78909c;">
-                        {{ $item->created_at->format('Y/m/d') }}
+                        {{ jalali($item->created_at) }}
                     </td>
                     <td>
                         <a href="{{ route('admin.section-news.edit', $item->id) }}" class="btn btn-primary btn-sm">ویرایش</a>

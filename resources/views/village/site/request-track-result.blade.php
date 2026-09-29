@@ -47,7 +47,7 @@ a[href^="tel:"] {
             <div class="info-row"><div class="k">کد پیگیری:</div><div class="v" dir="ltr">{{ $found->tracking_code }}</div></div>
             <div class="info-row"><div class="k">نام:</div><div class="v">{{ $found->full_name }}</div></div>
             <div class="info-row"><div class="k">موضوع:</div><div class="v">{{ $found->subject }}</div></div>
-            <div class="info-row"><div class="k">تاریخ ثبت:</div><div class="v">{{ $found->created_at->format('Y/m/d H:i') }}</div></div>
+            <div class="info-row"><div class="k">تاریخ ثبت:</div><div class="v">{{ jalali($found->created_at, 'Y/m/d H:i') }}</div></div>
             <div class="info-row"><div class="k">توضیحات:</div><div class="v">{{ $found->description }}</div></div>
 
             @if($found->admin_response)

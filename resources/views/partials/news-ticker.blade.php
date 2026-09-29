@@ -118,7 +118,7 @@
                         <span class="badge">📌 مهم</span>
                     @endif
                     <span class="title">{{ $item->title }}</span>
-                    <span class="date">{{ $item->published_at ? $item->published_at->format('Y/m/d') : $item->created_at->format('Y/m/d') }}</span>
+                    <span class="date">{{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}</span>
                 </a>
             </div>
         @endforeach

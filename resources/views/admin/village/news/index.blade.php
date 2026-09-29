@@ -42,7 +42,7 @@
                     <span class="badge badge-inactive">پیش‌نویس</span>
                 @endif
             </td>
-            <td style="font-size:12px; color:#78909c;">{{ $item->created_at->format('Y/m/d') }}</td>
+            <td style="font-size:12px; color:#78909c;">{{ jalali($item->created_at) }}</td>
             <td>
                 <a href="{{ route('admin.village.news.edit', [$village->id, $item->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
                 <form method="POST" action="{{ route('admin.village.news.destroy', [$village->id, $item->id]) }}" style="display:inline;" onsubmit="return confirm('حذف این خبر؟');">

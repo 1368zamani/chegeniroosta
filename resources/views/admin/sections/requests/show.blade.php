@@ -63,7 +63,7 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
         </div>
         <div class="info-row">
             <strong>تاریخ ثبت:</strong>
-            <span>{{ $request->created_at->format('Y/m/d H:i') }}</span>
+            <span>{{ jalali($request->created_at, 'Y/m/d H:i') }}</span>
         </div>
         <div class="info-row">
             <strong>IP:</strong>

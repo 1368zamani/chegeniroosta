@@ -368,7 +368,7 @@ a[href^="tel:"] {
                             @endif
                             {{ $item->title }}
                         </h4>
-                        <div class="date">🗓 {{ $item->created_at->format('Y/m/d') }}</div>
+                        <div class="date">🗓 {{ jalali($item->created_at) }}</div>
                         <p>{{ \Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->body), 140) }}</p>
                     </div>
                 </div>

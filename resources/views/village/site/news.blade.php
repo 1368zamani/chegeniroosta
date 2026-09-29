@@ -72,7 +72,7 @@
                     <div class="news-body">
                         <div class="news-meta">
                             @if($item->is_pinned)<span class="pinned">📌 سنجاق شده</span>@endif
-                            <span>📅 {{ $item->published_at ? $item->published_at->format('Y/m/d') : $item->created_at->format('Y/m/d') }}</span>
+                            <span>📅 {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}</span>
                         </div>
                         <h3><a href="{{ route('village.site.news.show', [$village->slug, $item->slug]) }}">{{ $item->title }}</a></h3>
                         @if($item->excerpt)

@@ -101,13 +101,13 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
                         <span>📌 جلسه شماره {{ $res->session_number }}</span>
                     @endif
                     @if($res->session_date)
-                        <span>📅 {{ $res->session_date->format('Y/m/d') }}</span>
+                        <span>📅 {{ jalali($res->session_date) }}</span>
                     @endif
                     @if($res->budget)
                         <span>💰 {{ number_format($res->budget) }} ریال</span>
                     @endif
                     @if($res->deadline)
-                        <span>⏰ مهلت: {{ $res->deadline->format('Y/m/d') }}</span>
+                        <span>⏰ مهلت: {{ jalali($res->deadline) }}</span>
                     @endif
                 </div>
 
