@@ -475,6 +475,31 @@ a[href^="tel:"] {
         </div>
     @endif
 
+    {{-- ============ مصوبات شورای اسلامی ============ --}}
+    @php
+        $resolutionCount = \App\Models\VillageCouncilResolution::where('village_id', $village->id)
+            ->where('is_public', true)->count();
+    @endphp
+
+    <div style="background: white; border-radius: 14px; padding: 25px 28px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(13,46,79,0.06); border-right: 5px solid #1e5b9c;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+            <div>
+                <h3 style="margin: 0 0 8px; color: #1e5b9c; font-size: 19px;">📋 مصوبات شورای اسلامی</h3>
+                <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
+                    @if($resolutionCount > 0)
+                        {{ $resolutionCount }} مصوبه ثبت شده — مشاهده و پیگیری میزان پیشرفت
+                    @else
+                        به‌زودی مصوبات شورای اسلامی روستا در این بخش منتشر می‌شود.
+                    @endif
+                </p>
+            </div>
+            <a href="{{ route('village.site.resolutions', $village->slug) }}"
+               style="display: inline-block; background: #1e5b9c; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
+                مشاهده مصوبات ←
+            </a>
+        </div>
+    </div>
+
     {{-- ============ درخواست مردمی ============ --}}
     <div class="v-request-box">
         <h3>📩 درخواست خود را ثبت کنید</h3>
