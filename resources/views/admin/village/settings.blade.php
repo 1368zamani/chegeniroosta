@@ -113,6 +113,32 @@
     <input type="text" name="dehyar_instagram" value="{{ old('dehyar_instagram', $village->dehyar_instagram) }}" dir="ltr" placeholder="مثال: dehyar_abuzar">
     <div class="hint">بدون @ — نام کاربری یا آدرس کامل اینستاگرام</div>
 </div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="field">
+        <label>شماره تماس دهیار</label>
+        <input type="text" name="dehyar_phone" value="{{ old('dehyar_phone', $village->dehyar_phone) }}" dir="ltr" style="width:100%;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;">
+    </div>
+    <div class="field">
+        <label>ایمیل دهیار</label>
+        <input type="email" name="dehyar_email" value="{{ old('dehyar_email', $village->dehyar_email) }}" dir="ltr" style="width:100%;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;">
+    </div>
+</div>
+
+<div class="field">
+    <label>درباره دهیار (بیوگرافی)</label>
+    <textarea name="dehyar_bio" style="width:100%;min-height:100px;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="توضیح کوتاه درباره دهیار...">{{ old('dehyar_bio', $village->dehyar_bio) }}</textarea>
+</div>
+
+<div class="field">
+    <label>تحصیلات دهیار</label>
+    <textarea name="dehyar_education" style="width:100%;min-height:80px;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="مثال: کارشناسی مدیریت...">{{ old('dehyar_education', $village->dehyar_education) }}</textarea>
+</div>
+
+<div class="field">
+    <label>سوابق شغلی دهیار</label>
+    <textarea name="dehyar_experience" style="width:100%;min-height:100px;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="مثال: دهیار ... از سال ...">{{ old('dehyar_experience', $village->dehyar_experience) }}</textarea>
+</div>
         </div>
 
         <div class="row-2">

@@ -500,6 +500,28 @@ a[href^="tel:"] {
         </div>
     </div>
 
+    {{-- ============ معرفی دهیار ============ --}}
+    @if($village->dehyar_name)
+        <div style="background: white; border-radius: 14px; padding: 25px 28px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(13,46,79,0.06); border-right: 5px solid #1e5b9c; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+            @if($village->dehyar_photo)
+                <img src="{{ asset('storage/' . $village->dehyar_photo) }}" alt="{{ $village->dehyar_name }}"
+                     style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #e3f2fd;">
+            @else
+                <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #e3f2fd, #bbdefb); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #90a4ae; border: 3px solid #e3f2fd;">👤</div>
+            @endif
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="margin: 0 0 6px; color: #1e5b9c; font-size: 18px;">👤 دهیار روستا: {{ $village->dehyar_name }}</h3>
+                <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
+                    برای مشاهده اطلاعات کامل، تحصیلات، سوابق و راه‌های تماس، صفحه اختصاصی دهیار را ببینید.
+                </p>
+            </div>
+            <a href="{{ route('village.site.dehyar', $village->slug) }}"
+               style="display: inline-block; background: #1e5b9c; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
+                مشاهده پروفایل دهیار ←
+            </a>
+        </div>
+    @endif
+
     {{-- ============ درخواست مردمی ============ --}}
     <div class="v-request-box">
         <h3>📩 درخواست خود را ثبت کنید</h3>

@@ -112,6 +112,13 @@ class PublicVillageSiteController extends Controller
         return view('village.site.about', compact('village', 'attractions', 'gallery'));
     }
 
+    public function dehyar($slug)
+    {
+        $village = $this->getVillage($slug);
+
+        return view('village.site.dehyar', compact('village'));
+    }
+
     public function council($slug)
     {
         $village = $this->getVillage($slug);
