@@ -604,3 +604,11 @@ Route::middleware(['section'])->group(function () {
         ->name('section.site.request.track.result');
 });
 
+/*
+|--------------------------------------------------------------------------
+| Village Council Resolutions (Public)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/village/{slug}/resolutions', [\App\Http\Controllers\PublicVillageSiteController::class, 'resolutions'])
+    ->name('village.site.resolutions');
