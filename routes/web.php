@@ -91,6 +91,20 @@ Route::middleware('village')->group(function () {
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 
+    // شورای بخش
+    Route::get('sections/{id}/council', [\App\Http\Controllers\AdminSectionCouncilController::class, 'index'])
+        ->name('admin.sections.council.index');
+    Route::get('sections/{id}/council/create', [\App\Http\Controllers\AdminSectionCouncilController::class, 'create'])
+        ->name('admin.sections.council.create');
+    Route::post('sections/{id}/council', [\App\Http\Controllers\AdminSectionCouncilController::class, 'store'])
+        ->name('admin.sections.council.store');
+    Route::get('sections/{id}/council/{memberId}/edit', [\App\Http\Controllers\AdminSectionCouncilController::class, 'edit'])
+        ->name('admin.sections.council.edit');
+    Route::put('sections/{id}/council/{memberId}', [\App\Http\Controllers\AdminSectionCouncilController::class, 'update'])
+        ->name('admin.sections.council.update');
+    Route::delete('sections/{id}/council/{memberId}', [\App\Http\Controllers\AdminSectionCouncilController::class, 'destroy'])
+        ->name('admin.sections.council.destroy');
+
     // داشبورد یکپارچه بخشداری
     Route::get('sections/{id}/dashboard', [\App\Http\Controllers\AdminSectionDashboardController::class, 'index'])
         ->name('admin.sections.dashboard');
@@ -612,3 +626,7 @@ Route::middleware(['section'])->group(function () {
 
 Route::get('/village/{slug}/resolutions', [\App\Http\Controllers\PublicVillageSiteController::class, 'resolutions'])
     ->name('village.site.resolutions');
+
+Route::get('/council', [\App\Http\Controllers\PublicSectionController::class, 'council'])
+    ->middleware('section')
+    ->name('section.site.council');

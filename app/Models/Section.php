@@ -60,4 +60,13 @@ class Section extends Model
         }
         return 0;
     }
+
+
+    public function councilMembers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\SectionCouncilMember::class)
+            ->orderBy('sort_order')
+            ->orderBy('id');
+    }
+
 }
