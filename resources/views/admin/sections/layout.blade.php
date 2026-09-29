@@ -205,6 +205,7 @@ tr:hover { background: #f8fafc; }
         <ul class="sidebar-menu">
             <li><a href="{{ route('admin.sections.dashboard', $section->id) }}" class="{{ request()->routeIs('admin.sections.dashboard') ? 'active' : '' }}">📊 داشبورد</a></li>
             <li><a href="{{ route('admin.sections.edit', $section->id) }}" class="{{ request()->routeIs('admin.sections.edit') ? 'active' : '' }}">⚙️ تنظیمات بخش</a></li>
+            <li><a href="{{ route('admin.sections.council.index', $section->id) }}" class="{{ request()->routeIs('admin.sections.council.*') ? 'active' : '' }}">👥 شورای بخش</a></li>
 
             <li class="menu-divider"></li>
             <li class="menu-label">مدیریت</li>

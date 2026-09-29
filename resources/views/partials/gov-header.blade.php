@@ -1661,6 +1661,7 @@ img, iframe, video {
         <a href="{{ route('search.index') }}" class="gov-nav-item">🔍 جستجو</a>
         @if(isset($section) && ($section->bakhshdar_name ?? false))
             <a href="/bakhshdar" class="gov-nav-item {{ str_contains(request()->path(), 'bakhshdar') ? 'active' : '' }}">👤 معرفی بخشدار</a> {{-- menu-moved-2026 --}}
+            <a href="/council" class="gov-nav-item {{ str_contains(request()->path(), 'council') ? 'active' : '' }}">👥 شورای بخش</a>
         @endif
         <div class="gov-nav-actions">
             @auth
