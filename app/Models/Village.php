@@ -137,4 +137,11 @@ class Village extends Model
     {
         return $this->hasMany(VillageEvent::class)->where('event_date', '>=', now()->toDateString())->orderBy('event_date')->limit(10);
     }
+
+
+    public function councilResolutions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\VillageCouncilResolution::class)->orderBy('sort_order')->orderBy('session_date', 'desc');
+    }
+
 }

@@ -124,6 +124,19 @@ class PublicVillageSiteController extends Controller
         return view('village.site.council', compact('village', 'members'));
     }
 
+    public function resolutions($slug)
+    {
+        $village = $this->getVillage($slug);
+
+        $resolutions = \App\Models\VillageCouncilResolution::where('village_id', $village->id)
+            ->where('is_public', true)
+            ->orderBy('session_date', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('village.site.resolutions', compact('village', 'resolutions'));
+    }
+
     public function facilities($slug)
     {
         $village = $this->getVillage($slug);

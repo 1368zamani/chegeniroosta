@@ -287,6 +287,7 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.village.events.index', $village->id) }}" class="{{ request()->routeIs('admin.village.events.*') ? 'active' : '' }}">📅 رویدادها</a></li>
             <li><a href="{{ route('admin.village.facilities.index', $village->id) }}" class="{{ request()->routeIs('admin.village.facilities.*') ? 'active' : '' }}">🏛 امکانات</a></li>
             <li><a href="{{ route('admin.village.council.index', $village->id) }}" class="{{ request()->routeIs('admin.village.council.*') ? 'active' : '' }}">👥 شورا</a></li>
+            <li><a href="{{ route('admin.village.resolutions.index', $village->id) }}" class="{{ request()->routeIs('admin.village.resolutions.*') ? 'active' : '' }}">📋 مصوبات شورا</a></li>
             <li><a href="{{ route('admin.village.attractions.index', $village->id) }}" class="{{ request()->routeIs('admin.village.attractions.*') ? 'active' : '' }}">🏞 جاذبه‌ها</a></li>
             <li><a href="{{ route('admin.village.images.index', $village->id) }}">🖼 گالری تصاویر</a></li>
         </ul>

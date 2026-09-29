@@ -454,6 +454,20 @@ Route::get('/village/{slug}', [\App\Http\Controllers\PublicVillageController::cl
 
 Route::middleware(['auth', 'village-access'])->prefix('admin/village/{village}')->group(function () {
 
+    // مصوبات شورای اسلامی
+    Route::get('/resolutions', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'index'])
+        ->name('admin.village.resolutions.index');
+    Route::get('/resolutions/create', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'create'])
+        ->name('admin.village.resolutions.create');
+    Route::post('/resolutions', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'store'])
+        ->name('admin.village.resolutions.store');
+    Route::get('/resolutions/{id}/edit', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'edit'])
+        ->name('admin.village.resolutions.edit');
+    Route::put('/resolutions/{id}', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'update'])
+        ->name('admin.village.resolutions.update');
+    Route::delete('/resolutions/{id}', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'destroy'])
+        ->name('admin.village.resolutions.destroy');
+
     Route::get('/requests', [\App\Http\Controllers\VillageAdmin\RequestController::class, 'index'])
         ->name('admin.village.requests.index');
     Route::get('/requests/{id}', [\App\Http\Controllers\VillageAdmin\RequestController::class, 'show'])

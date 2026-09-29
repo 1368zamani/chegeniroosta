@@ -550,6 +550,85 @@ a[href^="tel:"] {
 
                     <div class="article-body">
                         {!! nl2br(e($news->content)) !!}
+
+{{-- section-news-public-gallery --}}
+@if($news->images && $news->images->count() > 0)
+    <div style="margin: 35px 0; padding: 25px; background: #f8fafc; border-radius: 14px; border: 1px solid #e2e8f0;">
+        <h3 style="color: #1e5b9c; font-size: 18px; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid #1e5b9c; display: flex; align-items: center; gap: 8px;">
+            🖼 گالری تصاویر این خبر ({{ $news->images->count() }})
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;">
+            @foreach($news->images as $img)
+                <div class="section-news-gallery-item"
+                     onclick="sgShowImage('{{ asset('storage/' . $img->image) }}', '{{ addslashes($img->caption ?? '') }}')"
+                     style="border-radius: 12px; overflow: hidden; cursor: pointer; background: white; box-shadow: 0 4px 15px rgba(0,0,0,.08); transition: transform .25s ease, box-shadow .25s ease;">
+                    <img src="{{ asset('storage/' . $img->image) }}"
+                         alt="{{ $img->caption ?? $news->title }}"
+                         loading="lazy"
+                         style="width: 100%; height: 180px; object-fit: cover; display: block;">
+                    @if($img->caption)
+                        <div style="padding: 10px 12px; font-size: 12.5px; color: #546e7a; text-align: center; background: #f8fafc;">
+                            {{ $img->caption }}
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <style>
+        .section-news-gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(13,46,79,.18) !important;
+        }
+        .sg-lightbox-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,.92);
+            z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .sg-lightbox-overlay.active { display: flex; }
+        .sg-lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; }
+        .sg-lightbox-image { max-width: 90vw; max-height: 78vh; border-radius: 10px; box-shadow: 0 15px 50px rgba(0,0,0,.6); }
+        .sg-lightbox-caption { background: rgba(255,255,255,.95); color: #1e293b; padding: 12px 24px; border-radius: 10px; margin-top: 15px; text-align: center; font-family: 'Vazirmatn', Tahoma, sans-serif; }
+        .sg-lightbox-close { position: absolute; top: -55px; left: 0; background: rgba(255,255,255,.15); color: #fff; border: none; font-size: 26px; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; line-height: 1; }
+        .sg-lightbox-close:hover { background: rgba(255,255,255,.3); }
+        @media (max-width: 700px) {
+            .sg-lightbox-close { top: 8px; left: 8px; }
+            .sg-lightbox-image { max-height: 65vh; }
+        }
+    </style>
+
+    <div class="sg-lightbox-overlay" id="sgLightbox" onclick="if(event.target===this) sgCloseImage();">
+        <div class="sg-lightbox-content">
+            <button class="sg-lightbox-close" onclick="sgCloseImage()">×</button>
+            <img src="" alt="" class="sg-lightbox-image" id="sgLightboxImage">
+            <div class="sg-lightbox-caption" id="sgLightboxCaption" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+    function sgShowImage(src, caption) {
+        var img = document.getElementById('sgLightboxImage');
+        var cap = document.getElementById('sgLightboxCaption');
+        img.src = src;
+        if (caption && caption.trim()) {
+            cap.textContent = caption;
+            cap.style.display = 'block';
+        } else {
+            cap.style.display = 'none';
+        }
+        document.getElementById('sgLightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function sgCloseImage() {
+        document.getElementById('sgLightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') sgCloseImage();
+    });
+    </script>
+@endif
+
                     </div>
 
                     <a href="/news" class="back-link">← بازگشت به لیست اخبار</a>
