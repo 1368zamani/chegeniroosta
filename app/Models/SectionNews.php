@@ -33,6 +33,11 @@ class SectionNews extends Model
         return $this->belongsTo(Section::class);
     }
 
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SectionNewsImage::class, 'news_id')->orderBy('sort_order');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

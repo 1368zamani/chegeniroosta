@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Section;
 use App\Models\SectionNews;
+use App\Models\SectionNewsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -52,7 +53,9 @@ class AdminSectionNewsController extends Controller
             'title'        => 'required|string|max:255',
             'excerpt'      => 'nullable|string|max:500',
             'content'      => 'required|string',
-            'image'        => 'nullable|image|max:5120',
+            'image'        => 'nullable|image|max:25600',
+            'images'       => 'nullable|array',
+            'images.*'     => 'image|max:25600',
             'is_pinned'    => 'nullable|boolean',
             'is_published' => 'nullable|boolean',
         ]);
@@ -71,7 +74,19 @@ class AdminSectionNewsController extends Controller
             $data['image'] = $request->file('image')->store('section-news', 'public');
         }
 
-        SectionNews::create($data);
+        $news = SectionNews::create($data);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $i => $file) {
+                if (!$file || !$file->isValid()) continue;
+                $path = $file->store('section-news/' . $news->id . '/gallery', 'public');
+                SectionNewsImage::create([
+                    'news_id'    => $news->id,
+                    'image'      => $path,
+                    'sort_order' => $i,
+                ]);
+            }
+        }
 
         return redirect()
             ->route('admin.section-news.index')
@@ -106,7 +121,9 @@ class AdminSectionNewsController extends Controller
             'title'        => 'required|string|max:255',
             'excerpt'      => 'nullable|string|max:500',
             'content'      => 'required|string',
-            'image'        => 'nullable|image|max:5120',
+            'image'        => 'nullable|image|max:25600',
+            'images'       => 'nullable|array',
+            'images.*'     => 'image|max:25600',
             'is_pinned'    => 'nullable|boolean',
             'is_published' => 'nullable|boolean',
         ]);
@@ -127,6 +144,19 @@ class AdminSectionNewsController extends Controller
 
         $news->update($data);
 
+        if ($request->hasFile('images')) {
+            $maxOrder = $news->images()->max('sort_order') ?? 0;
+            foreach ($request->file('images') as $i => $file) {
+                if (!$file || !$file->isValid()) continue;
+                $path = $file->store('section-news/' . $news->id . '/gallery', 'public');
+                SectionNewsImage::create([
+                    'news_id'    => $news->id,
+                    'image'      => $path,
+                    'sort_order' => $maxOrder + $i + 1,
+                ]);
+            }
+        }
+
         return redirect()
             ->route('admin.section-news.index')
             ->with('success', 'خبر به‌روزرسانی شد.');
@@ -140,6 +170,13 @@ class AdminSectionNewsController extends Controller
             abort(403);
         }
 
+        foreach ($news->images as $img) {
+            if ($img->image && Storage::disk('public')->exists($img->image)) {
+                Storage::disk('public')->delete($img->image);
+            }
+            $img->delete();
+        }
+
         if ($news->image && Storage::disk('public')->exists($news->image)) {
             Storage::disk('public')->delete($news->image);
         }
@@ -149,6 +186,24 @@ class AdminSectionNewsController extends Controller
         return redirect()
             ->route('admin.section-news.index')
             ->with('success', 'خبر حذف شد.');
+    }
+
+    public function destroyImage($id, $imageId)
+    {
+        $news = SectionNews::findOrFail($id);
+
+        if (!auth()->user()->canManageSection($news->section_id)) {
+            abort(403);
+        }
+
+        $img = SectionNewsImage::where('news_id', $news->id)->findOrFail($imageId);
+
+        if ($img->image && Storage::disk('public')->exists($img->image)) {
+            Storage::disk('public')->delete($img->image);
+        }
+        $img->delete();
+
+        return back()->with('success', 'عکس حذف شد.');
     }
 
     private function makeUniqueSlug($title)

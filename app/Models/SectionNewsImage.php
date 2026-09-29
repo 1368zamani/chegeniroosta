@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class SectionNewsImage extends Model
+{
+    protected $table = 'section_news_images';
+
+    protected $fillable = ['news_id', 'image', 'caption', 'sort_order'];
+
+    public function news(): BelongsTo
+    {
+        return $this->belongsTo(SectionNews::class, 'news_id');
+    }
+}

@@ -46,6 +46,39 @@
             <div class="hint">اگر تصویر جدید آپلود کنی، تصویر قبلی جایگزین می‌شود.</div>
         </div>
 
+        <div class="field">
+            <label>گالری عکس‌ها (چند عکس)</label>
+            <input type="file" name="images[]" accept="image/*" multiple>
+            <div class="hint">
+                می‌توانید چند عکس انتخاب کنید. حداکثر ۲۵ مگابایت هر عکس.
+            </div>
+
+            @if($news->images->count() > 0)
+                <div style="margin-top:14px;">
+                    <label style="font-size:13px;color:#546e7a;margin-bottom:8px;display:block;">
+                        🖼 عکس‌های فعلی ({{ $news->images->count() }})
+                    </label>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;">
+                        @foreach($news->images as $img)
+                            <div style="position:relative;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+                                <img src="{{ asset('storage/' . $img->image) }}"
+                                     style="width:100%;height:100px;object-fit:cover;display:block;">
+                                <form method="POST"
+                                      action="{{ route('admin.section-news.image.destroy', [$news->id, $img->id]) }}"
+                                      onsubmit="return confirm('حذف این عکس؟');"
+                                      style="position:absolute;top:5px;left:5px;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            style="background:rgba(229,57,53,.95);color:white;border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1;padding:0;">×</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+
         <div class="checkbox-field">
             <input type="checkbox" name="is_pinned" value="1" id="is_pinned" {{ old('is_pinned', $news->is_pinned) ? 'checked' : '' }}>
             <label for="is_pinned">📌 سنجاق در بالای لیست</label>

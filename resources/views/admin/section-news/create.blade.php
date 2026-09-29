@@ -38,9 +38,17 @@
         </div>
 
         <div class="field">
-            <label>تصویر خبر</label>
+            <label>تصویر اصلی خبر (کاور)</label>
             <input type="file" name="image" accept="image/*">
-            <div class="hint">اختیاری — فرمت JPG یا PNG، حداکثر ۵ مگابایت.</div>
+            <div class="hint">اختیاری — فرمت JPG یا PNG، حداکثر ۲۵ مگابایت.</div>
+        </div>
+
+        <div class="field">
+            <label>گالری عکس‌های خبر (چند عکس)</label>
+            <input type="file" name="images[]" accept="image/*" multiple>
+            <div class="hint">
+                می‌توانید چند عکس انتخاب کنید (Ctrl+کلیک یا Shift+کلیک). حداکثر ۲۵ مگابایت هر عکس.
+            </div>
         </div>
 
         <div class="checkbox-field">
