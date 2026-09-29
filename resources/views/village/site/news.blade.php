@@ -96,6 +96,5 @@
 </div>
 
 @include('partials.gov-footer')
-@include('partials.dark-mode')
 </body>
 </html>

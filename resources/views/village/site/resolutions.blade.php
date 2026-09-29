@@ -149,7 +149,6 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 </div>
 
 @include('partials.gov-footer')
-@include('partials.dark-mode')
 @include('partials.back-to-top')
 
 </body>

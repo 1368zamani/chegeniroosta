@@ -219,6 +219,5 @@ a[href^="tel:"] {
     </div>
 </div>
 
-    @include("partials.dark-mode")
 </body>
 </html>

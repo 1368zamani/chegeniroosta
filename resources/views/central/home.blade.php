@@ -690,7 +690,6 @@ img, iframe, video {
 </main>
 
 @include('partials.gov-footer')
-@include('partials.dark-mode')
 @include('partials.back-to-top')
 @include('partials.analytics')
 

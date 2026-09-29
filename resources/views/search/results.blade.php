@@ -203,7 +203,6 @@
     <p style="margin:0; font-size:12px; opacity:.7;">&copy; {{ date('Y') }} — <a href="/">بازگشت به صفحه اصلی</a></p>
 </footer>
 
-@include('partials.dark-mode')
 @include('partials.back-to-top')
 
 </body>

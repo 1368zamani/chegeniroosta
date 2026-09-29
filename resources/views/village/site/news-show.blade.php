@@ -162,6 +162,5 @@ function openFullImage(url) {
 </script>
 
 @include('partials.gov-footer')
-@include('partials.dark-mode')
 </body>
 </html>
