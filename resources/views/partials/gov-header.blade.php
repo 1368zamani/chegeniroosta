@@ -1774,6 +1774,54 @@ img, iframe, video {
 
     /* ═══ پایان NO-BLUR-TEXT-2026 ═══ */
 
+
+    /* ═══ منوی کشویی مسئولین ═══ */
+    .gov-nav-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .gov-nav-dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        min-width: 220px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        padding: 6px 0;
+        z-index: 1000;
+    }
+    .gov-nav-dropdown:hover .gov-nav-dropdown-menu {
+        display: block;
+    }
+    .gov-nav-dropdown-menu a {
+        display: block;
+        padding: 10px 18px;
+        color: #1a3a5c !important;
+        text-decoration: none;
+        font-size: 13.5px;
+        font-weight: 600;
+        transition: background .15s;
+        border-right: 3px solid transparent;
+    }
+    .gov-nav-dropdown-menu a:hover {
+        background: #f0f7ff;
+        color: #c62828 !important;
+        border-right-color: #c62828;
+    }
+    @media (max-width: 900px) {
+        .gov-nav-dropdown-menu {
+            position: static;
+            box-shadow: none;
+            background: rgba(255,255,255,0.08);
+            margin-top: 4px;
+        }
+        .gov-nav-dropdown:hover .gov-nav-dropdown-menu {
+            display: block;
+        }
+    }
+
 </style>
 
 {{-- ================ TOP BAR ================ --}}
@@ -1857,6 +1905,14 @@ img, iframe, video {
             <a href="/news" class="gov-nav-item {{ str_contains(request()->path(), 'news') ? 'active' : '' }}">📰 اخبار</a>
         @else
             <a href="/#sections" class="gov-nav-item">📁 بخش‌ها</a>
+            <div class="gov-nav-dropdown">
+                <a href="javascript:void(0)" class="gov-nav-item">🏛 مسئولین شهرستان ▾</a>
+                <div class="gov-nav-dropdown-menu">
+                    <a href="{{ route('officials.governor') }}">🎖 فرماندار</a>
+                    <a href="{{ route('officials.deputies') }}">👥 معاونین فرماندار</a>
+                    <a href="{{ route('officials.bakhshdars') }}">👤 بخشداران</a>
+                </div>
+            </div>
         @endif
         <a href="{{ route('search.index') }}" class="gov-nav-item">🔍 جستجو</a>
         @if(isset($section) && ($section->bakhshdar_name ?? false))

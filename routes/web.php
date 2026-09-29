@@ -91,6 +91,20 @@ Route::middleware('village')->group(function () {
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 
+    // مسئولین شهرستان
+    Route::get('officials', [\App\Http\Controllers\AdminOfficialController::class, 'index'])
+        ->name('admin.officials.index');
+    Route::get('officials/create', [\App\Http\Controllers\AdminOfficialController::class, 'create'])
+        ->name('admin.officials.create');
+    Route::post('officials', [\App\Http\Controllers\AdminOfficialController::class, 'store'])
+        ->name('admin.officials.store');
+    Route::get('officials/{id}/edit', [\App\Http\Controllers\AdminOfficialController::class, 'edit'])
+        ->name('admin.officials.edit');
+    Route::put('officials/{id}', [\App\Http\Controllers\AdminOfficialController::class, 'update'])
+        ->name('admin.officials.update');
+    Route::delete('officials/{id}', [\App\Http\Controllers\AdminOfficialController::class, 'destroy'])
+        ->name('admin.officials.destroy');
+
     // شورای بخش
     Route::get('sections/{id}/council', [\App\Http\Controllers\AdminSectionCouncilController::class, 'index'])
         ->name('admin.sections.council.index');
@@ -633,3 +647,15 @@ Route::get('/council', [\App\Http\Controllers\PublicSectionController::class, 'c
 
 Route::get('/village/{slug}/dehyar', [\App\Http\Controllers\PublicVillageSiteController::class, 'dehyar'])
     ->name('village.site.dehyar');
+
+// ═══════════════════════════════════════════════
+// مسئولین شهرستان (Public)
+// ═══════════════════════════════════════════════
+Route::get('/officials/governor', [\App\Http\Controllers\PublicOfficialController::class, 'governor'])
+    ->name('officials.governor');
+Route::get('/officials/deputies', [\App\Http\Controllers\PublicOfficialController::class, 'deputies'])
+    ->name('officials.deputies');
+Route::get('/officials/deputy/{id}', [\App\Http\Controllers\PublicOfficialController::class, 'deputy'])
+    ->name('officials.deputy');
+Route::get('/officials/bakhshdars', [\App\Http\Controllers\PublicOfficialController::class, 'bakhshdars'])
+    ->name('officials.bakhshdars');
