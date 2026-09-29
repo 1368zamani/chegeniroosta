@@ -1,4 +1,4 @@
-@extends('admin.village.layout')
+@extends('admin.officials.layout')
 
 @section('title', isset($official) ? 'ویرایش مسئول' : 'افزودن مسئول')
 @section('content')

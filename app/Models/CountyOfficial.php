@@ -17,17 +17,8 @@ class CountyOfficial extends Model
         'is_active' => 'boolean',
     ];
 
+    // Scopes (بدون متد static هم‌نام)
     public function scopeGovernor($q) { return $q->where('type', 'governor'); }
     public function scopeDeputies($q) { return $q->where('type', 'deputy'); }
     public function scopeActive($q)   { return $q->where('is_active', true); }
-
-    public static function governor()
-    {
-        return static::governor()->active()->orderBy('sort_order')->first();
-    }
-
-    public static function deputies()
-    {
-        return static::deputies()->active()->orderBy('sort_order')->get();
-    }
 }

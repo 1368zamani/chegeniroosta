@@ -9,7 +9,7 @@ class PublicOfficialController extends Controller
 {
     public function governor()
     {
-        $governor = CountyOfficial::governor();
+        $governor = CountyOfficial::governor()->active()->orderBy('sort_order')->first();
 
         if (!$governor) {
             abort(404, 'اطلاعات فرماندار ثبت نشده است.');
@@ -20,22 +20,19 @@ class PublicOfficialController extends Controller
 
     public function deputies()
     {
-        $deputies = CountyOfficial::deputies();
+        $deputies = CountyOfficial::deputies()->active()->orderBy('sort_order')->get();
         return view('public.officials.deputies', compact('deputies'));
     }
 
     public function deputy($id)
     {
-        $deputy = CountyOfficial::where('type', 'deputy')->active()->findOrFail($id);
+        $deputy = CountyOfficial::deputies()->active()->findOrFail($id);
         return view('public.officials.deputy', compact('deputy'));
     }
 
     public function bakhshdars()
     {
-        $sections = Section::where('is_active', true)
-            ->orderBy('name')
-            ->get();
-
+        $sections = Section::where('is_active', true)->orderBy('name')->get();
         return view('public.officials.bakhshdars', compact('sections'));
     }
 }

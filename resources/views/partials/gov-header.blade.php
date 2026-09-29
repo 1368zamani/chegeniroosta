@@ -1775,53 +1775,87 @@ img, iframe, video {
     /* ═══ پایان NO-BLUR-TEXT-2026 ═══ */
 
 
-    /* ═══ منوی کشویی مسئولین ═══ */
-    .gov-nav-dropdown {
-        position: relative;
-        display: inline-block;
+    
+    /* منوی کشویی مسئولین */
+    .gov-nav-details { position: relative; display: inline-block; }
+    .gov-nav-details > summary {
+        cursor: pointer;
+        list-style: none;
+        display: inline-flex;
+        align-items: center;
     }
-    .gov-nav-dropdown-menu {
-        display: none;
+    .gov-nav-details > summary::-webkit-details-marker,
+    .gov-nav-details > summary::marker { display: none; }
+    .gov-nav-details[open] > summary {
+        background: rgba(255,213,79,0.15) !important;
+        color: #ffd54f !important;
+    }
+    .gov-nav-details-menu {
         position: absolute;
         top: 100%;
         right: 0;
-        background: white;
-        min-width: 220px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        border-radius: 8px;
-        padding: 6px 0;
-        z-index: 1000;
+        background: #fff;
+        min-width: 240px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        padding: 8px 0;
+        z-index: 9999;
+        border: 1px solid #e2e8f0;
+        margin-top: 4px;
     }
-    .gov-nav-dropdown:hover .gov-nav-dropdown-menu {
+    .gov-nav-details-menu a {
         display: block;
-    }
-    .gov-nav-dropdown-menu a {
-        display: block;
-        padding: 10px 18px;
+        padding: 11px 18px;
         color: #1a3a5c !important;
         text-decoration: none;
         font-size: 13.5px;
         font-weight: 600;
-        transition: background .15s;
+        text-align: right;
         border-right: 3px solid transparent;
+        transition: all .15s;
     }
-    .gov-nav-dropdown-menu a:hover {
+    .gov-nav-details-menu a:hover {
         background: #f0f7ff;
         color: #c62828 !important;
         border-right-color: #c62828;
     }
     @media (max-width: 900px) {
-        .gov-nav-dropdown-menu {
+        .gov-nav-details { width: 100%; }
+        .gov-nav-details-menu {
             position: static;
+            width: 100%;
             box-shadow: none;
-            background: rgba(255,255,255,0.08);
-            margin-top: 4px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            margin: 4px 0;
         }
-        .gov-nav-dropdown:hover .gov-nav-dropdown-menu {
-            display: block;
+        .gov-nav-details-menu a { color: #fff !important; padding: 10px 30px; }
+    }
+
+    /* ═══ OVERFLOW-FIX-2026 — رفع کلیپ شدن dropdown ═══ */
+    @media (min-width: 901px) {
+        .gov-navbar-inner {
+            overflow: visible !important;
+        }
+        .gov-navbar {
+            overflow: visible !important;
         }
     }
 
+    /* z-index بالا برای dropdown */
+    .gov-nav-details {
+        z-index: 9999 !important;
+    }
+    .gov-nav-details[open] .gov-nav-details-menu {
+        display: block !important;
+    }
+
+    /* fallback: اگر details در مرورگر قدیمی باز نشد */
+    .gov-nav-details > summary {
+        cursor: pointer !important;
+        -webkit-user-select: none;
+        user-select: none;
+    }
 </style>
 
 {{-- ================ TOP BAR ================ --}}
@@ -1904,15 +1938,39 @@ img, iframe, video {
             <a href="/#villages" class="gov-nav-item">🏘 روستاهای بخش</a>
             <a href="/news" class="gov-nav-item {{ str_contains(request()->path(), 'news') ? 'active' : '' }}">📰 اخبار</a>
         @else
-            <a href="/#sections" class="gov-nav-item">📁 بخش‌ها</a>
-            <div class="gov-nav-dropdown">
-                <a href="javascript:void(0)" class="gov-nav-item">🏛 مسئولین شهرستان ▾</a>
-                <div class="gov-nav-dropdown-menu">
-                    <a href="{{ route('officials.governor') }}">🎖 فرماندار</a>
-                    <a href="{{ route('officials.deputies') }}">👥 معاونین فرماندار</a>
-                    <a href="{{ route('officials.bakhshdars') }}">👤 بخشداران</a>
+            @php
+                $headerSections = \App\Models\Section::where('is_active', true)->orderBy('name')->get();
+            @endphp
+
+            @if($headerSections->count() > 0)
+                <details class="gov-nav-details">
+                    <summary class="gov-nav-item">📁 بخش‌ها ▾</summary>
+                    <div class="gov-nav-details-menu">
+                        @foreach($headerSections as $s)
+                            @php
+                                $sub = $s->subdomain;
+                                $url = $sub ? "https://{$sub}.chegeniroosta.ir" : '/';
+                            @endphp
+                            <a href="{{ $url }}" target="_blank" rel="noopener">
+                                🏛 بخشداری {{ $s->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </details>
+            @else
+                <a href="/#sections" class="gov-nav-item">📁 بخش‌ها</a>
+            @endif
+
+            <details class="gov-nav-details">
+                <summary class="gov-nav-item">🏛 مسئولین شهرستان ▾</summary>
+                <div class="gov-nav-details-menu">
+                    <a href="/officials/governor">🎖 فرماندار</a>
+                    <a href="/officials/deputies">👥 معاونین فرماندار</a>
+                    <a href="/officials/bakhshdars">👤 بخشداران</a>
                 </div>
-            </div>
+            </details>
+            
+            
         @endif
         <a href="{{ route('search.index') }}" class="gov-nav-item">🔍 جستجو</a>
         @if(isset($section) && ($section->bakhshdar_name ?? false))
@@ -1939,4 +1997,7 @@ img, iframe, video {
         <span class="gov-consensus-star">✦</span>
     </div>
 </div>
+
+
+
 
