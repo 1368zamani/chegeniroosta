@@ -116,7 +116,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
             </div>
 
             <div style="text-align:center;margin-top:30px;">
-                <a href="{{ route('village.site.home', $village->slug) }}"
+                <a href="{{ route('public.village.show', $village->slug) }}"
                    style="display:inline-block;background:#1e5b9c;color:white;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;">
                     → بازگشت به سایت روستا
                 </a>

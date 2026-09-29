@@ -630,3 +630,6 @@ Route::get('/village/{slug}/resolutions', [\App\Http\Controllers\PublicVillageSi
 Route::get('/council', [\App\Http\Controllers\PublicSectionController::class, 'council'])
     ->middleware('section')
     ->name('section.site.council');
+
+Route::get('/village/{slug}/dehyar', [\App\Http\Controllers\PublicVillageSiteController::class, 'dehyar'])
+    ->name('village.site.dehyar');
