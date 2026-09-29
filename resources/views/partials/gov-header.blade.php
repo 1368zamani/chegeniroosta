@@ -808,7 +808,6 @@ button, a, input[type="submit"] {
         margin: 0 0 8px 0 !important;
         
         
-        backdrop-filter: blur(6px) !important;
         
         display: inline-block !important;
     }
@@ -825,7 +824,6 @@ button, a, input[type="submit"] {
         
         padding: 4px 12px !important;
         border-radius: 8px !important;
-        backdrop-filter: blur(4px) !important;
         display: inline-block !important;
         margin: 0 !important;
     }
@@ -1330,8 +1328,6 @@ img, iframe, video {
 
 .gov-slogan-card {
     background: rgba(13, 27, 42, 0.55);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-right: 3px solid #ffd54f;
     border-radius: 10px;
@@ -1496,8 +1492,6 @@ img, iframe, video {
     /* ۳. کارت شعار — شفاف‌تر و روشن‌تر */
     .gov-slogan-card {
         background: rgba(255, 255, 255, 0.12) !important;
-        -webkit-backdrop-filter: blur(8px) !important;
-        backdrop-filter: blur(8px) !important;
         border: 1px solid rgba(255, 255, 255, 0.25) !important;
         border-right: 4px solid #ffd54f !important;
         box-shadow: 0 4px 14px rgba(13, 46, 79, 0.25) !important;
@@ -1689,6 +1683,97 @@ img, iframe, video {
 
     /* ═══ پایان RED-BLUE-THEME-2026 ═══ */
 
+
+    /* ============================================
+       CLEAN-HEADER-2026
+       هدر تمیز: بدون لایه تیره، عکس پل تار، تیتر قرمز
+       ============================================ */
+
+    /* ═══ ۱. حذف لایه تیره روی عکس پل ═══ */
+    .gov-header::after {
+        background: rgba(255, 255, 255, 0.08) !important;
+        opacity: 1 !important;
+    }
+
+    /* ═══ ۲. عکس پل تار بشه ═══ */
+    .gov-header::before {
+        transform: scale(1.08) !important;
+        opacity: 0.85 !important;
+    }
+
+    /* ═══ ۳. تیتر اصلی قرمز ═══ */
+    .gov-main-title,
+    .gv-main-title,
+    .s-titles h1 {
+        color: #c62828 !important;
+        text-shadow:
+            0 2px 6px rgba(255, 255, 255, 0.85),
+            0 2px 4px rgba(0, 0, 0, 0.35),
+            -1px -1px 0 rgba(255, 255, 255, 0.7),
+            1px -1px 0 rgba(255, 255, 255, 0.7) !important;
+    }
+
+    /* ═══ ۴. زیرعنوان هم خوانا بماند ═══ */
+    .gov-sub-title,
+    .gv-sub-title,
+    .s-titles p {
+        color: #1a3a5c !important;
+        text-shadow:
+            0 1px 4px rgba(255, 255, 255, 0.8),
+            0 1px 2px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    /* ═══ ۵. کارت شعار خوانا بماند روی پس‌زمینه روشن ═══ */
+    .gov-slogan-card {
+        background: rgba(13, 46, 79, 0.92) !important;
+        border: 1px solid rgba(255, 213, 79, 0.6) !important;
+    }
+
+    /* ═══ پایان CLEAN-HEADER-2026 ═══ */
+
+
+    /* ═══ UNBLUR-FIX-2026 — فقط عکس پل بدون بلور ═══ */
+    .gov-header::before {
+        filter: none !important;
+        -webkit-filter: none !important;
+        transform: none !important;
+    }
+
+
+    /* ═══ NO-BLUR-TEXT-2026 — حذف بلور از پشت همه متن‌ها ═══ */
+
+    /* کارت شعار */
+    .gov-slogan-card,
+    .gov-slogan-card * {
+    }
+    .gov-slogan-card {
+        background: rgba(13, 46, 79, 0.88) !important;
+    }
+
+    /* دکمه‌های ناوبری */
+    .gov-nav-item,
+    .gov-action-btn,
+    .gov-navbar,
+    .gov-navbar * {
+    }
+
+    /* کارت‌های روزیتا و سایر عناصر */
+    .gov-slide-caption,
+    .news-ticker,
+    .news-ticker *,
+    .gov-topbar,
+    .gov-consensus-banner,
+    .gov-consensus-banner * {
+    }
+
+    /* عناصر عمومی */
+    [class*="glass"],
+    [class*="blur"],
+    [style*="backdrop-filter"] {
+    }
+
+    /* ═══ پایان NO-BLUR-TEXT-2026 ═══ */
+
 </style>
 
 {{-- ================ TOP BAR ================ --}}
@@ -1749,7 +1834,22 @@ img, iframe, video {
 {{-- ================ NAVBAR ================ --}}
 <nav class="gov-navbar">
     <div class="gov-navbar-inner">
-        <a href="/" class="gov-nav-item {{ request()->path() === '/' ? 'active' : '' }}">
+        @php
+            /* HOME-LINK-FIX-2026: لینک خانه هوشمند */
+            $homeUrl = '/';
+            $homeActive = request()->path() === '/';
+
+            // اگر در صفحه روستا هستیم، به همان روستا برگرد
+            if (request()->routeIs('public.village.show') || request()->routeIs('village.site.*')) {
+                $villageSlug = request()->route('slug') ?? request()->route('village');
+                if (is_object($villageSlug)) $villageSlug = $villageSlug->slug ?? null;
+                if ($villageSlug) {
+                    $homeUrl = '/village/' . $villageSlug;
+                }
+                $homeActive = false;
+            }
+        @endphp
+        <a href="{{ $homeUrl }}" class="gov-nav-item {{ $homeActive ? 'active' : '' }}">
             🏠 خانه
         </a>
         @if(isset($section))
