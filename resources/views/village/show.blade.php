@@ -315,12 +315,6 @@ a[href^="tel:"] {
                 <span class="value">{{ $village->council_head_name }}</span>
             </div>
         @endif
-        @if($village->phone)
-            <div class="info-item">
-                <span class="label">📞 تلفن</span>
-                <span class="value"><a href="tel:{{ $village->phone }}">{{ $village->phone }}</a></span>
-            </div>
-        @endif
         @if($village->email)
             <div class="info-item">
                 <span class="label">✉️ ایمیل</span>
