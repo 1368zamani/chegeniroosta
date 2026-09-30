@@ -727,3 +727,14 @@ use App\Http\Controllers\Auth\FeeOfficerLoginController;
 Route::get('/fees-login',  [FeeOfficerLoginController::class, 'showLoginForm'])->name('fees.login');
 Route::post('/fees-login', [FeeOfficerLoginController::class, 'login'])->name('fees.login.submit');
 Route::post('/fees-logout', [FeeOfficerLoginController::class, 'logout'])->name('fees.logout');
+
+/* ═══ مدیریت کارشناسان مالی و عمرانی (پنل بخشداری) ═══ */
+Route::middleware('auth')->prefix('admin/fees/officers')->name('admin.fees.officers.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'index'])->name('index');
+    Route::post('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'store'])->name('store');
+    Route::put('/{id}/password', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'updatePassword'])->whereNumber('id')->name('password');
+    Route::delete('/{id}', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'destroy'])->whereNumber('id')->name('destroy');
+});
+
+/* ═══ گزارش درآمد عوارض ═══ */
+Route::middleware('auth')->get('/admin/fees/reports', [\App\Http\Controllers\Admin\FeeReportController::class, 'index'])->name('admin.fees.reports.index');

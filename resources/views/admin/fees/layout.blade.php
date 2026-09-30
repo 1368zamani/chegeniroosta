@@ -67,6 +67,7 @@ label{font-size:12.5px;color:#546e7a;display:block;margin-bottom:3px}
     <a href="{{ route('admin.fees.bills.index') }}" class="@if(request()->routeIs('admin.fees.bills.*')) active @endif">🧾 قبوض</a>
     <a href="{{ route('admin.fees.tariffs.index') }}" class="@if(request()->routeIs('admin.fees.tariffs.*')) active @endif">📋 تعرفه‌ها</a>
     <a href="{{ route('admin.fees.accounts.index') }}" class="@if(request()->routeIs('admin.fees.accounts.*')) active @endif">🏦 حساب‌ها</a>
+    <a href="{{ route('admin.fees.reports.index') }}" class="@if(request()->routeIs('admin.fees.reports.*')) active @endif">📈 گزارش‌ها</a>
 </div>
 
 <div class="container">

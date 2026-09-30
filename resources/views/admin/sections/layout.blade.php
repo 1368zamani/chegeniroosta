@@ -222,6 +222,7 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.fees.accounts.index') }}" class="{{ request()->routeIs('admin.fees.accounts.*') ? 'active' : '' }}">🏦 حساب‌های بانکی</a></li>
             <li><a href="{{ route('admin.fees.categories.index') }}" class="{{ request()->routeIs('admin.fees.categories.*') ? 'active' : '' }}">🗂 دسته‌بندی عوارض</a></li>
             <li><a href="{{ route('admin.fees.types.index') }}" class="{{ request()->routeIs('admin.fees.types.*') ? 'active' : '' }}">📋 عناوین خدمت</a></li>
+            <li><a href="{{ route('admin.fees.officers.index') }}" class="{{ request()->routeIs('admin.fees.officers.*') ? 'active' : '' }}">🔐 کارشناسان مالی و عمرانی</a></li>
 
             <li class="menu-divider"></li>
             <li class="menu-label">مدیریت</li>
