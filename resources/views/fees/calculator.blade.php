@@ -33,13 +33,24 @@
     <form method="POST" action="{{ route('fees.calculate') }}">
         @csrf
 
-        <label>دهیاری</label>
-        <select name="dehyari_id" required>
-            <option value="">— انتخاب کنید —</option>
-            @foreach($dehyaris as $d)
-                <option value="{{ $d->id }}" @selected(old('dehyari_id')==$d->id)>{{ preg_replace('/^دهیاری\s+/u', '', $d->name) }}</option>
-            @endforeach
-        </select>
+        @if(!empty($lockedDehyariId))
+            <label>دهیاری</label>
+            <div style="padding:11px 13px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:9px;font-weight:bold;color:#2e7d32">
+                🏘 {{ $lockedVillage->name ?? $dehyaris->first()->village->name ?? $dehyaris->first()->name }}
+            </div>
+            <input type="hidden" name="dehyari_id" value="{{ $lockedDehyariId }}">
+            <div class="hint" style="color:#2e7d32">
+                ℹ️ عوارض به حساب دهیاری {{ $lockedVillage->name ?? '' }} ثبت می‌شود.
+            </div>
+        @else
+            <label>دهیاری</label>
+            <select name="dehyari_id" required>
+                <option value="">— انتخاب کنید —</option>
+                @foreach($dehyaris as $d)
+                    <option value="{{ $d->id }}" @selected(old('dehyari_id')==$d->id)>{{ $d->village->name ?? preg_replace('/^دهیاری\s+/u', '', $d->name) }}</option>
+                @endforeach
+            </select>
+        @endif
 
         <label>نوع عوارض</label>
         <select name="fee_type_id" id="feeTypeSelect" required>
