@@ -22,16 +22,35 @@ class FeeCalculatorController extends Controller
     public function __construct(private FeeCalculator $calculator) {}
 
     /** صفحه اصلی محاسبه‌گر: لیست دسته‌ها و انواع */
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
         $categories = FeeCategory::active()
             ->with(['feeTypes' => fn ($q) => $q->active()->with('parameters')])
             ->orderBy('sort_order')
             ->get();
 
-        $dehyaris = Dehyari::where('is_active', true)->orderBy('name')->get();
+        // اگر از سایت یک روستا آمده باشیم، فقط دهیاری همان روستا را نشان بده
+        $villageSlug = $request->query('village');
+        $lockedDehyariId = null;
+        $lockedVillage = null;
 
-        return view('fees.calculator', compact('categories', 'dehyaris'));
+        $query = Dehyari::where('is_active', true);
+
+        if ($villageSlug) {
+            $lockedVillage = \App\Models\Village::where('slug', $villageSlug)->first();
+            if ($lockedVillage) {
+                $query->where('village_id', $lockedVillage->id);
+            }
+        }
+
+        $dehyaris = $query->orderBy('name')->get();
+
+        // اگر فقط یک دهیاری بود، از پیش انتخاب کن
+        if ($dehyaris->count() === 1) {
+            $lockedDehyariId = $dehyaris->first()->id;
+        }
+
+        return view('fees.calculator', compact('categories', 'dehyaris', 'lockedDehyariId', 'lockedVillage'));
     }
 
     /** دریافت فرم، محاسبه، ذخیره قبض، انتقال به صفحه قبض */

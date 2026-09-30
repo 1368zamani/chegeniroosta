@@ -503,7 +503,7 @@ a[href^="tel:"] {
         <div class="v-request-buttons">
             <a href="{{ route('village.site.request.create', $village->slug) }}" class="v-btn v-btn-primary">✍️ ثبت درخواست</a>
             <a href="{{ route('village.site.request.track', $village->slug) }}" class="v-btn v-btn-secondary">🔍 پیگیری</a>
-            <a href="{{ route('fees.calculator') }}" class="v-btn v-btn-primary" style="background:#2e7d32;color:white">💰 محاسبه و پرداخت عوارض</a>
+            <a href="{{ route('fees.calculator', ['village' => $village->slug]) }}" class="v-btn v-btn-primary" style="background:#2e7d32;color:white">💰 محاسبه و پرداخت عوارض</a>
         </div>
     </div>
 

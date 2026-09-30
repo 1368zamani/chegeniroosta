@@ -37,7 +37,7 @@
         <select name="dehyari_id" required>
             <option value="">— انتخاب کنید —</option>
             @foreach($dehyaris as $d)
-                <option value="{{ $d->id }}" @selected(old('dehyari_id')==$d->id)>{{ $d->name }}</option>
+                <option value="{{ $d->id }}" @selected(old('dehyari_id')==$d->id)>{{ preg_replace('/^دهیاری\s+/u', '', $d->name) }}</option>
             @endforeach
         </select>
 
