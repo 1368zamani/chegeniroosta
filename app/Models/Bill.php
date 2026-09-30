@@ -59,4 +59,34 @@ class Bill extends Model
             'cancelled'      => 'لغو شده',
         ][$this->status] ?? $this->status;
     }
+
+    /**
+     * برچسب فارسی وضعیت قبض.
+     */
+    public static function statusLabel(?string $status): string
+    {
+        return match ($status) {
+            'unpaid'          => 'پرداخت‌نشده',
+            'pending_review'  => 'در انتظار تأیید',
+            'paid'            => 'پرداخت‌شده',
+            'rejected'        => 'رد‌شده',
+            'cancelled'       => 'لغو‌شده',
+            default           => (string) $status,
+        };
+    }
+
+    /**
+     * لیست همه وضعیت‌ها برای فیلتر در پنل ادمین.
+     */
+    public static function statuses(): array
+    {
+        return [
+            'unpaid'         => 'پرداخت‌نشده',
+            'pending_review' => 'در انتظار تأیید',
+            'paid'           => 'پرداخت‌شده',
+            'rejected'       => 'رد‌شده',
+            'cancelled'      => 'لغو‌شده',
+        ];
+    }
+
 }

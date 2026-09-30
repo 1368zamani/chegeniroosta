@@ -203,23 +203,25 @@ tr:hover { background: #f8fafc; }
 <div class="layout">
     <aside class="sidebar">
         <ul class="sidebar-menu">
-            <li><a href="{{ route('admin.sections.dashboard', $section->id) }}" class="{{ request()->routeIs('admin.sections.dashboard') ? 'active' : '' }}">📊 داشبورد</a></li>
-            <li><a href="{{ route('admin.sections.edit', $section->id) }}" class="{{ request()->routeIs('admin.sections.edit') ? 'active' : '' }}">⚙️ تنظیمات بخش</a></li>
-            <li><a href="{{ route('admin.sections.council.index', $section->id) }}" class="{{ request()->routeIs('admin.sections.council.*') ? 'active' : '' }}">👥 شورای بخش</a></li>
+            <li><a href="{{ route('admin.sections.dashboard', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.dashboard') ? 'active' : '' }}">📊 داشبورد</a></li>
+            <li><a href="{{ route('admin.sections.edit', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.edit') ? 'active' : '' }}">⚙️ تنظیمات بخش</a></li>
+            <li><a href="{{ route('admin.sections.council.index', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.council.*') ? 'active' : '' }}">👥 شورای بخش</a></li>
+            <li><a href="{{ route('admin.fees.categories.index') }}" class="{{ request()->routeIs('admin.fees.categories.*') ? 'active' : '' }}">🗂 دسته‌بندی عوارض</a></li>
+            <li><a href="{{ route('admin.fees.types.index') }}" class="{{ request()->routeIs('admin.fees.types.*') ? 'active' : '' }}">📋 عناوین خدمت</a></li>
 
             <li class="menu-divider"></li>
             <li class="menu-label">مدیریت</li>
 
-            <li><a href="{{ route('admin.sections.villages', $section->id) }}" class="{{ request()->routeIs('admin.sections.villages') ? 'active' : '' }}">🏘 روستاهای بخش</a></li>
+            <li><a href="{{ route('admin.sections.villages', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.villages') ? 'active' : '' }}">🏘 روستاهای بخش</a></li>
             <li><a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">👥 کاربران بخش</a></li>
-            <li><a href="{{ route('admin.sections.all-requests', $section->id) }}" class="{{ request()->routeIs('admin.sections.all-requests*') ? 'active' : '' }}">📬 همه درخواست‌ها</a></li>
-            <li><a href="{{ route('admin.sections.requests.index', $section->id) }}" class="{{ request()->routeIs('admin.sections.requests.*') ? 'active' : '' }}">📩 درخواست‌های بخشداری</a></li>
+            <li><a href="{{ route('admin.sections.all-requests', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.all-requests*') ? 'active' : '' }}">📬 همه درخواست‌ها</a></li>
+            <li><a href="{{ route('admin.sections.requests.index', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.requests.*') ? 'active' : '' }}">📩 درخواست‌های بخشداری</a></li>
 
             <li class="menu-divider"></li>
             <li class="menu-label">محتوا</li>
 
             <li><a href="{{ route('admin.section-news.index') }}" class="{{ request()->routeIs('admin.section-news.*') ? 'active' : '' }}">📰 اخبار بخشداری</a></li>
-            <li><a href="{{ route('admin.sections.gallery.index', $section->id) }}" class="{{ request()->routeIs('admin.sections.gallery.*') ? 'active' : '' }}">🖼 گالری بخشداری</a></li>
+            <li><a href="{{ route('admin.sections.gallery.index', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.gallery.*') ? 'active' : '' }}">🖼 گالری بخشداری</a></li>
         </ul>
     </aside>
 
