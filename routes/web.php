@@ -720,3 +720,10 @@ Route::middleware('auth')->get('/admin/fees/receipt/{id}', function (int $id) {
     abort_unless(file_exists($path), 404);
     return response()->file($path);
 })->name('admin.fees.receipt');
+
+/* ═══ ورود اختصاصی کارشناس مالی و عمرانی بخشداری ═══ */
+use App\Http\Controllers\Auth\FeeOfficerLoginController;
+
+Route::get('/fees-login',  [FeeOfficerLoginController::class, 'showLoginForm'])->name('fees.login');
+Route::post('/fees-login', [FeeOfficerLoginController::class, 'login'])->name('fees.login.submit');
+Route::post('/fees-logout', [FeeOfficerLoginController::class, 'logout'])->name('fees.logout');

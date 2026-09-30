@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         'section' => \App\Http\Middleware\IdentifySection::class,
             'village' => \App\Http\Middleware\IdentifyVillage::class,
             'village-access' => \App\Http\Middleware\CheckVillageAccess::class,
+            'fee-officer' => \App\Http\Middleware\FeeOfficerScope::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

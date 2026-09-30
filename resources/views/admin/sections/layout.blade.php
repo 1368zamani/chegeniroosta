@@ -236,6 +236,17 @@ tr:hover { background: #f8fafc; }
 
             <li><a href="{{ route('admin.section-news.index') }}" class="{{ request()->routeIs('admin.section-news.*') ? 'active' : '' }}">📰 اخبار بخشداری</a></li>
             <li><a href="{{ route('admin.sections.gallery.index', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.gallery.*') ? 'active' : '' }}">🖼 گالری بخشداری</a></li>
+
+            <li class="menu-divider"></li>
+            <li class="menu-label">🔐 دسترسی کارشناسان</li>
+            <li>
+                <a href="{{ route('fees.login') }}" target="_blank" style="background:#fff8e1;color:#5d4037">
+                    💰 ورود کارشناس مالی و عمرانی
+                </a>
+            </li>
+            <li style="padding:8px 14px;font-size:11.5px;color:#78909c;line-height:1.6">
+                این لینک را به کارشناس مالی و عمرانی بخشداری بدهید تا با نام کاربری و رمز اختصاصی خود وارد شوند.
+            </li>
         </ul>
     </aside>
 

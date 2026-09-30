@@ -17,25 +17,37 @@ class CheckVillageAccess
             return redirect()->route('login');
         }
 
-        if ($user->role === 'super_admin') {
+        // سوپرادمین: دسترسی کامل
+        if ($user->isSuperAdmin()) {
             return $next($request);
         }
 
-        // پارامتر route ممکن است مدل Village باشد یا رشته (بسته به route binding)
+        // پارامتر route ممکن است مدل Village باشد یا رشته
         $village = $request->route('village');
         if (is_string($village) || is_numeric($village)) {
             $village = Village::find($village);
         }
 
-        if (
-            $user->role !== 'village_admin' ||
-            !$user->village_id ||
-            !$village ||
-            (int) $user->village_id !== (int) $village->id
-        ) {
+        if (!$village) {
+            abort(404, 'روستا یافت نشد.');
+        }
+
+        // بخشدار: اگر روستا در بخش او باشد، دسترسی دارد
+        if ($user->isSectionAdmin()) {
+            if ((int) $user->section_id === (int) $village->section_id) {
+                return $next($request);
+            }
+            abort(403, 'این روستا در بخش شما نیست.');
+        }
+
+        // دهیار: فقط روستای خودش
+        if ($user->isVillageAdmin()) {
+            if ($user->village_id && (int) $user->village_id === (int) $village->id) {
+                return $next($request);
+            }
             abort(403, 'شما به این روستا دسترسی ندارید.');
         }
 
-        return $next($request);
+        abort(403, 'شما به این روستا دسترسی ندارید.');
     }
 }

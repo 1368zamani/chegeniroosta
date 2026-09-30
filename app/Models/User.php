@@ -75,4 +75,15 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function isFeeOfficer(): bool
+    {
+        return $this->role === 'fee_officer';
+    }
+
+    public function isSectionStaff(): bool
+    {
+        return in_array($this->role, ['section_admin', 'fee_officer'], true);
+    }
+
 }

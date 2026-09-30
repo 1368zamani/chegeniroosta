@@ -20,7 +20,7 @@ class FeeAdminController extends Controller
     private function authorizeAdmin(): void
     {
         $u = auth()->user();
-        if (!$u || (!$u->isSuperAdmin() && !$u->isSectionAdmin() && !$u->isVillageAdmin())) {
+        if (!$u || (!$u->isSuperAdmin() && !$u->isSectionAdmin() && !$u->isVillageAdmin() && !$u->isFeeOfficer())) {
             abort(403, 'دسترسی ندارید.');
         }
     }
@@ -41,6 +41,11 @@ class FeeAdminController extends Controller
 
         if ($u->isVillageAdmin() && $u->village_id) {
             return Dehyari::where('village_id', $u->village_id)->pluck('id');
+        }
+
+        if ($u->isFeeOfficer() && $u->section_id) {
+            $villageIds = Village::where('section_id', $u->section_id)->pluck('id');
+            return Dehyari::whereIn('village_id', $villageIds)->pluck('id');
         }
 
         return collect();
