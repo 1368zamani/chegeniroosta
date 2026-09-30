@@ -206,6 +206,20 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.sections.dashboard', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.dashboard') ? 'active' : '' }}">📊 داشبورد</a></li>
             <li><a href="{{ route('admin.sections.edit', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.edit') ? 'active' : '' }}">⚙️ تنظیمات بخش</a></li>
             <li><a href="{{ route('admin.sections.council.index', ($section->id ?? auth()->user()->section_id ?? 0)) }}" class="{{ request()->routeIs('admin.sections.council.*') ? 'active' : '' }}">👥 شورای بخش</a></li>
+            <li class="menu-divider"></li>
+            <li class="menu-label">💰 عوارض و بهای خدمات</li>
+            <li><a href="{{ route('admin.fees.dashboard') }}" class="{{ request()->routeIs('admin.fees.dashboard') ? 'active' : '' }}">📊 داشبورد عوارض</a></li>
+            <li><a href="{{ route('admin.fees.payments.index') }}" class="{{ request()->routeIs('admin.fees.payments.*') ? 'active' : '' }}">💳 پرداخت‌ها و فیش‌ها</a></li>
+            <li><a href="{{ route('admin.fees.bills.index') }}" class="{{ request()->routeIs('admin.fees.bills.*') ? 'active' : '' }}">🧾 قبوض صادرشده</a></li>
+            <li><a href="{{ route('admin.fees.tariffs.index') }}" class="{{ request()->routeIs('admin.fees.tariffs.*') ? 'active' : '' }}">📋 تعرفه‌ها</a></li>
+            <li><a href="{{ route('admin.fees.accounts.index') }}" class="{{ request()->routeIs('admin.fees.accounts.*') ? 'active' : '' }}">🏦 حساب‌های بانکی</a></li>
+            <li class="menu-divider"></li>
+            <li class="menu-label">💰 عوارض و بهای خدمات</li>
+            <li><a href="{{ route('admin.fees.dashboard') }}" class="{{ request()->routeIs('admin.fees.dashboard') ? 'active' : '' }}">📊 داشبورد عوارض</a></li>
+            <li><a href="{{ route('admin.fees.payments.index') }}" class="{{ request()->routeIs('admin.fees.payments.*') ? 'active' : '' }}">💳 پرداخت‌ها و فیش‌ها</a></li>
+            <li><a href="{{ route('admin.fees.bills.index') }}" class="{{ request()->routeIs('admin.fees.bills.*') ? 'active' : '' }}">🧾 قبوض صادرشده</a></li>
+            <li><a href="{{ route('admin.fees.tariffs.index') }}" class="{{ request()->routeIs('admin.fees.tariffs.*') ? 'active' : '' }}">📋 تعرفه‌ها</a></li>
+            <li><a href="{{ route('admin.fees.accounts.index') }}" class="{{ request()->routeIs('admin.fees.accounts.*') ? 'active' : '' }}">🏦 حساب‌های بانکی</a></li>
             <li><a href="{{ route('admin.fees.categories.index') }}" class="{{ request()->routeIs('admin.fees.categories.*') ? 'active' : '' }}">🗂 دسته‌بندی عوارض</a></li>
             <li><a href="{{ route('admin.fees.types.index') }}" class="{{ request()->routeIs('admin.fees.types.*') ? 'active' : '' }}">📋 عناوین خدمت</a></li>
 
