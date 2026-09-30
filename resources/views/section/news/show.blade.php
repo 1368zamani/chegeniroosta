@@ -595,7 +595,27 @@ a[href^="tel:"] {
             .sg-lightbox-close { top: 8px; left: 8px; }
             .sg-lightbox-image { max-height: 65vh; }
         }
-    </style>
+    
+        <style>
+        /* ============ NEWS-CARD-DARK-2026 ============ */
+        .news-list-item {
+            background: #0d2e4f !important;
+            border-radius: 10px !important;
+            padding: 14px 16px !important;
+            margin-bottom: 10px !important;
+            border-bottom: none !important;
+        }
+        .news-list-item h4, .news-list-item h4 a, .news-list-item p,
+        .news-list-item span, .news-list-item .meta, .news-list-item .date,
+        .news-list-item .news-content, .news-list-item .news-content * {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+        .news-list-item h4 a:hover { color: #ffd54f !important; }
+        .news-list-item:hover { background: #124a80 !important; }
+        /* ============ END ============ */
+        </style>
+        </style>
 
     <div class="sg-lightbox-overlay" id="sgLightbox" onclick="if(event.target===this) sgCloseImage();">
         <div class="sg-lightbox-content">

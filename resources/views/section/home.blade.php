@@ -1093,6 +1093,28 @@ a[href^="tel:"] {
         .sg-lightbox-close { top: 8px; left: 8px; }
         .sg-lightbox-image { max-height: 65vh; }
     }
+
+        /* ===== HOVER: متن خبر سفید ===== */
+        .news-list-item {
+            transition: background .2s ease;
+            padding: 12px 14px;
+            border-radius: 8px;
+        }
+        .news-list-item:hover {
+            background: #0d2e4f !important;
+        }
+        .news-list-item:hover h4,
+        .news-list-item:hover h4 a,
+        .news-list-item:hover h4 a:hover,
+        .news-list-item:hover p,
+        .news-list-item:hover span,
+        .news-list-item:hover .meta,
+        .news-list-item:hover .date,
+        .news-list-item:hover .news-content,
+        .news-list-item:hover .news-content * {
+            color: #ffffff !important;
+        }
+        /* ===== END ===== */
 </style>
 
 <div class="sg-lightbox-overlay" id="sgLightbox" role="dialog" aria-modal="true">

@@ -105,6 +105,21 @@
         .v-news-card .date { color: #90a4ae; font-size: 12px; margin-bottom: 8px; }
         .v-news-card p { margin: 0; color: #607d8b; font-size: 13px; line-height: 1.8; }
 
+        /* ✨ افکت hover روی کارت خبر */
+        .v-news-card { transition: all .25s ease; cursor: pointer; }
+        .v-news-card:hover {
+            background: #0d2e4f !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(13,46,79,0.3);
+        }
+        .v-news-card:hover h4,
+        .v-news-card:hover h4 a,
+        .v-news-card:hover p,
+        .v-news-card:hover .date {
+            color: #ffffff !important;
+        }
+
+
         /* ============ امکانات ============ */
         .v-facilities-grid {
             display: grid;

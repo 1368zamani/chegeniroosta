@@ -480,7 +480,40 @@ a[href^="tel:"] {
     display: inline-block;
     font-weight: 600;
 }
-</style>
+
+        /* ✨ hover روی کارت خبر — متن سفید */
+
+        .news-list-item { transition: all .25s ease; }
+        .news-list-item:hover {
+            background: #0d2e4f !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(13,46,79,0.3);
+        }
+        .news-list-item:hover h1, .news-list-item:hover h2, .news-list-item:hover h3, .news-list-item:hover h4, .news-list-item:hover h5,
+        .news-list-item:hover p, .news-list-item:hover a, .news-list-item:hover .date, .news-list-item:hover .meta, .news-list-item:hover span {
+            color: #ffffff !important;
+        }
+
+        <style>
+        /* ============ NEWS-CARD-DARK-2026 ============ */
+        .news-list-item {
+            background: #0d2e4f !important;
+            border-radius: 10px !important;
+            padding: 14px 16px !important;
+            margin-bottom: 10px !important;
+            border-bottom: none !important;
+        }
+        .news-list-item h4, .news-list-item h4 a, .news-list-item p,
+        .news-list-item span, .news-list-item .meta, .news-list-item .date,
+        .news-list-item .news-content, .news-list-item .news-content * {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+        .news-list-item h4 a:hover { color: #ffd54f !important; }
+        .news-list-item:hover { background: #124a80 !important; }
+        /* ============ END ============ */
+        </style>
+        </style>
 
 </head>
 <body>
