@@ -88,6 +88,7 @@
             .gallery-item img { height: 120px; }
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])

@@ -103,6 +103,7 @@
         .footer a { color: #64b5f6; text-decoration: none; }
     </style>
     @include("partials.analytics")
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

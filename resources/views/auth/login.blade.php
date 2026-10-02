@@ -105,6 +105,7 @@
             color: #9ca3af;
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
     <div class="card">

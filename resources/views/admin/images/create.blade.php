@@ -32,6 +32,7 @@
         .btn-primary:hover { background: #0d47a1; }
         .btn-secondary { background: #cfd8dc; color: #37474f; }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

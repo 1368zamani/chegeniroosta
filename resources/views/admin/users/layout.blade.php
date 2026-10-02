@@ -39,6 +39,7 @@
         .badge-section { background: #c8e6c9; color: #2e7d32; }
         .badge-village { background: #e3f2fd; color: #1565c0; }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

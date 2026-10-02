@@ -1,0 +1,47 @@
+/* ═══ وزیرمتن کل سایت ═══ */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
+/* ═══ Lalezar (شبیه B Titr) برای عنوان ═══ */
+@font-face {
+    font-family: 'Lalezar';
+    src: url('/fonts/Lalezar.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+/* ═══ B Titr (اگر دانلود شد) ═══ */
+@font-face {
+    font-family: 'BTitr';
+    src: url('/fonts/BTitr.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+}
+
+html, body, input, select, textarea, button,
+h2, h3, h4, h5, h6, p, span, div, a, li, td, th {
+    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif !important;
+}
+
+/* ═══ عنوان سایت — بزرگ + آبی ═══ */
+h1.gov-main-title,
+.gov-main-title,
+.gov-titles h1 {
+    font-family: 'BTitr', 'Lalezar', 'Vazirmatn', Tahoma, sans-serif !important;
+    font-size: clamp(36px, 7.5vw, 64px) !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    color: #1565c0 !important;
+    text-align: right !important;
+    padding: 12px 4px !important;
+    margin: 0 0 8px 0 !important;
+    letter-spacing: 0 !important;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.7), 0 0 20px rgba(21,101,192,0.15) !important;
+}
+
+@media (max-width: 700px) {
+    h1.gov-main-title, .gov-main-title {
+        font-size: clamp(26px, 8.5vw, 44px) !important;
+        line-height: 1.35 !important;
+        padding: 8px 4px !important;
+    }
+}

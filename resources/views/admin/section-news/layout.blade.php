@@ -93,6 +93,7 @@
         .empty { text-align: center; padding: 60px 20px; color: #90a4ae; }
         .empty .icon { font-size: 50px; opacity: .5; margin-bottom: 16px; }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

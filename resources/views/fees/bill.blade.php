@@ -30,6 +30,7 @@
     .print-btn a,.print-btn button{display:inline-block;padding:10px 20px;background:#1565c0;color:#fff;border:none;border-radius:9px;text-decoration:none;font-family:inherit;font-size:14px;cursor:pointer;margin:4px}
     @media print{.print-btn{display:none}body{background:#fff}.card{box-shadow:none}}
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

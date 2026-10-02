@@ -963,7 +963,7 @@ button, a, input[type="submit"] {
         content: '';
         position: absolute;
         inset: 0;
-        background-image: url('{{ asset("images/gov/kashkan-bridge.jpg") }}');
+        
         background-size: cover;
         background-position: center 45%;
         background-repeat: no-repeat;
@@ -1894,7 +1894,11 @@ img, iframe, video {
                 <img src="{{ \App\Models\SiteSetting::emblemUrl($section->logo ?? null) }}" alt="آرم وزارت کشور">
             </div>
             <div class="gov-titles">
-                <h1 class="gov-main-title">{{ $headerTitle ?? 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی' }}</h1>
+                <h1 class="gov-main-title">@php
+    $title = $headerTitle ?? 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی';
+    $title = preg_replace('/ویسیان/u', '<span class="highlight">ویسیان</span>', e($title));
+@endphp
+{!! $title !!}</h1>
                 <p class="gov-sub-title">
                     <span>🏛️ وزارت کشور</span>
                     <span>•</span>
@@ -2001,3 +2005,92 @@ img, iframe, video {
 
 
 
+
+{{-- ═══ CLEAN-COLORS-2026 ═══ --}}
+<style>
+/* هدر تمیز — بدون تصویر */
+header.gov-header,
+.gov-header,
+.gov-header-wrap {
+    background: #F5F9FF !important;
+    background-image: none !important;
+    border-bottom: 3px solid #1565C0 !important;
+    box-shadow: 0 2px 12px rgba(21,101,192,0.08) !important;
+    position: relative !important;
+}
+
+/* حذف لایه‌های تزئینی قدیمی */
+header.gov-header::before,
+header.gov-header::after,
+.gov-header::before,
+.gov-header::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+}
+
+/* عنوان سایت — آبی تیره */
+h1.gov-main-title,
+.gov-main-title,
+.gov-titles h1 {
+    font-family: 'Lalezar', 'Vazirmatn', Tahoma, sans-serif !important;
+    font-size: 44px !important;
+    line-height: 1.5 !important;
+    font-weight: 700 !important;
+    color: #0D47A1 !important;
+    -webkit-text-fill-color: #0D47A1 !important;
+    text-align: right !important;
+    padding: 10px 4px !important;
+    margin: 0 !important;
+    text-shadow: none !important;
+}
+
+/* کلمه ویسیان — قرمز */
+h1.gov-main-title .highlight,
+.gov-main-title .highlight {
+    color: #D32F2F !important;
+    -webkit-text-fill-color: #D32F2F !important;
+}
+
+/* زیرعنوان — آبی روشن */
+.gov-sub-title,
+.gov-titles p {
+    color: #1565C0 !important;
+    font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+}
+
+/* خط تزئینی زیر عنوان */
+.gov-titles::after {
+    content: '' !important;
+    display: block !important;
+    width: 70px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #1565C0, #D32F2F) !important;
+    margin: 6px 0 0 auto !important;
+    border-radius: 2px !important;
+}
+
+/* کارت شعار */
+.gov-slogan-card {
+    background: #FFFFFF !important;
+    border: 1px solid #E3F2FD !important;
+    border-right: 4px solid #1565C0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 3px 10px rgba(13,71,161,0.06) !important;
+}
+.gov-slogan-card-text,
+.gov-slogan-card * {
+    color: #0D47A1 !important;
+    font-weight: 700 !important;
+}
+
+/* موبایل */
+@media (max-width: 700px) {
+    h1.gov-main-title,
+    .gov-main-title {
+        font-size: 28px !important;
+        line-height: 1.4 !important;
+        padding: 8px 4px !important;
+    }
+}
+</style>

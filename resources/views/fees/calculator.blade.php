@@ -19,6 +19,7 @@
     @media(max-width:520px){.row{grid-template-columns:1fr}}
     .hint{font-size:12px;color:#607d8b;margin-top:4px}
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="card">

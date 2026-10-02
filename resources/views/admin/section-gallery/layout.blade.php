@@ -31,6 +31,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 .hint { font-size: 12px; color: #90a4ae; margin-top: 6px; }
 .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="header">

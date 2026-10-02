@@ -21,6 +21,7 @@
     .back{text-align:center;margin-top:14px;font-size:12.5px;color:#607d8b}
     .back a{color:#1565c0;text-decoration:none}
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="card">

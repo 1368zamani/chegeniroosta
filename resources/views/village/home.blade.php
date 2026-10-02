@@ -281,6 +281,7 @@ a[href^="tel:"] {
 }
 </style>
 
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 
 <body>

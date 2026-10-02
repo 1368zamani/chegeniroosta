@@ -26,6 +26,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 .action-card h3 { margin: 0 0 8px; color: #1565c0; font-size: 16px; }
 .action-card p { margin: 0; color: #78909c; font-size: 13px; }
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="header">

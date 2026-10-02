@@ -254,6 +254,7 @@ tr:hover { background: #f8fafc; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

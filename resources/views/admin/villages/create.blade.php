@@ -31,6 +31,7 @@
         .error { background: #ffcdd2; color: #c62828; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; }
         @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

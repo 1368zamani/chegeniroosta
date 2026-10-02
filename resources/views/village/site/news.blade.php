@@ -53,6 +53,7 @@
             .news-grid { grid-template-columns: 1fr; }
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])

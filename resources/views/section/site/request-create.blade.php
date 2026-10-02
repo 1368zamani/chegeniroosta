@@ -6,6 +6,7 @@
 <title>ثبت درخواست | بخشداری {{ $section->name }}</title>
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 @include('section.site._styles')
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="wrap">

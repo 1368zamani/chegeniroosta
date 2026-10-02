@@ -21,6 +21,7 @@
     .st-paid{background:#e8f5e9;color:#2e7d32}
     .st-rejected{background:#eceff1;color:#455a64}
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="card">

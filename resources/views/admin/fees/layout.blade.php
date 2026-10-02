@@ -47,6 +47,7 @@ label{font-size:12.5px;color:#546e7a;display:block;margin-bottom:3px}
 .mono{font-family:monospace;direction:ltr;display:inline-block}
 @media(max-width:600px){.nav{font-size:12px}th,td{padding:8px 6px;font-size:12.5px}}
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 <div class="header">

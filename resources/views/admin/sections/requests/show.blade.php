@@ -26,6 +26,7 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
 .btn-cancel { padding: 12px 20px; background: #f1f5f9; color: #1e5b9c; text-decoration: none; border-radius: 8px; display: inline-block; }
 @media (max-width: 600px) { .info-row { grid-template-columns: 1fr; gap: 2px; } }
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

@@ -49,7 +49,7 @@
         transform: translateY(-100%);
     }
     .news-ticker-item a {
-        color: #fff;
+        color: #ff5252;
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -64,6 +64,7 @@
     .news-ticker-item .title {
         overflow: hidden;
         text-overflow: ellipsis;
+        color: #ff5252 !important;
     }
     .news-ticker-item .badge {
         background: #e53935;

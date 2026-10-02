@@ -45,6 +45,7 @@
             .photo-preview { flex-direction: column; align-items: flex-start; }
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

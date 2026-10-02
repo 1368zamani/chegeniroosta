@@ -149,6 +149,7 @@
 
         .empty .icon { font-size: 50px; margin-bottom: 16px; opacity: .5; }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

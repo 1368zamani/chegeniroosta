@@ -135,6 +135,7 @@ tr:hover { background: #f8fafc; }
     .sidebar-menu a { padding: 10px 16px; border-right: none; border-bottom: 3px solid transparent; }
 }
 </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

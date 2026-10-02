@@ -124,6 +124,7 @@
             .btn { padding: 6px 10px; font-size: 11px; }
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

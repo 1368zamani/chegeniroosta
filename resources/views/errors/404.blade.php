@@ -83,6 +83,7 @@
             .err-desc { font-size: 13px; }
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

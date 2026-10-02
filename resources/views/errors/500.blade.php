@@ -47,6 +47,7 @@
             .err-title { font-size: 20px; }
         }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 

@@ -22,6 +22,7 @@
         tr:hover { background: #f8fafc; }
         .empty { text-align: center; padding: 40px; color: #90a4ae; }
     </style>
+<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 </head>
 <body>
 
