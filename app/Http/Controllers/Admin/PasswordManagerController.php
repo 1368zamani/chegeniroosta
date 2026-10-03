@@ -134,4 +134,61 @@ class PasswordManagerController extends Controller
 
         return back()->with('success', "✅ رمز $count کاربر تغییر کرد.");
     }
+
+    /** ایجاد کاربر جدید */
+    public function store(Request $request)
+    {
+        $this->authorizeManager();
+        $manager = auth()->user();
+
+        $data = $request->validate([
+            'name'         => 'required|string|max:255',
+            'email'        => 'required|email|max:255|unique:users,email',
+            'password'     => 'required|string|min:8|max:64',
+            'role'         => 'required|in:section_admin,fee_officer,village_admin,super_admin',
+            'officer_type' => 'nullable|in:financial,technical',
+            'section_id'   => 'nullable|exists:sections,id',
+            'village_id'   => 'nullable|exists:villages,id',
+            'phone'        => 'nullable|string|max:20',
+        ], [
+            'email.unique' => 'این ایمیل قبلاً ثبت شده است.',
+            'password.min' => 'رمز عبور باید حداقل ۸ کاراکتر باشد.',
+        ]);
+
+        // محدودیت سوپرادمین را فقط سوپرادمین می‌تواند بسازد
+        if ($data['role'] === 'super_admin' && !$manager->isSuperAdmin()) {
+            abort(403, 'فقط سوپرادمین می‌تواند سوپرادمین بسازد.');
+        }
+
+        // بخشدار فقط می‌تواند در بخش خودش کاربر بسازد
+        $sectionId = $data['section_id'] ?? null;
+        if ($manager->isSectionAdmin()) {
+            $sectionId = $manager->section_id;
+        }
+
+        // اگر نقش دهیار است، village_id الزامی است
+        if ($data['role'] === 'village_admin' && empty($data['village_id'])) {
+            return back()->withErrors(['village_id' => 'برای دهیار، انتخاب روستا الزامی است.'])->withInput();
+        }
+
+        // اگر نقش کارشناس عوارض است، officer_type الزامی است
+        if ($data['role'] === 'fee_officer' && empty($data['officer_type'])) {
+            return back()->withErrors(['officer_type' => 'برای کارشناس، انتخاب نوع الزامی است.'])->withInput();
+        }
+
+        $user = User::create([
+            'name'         => $data['name'],
+            'email'        => $data['email'],
+            'password'     => Hash::make($data['password']),
+            'role'         => $data['role'],
+            'officer_type' => $data['officer_type'] ?? null,
+            'section_id'   => $sectionId,
+            'village_id'   => $data['village_id'] ?? null,
+            'phone'        => $data['phone'] ?? null,
+            'is_active'    => true,
+        ]);
+
+        return back()->with('success', "✅ کاربر «{$user->name}» با نقش {$user->role} ساخته شد.");
+    }
+
 }

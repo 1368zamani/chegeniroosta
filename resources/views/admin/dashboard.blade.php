@@ -174,6 +174,7 @@
             @if(auth()->user()->isSuperAdmin())<a href="{{ route('admin.settings.index') }}" style="background: rgba(255,213,79,0.3);">⚙️ تنظیمات</a>@endif
             <a href="{{ route('admin.users.index') }}">👥 کاربران</a>
             <li><a href="{{ route('admin.officials.index') }}" class="{{ request()->routeIs('admin.officials.*') ? 'active' : '' }}">🏛 مسئولین شهرستان</a></li>
+            <li><a href="{{ route('admin.passwords.index') }}" class="{{ request()->routeIs('admin.passwords.*') ? 'active' : '' }}">🔑 مدیریت رمزها</a></li>
             <li><a href="{{ route('admin.fees.categories.index') }}">🗂 دسته‌بندی عوارض</a></li>
             <li><a href="{{ route('admin.fees.types.index') }}">📋 عناوین خدمت</a></li>
             <a href="{{ route('admin.sections.index') }}">📋 بخش‌ها</a>

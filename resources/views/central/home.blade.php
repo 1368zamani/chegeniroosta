@@ -634,10 +634,7 @@ img, iframe, video {
 
 @include('partials.gov-header')
 
-@include('partials.gov-hero', [
-    'heroTitle' => 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی',
-    'heroSubtitle' => 'سامانه رسمی معرفی، اطلاع‌رسانی و مدیریت بخش‌ها و روستاهای شهرستان چگنی، استان لرستان'
-])
+
 
 <main class="container">
 

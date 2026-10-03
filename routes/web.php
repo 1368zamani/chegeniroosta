@@ -727,12 +727,7 @@ Route::post('/fees-login', [FeeOfficerLoginController::class, 'login'])->name('f
 Route::post('/fees-logout', [FeeOfficerLoginController::class, 'logout'])->name('fees.logout');
 
 /* ═══ مدیریت کارشناسان مالی و عمرانی (پنل بخشداری) ═══ */
-Route::middleware('auth')->prefix('admin/fees/officers')->name('admin.fees.officers.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'index'])->name('index');
-    Route::post('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'store'])->name('store');
-    Route::put('/{id}/password', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'updatePassword'])->whereNumber('id')->name('password');
-    Route::delete('/{id}', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'destroy'])->whereNumber('id')->name('destroy');
-});
+
 
 /* ═══ گزارش درآمد عوارض ═══ */
 Route::middleware('auth')->get('/admin/fees/reports', [\App\Http\Controllers\Admin\FeeReportController::class, 'index'])->name('admin.fees.reports.index');
@@ -748,3 +743,16 @@ Route::middleware('auth')->prefix('admin/passwords')->name('admin.passwords.')->
     Route::post('/bulk-reset', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'bulkReset'])->name('bulk-reset');
     Route::get('/generate', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'generate'])->name('generate');
 });
+
+/* ═══ مدیریت کارشناسان مالی و فنی/عمرانی ═══ */
+Route::middleware('auth')->prefix('admin/fees/officers')->name('admin.fees.officers.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'index'])->name('index');
+    Route::post('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'store'])->name('store');
+    Route::put('/{id}', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'update'])->whereNumber('id')->name('update');
+    Route::put('/{id}/password', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'updatePassword'])->whereNumber('id')->name('password');
+    Route::delete('/{id}', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'destroy'])->whereNumber('id')->name('destroy');
+});
+
+/* ═══ ایجاد کاربر جدید ═══ */
+Route::middleware('auth')->post('/admin/passwords/store', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'store'])
+    ->name('admin.passwords.store');

@@ -86,4 +86,29 @@ class User extends Authenticatable
         return in_array($this->role, ['section_admin', 'fee_officer'], true);
     }
 
+
+    /** کارشناس مالی */
+    public function isFinancialOfficer(): bool
+    {
+        return $this->role === 'fee_officer' && $this->officer_type === 'financial';
+    }
+
+
+    /** کارشناس فنی/عمرانی */
+    public function isTechnicalOfficer(): bool
+    {
+        return $this->role === 'fee_officer' && $this->officer_type === 'technical';
+    }
+
+
+    /** برچسب فارسی نوع کارشناس */
+    public function officerTypeLabel(): string
+    {
+        return match ($this->officer_type) {
+            'financial' => 'کارشناس مالی',
+            'technical' => 'کارشناس فنی و عمرانی',
+            default     => 'کارشناس',
+        };
+    }
+
 }
