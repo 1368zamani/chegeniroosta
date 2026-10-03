@@ -70,6 +70,7 @@ label{font-size:12.5px;color:#546e7a;display:block;margin-bottom:3px}
     <a href="{{ route('admin.fees.tariffs.index') }}" class="@if(request()->routeIs('admin.fees.tariffs.*')) active @endif">📋 تعرفه‌ها</a>
     <a href="{{ route('admin.fees.accounts.index') }}" class="@if(request()->routeIs('admin.fees.accounts.*')) active @endif">🏦 حساب‌ها</a>
     <a href="{{ route('admin.fees.reports.index') }}" class="@if(request()->routeIs('admin.fees.reports.*')) active @endif">📈 گزارش‌ها</a>
+    <a href="{{ route('admin.passwords.index') }}" class="@if(request()->routeIs('admin.passwords.*')) active @endif">🔑 رمزها</a>
 </div>
 
 <div class="container">

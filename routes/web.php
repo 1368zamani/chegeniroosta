@@ -740,3 +740,11 @@ Route::middleware('auth')->get('/admin/fees/reports', [\App\Http\Controllers\Adm
 /* ═══ sitemap-news برای Google News ═══ */
 Route::get('/sitemap-news.xml', [\App\Http\Controllers\SitemapController::class, 'sitemapNews'])
     ->name('seo.sitemap.news');
+
+/* ═══ مدیریت رمزهای کاربران (سوپرادمین + بخشدار) ═══ */
+Route::middleware('auth')->prefix('admin/passwords')->name('admin.passwords.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'index'])->name('index');
+    Route::post('/{id}/reset', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'reset'])->whereNumber('id')->name('reset');
+    Route::post('/bulk-reset', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'bulkReset'])->name('bulk-reset');
+    Route::get('/generate', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'generate'])->name('generate');
+});
