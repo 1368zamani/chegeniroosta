@@ -4,7 +4,7 @@
 
 <style>
     .gov-footer {
-        background: linear-gradient(180deg, #0d2e4f 0%, #071a2f 100%);
+        background: linear-gradient(180deg, #0d3b2e 0%, #071a2f 100%);
         color: rgba(255,255,255,0.85);
         padding: 50px 0 0;
         margin-top: 60px;
@@ -624,8 +624,8 @@ img, iframe, video {
 
 <footer class="gov-footer">
 
-    <div style="width:100%;text-align:center;padding:14px 16px;background:#ffd54f;color:#0d2e4f">
-    <a href="/fees-login" style="font-size:14px;font-weight:bold;color:#0d2e4f;text-decoration:none">
+    <div style="width:100%;text-align:center;padding:14px 16px;background:#ffd54f;color:#0d3b2e">
+    <a href="/fees-login" style="font-size:14px;font-weight:bold;color:#0d3b2e;text-decoration:none">
         🔐 ورود کارشناسان مالی و عمرانی بخشداری
     </a>
 </div>
@@ -756,7 +756,7 @@ img, iframe, video {
     .s-footer,
     footer.gov-footer,
     .gov-footer-main {
-        background: linear-gradient(135deg, #1e5b9c 0%, #2470b8 100%) !important;
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%) !important;
         color: #ffffff !important;
         border-top: 4px solid #ffd54f !important;
     }
@@ -851,7 +851,7 @@ img, iframe, video {
     .s-footer-bottom {
         background: rgba(13, 46, 79, 0.35) !important;
         border-top: 1px solid rgba(255, 213, 79, 0.25) !important;
-        color: #cbd8e8 !important;
+        color: #d1fae5 !important;
     }
     .gov-footer-bottom a,
     .s-footer-bottom a {

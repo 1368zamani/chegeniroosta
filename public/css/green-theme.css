@@ -1,0 +1,259 @@
+/* ═══════════════════════════════════════════════════
+   GREEN-THEME-2026 — تم سبز تیره برای همه سایت‌ها
+   جایگزین همه رنگ‌های آبی قبلی
+   ═══════════════════════════════════════════════════ */
+
+:root {
+    --green-dark:  #0d3b2e;
+    --green-mid:   #065f46;
+    --green-light: #10b981;
+    --green-soft:  #d1fae5;
+    --green-pale:  #f0fdf4;
+    --text-dark:   #0a2a20;
+    --text-light:  #ffffff;
+}
+
+/* ═══ ۱. پس‌زمینه‌ها — همه آبی‌ها → سبز ═══ */
+body,
+html {
+    background: var(--green-pale) !important;
+}
+
+/* هدر اصلی سایت */
+header,
+.gov-header,
+.gov-header-wrap,
+.site-header,
+.main-header,
+header.gov-header {
+    background: var(--green-dark) !important;
+    background-image: linear-gradient(135deg, #0d3b2e 0%, #0a2a20 100%) !important;
+    border-bottom: 3px solid var(--green-light) !important;
+    color: #fff !important;
+}
+
+/* فوتر */
+footer,
+.gov-footer,
+.s-footer,
+footer.gov-footer,
+.gov-footer-main {
+    background: var(--green-dark) !important;
+    background-image: linear-gradient(135deg, #0d3b2e 0%, #0a2a20 100%) !important;
+    border-top: 4px solid var(--green-light) !important;
+    color: #fff !important;
+}
+.gov-footer-bottom,
+.s-footer-bottom {
+    background: rgba(0,0,0,0.25) !important;
+    border-top: 1px solid rgba(16,185,129,0.3) !important;
+    color: #d1fae5 !important;
+}
+
+/* نوار ناوبری */
+nav, .main-nav, .gov-nav, .navbar {
+    background: var(--green-mid) !important;
+    color: #fff !important;
+}
+nav a, .main-nav a, .gov-nav a, .navbar a {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+nav a:hover, .main-nav a:hover, .gov-nav a:hover, .navbar a:hover {
+    background: var(--green-dark) !important;
+    color: var(--green-light) !important;
+}
+
+/* ═══ ۲. متن‌ها — همه بولد ═══ */
+body, html, p, span, div, li, td, th, a, label {
+    font-weight: 600 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 900 !important;
+    color: var(--green-dark) !important;
+}
+
+h1.gov-main-title,
+.gov-main-title,
+.gov-titles h1 {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+}
+
+.gov-sub-title,
+.gov-titles p {
+    color: var(--green-soft) !important;
+    font-weight: 700 !important;
+}
+
+/* ═══ ۳. دکمه‌ها ═══ */
+.btn,
+button,
+input[type="submit"],
+.v-btn {
+    background: var(--green-light) !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+    transition: all 0.2s ease;
+}
+.btn:hover,
+button:hover,
+input[type="submit"]:hover {
+    background: var(--green-mid) !important;
+    transform: translateY(-2px);
+}
+
+.btn-secondary,
+.v-btn-secondary {
+    background: transparent !important;
+    border: 2px solid rgba(255,255,255,0.4) !important;
+    color: #ffffff !important;
+}
+
+/* ═══ ۴. کارت‌ها ═══ */
+.card, .v-news-card, .v-facility-card,
+.v-council-card, .v-attraction-card,
+.news-list-item, .info-card {
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(16,185,129,0.15) !important;
+    box-shadow: 0 4px 15px rgba(13,59,46,0.08) !important;
+}
+
+.card:hover, .v-news-card:hover, .v-facility-card:hover,
+.news-list-item:hover {
+    background: var(--green-dark) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(13,59,46,0.25) !important;
+}
+
+.card:hover *,
+.v-news-card:hover *,
+.news-list-item:hover *,
+.v-news-card:hover h4,
+.v-news-card:hover h4 a,
+.news-list-item:hover h4,
+.news-list-item:hover h4 a,
+.news-list-item:hover p,
+.news-list-item:hover span,
+.news-list-item:hover .meta,
+.news-list-item:hover .date {
+    color: #ffffff !important;
+}
+
+/* ═══ ۵. لینک‌ها ═══ */
+a {
+    color: var(--green-mid) !important;
+    font-weight: 700 !important;
+    text-decoration: none;
+}
+a:hover {
+    color: var(--green-light) !important;
+}
+
+/* لینک‌های داخل هدر و فوتر سفید بمانند */
+header a, footer a, nav a, .gov-header a, .gov-footer a {
+    color: #ffffff !important;
+}
+
+/* ═══ ۶. فرم‌ها ═══ */
+input, select, textarea {
+    border: 1px solid #a7d8c0 !important;
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+    background: #ffffff !important;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: var(--green-light) !important;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.15) !important;
+}
+
+/* ═══ ۷. بج و برچسب‌ها ═══ */
+.badge, .pill, .label, .tag {
+    background: var(--green-light) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border-radius: 20px !important;
+    padding: 3px 10px !important;
+}
+
+/* ═══ ۸. حذف همه آبی‌های باقیمانده ═══ */
+[style*="#0d2e4f"], [style*="#1565c0"], [style*="#1e5b9c"],
+[style*="#2470b8"], [style*="#0288d1"], [style*="#0D47A1"] {
+    background-color: var(--green-dark) !important;
+}
+[style*="color: #1565c0"], [style*="color:#1565c0"],
+[style*="color: #0D47A1"], [style*="color:#0D47A1"] {
+    color: var(--green-light) !important;
+}
+
+/* ═══ ۹. نوار تیکر اخبار ═══ */
+.news-ticker {
+    background: linear-gradient(90deg, #0d3b2e 0%, #065f46 50%, #0d3b2e 100%) !important;
+    border-top: 2px solid var(--green-light) !important;
+    border-bottom: 2px solid var(--green-light) !important;
+}
+.news-ticker-label {
+    background: var(--green-light) !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+.news-ticker-item a,
+.news-ticker-item .title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+.news-ticker-item a:hover {
+    color: var(--green-light) !important;
+}
+
+/* ═══ ۱۰. منوهای ادمین ═══ */
+.sidebar, .sidebar-menu {
+    background: #ffffff !important;
+}
+.sidebar-menu a {
+    color: var(--text-dark) !important;
+    font-weight: 700 !important;
+}
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background: var(--green-soft) !important;
+    color: var(--green-dark) !important;
+    border-right: 4px solid var(--green-light) !important;
+}
+
+/* هدر پنل ادمین */
+.admin-header, .panel-header {
+    background: var(--green-dark) !important;
+    color: #ffffff !important;
+}
+
+/* ═══ ۱۱. کارت محاسبه‌گر عوارض ═══ */
+.calculator-card, .form-card, .fees-card {
+    background: #ffffff !important;
+    border-top: 4px solid var(--green-light) !important;
+}
+
+/* ═══ ۱۲. جدول‌ها ═══ */
+table thead th {
+    background: var(--green-dark) !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+table tbody tr:hover {
+    background: var(--green-pale) !important;
+}
+
+/* ═══ ۱۳. همه دکمه‌های قدیمی آبی → سبز ═══ */
+[class*="btn-blue"], [class*="btn-primary"] {
+    background: var(--green-light) !important;
+    color: #ffffff !important;
+}
+[class*="btn-green"] {
+    background: var(--green-dark) !important;
+    color: #ffffff !important;
+}

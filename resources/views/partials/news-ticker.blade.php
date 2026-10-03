@@ -1,7 +1,7 @@
 @if(isset($news) && $news->count() > 0)
 <style>
     .news-ticker {
-        background: linear-gradient(90deg, #0d2e4f 0%, #103d68 50%, #0d2e4f 100%);
+        background: #065f46;
         color: #fff;
         height: 52px;
         overflow: hidden;
@@ -15,7 +15,7 @@
     }
     .news-ticker-label {
         background: #ffd54f;
-        color: #0d2e4f;
+        color: #0d3b2e;
         padding: 0 18px;
         display: flex;
         align-items: center;

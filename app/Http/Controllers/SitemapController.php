@@ -115,4 +115,36 @@ class SitemapController extends Controller
 
         return response($xml, 200, ['Content-Type' => 'application/rss+xml; charset=UTF-8']);
     }
+
+    /** sitemap اخبار برای Google News */
+    public function sitemapNews()
+    {
+        $news = \App\Models\SectionNews::orderByDesc('published_at')
+            ->orderByDesc('created_at')
+            ->limit(1000)
+            ->get();
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">' . "\n";
+
+        foreach ($news as $n) {
+            $xml .= "  <url>\n";
+            $xml .= "    <loc>" . htmlspecialchars(url('/news/' . $n->slug)) . "</loc>\n";
+            $xml .= "    <news:news>\n";
+            $xml .= "      <news:publication>\n";
+            $xml .= "        <news:name>پایگاه اطلاع‌رسانی چگنی</news:name>\n";
+            $xml .= "        <news:language>fa</news:language>\n";
+            $xml .= "      </news:publication>\n";
+            $date = $n->published_at ?? $n->created_at;
+            $xml .= "      <news:publication_date>" . $date->toAtomString() . "</news:publication_date>\n";
+            $xml .= "      <news:title>" . htmlspecialchars($n->title) . "</news:title>\n";
+            $xml .= "    </news:news>\n";
+            $xml .= "  </url>\n";
+        }
+
+        $xml .= '</urlset>';
+
+        return response($xml)->header('Content-Type', 'application/xml');
+    }
+
 }

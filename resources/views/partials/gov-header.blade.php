@@ -62,7 +62,7 @@
 <style>
     /* ==================== نوار بالا ==================== */
     .gov-topbar {
-        background: linear-gradient(90deg, #0d2e4f 0%, #103d68 50%, #0d2e4f 100%);
+        background: linear-gradient(90deg, #0d3b2e 0%, #103d68 50%, #0d3b2e 100%);
         color: white;
         padding: 8px 0;
         font-size: 13px;
@@ -165,7 +165,7 @@
 
     /* ==================== منوی ناوبری ==================== */
     .gov-navbar {
-        background: linear-gradient(90deg, #0d2e4f 0%, #103d68 100%);
+        background: linear-gradient(90deg, #0d3b2e 0%, #103d68 100%);
         border-top: 1px solid rgba(255,213,79,0.3);
         position: relative;
         z-index: 5;
@@ -310,7 +310,7 @@
     }
 
     .gov-consensus-banner {
-        background: linear-gradient(90deg, #0d2e4f 0%, #1a4a7a 30%, #1565c0 50%, #1a4a7a 70%, #0d2e4f 100%);
+        background: linear-gradient(90deg, #0d3b2e 0%, #1a4a7a 30%, #10b981 50%, #1a4a7a 70%, #0d3b2e 100%);
         color: white;
         padding: 12px 20px;
         text-align: center;
@@ -796,10 +796,10 @@ button, a, input[type="submit"] {
         font-weight: 900 !important;
         color: #ffffff !important;
         text-shadow:
-            3px 3px 0 #0d2e4f,
-            -1px -1px 0 #0d2e4f,
-            1px -1px 0 #0d2e4f,
-            -1px 1px 0 #0d2e4f,
+            3px 3px 0 #0d3b2e,
+            -1px -1px 0 #0d3b2e,
+            1px -1px 0 #0d3b2e,
+            -1px 1px 0 #0d3b2e,
             0 4px 15px rgba(13,46,79,0.9),
             0 0 25px rgba(255,213,79,0.5) !important;
         letter-spacing: 0 !important;
@@ -887,10 +887,10 @@ button, a, input[type="submit"] {
         font-weight: 900 !important;
         color: #ffffff !important;
         text-shadow:
-            2px 2px 0 #0d2e4f,
-            -1px -1px 0 #0d2e4f,
-            1px -1px 0 #0d2e4f,
-            -1px 1px 0 #0d2e4f,
+            2px 2px 0 #0d3b2e,
+            -1px -1px 0 #0d3b2e,
+            1px -1px 0 #0d3b2e,
+            -1px 1px 0 #0d3b2e,
             0 3px 12px rgba(13,46,79,0.95),
             0 0 20px rgba(255,213,79,0.4) !important;
         letter-spacing: 0 !important;
@@ -951,7 +951,7 @@ button, a, input[type="submit"] {
     .gov-header {
         position: relative;
         background: #ffffff;
-        border-bottom: 3px solid #0d2e4f;
+        border-bottom: 3px solid #0d3b2e;
         overflow: hidden;
         height: 200px;
         display: flex;
@@ -1092,7 +1092,7 @@ button, a, input[type="submit"] {
 
     .gov-slogan-text {
         font-size: 12px;
-        color: #0d2e4f;
+        color: #0d3b2e;
         font-weight: 900;
         line-height: 1.8;
         text-shadow:
@@ -1455,13 +1455,13 @@ img, iframe, video {
 
     /* ۱. نوار بالا */
     .gov-topbar {
-        background: linear-gradient(90deg, #1e5b9c 0%, #2470b8 50%, #1e5b9c 100%) !important;
+        background: linear-gradient(90deg, #065f46 0%, #10b981 50%, #065f46 100%) !important;
         border-bottom: 1px solid rgba(255,255,255,0.15) !important;
     }
 
     /* ۲. هدر — آبی روشن با گرادیان ملایم */
     .gov-header {
-        background: linear-gradient(135deg, #1e5b9c 0%, #2470b8 100%) !important;
+        background: linear-gradient(135deg, #065f46 0%, #10b981 100%) !important;
     }
 
     /* لایه روشن روی عکس پل — شفافیت کمتر */
@@ -1506,7 +1506,7 @@ img, iframe, video {
 
     /* ۴. نوار منو — آبی متوسط با خط طلایی */
     .gov-navbar {
-        background: linear-gradient(90deg, #14497f 0%, #1e5b9c 100%) !important;
+        background: linear-gradient(90deg, #14497f 0%, #065f46 100%) !important;
         border-top: 3px solid #ffd54f !important;
         box-shadow: 0 4px 14px rgba(13, 46, 79, 0.2) !important;
     }
@@ -1547,7 +1547,7 @@ img, iframe, video {
 
     /* ۶. نوار دولت وفاق ملی — آبی روشن */
     .gov-consensus-banner {
-        background: linear-gradient(90deg, #14497f 0%, #2470b8 50%, #14497f 100%) !important;
+        background: linear-gradient(90deg, #14497f 0%, #10b981 50%, #14497f 100%) !important;
         border-bottom: 2px solid #ffd54f !important;
         box-shadow: 0 3px 10px rgba(13, 46, 79, 0.15) !important;
     }
@@ -1600,7 +1600,7 @@ img, iframe, video {
     h3, h4, h5,
     .box-header h3,
     .card h3 {
-        color: #1565c0 !important;
+        color: #10b981 !important;
     }
 
     /* ═══ متن عادی → سرمه‌ای روشن‌تر ═══ */
@@ -1614,7 +1614,7 @@ img, iframe, video {
 
     /* ═══ لینک‌ها → آبی متوسط ═══ */
     a {
-        color: #1565c0;
+        color: #10b981;
     }
     a:hover {
         color: #c62828;
@@ -1635,13 +1635,13 @@ img, iframe, video {
     .v-council-card h5,
     .v-attraction-card h5,
     .v-facility-card .name {
-        color: #1565c0 !important;
+        color: #10b981 !important;
     }
 
     /* ═══ عنوان اخبار بخشداری ═══ */
     .news-list-item h4 a,
     .news-list-item h4 {
-        color: #1565c0 !important;
+        color: #10b981 !important;
     }
     .news-list-item h4 a:hover {
         color: #c62828 !important;
@@ -1895,10 +1895,16 @@ img, iframe, video {
             </div>
             <div class="gov-titles">
                 <h1 class="gov-main-title">@php
-    $title = $headerTitle ?? 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی';
-    $title = preg_replace('/ویسیان/u', '<span class="highlight">ویسیان</span>', e($title));
+    $__t = $headerTitle ?? 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی';
+    $__names = [];
+    if (isset($section) && $section->name) $__names[] = $section->name;
+    if (isset($village) && $village->name) $__names[] = $village->name;
+    foreach ($__names as $__n) {
+        if (empty($__n)) continue;
+        $__t = str_replace($__n, '<span style="-webkit-text-fill-color:#D32F2F !important;color:#D32F2F !important;font-weight:900 !important;font-size:1.4em !important;display:inline-block !important;padding:0 8px !important;text-shadow:0 2px 6px rgba(211,47,47,0.3) !important;border-bottom:3px solid #D32F2F !important;line-height:1.2 !important">' . $__n . '</span>', $__t);
+    }
 @endphp
-{!! $title !!}</h1>
+{!! $__t !!}</h1>
                 <p class="gov-sub-title">
                     <span>🏛️ وزارت کشور</span>
                     <span>•</span>
@@ -2012,9 +2018,9 @@ img, iframe, video {
 header.gov-header,
 .gov-header,
 .gov-header-wrap {
-    background: #F5F9FF !important;
+    background: #f0fdf4 !important;
     background-image: none !important;
-    border-bottom: 3px solid #1565C0 !important;
+    border-bottom: 3px solid #10b981 !important;
     box-shadow: 0 2px 12px rgba(21,101,192,0.08) !important;
     position: relative !important;
 }
@@ -2037,8 +2043,8 @@ h1.gov-main-title,
     font-size: 44px !important;
     line-height: 1.5 !important;
     font-weight: 700 !important;
-    color: #0D47A1 !important;
-    -webkit-text-fill-color: #0D47A1 !important;
+    color: #065f46 !important;
+    -webkit-text-fill-color: #065f46 !important;
     text-align: right !important;
     padding: 10px 4px !important;
     margin: 0 !important;
@@ -2055,7 +2061,7 @@ h1.gov-main-title .highlight,
 /* زیرعنوان — آبی روشن */
 .gov-sub-title,
 .gov-titles p {
-    color: #1565C0 !important;
+    color: #10b981 !important;
     font-family: 'Vazirmatn', Tahoma, sans-serif !important;
 }
 
@@ -2065,7 +2071,7 @@ h1.gov-main-title .highlight,
     display: block !important;
     width: 70px !important;
     height: 3px !important;
-    background: linear-gradient(90deg, #1565C0, #D32F2F) !important;
+    background: linear-gradient(90deg, #10b981, #D32F2F) !important;
     margin: 6px 0 0 auto !important;
     border-radius: 2px !important;
 }
@@ -2073,14 +2079,14 @@ h1.gov-main-title .highlight,
 /* کارت شعار */
 .gov-slogan-card {
     background: #FFFFFF !important;
-    border: 1px solid #E3F2FD !important;
-    border-right: 4px solid #1565C0 !important;
+    border: 1px solid #d1fae5 !important;
+    border-right: 4px solid #10b981 !important;
     border-radius: 12px !important;
     box-shadow: 0 3px 10px rgba(13,71,161,0.06) !important;
 }
 .gov-slogan-card-text,
 .gov-slogan-card * {
-    color: #0D47A1 !important;
+    color: #065f46 !important;
     font-weight: 700 !important;
 }
 
@@ -2092,5 +2098,114 @@ h1.gov-main-title .highlight,
         line-height: 1.4 !important;
         padding: 8px 4px !important;
     }
+}
+</style>
+
+
+
+{{-- ═══ HIGHLIGHT-NAME-BOLD-2026 ═══ --}}
+<style>
+/* اسم روستا/بخش داخل عنوان — بولد، قرمز، بزرگتر */
+h1.gov-main-title .highlight,
+.gov-main-title .highlight,
+.gov-titles h1 .highlight {
+    color: #D32F2F !important;
+    -webkit-text-fill-color: #D32F2F !important;
+    font-weight: 900 !important;
+    font-size: 1.25em !important;
+    display: inline-block !important;
+    padding: 0 6px !important;
+    letter-spacing: 0 !important;
+    text-shadow: 
+        0 1px 0 rgba(255,255,255,0.4),
+        0 2px 6px rgba(211,47,47,0.25) !important;
+    position: relative !important;
+    line-height: 1 !important;
+    margin: 0 2px !important;
+}
+
+/* خط تزئینی زیر اسم */
+h1.gov-main-title .highlight::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -4px !important;
+    left: 6px !important;
+    right: 6px !important;
+    height: 2px !important;
+    background: #D32F2F !important;
+    border-radius: 2px !important;
+    opacity: 0.5 !important;
+}
+
+/* موبایل */
+@media (max-width: 700px) {
+    h1.gov-main-title .highlight {
+        font-size: 1.2em !important;
+        padding: 0 4px !important;
+    }
+}
+</style>
+
+{{-- ═══ HIGHLIGHT-NAME-BOLD-2026 ═══ --}}
+<style>
+/* اسم روستا/بخش داخل عنوان — بولد، قرمز، بزرگتر */
+h1.gov-main-title .highlight,
+.gov-main-title .highlight,
+.gov-titles h1 .highlight {
+    color: #D32F2F !important;
+    -webkit-text-fill-color: #D32F2F !important;
+    font-weight: 900 !important;
+    font-size: 1.25em !important;
+    display: inline-block !important;
+    padding: 0 6px !important;
+    letter-spacing: 0 !important;
+    text-shadow: 
+        0 1px 0 rgba(255,255,255,0.4),
+        0 2px 6px rgba(211,47,47,0.25) !important;
+    position: relative !important;
+    line-height: 1 !important;
+    margin: 0 2px !important;
+}
+
+/* خط تزئینی زیر اسم */
+h1.gov-main-title .highlight::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -4px !important;
+    left: 6px !important;
+    right: 6px !important;
+    height: 2px !important;
+    background: #D32F2F !important;
+    border-radius: 2px !important;
+    opacity: 0.5 !important;
+}
+
+/* موبایل */
+@media (max-width: 700px) {
+    h1.gov-main-title .highlight {
+        font-size: 1.2em !important;
+        padding: 0 4px !important;
+    }
+}
+</style>
+
+{{-- ═══ BOLD-TEXT-LIMITED-2026 ═══ --}}
+<style>
+/* بولد فقط برای متن‌های عمومی — بدون دست زدن به .highlight */
+body, p, li, td, th, label, button, input, select, textarea {
+    font-weight: 600 !important;
+}
+h2, h3, h4, h5, h6 {
+    font-weight: 800 !important;
+}
+h1.gov-main-title {
+    font-weight: 900 !important;
+}
+/* استثنا: highlight داخل h1 دست نخورد */
+h1.gov-main-title .highlight,
+h1.gov-main-title span[style*="D32F2F"] {
+    color: #D32F2F !important;
+    font-weight: 900 !important;
+    font-size: 1.4em !important;
 }
 </style>

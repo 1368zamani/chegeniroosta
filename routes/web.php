@@ -189,8 +189,6 @@ Route::middleware('auth')->prefix('admin/village/{village}/images')->group(funct
         ->name('admin.village.images.destroy');
 });
 
-Route::get('/sitemap.xml', [\App\Http\Controllers\SeoController::class, 'sitemap'])
-    ->name('seo.sitemap');
 
 /*
 |--------------------------------------------------------------------------
@@ -738,3 +736,7 @@ Route::middleware('auth')->prefix('admin/fees/officers')->name('admin.fees.offic
 
 /* ═══ گزارش درآمد عوارض ═══ */
 Route::middleware('auth')->get('/admin/fees/reports', [\App\Http\Controllers\Admin\FeeReportController::class, 'index'])->name('admin.fees.reports.index');
+
+/* ═══ sitemap-news برای Google News ═══ */
+Route::get('/sitemap-news.xml', [\App\Http\Controllers\SitemapController::class, 'sitemapNews'])
+    ->name('seo.sitemap.news');
