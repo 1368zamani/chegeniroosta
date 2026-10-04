@@ -23,6 +23,47 @@
 </head>
 <body>
 <div class="card">
+        <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 2px solid #10b981; border-radius: 12px; padding: 14px 18px; margin-bottom: 18px">
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+                <span style="font-size: 24px">📋</span>
+                <div style="flex: 1; min-width: 200px">
+                    <strong style="color: #065f46; font-size: 14px">تعرفه رسمی سال {{ \Morilog\Jalali\Jalalian::now()->getYear() }}</strong>
+                    <div style="font-size: 12.5px; color: #065f46; margin-top: 4px">
+                        مشاهده فهرست کامل عوارض و بهای خدمات تأییدشده شورای اسلامی روستا
+                    </div>
+                </div>
+                <a id="official-tariff-link" href="#" style="background: #10b981; color: #fff; padding: 9px 18px; border-radius: 9px; text-decoration: none; font-weight: 700; font-size: 13px">مشاهده تعرفه رسمی ←</a>
+            </div>
+        </div>
+        <script>
+        // وقتی روستا انتخاب شد، لینک تعرفه به‌روزرسانی شود
+        (function(){
+            const sel = document.querySelector('select[name="dehyari_id"]');
+            const link = document.getElementById('official-tariff-link');
+            const map = @json(\App\Models\Dehyari::pluck('village_id', 'id'));
+
+            // لینک اولیه بر اساس پارامتر URL یا اولین دهیاری
+            const initialDehyari = sel ? sel.value : null;
+            updateLink(initialDehyari);
+
+            if (sel) {
+                sel.addEventListener('change', function() {
+                    updateLink(this.value);
+                });
+            }
+
+            function updateLink(dehyariId) {
+                if (!dehyariId || !map[dehyariId]) {
+                    link.style.display = 'none';
+                    return;
+                }
+                // گرفتن slug روستا از API یا از دیتای پیج
+                link.style.display = 'inline-block';
+                link.href = '/fees/view-tariff/' + map[dehyariId];
+            }
+        })();
+        </script>
+
     <h1>🧮 محاسبه‌گر عوارض</h1>
 
     @if($errors->any())

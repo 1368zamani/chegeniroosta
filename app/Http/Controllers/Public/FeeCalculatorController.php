@@ -10,6 +10,7 @@ use App\Models\FeeCategory;
 use App\Models\FeeTariff;
 use App\Http\Requests\CalculateFeeRequest;
 use App\Services\FeeCalculator;
+use App\Services\Tariff\TariffBridgeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -60,7 +61,41 @@ class FeeCalculatorController extends Controller
         $data = $request->validated();
         $data['inputs'] = $data['inputs'] ?? [];
 
-        $tariff = FeeTariff::where('dehyari_id', $data['dehyari_id'])
+                // ═══ مسیر B: اول از ماژول جدید نرخ بگیر ═══
+        $bridgeResult = $this->bridge->findRate(
+            (int) $data['dehyari_id'],
+            (int) $data['fee_type_id']
+        );
+
+        if ($bridgeResult['found']) {
+            // نرخ رسمی از TariffSet منتشرشده
+            $item = $bridgeResult['item'];
+            $set  = $bridgeResult['set'];
+            $title = $bridgeResult['title'];
+
+            $amount = (int) $item->final_amount;
+
+            // ساختار پاسخ مشابه مسیر قدیم
+            $calculationResult = [
+                'total' => $amount,
+                'steps' => [
+                    [
+                        'label'  => $title->name_fa,
+                        'detail' => 'نرخ رسمی ' . $set->jalali_year . ' — مطابق مصوبه شورا',
+                        'amount' => $amount,
+                    ],
+                ],
+                'snapshot' => [
+                    'source'        => 'tariff_module',
+                    'tariff_set_id' => $set->id,
+                    'tariff_item_id'=> $item->id,
+                    'fee_type_name' => $title->name_fa,
+                    'year'          => $set->jalali_year,
+                ],
+            ];
+        } else {
+            // ═══ fallback: مسیر قدیم ═══
+            $tariff = FeeTariff::where('dehyari_id', $data['dehyari_id'])
             ->where('fee_type_id', $data['fee_type_id'])
             ->where('is_active', true)
             ->latest('id')
@@ -79,6 +114,13 @@ class FeeCalculatorController extends Controller
 
         try {
             $result = $this->calculator->calculate($tariff, $data['inputs']);
+            $calculationResult = [
+                'total' => $result->total,
+                'steps' => $result->steps,
+                'snapshot' => [
+                    'source' => 'legacy_fee_tariff',
+                ],
+            ];
         } catch (\InvalidArgumentException $e) {
             return back()->withErrors(['inputs' => $e->getMessage()])->withInput();
         }
@@ -167,5 +209,17 @@ class FeeCalculatorController extends Controller
 
         $filename = 'bill-' . $bill->bill_number . '.pdf';
         return $pdf->download($filename);
+    }
+
+    /**
+     * هدایت به صفحه تعرفه رسمی روستا بر اساس village_id.
+     */
+    public function viewTariff(int $villageId)
+    {
+        $village = \App\Models\Village::find($villageId);
+        if (!$village) {
+            abort(404);
+        }
+        return redirect()->route('village.tariff.show', ['slug' => $village->slug]);
     }
 }

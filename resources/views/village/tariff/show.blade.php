@@ -36,6 +36,13 @@ tr:hover { background: #f5f9ff; }
     <div class="header">
         <h1>💰 تعرفه عوارض و بهای خدمات {{ $village->name }}</h1>
         <p>سال {{ $year }} — بخش @if(is_object($village->section)) {{ $village->section->name }} @elseif(is_string($village->section)) {{ $village->section }} @endif — شهرستان چگنی، استان لرستان</p>
+        <div id="شروع-محاسبه-پرداخت" style="margin-top:14px">
+            <a href="{{ route('fees.calculator', ['village' => $village->slug]) }}"
+               style="display: inline-block; background: #ffd54f; color: #0d2e4f; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 14px">
+                💳 شروع محاسبه و پرداخت عوارض ←
+            </a>
+        </div>
+
     </div>
 
     @if($publishedYears->count() > 1)

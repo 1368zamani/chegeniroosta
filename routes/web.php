@@ -800,3 +800,7 @@ Route::middleware('auth')->prefix('admin/tariffs')->name('admin.tariffs.')->grou
     Route::get('/{id}/form2', [\App\Http\Controllers\Admin\TariffFormController::class, 'form2'])->whereNumber('id')->name('form2');
     Route::get('/{id}/form3', [\App\Http\Controllers\Admin\TariffFormController::class, 'form3'])->whereNumber('id')->name('form3');
 });
+
+/* ═══ هدایت به تعرفه رسمی روستا ═══ */
+Route::get('/fees/view-tariff/{villageId}', [\App\Http\Controllers\Public\FeeCalculatorController::class, 'viewTariff'])
+    ->whereNumber('villageId')->name('fees.view-tariff');
