@@ -26,6 +26,6 @@ class CalculateFeeRequest extends FormRequest
         return [
             'mobile.regex'        => 'شماره موبایل باید با ۰۹ شروع شده و ۱۱ رقم باشد.',
             'national_code.regex' => 'کد ملی باید ۱۰ رقم عددی باشد.',
-                    ];
+        ];
     }
 }
