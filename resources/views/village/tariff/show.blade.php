@@ -35,7 +35,7 @@ tr:hover { background: #f5f9ff; }
 
     <div class="header">
         <h1>💰 تعرفه عوارض و بهای خدمات {{ $village->name }}</h1>
-        <p>سال {{ $year }} — بخش {{ $village->section?->name ?? '' }} — شهرستان چگنی، استان لرستان</p>
+        <p>سال {{ $year }} — بخش @if(is_object($village->section)) {{ $village->section->name }} @elseif(is_string($village->section)) {{ $village->section }} @endif — شهرستان چگنی، استان لرستان</p>
     </div>
 
     @if($publishedYears->count() > 1)

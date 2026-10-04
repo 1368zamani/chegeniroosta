@@ -20,7 +20,7 @@
                 📋 تعرفه {{ $set->village?->name }} — سال {{ $set->jalali_year }}
             </h3>
             <div style="font-size:13px; color:#546e7a">
-                بخش {{ $set->village?->section?->name }} — نرخ تورم: <b class="amount">{{ number_format((float)$set->inflation_rate, 2) }}%</b>
+                بخش @if(is_object($set->village?->section)) {{ $set->village->section->name }} @elseif(is_string($set->village?->section)) {{ $set->village->section }} @else — @endif — نرخ تورم: <b class="amount">{{ number_format((float)$set->inflation_rate, 2) }}%</b>
                 — وضعیت: <span class="pill pill-{{ $set->status }}">{{ $set->statusLabel() }}</span>
             </div>
         </div>

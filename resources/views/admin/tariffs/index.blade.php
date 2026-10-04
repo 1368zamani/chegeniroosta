@@ -59,12 +59,12 @@
             @forelse($sets as $s)
                 <tr>
                     <td>{{ $s->id }}</td>
-                    <td>{{ $s->village?->name }} <span style="color:#90a4ae">({{ $s->village?->section?->name }})</span></td>
+                    <td>{{ $s->village?->name }} @if(is_object($s->village?->section)) <span style="color:#90a4ae">({{ $s->village->section->name }})</span> @elseif(is_string($s->village?->section)) <span style="color:#90a4ae">({{ $s->village->section }})</span> @endif</td>
                     <td class="amount">{{ $s->jalali_year }}</td>
                     <td><span class="pill pill-{{ $s->status }}">{{ $s->statusLabel() }}</span></td>
                     <td class="amount">{{ number_format((float)$s->inflation_rate, 2) }}%</td>
                     <td class="amount">{{ $s->items()->count() }}</td>
-                    <td class="amount">{{ $s->deadline_approval ? \Morilog\Jalali\Jalalian::fromCarbon($s->deadline_approval)->format('Y/m/d') : '-' }}</td>
+                    <td class="amount">{{ $s->deadline_approval ?? '-' }}</td>
                     <td>
                         <a href="{{ route('admin.tariffs.show', $s->id) }}" class="btn btn-blue">مشاهده</a>
                         @if(!$s->isLocked())

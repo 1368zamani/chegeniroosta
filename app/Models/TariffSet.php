@@ -22,8 +22,6 @@ class TariffSet extends Model
         'approved_at'     => 'datetime',
         'announced_at'    => 'datetime',
         'locked_at'       => 'datetime',
-        'deadline_approval'     => 'date',
-        'deadline_announcement' => 'date',
     ];
 
     public function village(): BelongsTo

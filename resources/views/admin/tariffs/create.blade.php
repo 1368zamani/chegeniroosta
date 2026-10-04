@@ -19,7 +19,7 @@
                 <select name="village_id" id="villageSelect" required onchange="updateCopyList()">
                     <option value="">— انتخاب کنید —</option>
                     @foreach($villages as $v)
-                        <option value="{{ $v->id }}" @selected(old('village_id')==$v->id)>{{ $v->name }} ({{ $v->section?->name }})</option>
+                        <option value="{{ $v->id }}" @selected(old('village_id')==$v->id)>{{ $v->name }} @if(is_object($v->section)) ({{ $v->section->name }}) @elseif(is_string($v->section)) ({{ $v->section }}) @endif</option>
                     @endforeach
                 </select>
             </div>
