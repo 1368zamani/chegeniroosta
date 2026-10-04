@@ -762,3 +762,7 @@ Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin
     Route::post('/photo', [\App\Http\Controllers\Admin\DehyariPhotoController::class, 'upload'])->name('photo.upload');
     Route::delete('/photo', [\App\Http\Controllers\Admin\DehyariPhotoController::class, 'delete'])->name('photo.delete');
 });
+
+/* ═══ دانلود PDF قبض ═══ */
+Route::get('/fees/bill/{billNumber}/pdf', [\App\Http\Controllers\Public\FeeCalculatorController::class, 'downloadPdf'])
+    ->name('fees.bill.pdf');

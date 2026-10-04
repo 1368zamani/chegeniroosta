@@ -12,6 +12,7 @@ use App\Http\Requests\CalculateFeeRequest;
 use App\Services\FeeCalculator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /**
  * کنترلر عمومی محاسبه عوارض و صدور فاکتور (قبض).
@@ -145,5 +146,26 @@ class FeeCalculatorController extends Controller
             $n = 'PY' . now()->format('ymd') . strtoupper(Str::random(5));
         } while (Bill::where('payment_id', $n)->exists());
         return $n;
+    }
+
+    /** دانلود PDF قبض */
+    public function downloadPdf(string $billNumber)
+    {
+        $bill = Bill::where('bill_number', $billNumber)->firstOrFail();
+
+        $pdf = Pdf::loadView('fees.pdf.bill', [
+            'bill' => $bill->load(['items', 'dehyari.village.section']),
+        ]);
+
+        $pdf->setPaper('A4');
+        $pdf->setOptions([
+            'defaultFont' => 'Vazirmatn',
+            'isRemoteEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+            'direction' => 'rtl',
+        ]);
+
+        $filename = 'bill-' . $bill->bill_number . '.pdf';
+        return $pdf->download($filename);
     }
 }

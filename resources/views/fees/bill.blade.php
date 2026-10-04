@@ -146,7 +146,8 @@
 @endif
 
 <div class="print-btn">
-    <button onclick="window.print()">🖨 چاپ / ذخیره PDF</button>
+    <a href="{{ route('fees.bill.pdf', $bill->bill_number) }}" style="display:inline-block;padding:10px 20px;background:#d32f2f;color:#fff;border:none;border-radius:9px;text-decoration:none;font-family:inherit;font-size:14px;cursor:pointer;margin:4px">📄 دانلود PDF</a>
+        <button onclick="window.print()">🖨 چاپ</button>
     <a href="{{ route('fees.calculator') }}">محاسبه جدید</a>
 </div>
 
