@@ -9,8 +9,9 @@
 body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; color: #263238; }
 
 .header {
-    background: linear-gradient(135deg, #0d2e4f, #1565c0);
-    color: white;
+    background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%);
+    color: #ffffff;
+    border-bottom: 3px solid #ffd54f;
     padding: 18px 24px;
     display: flex;
     justify-content: space-between;
@@ -26,8 +27,9 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     color: white;
     text-decoration: none;
     padding: 7px 14px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,213,79,0.15);
     border-radius: 8px;
+    border: 1px solid rgba(255,213,79,0.3);
     font-size: 12.5px;
 }
 .header .top-actions a:hover { background: rgba(255,255,255,0.25); }
@@ -212,7 +214,7 @@ tr:hover { background: #f8fafc; }
     margin-bottom: 10px;
     cursor: pointer;
 }
-.checkbox-field:hover { background: #f0f7ff; }
+.checkbox-field:hover { border-color: #1565c0; }
 .checkbox-field input[type="checkbox"] { width: 18px; height: 18px; }
 .checkbox-field label { margin: 0; cursor: pointer; font-weight: 600; color: #37474f; }
 
@@ -255,7 +257,11 @@ tr:hover { background: #f8fafc; }
 }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-<link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
+
+
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=20261004">
 </head>
 <body>
 

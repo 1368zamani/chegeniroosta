@@ -253,6 +253,153 @@ a[href^="tel:"] {
     display: inline-block;
     font-weight: 600;
 }
+
+        /* ============ کارت دهیار کناری (مثل بخشدار) ============ */
+        .dehyar-side-card {
+            float: left;
+            width: 260px;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 24px 18px;
+            margin: 0 20px 20px 0;
+            box-shadow: 0 6px 22px rgba(30,91,156,0.12);
+            border-top: 4px solid #1e5b9c;
+            text-align: center;
+            display: block;
+        }
+        .dehyar-side-card img {
+            width: 120px !important;
+            height: 120px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 4px solid #e3f2fd !important;
+            display: block !important;
+            margin: 0 auto 12px !important;
+        }
+        .dehyar-side-card > div[style*="linear-gradient"] {
+            width: 120px !important;
+            height: 120px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 48px !important;
+            margin: 0 auto 12px !important;
+        }
+        .dehyar-side-card > div[style*="flex: 1"] {
+            display: block !important;
+            min-width: 0 !important;
+            width: 100% !important;
+        }
+        .dehyar-side-card h3 {
+            font-size: 16px !important;
+            margin: 8px 0 6px !important;
+            color: #1e5b9c !important;
+            text-align: center !important;
+            font-weight: 800 !important;
+        }
+        .dehyar-side-card p {
+            font-size: 12.5px !important;
+            text-align: center !important;
+            margin: 0 0 14px !important;
+            color: #78909c !important;
+            line-height: 1.7 !important;
+        }
+        .dehyar-side-card > a {
+            display: inline-block !important;
+            background: #1e5b9c !important;
+            color: #ffffff !important;
+            padding: 10px 20px !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            white-space: normal !important;
+        }
+        @media (max-width: 800px) {
+            .dehyar-side-card {
+                float: none;
+                width: 100%;
+                margin: 0 0 20px 0;
+            }
+        }
+
+        /* ═══ VILLAGE-LAYOUT-2COL ═══ */
+        .village-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            align-items: start;
+        }
+        .village-main {
+            min-width: 0;
+        }
+        .village-sidebar {
+            position: sticky;
+            top: 16px;
+        }
+        .village-sidebar .dehyar-side-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 22px 16px;
+            box-shadow: 0 6px 22px rgba(30,91,156,0.12);
+            border-top: 4px solid #1e5b9c;
+            text-align: center;
+            display: block;
+            float: none;
+            width: 100%;
+        }
+        .village-sidebar .dehyar-side-card img {
+            width: 130px !important;
+            height: 130px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 4px solid #e3f2fd !important;
+            display: block !important;
+            margin: 0 auto 12px !important;
+        }
+        .village-sidebar .dehyar-side-card > div[style*="linear-gradient"] {
+            width: 130px !important;
+            height: 130px !important;
+            margin: 0 auto 12px !important;
+            font-size: 56px !important;
+        }
+        .village-sidebar .dehyar-side-card > div[style*="flex: 1"] {
+            display: block !important;
+            width: 100% !important;
+        }
+        .village-sidebar .dehyar-side-card h3 {
+            font-size: 16px !important;
+            color: #1e5b9c !important;
+            text-align: center !important;
+            margin: 8px 0 6px !important;
+            font-weight: 800 !important;
+        }
+        .village-sidebar .dehyar-side-card p {
+            font-size: 12.5px !important;
+            text-align: center !important;
+            color: #78909c !important;
+            margin: 0 0 12px !important;
+        }
+        .village-sidebar .dehyar-side-card > a {
+            display: inline-block !important;
+            background: #1e5b9c !important;
+            color: #fff !important;
+            padding: 10px 20px !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+        }
+        @media (max-width: 900px) {
+            .village-layout {
+                grid-template-columns: 1fr;
+            }
+            .village-sidebar {
+                position: static;
+                order: -1;
+            }
+        }
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
@@ -272,6 +419,9 @@ a[href^="tel:"] {
 ])
 
 <div class="container">
+
+    <div class="village-layout">
+        <main class="village-main">
 
     {{-- ============ درباره روستا ============ --}}
     @if($village->description)
@@ -492,8 +642,24 @@ a[href^="tel:"] {
     </div>
 
     {{-- ============ معرفی دهیار ============ --}}
-    @if($village->dehyar_name)
-        <div style="background: white; border-radius: 14px; padding: 25px 28px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(13,46,79,0.06); border-right: 5px solid #1e5b9c; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+
+    {{-- ============ درخواست مردمی ============ --}}
+    <div class="v-request-box">
+        <h3>📩 درخواست خود را ثبت کنید</h3>
+        <p>درخواست‌های خود در زمینه آب، برق، گاز، راه و ... را آنلاین ثبت کنید و با کد پیگیری دنبال کنید.</p>
+        <div class="v-request-buttons">
+            <a href="{{ route('village.site.request.create', $village->slug) }}" class="v-btn v-btn-primary">✍️ ثبت درخواست</a>
+            <a href="{{ route('village.site.request.track', $village->slug) }}" class="v-btn v-btn-secondary">🔍 پیگیری</a>
+            <a href="{{ route('fees.calculator', ['village' => $village->slug]) }}" class="v-btn v-btn-primary" style="background:#2e7d32;color:white">💰 محاسبه و پرداخت عوارض</a>
+        </div>
+    </div>
+
+
+        </main>
+
+        <aside class="village-sidebar">
+                @if($village->dehyar_name)
+        <div class="dehyar-side-card">
             @if($village->dehyar_photo)
                 <img src="{{ asset('storage/' . $village->dehyar_photo) }}" alt="{{ $village->dehyar_name }}"
                      style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #e3f2fd;">
@@ -512,18 +678,8 @@ a[href^="tel:"] {
             </a>
         </div>
     @endif
-
-    {{-- ============ درخواست مردمی ============ --}}
-    <div class="v-request-box">
-        <h3>📩 درخواست خود را ثبت کنید</h3>
-        <p>درخواست‌های خود در زمینه آب، برق، گاز، راه و ... را آنلاین ثبت کنید و با کد پیگیری دنبال کنید.</p>
-        <div class="v-request-buttons">
-            <a href="{{ route('village.site.request.create', $village->slug) }}" class="v-btn v-btn-primary">✍️ ثبت درخواست</a>
-            <a href="{{ route('village.site.request.track', $village->slug) }}" class="v-btn v-btn-secondary">🔍 پیگیری</a>
-            <a href="{{ route('fees.calculator', ['village' => $village->slug]) }}" class="v-btn v-btn-primary" style="background:#2e7d32;color:white">💰 محاسبه و پرداخت عوارض</a>
-        </div>
+        </aside>
     </div>
-
 </div>
 
 {{-- ============ موقعیت روی نقشه ============ --}}

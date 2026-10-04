@@ -756,3 +756,9 @@ Route::middleware('auth')->prefix('admin/fees/officers')->name('admin.fees.offic
 /* ═══ ایجاد کاربر جدید ═══ */
 Route::middleware('auth')->post('/admin/passwords/store', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'store'])
     ->name('admin.passwords.store');
+
+/* ═══ آپلود عکس دهیار ═══ */
+Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin.village.dehyar.')->group(function () {
+    Route::post('/photo', [\App\Http\Controllers\Admin\DehyariPhotoController::class, 'upload'])->name('photo.upload');
+    Route::delete('/photo', [\App\Http\Controllers\Admin\DehyariPhotoController::class, 'delete'])->name('photo.delete');
+});

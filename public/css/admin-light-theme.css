@@ -1,0 +1,200 @@
+/* ═══════════════════════════════════════════════════
+   ADMIN-LIGHT-THEME-2026 — زمینه سفید + متن آبی
+   ═══════════════════════════════════════════════════ */
+
+:root {
+    --al-bg:       #ffffff;
+    --al-bg-soft:  #f5f9ff;
+    --al-blue:     #1565c0;
+    --al-blue-dk:  #0d47a1;
+    --al-blue-lt:  #e3f2fd;
+    --al-text:     #1565c0;
+    --al-border:   #e3f2fd;
+}
+
+/* ═══ بدنه اصلی ═══ */
+body,
+html {
+    background: var(--al-bg) !important;
+    color: var(--al-text) !important;
+}
+
+/* ═══ کارت‌ها ═══ */
+.card,
+.box,
+.panel-card,
+.stat,
+.stat-card {
+    background: #ffffff !important;
+    color: var(--al-blue) !important;
+    border: 1px solid var(--al-border) !important;
+    box-shadow: 0 2px 10px rgba(21,101,192,0.06) !important;
+}
+
+.card h1, .card h2, .card h3, .card h4, .card h5,
+.box h1, .box h2, .box h3, .box h4, .box h5,
+.panel-card h3,
+.stat .num,
+.stat-card .num {
+    color: var(--al-blue) !important;
+    background: transparent !important;
+}
+
+/* ═══ فرم‌ها ═══ */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+    background: #ffffff !important;
+    color: var(--al-blue) !important;
+    border: 1.5px solid var(--al-blue) !important;
+    border-radius: 8px !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: var(--al-blue-dk) !important;
+    box-shadow: 0 0 0 3px rgba(21,101,192,0.15) !important;
+}
+
+label {
+    color: var(--al-blue) !important;
+    font-weight: 700 !important;
+}
+
+/* ═══ جدول‌ها ═══ */
+table {
+    background: #ffffff !important;
+    color: var(--al-blue) !important;
+}
+
+table thead th {
+    background: var(--al-blue-lt) !important;
+    color: var(--al-blue-dk) !important;
+    border-bottom: 2px solid var(--al-blue) !important;
+    font-weight: 800 !important;
+}
+
+table tbody td {
+    background: #ffffff !important;
+    color: var(--al-blue) !important;
+    border-bottom: 1px solid var(--al-border) !important;
+}
+
+table tbody tr:hover {
+    background: var(--al-bg-soft) !important;
+}
+
+table tbody tr:hover td {
+    background: var(--al-bg-soft) !important;
+}
+
+/* ═══ دکمه‌ها ═══ */
+.btn,
+button.btn {
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+}
+.btn-blue { background: var(--al-blue) !important; color: #fff !important; }
+.btn-blue:hover { background: var(--al-blue-dk) !important; }
+.btn-green { background: #10b981 !important; color: #fff !important; }
+.btn-red { background: #D32F2F !important; color: #fff !important; }
+.btn-gray { background: #90a4ae !important; color: #fff !important; }
+
+/* ═══ منوهای کناری و بالایی ═══ */
+.sidebar,
+.admin-sidebar,
+aside.sidebar,
+.unified-sidebar {
+    background: #ffffff !important;
+    border: 1px solid var(--al-border) !important;
+}
+
+.unified-sidebar .sb-profile,
+.sidebar .sb-profile {
+    background: #ffffff !important;
+    color: var(--al-blue) !important;
+    border-bottom: 2px solid var(--al-blue) !important;
+}
+
+.unified-sidebar .sb-item,
+.sidebar-menu a,
+.admin-sidebar a {
+    color: var(--al-blue) !important;
+    background: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.unified-sidebar .sb-item:hover,
+.sidebar-menu a:hover {
+    background: var(--al-blue-lt) !important;
+    color: var(--al-blue-dk) !important;
+}
+
+.unified-sidebar .sb-item.active,
+.sidebar-menu a.active {
+    background: var(--al-blue) !important;
+    color: #ffffff !important;
+}
+
+.unified-sidebar .sb-section,
+.sidebar-menu .menu-label {
+    color: var(--al-blue) !important;
+    opacity: 0.7 !important;
+}
+
+.unified-sidebar .sb-divider {
+    background: var(--al-border) !important;
+}
+
+/* ═══ Pill ها ═══ */
+.pill-unpaid { background: #D32F2F !important; color: #fff !important; }
+.pill-paid { background: #10b981 !important; color: #fff !important; }
+.pill-pending_review { background: #e65100 !important; color: #fff !important; }
+.pill-approved { background: #2e7d32 !important; color: #fff !important; }
+.pill-rejected { background: #607d8b !important; color: #fff !important; }
+
+/* ═══ Alert ها ═══ */
+.alert-success, .success {
+    background: #e8f5e9 !important;
+    color: #2e7d32 !important;
+    border-right: 4px solid #2e7d32 !important;
+}
+.alert-error, .error {
+    background: #ffebee !important;
+    color: #c62828 !important;
+    border-right: 4px solid #c62828 !important;
+}
+.alert-info {
+    background: var(--al-blue-lt) !important;
+    color: var(--al-blue-dk) !important;
+    border-right: 4px solid var(--al-blue) !important;
+}
+
+/* ═══ متن‌های عمومی — همه آبی ═══ */
+p, span, div, li, td, th, a:not(.btn) {
+    color: var(--al-blue);
+}
+h1, h2, h3, h4, h5, h6 {
+    color: var(--al-blue) !important;
+}
+
+/* ═══ لینک‌ها ═══ */
+a {
+    color: var(--al-blue) !important;
+    font-weight: 700 !important;
+}
+a:hover {
+    color: var(--al-blue-dk) !important;
+}
+a.btn { color: #ffffff !important; }
+
+/* ═══ اسکرول‌بار ═══ */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--al-bg-soft); }
+::-webkit-scrollbar-thumb { background: var(--al-blue-lt); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--al-blue); }

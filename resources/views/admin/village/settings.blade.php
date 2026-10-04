@@ -4,9 +4,208 @@
 
 @section('content')
 
+<style>
+/* ═══ CHECKBOX-FIX-FINAL ═══ */
+
+/* پاک کردن هر hover قبلی */
+.checkbox-field,
+.checkbox-field:hover,
+.checkbox-field:focus,
+.checkbox-field:active {
+    background: #ffffff !important;
+    color: #1565c0 !important;
+    padding: 14px 18px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+    border: 1.5px solid #e3f2fd !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    transition: none !important;
+    cursor: pointer !important;
+}
+
+/* فقط border عوض شه، نه background */
+.checkbox-field:hover {
+    border-color: #1565c0 !important;
+    box-shadow: 0 2px 8px rgba(21,101,192,0.12) !important;
+}
+
+/* متن داخل label همیشه آبی */
+.checkbox-field label,
+.checkbox-field span,
+.checkbox-field * {
+    color: #1565c0 !important;
+    background: transparent !important;
+    font-weight: 700 !important;
+}
+
+/* چک‌باکس آبی */
+.checkbox-field input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    accent-color: #1565c0 !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+}
+
+/* اطمینان از کارت سفید */
+.card {
+    background: #ffffff !important;
+    color: #1565c0 !important;
+}
+
+.card h3 {
+    color: #0d47a1 !important;
+    background: transparent !important;
+}
+</style>
+
+
+<style>
+/* ═══ SETTINGS-FORCE-WHITE ═══ */
+.card,
+.card > *,
+.card h3,
+.card p,
+.card div,
+.card label,
+.checkbox-field,
+.checkbox-field:hover,
+.checkbox-field label,
+.checkbox-field span,
+.settings-page,
+.settings-page * {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #1565c0 !important;
+}
+
+.card {
+    border: 1px solid #e3f2fd !important;
+    box-shadow: 0 2px 10px rgba(21,101,192,0.06) !important;
+}
+
+.card h3 {
+    color: #0d47a1 !important;
+    border-bottom: 2px solid #e3f2fd !important;
+    font-weight: 800 !important;
+}
+
+.checkbox-field {
+    padding: 12px 16px !important;
+    margin-bottom: 8px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.checkbox-field:hover {
+    background: #e3f2fd !important;
+}
+
+.checkbox-field input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    accent-color: #1565c0 !important;
+    cursor: pointer !important;
+}
+
+label, span {
+    color: #1565c0 !important;
+    font-weight: 700 !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    background: #ffffff !important;
+    color: #1565c0 !important;
+    border: 1.5px solid #1565c0 !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: #0d47a1 !important;
+    box-shadow: 0 0 0 3px rgba(21,101,192,0.15) !important;
+}
+
+.btn-primary {
+    background: #1565c0 !important;
+    color: #fff !important;
+}
+
+.btn-success {
+    background: #10b981 !important;
+    color: #fff !important;
+}
+</style>
+
+
 <div class="page-title">
     <h2>⚙️ تنظیمات نمایش {{ $village->name }}</h2>
 </div>
+
+{{-- ═══ عکس دهیار ═══ --}}
+    <div style="background:#f5f9ff;border:2px solid #1565c0;border-radius:14px;padding:18px;margin-bottom:20px">
+        <h3 style="margin:0 0 12px;font-size:15px;color:#1565c0;font-weight:800">📸 عکس دهیار</h3>
+
+        @if(session('success'))
+            <div style="background:#e8f5e9;color:#2e7d32;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">✅ {{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div style="background:#ffebee;color:#c62828;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">⚠️ {{ session('error') }}</div>
+        @endif
+        @if($errors->any())
+            <div style="background:#ffebee;color:#c62828;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">
+                @foreach($errors->all() as $e) <div>• {{ $e }}</div> @endforeach
+            </div>
+        @endif
+
+        <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex-shrink:0">
+                @if($village->dehyar_photo && Storage::disk('public')->exists($village->dehyar_photo))
+                    <img src="{{ Storage::disk('public')->url($village->dehyar_photo) }}"
+                         alt="{{ $village->dehyar_name }}"
+                         style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #1565c0;box-shadow:0 4px 14px rgba(21,101,192,0.3)">
+                @else
+                    <div style="width:140px;height:140px;border-radius:50%;background:#e3f2fd;display:flex;align-items:center;justify-content:center;font-size:50px;color:#90a4ae;border:4px solid #1565c0">👤</div>
+                @endif
+            </div>
+
+            <div style="flex:1;min-width:280px">
+                <form method="POST" action="{{ route('admin.village.dehyar.photo.upload', $village->id) }}"
+                      enctype="multipart/form-data"
+                      style="display:flex;flex-direction:column;gap:10px">
+                    @csrf
+                    <label style="font-weight:700;color:#37474f;font-size:13px">انتخاب عکس (JPG / PNG / WEBP — حداکثر ۵ مگابایت)</label>
+                    <input type="file" name="dehyar_photo" accept=".jpg,.jpeg,.png,.webp" required
+                           style="padding:10px;border:1.5px solid #cfd8dc;border-radius:8px;background:#fff;font-family:inherit">
+                    <button type="submit"
+                            style="padding:11px 22px;background:#1565c0;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit;align-self:flex-start">
+                        📤 آپلود عکس
+                    </button>
+                </form>
+
+                @if($village->dehyar_photo)
+                    <form method="POST" action="{{ route('admin.village.dehyar.photo.delete', $village->id) }}"
+                          onsubmit="return confirm('حذف عکس دهیار؟')" style="margin-top:10px">
+                        @csrf @method('DELETE')
+                        <button type="submit"
+                                style="padding:9px 18px;background:#D32F2F;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit">
+                            🗑 حذف عکس فعلی
+                        </button>
+                    </form>
+                @endif
+            </div>
+        </div>
+    </div>
 
 <form method="POST" action="{{ route('admin.village.settings.update', $village->id) }}">
     @csrf
@@ -101,7 +300,7 @@
         <div class="row-2">
             <div class="field">
                 <label>نام دهیار</label>
-                <input type="text" name="dehyar_name" value="{{ old('dehyar_name', $village->dehyar_name) }}">
+    <input type="text" name="dehyar_name" value="{{ old('dehyar_name', $village->dehyar_name) }}">
             </div>
             <div class="field">
                 <label>ساعات پاسخگویی</label>

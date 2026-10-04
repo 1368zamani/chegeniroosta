@@ -94,6 +94,7 @@
         .empty .icon { font-size: 50px; opacity: .5; margin-bottom: 16px; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 </head>
 <body>
 
@@ -124,3 +125,5 @@
 
 </body>
 </html>
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">

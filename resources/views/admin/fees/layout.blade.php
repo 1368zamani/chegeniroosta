@@ -48,7 +48,7 @@ label{font-size:12.5px;color:#546e7a;display:block;margin-bottom:3px}
 @media(max-width:600px){.nav{font-size:12px}th,td{padding:8px 6px;font-size:12.5px}}
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-<link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 </head>
 <body>
 <div class="header">
@@ -87,3 +87,5 @@ label{font-size:12.5px;color:#546e7a;display:block;margin-bottom:3px}
 </div>
 </body>
 </html>
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">

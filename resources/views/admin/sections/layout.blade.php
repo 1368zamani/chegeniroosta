@@ -186,7 +186,7 @@ tr:hover { background: #f8fafc; }
 }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-<link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 </head>
 <body>
 
@@ -268,3 +268,5 @@ tr:hover { background: #f8fafc; }
 
 </body>
 </html>
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">

@@ -27,6 +27,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 .action-card p { margin: 0; color: #78909c; font-size: 13px; }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 </head>
 <body>
 <div class="header">
@@ -93,3 +94,5 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 </div>
 </body>
 </html>
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">

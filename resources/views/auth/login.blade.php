@@ -11,7 +11,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -33,7 +33,7 @@
         }
         .brand h1 {
             font-size: 1.4rem;
-            color: #0f766e;
+            color: #1565c0;
             margin-bottom: .35rem;
         }
         .brand p {
@@ -61,7 +61,7 @@
         }
         input:focus {
             outline: none;
-            border-color: #0f766e;
+            border-color: #1565c0;
             background: #fff;
             box-shadow: 0 0 0 3px rgba(15,118,110,.15);
         }
@@ -76,7 +76,7 @@
         button {
             width: 100%;
             padding: .85rem;
-            background: #0f766e;
+            background: #1565c0;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -86,7 +86,7 @@
             cursor: pointer;
             transition: background .15s;
         }
-        button:hover { background: #115e59; }
+        button:hover { background: #0d47a1; }
         .errors {
             background: #fef2f2;
             border: 1px solid #fecaca;

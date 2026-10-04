@@ -40,6 +40,7 @@
         .badge-village { background: #e3f2fd; color: #1565c0; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 </head>
 <body>
 
@@ -69,3 +70,5 @@
 
 </body>
 </html>
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">

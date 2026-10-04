@@ -32,6 +32,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 </head>
 <body>
 <div class="header">
@@ -49,3 +50,5 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 </div>
 </body>
 </html>
+
+<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">
