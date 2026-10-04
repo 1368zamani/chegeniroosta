@@ -766,3 +766,25 @@ Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin
 /* ═══ دانلود PDF قبض ═══ */
 Route::get('/fees/bill/{billNumber}/pdf', [\App\Http\Controllers\Public\FeeCalculatorController::class, 'downloadPdf'])
     ->name('fees.bill.pdf');
+
+/* ═══════════════════════════════════════════════════
+   ماژول تعرفه عوارض و بهای خدمات (فاز ۱)
+   ═══════════════════════════════════════════════════ */
+Route::middleware('auth')->prefix('admin/tariffs')->name('admin.tariffs.')->group(function () {
+    Route::get('/',                     [\App\Http\Controllers\Admin\TariffSetController::class, 'index'])->name('index');
+    Route::get('/create',               [\App\Http\Controllers\Admin\TariffSetController::class, 'create'])->name('create');
+    Route::post('/',                    [\App\Http\Controllers\Admin\TariffSetController::class, 'store'])->name('store');
+    Route::get('/{id}',                 [\App\Http\Controllers\Admin\TariffSetController::class, 'show'])->whereNumber('id')->name('show');
+    Route::get('/{id}/edit',            [\App\Http\Controllers\Admin\TariffSetController::class, 'edit'])->whereNumber('id')->name('edit');
+    Route::put('/{id}',                 [\App\Http\Controllers\Admin\TariffSetController::class, 'update'])->whereNumber('id')->name('update');
+    Route::post('/{id}/transition',     [\App\Http\Controllers\Admin\TariffSetController::class, 'transition'])->whereNumber('id')->name('transition');
+    Route::post('/{id}/approval',       [\App\Http\Controllers\Admin\TariffSetController::class, 'uploadApproval'])->whereNumber('id')->name('approval.upload');
+    Route::delete('/{id}/approval',     [\App\Http\Controllers\Admin\TariffSetController::class, 'deleteApproval'])->whereNumber('id')->name('approval.delete');
+    Route::get('/{id}/approval/download', [\App\Http\Controllers\Admin\TariffSetController::class, 'downloadApproval'])->whereNumber('id')->name('approval.download');
+    Route::delete('/{id}',              [\App\Http\Controllers\Admin\TariffSetController::class, 'destroy'])->whereNumber('id')->name('destroy');
+});
+
+/* ═══ صفحه عمومی تعرفه روستا ═══ */
+Route::middleware(['section', 'village'])
+    ->get('/village/{slug}/tariff', [\App\Http\Controllers\Public\VillageTariffController::class, 'show'])
+    ->name('village.tariff.show');

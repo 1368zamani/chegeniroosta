@@ -67,6 +67,7 @@ label{font-size:12.5px;color:#546e7a;display:block;margin-bottom:3px}
         @if($pending > 0) <span style="background:#c62828;color:#fff;padding:1px 7px;border-radius:10px;font-size:11px">{{ $pending }}</span> @endif
     </a>
     <a href="{{ route('admin.fees.bills.index') }}" class="@if(request()->routeIs('admin.fees.bills.*')) active @endif">🧾 قبوض</a>
+    <a href="{{ route('admin.tariffs.index') }}" class="@if(request()->routeIs('admin.tariffs.*')) active @endif">📋 تعرفه سالانه</a>
     <a href="{{ route('admin.fees.tariffs.index') }}" class="@if(request()->routeIs('admin.fees.tariffs.*')) active @endif">📋 تعرفه‌ها</a>
     <a href="{{ route('admin.fees.accounts.index') }}" class="@if(request()->routeIs('admin.fees.accounts.*')) active @endif">🏦 حساب‌ها</a>
     <a href="{{ route('admin.fees.reports.index') }}" class="@if(request()->routeIs('admin.fees.reports.*')) active @endif">📈 گزارش‌ها</a>
