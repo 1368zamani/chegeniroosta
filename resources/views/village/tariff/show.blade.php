@@ -71,6 +71,7 @@ tr:hover { background: #f5f9ff; }
                         <th>عنوان</th>
                         <th style="width:100px">واحد</th>
                         <th style="width:180px">نرخ نهایی</th>
+                        <th style="width:100px">عملیات</th>
                     </tr>
                 </thead>
                 <tbody>

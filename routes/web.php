@@ -788,3 +788,15 @@ Route::middleware('auth')->prefix('admin/tariffs')->name('admin.tariffs.')->grou
 Route::middleware(['section', 'village'])
     ->get('/village/{slug}/tariff', [\App\Http\Controllers\Public\VillageTariffController::class, 'show'])
     ->name('village.tariff.show');
+
+/* ═══ API ماشین‌حساب تعرفه ═══ */
+Route::prefix('api/tariff')->name('api.tariff.')->group(function () {
+    Route::get('/items/{itemId}/schema',    [\App\Http\Controllers\Public\TariffCalculatorController::class, 'schema'])->whereNumber('itemId')->name('schema');
+    Route::post('/items/{itemId}/calculate', [\App\Http\Controllers\Public\TariffCalculatorController::class, 'calculate'])->whereNumber('itemId')->name('calculate');
+});
+
+/* ═══ فرم ۲ و ۳ تعرفه ═══ */
+Route::middleware('auth')->prefix('admin/tariffs')->name('admin.tariffs.')->group(function () {
+    Route::get('/{id}/form2', [\App\Http\Controllers\Admin\TariffFormController::class, 'form2'])->whereNumber('id')->name('form2');
+    Route::get('/{id}/form3', [\App\Http\Controllers\Admin\TariffFormController::class, 'form3'])->whereNumber('id')->name('form3');
+});

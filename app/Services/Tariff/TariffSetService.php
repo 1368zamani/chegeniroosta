@@ -174,6 +174,7 @@ class TariffSetService
     public function propose(TariffSet $set): void
     {
         $this->assertStatus($set, 'draft');
+        $this->assertDeadlineNotPassed($set);
         $set->update(['status' => 'proposed']);
     }
 
@@ -279,6 +280,31 @@ class TariffSetService
         if ($set->status !== $expected) {
             throw new InvalidArgumentException(
                 "وضعیت فعلی «{$set->statusLabel()}» است، اما انتظار «{$expected}» می‌رفت."
+            );
+        }
+    }
+
+    /**
+     * آیا مهلت قانونی تصویب گذشته است؟
+     * طبق قانون: مهلت تصویب ۱۵ بهمن، اعلام عمومی تا پایان بهمن.
+     */
+    public function isPastDeadline(TariffSet $set): bool
+    {
+        if (!$set->deadline_approval) return false;
+
+        // مقایسه شمسی — تاریخ‌ها به صورت رشته "1405/11/15" ذخیره می‌شوند
+        $today = \Morilog\Jalali\Jalalian::now()->format('Y/m/d');
+        return $today > $set->deadline_approval;
+    }
+
+    /**
+     * اطمینان از اینکه مهلت نگذشته (برای تغییرات پس از finalized).
+     */
+    public function assertDeadlineNotPassed(TariffSet $set): void
+    {
+        if ($this->isPastDeadline($set)) {
+            throw new InvalidArgumentException(
+                'مهلت قانونی تغییر تعرفه (۱۵ بهمن) گذشته است. تغییر عناوین و ضوابط ممنوع است.'
             );
         }
     }

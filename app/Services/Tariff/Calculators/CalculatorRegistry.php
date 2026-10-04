@@ -48,6 +48,7 @@ class CalculatorRegistry
             new MachineryHourlyCalculator(),
             new ExcavationCalculator(),
             new WasteCalculator(),
+            new Article99PenaltyCalculator(),
         ];
     }
 }

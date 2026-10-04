@@ -27,6 +27,8 @@
         <div>
             @if(!$set->isLocked())
                 <a href="{{ route('admin.tariffs.edit', $set->id) }}" class="btn btn-yellow">✏️ ویرایش آیتم‌ها</a>
+                <a href="{{ route('admin.tariffs.form2', $set->id) }}" class="btn btn-blue">📄 فرم ۲ (عوارض)</a>
+                <a href="{{ route('admin.tariffs.form3', $set->id) }}" class="btn btn-green">📄 فرم ۳ (بهای خدمات)</a>
             @endif
         </div>
     </div>
