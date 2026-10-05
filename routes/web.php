@@ -707,3 +707,8 @@ Route::middleware(['auth'])
         Route::post('/{tariffSet}/transition/{to}', [\App\Http\Controllers\Admin\TariffSetController::class, 'transition'])->name('transition');
         Route::delete('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'destroy'])->name('destroy');
     });
+
+// ماشین‌حساب عمومی (بدون احراز هویت)
+Route::post('/village/{slug}/tariff/calculate',
+    [\App\Http\Controllers\Public\TariffCalculatorController::class, 'calculate'])
+    ->name('tariff.public.calculate');

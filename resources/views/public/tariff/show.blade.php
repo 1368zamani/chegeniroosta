@@ -21,6 +21,8 @@
     <input type="text" id="searchBox" placeholder="جست‌وجو..." class="w-full mb-4 p-2 border rounded no-print">
     @include('public.tariff._section', ['title' => 'عوارض محلی', 'items' => $grouped->get('levy', collect()), 'type' => 'levy'])
     @include('public.tariff._section', ['title' => 'بهای خدمات', 'items' => $grouped->get('service_fee', collect()), 'type' => 'service_fee'])
+
+    @include('public.tariff._calculator', ['schemas' => $schemas ?? [], 'slug' => $village->slug])
     <div class="mt-8 no-print"><button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded">نسخه‌ی چاپی</button></div>
 </div>
 <script>

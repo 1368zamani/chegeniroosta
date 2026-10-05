@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\TariffSet;
 use App\Models\Village;
+use App\Services\Tariff\Calculators\CalculatorRegistry;
 use Illuminate\Http\Request;
 
 class TariffController extends Controller
 {
-    public function show(Request $request, string $slug)
+    public function show(Request $request, string $slug, CalculatorRegistry $registry)
     {
         $village = Village::where('slug', $slug)->firstOrFail();
 
@@ -34,6 +35,19 @@ class TariffController extends Controller
             ->filter(fn($i) => $i->title)
             ->groupBy(fn($i) => $i->title->type);
 
-        return view('public.tariff.show', compact('village', 'set', 'grouped', 'years', 'year'));
+        // ساخت schema ماشین‌حساب برای آیتم‌های دارای calculator
+        $schemas = [];
+        foreach ($set->items as $item) {
+            if (!$item->is_active || !$item->title) continue;
+            $key = $item->title->formula_key;
+            if (!$key || !$registry->has($key)) continue;
+            $calc = $registry->get($key);
+            $schemas[$item->id] = [
+                'label'  => $calc->label(),
+                'schema' => $calc->inputSchema(),
+            ];
+        }
+
+        return view('public.tariff.show', compact('village', 'set', 'grouped', 'years', 'year', 'schemas'));
     }
 }
