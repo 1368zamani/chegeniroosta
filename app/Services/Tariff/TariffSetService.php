@@ -5,6 +5,7 @@ namespace App\Services\Tariff;
 use App\Models\TariffItem;
 use App\Models\TariffParameter;
 use App\Models\TariffSet;
+use App\Models\TariffWorkflowLog;
 use App\Models\TariffTitle;
 use App\Models\User;
 use App\Models\Village;
@@ -147,7 +148,9 @@ class TariffSetService
     {
         $this->assertStatus($set, 'draft');
         $this->assertDeadlineNotPassed($set);
+        $from = $set->status;
         $set->update(['status' => 'proposed']);
+        TariffWorkflowLog::record($set, $from, 'proposed', auth()->user());
     }
 
     public function approveByVillageCouncil(TariffSet $set): void
@@ -160,25 +163,33 @@ class TariffSetService
             throw new InvalidArgumentException('افزایش از تورم بیشتر: ' . implode('، ', $msgs));
         }
 
+        $from = $set->status;
         $set->update(['status' => 'village_council_approved', 'approved_at' => now()]);
+        TariffWorkflowLog::record($set, $from, 'village_council_approved', auth()->user());
     }
 
     public function approveByDistrictCouncil(TariffSet $set): void
     {
         $this->assertStatus($set, 'village_council_approved');
+        $from = $set->status;
         $set->update(['status' => 'district_council_approved']);
+        TariffWorkflowLog::record($set, $from, 'district_council_approved', auth()->user());
     }
 
     public function finalize(TariffSet $set): void
     {
         $this->assertStatus($set, 'district_council_approved');
+        $from = $set->status;
         $set->update(['status' => 'finalized', 'locked_at' => now()]);
+        TariffWorkflowLog::record($set, $from, 'finalized', auth()->user());
     }
 
     public function publish(TariffSet $set): void
     {
         $this->assertStatus($set, 'finalized');
+        $from = $set->status;
         $set->update(['status' => 'published', 'announced_at' => now()]);
+        TariffWorkflowLog::record($set, $from, 'published', auth()->user());
     }
 
     public function applyIncrease(int $previous, float $percent): int

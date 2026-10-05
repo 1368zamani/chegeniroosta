@@ -28,6 +28,8 @@ class TariffSet extends Model
     public function creator(): BelongsTo { return $this->belongsTo(User::class, 'created_by'); }
     public function parameters(): HasMany { return $this->hasMany(TariffParameter::class, 'tariff_set_id'); }
     public function items(): HasMany { return $this->hasMany(TariffItem::class, 'tariff_set_id'); }
+    public function exemptions(): HasMany { return $this->hasMany(TariffExemption::class, 'tariff_set_id'); }
+    public function workflowLogs(): HasMany { return $this->hasMany(TariffWorkflowLog::class, 'tariff_set_id'); }
 
     public function scopePublished($q) { return $q->where('status', 'published'); }
 
