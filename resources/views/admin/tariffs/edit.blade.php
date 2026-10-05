@@ -5,7 +5,7 @@
     <h1 class="text-2xl font-bold mb-2">ویرایش {{ $tariffSet->village?->name }} — {{ \App\Support\Number::fa($tariffSet->jalali_year) }}</h1>
     <p class="text-sm text-gray-600 mb-6">وضعیت: <strong>{{ $tariffSet->statusLabel() }}</strong></p>
     @if(session('success'))<div class="bg-emerald-50 border-r-4 border-emerald-500 text-emerald-800 p-3 mb-4 rounded">{{ session('success') }}</div>@endif
-    @if($errors->any())<div class="bg-red-50 border-r-4 border-red-500 text-red-800 p-3 mb-4 rounded"><ul class="list-disc pr-5">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>@endif
+    @if(isset($errors) && $errors->any())<div class="bg-red-50 border-r-4 border-red-500 text-red-800 p-3 mb-4 rounded"><ul class="list-disc pr-5">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>@endif
     <form method="POST" action="{{ route('admin.tariffs.items.update', $tariffSet) }}">
         @csrf
         <div class="bg-white rounded-lg shadow overflow-x-auto mb-6">
