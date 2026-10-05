@@ -689,3 +689,21 @@ Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin
 /* ═══ صفحه عمومی تعرفه روستا ═══ */
 /* ═══ فرم ۲ و ۳ تعرفه ═══ */
 /* ═══ هدایت به تعرفه رسمی روستا ═══ */
+
+// ═══ ماژول تعرفه عوارض و بهای خدمات ═══
+Route::get('/village/{slug}/tariff', [\App\Http\Controllers\Public\TariffController::class, 'show'])
+    ->name('tariff.public');
+
+Route::middleware(['auth'])
+    ->prefix('admin/tariffs')->name('admin.tariffs.')
+    ->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\TariffSetController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\TariffSetController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\TariffSetController::class, 'store'])->name('store');
+        Route::get('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'show'])->name('show');
+        Route::get('/{tariffSet}/edit', [\App\Http\Controllers\Admin\TariffSetController::class, 'edit'])->name('edit');
+        Route::put('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'update'])->name('update');
+        Route::post('/{tariffSet}/items', [\App\Http\Controllers\Admin\TariffSetController::class, 'updateItems'])->name('items.update');
+        Route::post('/{tariffSet}/transition/{to}', [\App\Http\Controllers\Admin\TariffSetController::class, 'transition'])->name('transition');
+        Route::delete('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'destroy'])->name('destroy');
+    });
