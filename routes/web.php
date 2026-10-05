@@ -712,3 +712,11 @@ Route::middleware(['auth'])
 Route::post('/village/{slug}/tariff/calculate',
     [\App\Http\Controllers\Public\TariffCalculatorController::class, 'calculate'])
     ->name('tariff.public.calculate');
+
+// فرم‌های چاپی تعرفه
+Route::middleware(['auth'])
+    ->prefix('admin/tariffs')->name('admin.tariffs.')
+    ->group(function () {
+        Route::get('/{tariffSet}/print/form2', [\App\Http\Controllers\Admin\TariffPrintController::class, 'form2'])->name('print.form2');
+        Route::get('/{tariffSet}/print/form3', [\App\Http\Controllers\Admin\TariffPrintController::class, 'form3'])->name('print.form3');
+    });

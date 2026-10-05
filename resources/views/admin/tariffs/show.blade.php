@@ -11,6 +11,8 @@
             @can('update', $tariffSet)
                 <a href="{{ route('admin.tariffs.edit', $tariffSet) }}" class="bg-emerald-600 text-white px-4 py-2 rounded">ویرایش</a>
             @endcan
+            <a href="{{ route('admin.tariffs.print.form2', $tariffSet) }}" target="_blank" class="bg-gray-700 text-white px-4 py-2 rounded">🖨 فرم ۲ (عوارض)</a>
+            <a href="{{ route('admin.tariffs.print.form3', $tariffSet) }}" target="_blank" class="bg-gray-700 text-white px-4 py-2 rounded">🖨 فرم ۳ (بهای خدمات)</a>
             <a href="{{ route('admin.tariffs.index') }}" class="px-4 py-2 border rounded">بازگشت</a>
         </div>
     </div>
