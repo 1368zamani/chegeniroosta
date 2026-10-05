@@ -625,9 +625,6 @@ img, iframe, video {
 <footer class="gov-footer">
 
     <div style="width:100%;text-align:center;padding:14px 16px;background:#ffd54f;color:#0d3b2e">
-    <a href="/fees-login" style="font-size:14px;font-weight:bold;color:#0d3b2e;text-decoration:none">
-        🔐 ورود کارشناسان مالی و عمرانی بخشداری
-    </a>
 </div>
 
 <div class="gov-footer-main">

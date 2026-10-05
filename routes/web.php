@@ -92,24 +92,6 @@ Route::middleware('village')->group(function () {
 Route::middleware('auth')->prefix('admin')->group(function () {
 
     // ═══ ماژول عوارض و بهای خدمات ═══
-    Route::prefix('fees')->name('admin.fees.')->group(function () {
-        // دسته‌بندی‌ها
-        Route::get('categories',              [\App\Http\Controllers\Admin\FeeCategoryController::class, 'index'])->name('categories.index');
-        Route::get('categories/create',       [\App\Http\Controllers\Admin\FeeCategoryController::class, 'create'])->name('categories.create');
-        Route::post('categories',             [\App\Http\Controllers\Admin\FeeCategoryController::class, 'store'])->name('categories.store');
-        Route::get('categories/{id}/edit',    [\App\Http\Controllers\Admin\FeeCategoryController::class, 'edit'])->name('categories.edit');
-        Route::put('categories/{id}',         [\App\Http\Controllers\Admin\FeeCategoryController::class, 'update'])->name('categories.update');
-        Route::delete('categories/{id}',      [\App\Http\Controllers\Admin\FeeCategoryController::class, 'destroy'])->name('categories.destroy');
-
-        // عناوین خدمت
-        Route::get('types',                   [\App\Http\Controllers\Admin\FeeTypeController::class, 'index'])->name('types.index');
-        Route::get('types/create',            [\App\Http\Controllers\Admin\FeeTypeController::class, 'create'])->name('types.create');
-        Route::post('types',                  [\App\Http\Controllers\Admin\FeeTypeController::class, 'store'])->name('types.store');
-        Route::get('types/{id}/edit',         [\App\Http\Controllers\Admin\FeeTypeController::class, 'edit'])->name('types.edit');
-        Route::put('types/{id}',              [\App\Http\Controllers\Admin\FeeTypeController::class, 'update'])->name('types.update');
-        Route::delete('types/{id}',           [\App\Http\Controllers\Admin\FeeTypeController::class, 'destroy'])->name('types.destroy');
-    });
-
     // مسئولین شهرستان
     Route::get('officials', [\App\Http\Controllers\AdminOfficialController::class, 'index'])
         ->name('admin.officials.index');
@@ -678,129 +660,32 @@ Route::get('/officials/bakhshdars', [\App\Http\Controllers\PublicOfficialControl
     ->name('officials.bakhshdars');
 
 /* ═══ محاسبه‌گر عمومی عوارض ═══ */
-use App\Http\Controllers\Public\FeeCalculatorController;
-
-Route::prefix('fees')->name('fees.')->group(function () {
-    Route::get('/', [FeeCalculatorController::class, 'index'])->name('calculator');
-    Route::post('/calculate', [FeeCalculatorController::class, 'calculate'])->name('calculate');
-    Route::get('/bill/{billNumber}', [FeeCalculatorController::class, 'show'])->name('bill.show');
-});
 
 /* ═══ پرداخت دستی (فیش واریزی) ═══ */
-Route::prefix('fees')->name('fees.')->group(function () {
-    Route::post('/bill/{billNumber}/upload', [\App\Http\Controllers\Public\FeePaymentController::class, 'upload'])->name('bill.upload');
-    Route::match(['get', 'post'], '/tracking', [\App\Http\Controllers\Public\FeePaymentController::class, 'tracking'])->name('tracking');
-});
-
 /* ═══ پنل ادمین — مدیریت عوارض ═══ */
-Route::middleware('auth')->prefix('admin/fees')->name('admin.fees.')->group(function () {
-    Route::get('dashboard', [\App\Http\Controllers\Admin\FeeAdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('bills', [\App\Http\Controllers\Admin\FeeAdminController::class, 'bills'])->name('bills.index');
-    Route::get('bills/{id}', [\App\Http\Controllers\Admin\FeeAdminController::class, 'billShow'])->whereNumber('id')->name('bills.show');
-    Route::get('payments', [\App\Http\Controllers\Admin\FeeAdminController::class, 'payments'])->name('payments.index');
-    Route::post('payments/{id}/approve', [\App\Http\Controllers\Admin\FeeAdminController::class, 'approvePayment'])->whereNumber('id')->name('payments.approve');
-    Route::post('payments/{id}/reject', [\App\Http\Controllers\Admin\FeeAdminController::class, 'rejectPayment'])->whereNumber('id')->name('payments.reject');
-    Route::get('tariffs', [\App\Http\Controllers\Admin\FeeAdminController::class, 'tariffs'])->name('tariffs.index');
-    Route::put('tariffs/{id}', [\App\Http\Controllers\Admin\FeeAdminController::class, 'tariffUpdate'])->whereNumber('id')->name('tariffs.update');
-    Route::get('accounts', [\App\Http\Controllers\Admin\FeeAdminController::class, 'accounts'])->name('accounts.index');
-    Route::put('accounts/{id}', [\App\Http\Controllers\Admin\FeeAdminController::class, 'accountUpdate'])->whereNumber('id')->name('accounts.update');
-    Route::get('export/bills.csv', [\App\Http\Controllers\Admin\FeeAdminController::class, 'exportBills'])->name('export.bills');
-    Route::get('export/payments.csv', [\App\Http\Controllers\Admin\FeeAdminController::class, 'exportPayments'])->name('export.payments');
-});
-
 /* ═══ نمایش فایل فیش برای ادمین (محافظت‌شده) ═══ */
-Route::middleware('auth')->get('/admin/fees/receipt/{id}', function (int $id) {
-    $u = auth()->user();
-    if (!$u || (!$u->isSuperAdmin() && !$u->isSectionAdmin())) abort(403);
-    $r = \App\Models\PaymentReceipt::findOrFail($id);
-    $path = storage_path('app/private/' . $r->file_path);
-    if (!file_exists($path)) $path = storage_path('app/' . $r->file_path);
-    abort_unless(file_exists($path), 404);
-    return response()->file($path);
-})->name('admin.fees.receipt');
-
 /* ═══ ورود اختصاصی کارشناس مالی و عمرانی بخشداری ═══ */
-use App\Http\Controllers\Auth\FeeOfficerLoginController;
-
-Route::get('/fees-login',  [FeeOfficerLoginController::class, 'showLoginForm'])->name('fees.login');
-Route::post('/fees-login', [FeeOfficerLoginController::class, 'login'])->name('fees.login.submit');
-Route::post('/fees-logout', [FeeOfficerLoginController::class, 'logout'])->name('fees.logout');
 
 /* ═══ مدیریت کارشناسان مالی و عمرانی (پنل بخشداری) ═══ */
 
 
 /* ═══ گزارش درآمد عوارض ═══ */
-Route::middleware('auth')->get('/admin/fees/reports', [\App\Http\Controllers\Admin\FeeReportController::class, 'index'])->name('admin.fees.reports.index');
-
-/* ═══ sitemap-news برای Google News ═══ */
 Route::get('/sitemap-news.xml', [\App\Http\Controllers\SitemapController::class, 'sitemapNews'])
     ->name('seo.sitemap.news');
 
 /* ═══ مدیریت رمزهای کاربران (سوپرادمین + بخشدار) ═══ */
-Route::middleware('auth')->prefix('admin/passwords')->name('admin.passwords.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'index'])->name('index');
-    Route::post('/{id}/reset', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'reset'])->whereNumber('id')->name('reset');
-    Route::post('/bulk-reset', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'bulkReset'])->name('bulk-reset');
-    Route::get('/generate', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'generate'])->name('generate');
-});
-
 /* ═══ مدیریت کارشناسان مالی و فنی/عمرانی ═══ */
-Route::middleware('auth')->prefix('admin/fees/officers')->name('admin.fees.officers.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'index'])->name('index');
-    Route::post('/', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'store'])->name('store');
-    Route::put('/{id}', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'update'])->whereNumber('id')->name('update');
-    Route::put('/{id}/password', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'updatePassword'])->whereNumber('id')->name('password');
-    Route::delete('/{id}', [\App\Http\Controllers\Admin\FeeOfficerController::class, 'destroy'])->whereNumber('id')->name('destroy');
-});
-
 /* ═══ ایجاد کاربر جدید ═══ */
-Route::middleware('auth')->post('/admin/passwords/store', [\App\Http\Controllers\Admin\PasswordManagerController::class, 'store'])
-    ->name('admin.passwords.store');
-
-/* ═══ آپلود عکس دهیار ═══ */
 Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin.village.dehyar.')->group(function () {
     Route::post('/photo', [\App\Http\Controllers\Admin\DehyariPhotoController::class, 'upload'])->name('photo.upload');
     Route::delete('/photo', [\App\Http\Controllers\Admin\DehyariPhotoController::class, 'delete'])->name('photo.delete');
 });
 
 /* ═══ دانلود PDF قبض ═══ */
-Route::get('/fees/bill/{billNumber}/pdf', [\App\Http\Controllers\Public\FeeCalculatorController::class, 'downloadPdf'])
-    ->name('fees.bill.pdf');
 
 /* ═══════════════════════════════════════════════════
    ماژول تعرفه عوارض و بهای خدمات (فاز ۱)
    ═══════════════════════════════════════════════════ */
-Route::middleware('auth')->prefix('admin/tariffs')->name('admin.tariffs.')->group(function () {
-    Route::get('/',                     [\App\Http\Controllers\Admin\TariffSetController::class, 'index'])->name('index');
-    Route::get('/create',               [\App\Http\Controllers\Admin\TariffSetController::class, 'create'])->name('create');
-    Route::post('/',                    [\App\Http\Controllers\Admin\TariffSetController::class, 'store'])->name('store');
-    Route::get('/{id}',                 [\App\Http\Controllers\Admin\TariffSetController::class, 'show'])->whereNumber('id')->name('show');
-    Route::get('/{id}/edit',            [\App\Http\Controllers\Admin\TariffSetController::class, 'edit'])->whereNumber('id')->name('edit');
-    Route::put('/{id}',                 [\App\Http\Controllers\Admin\TariffSetController::class, 'update'])->whereNumber('id')->name('update');
-    Route::post('/{id}/transition',     [\App\Http\Controllers\Admin\TariffSetController::class, 'transition'])->whereNumber('id')->name('transition');
-    Route::post('/{id}/approval',       [\App\Http\Controllers\Admin\TariffSetController::class, 'uploadApproval'])->whereNumber('id')->name('approval.upload');
-    Route::delete('/{id}/approval',     [\App\Http\Controllers\Admin\TariffSetController::class, 'deleteApproval'])->whereNumber('id')->name('approval.delete');
-    Route::get('/{id}/approval/download', [\App\Http\Controllers\Admin\TariffSetController::class, 'downloadApproval'])->whereNumber('id')->name('approval.download');
-    Route::delete('/{id}',              [\App\Http\Controllers\Admin\TariffSetController::class, 'destroy'])->whereNumber('id')->name('destroy');
-});
-
 /* ═══ صفحه عمومی تعرفه روستا ═══ */
-Route::middleware(['section', 'village'])
-    ->get('/village/{slug}/tariff', [\App\Http\Controllers\Public\VillageTariffController::class, 'show'])
-    ->name('village.tariff.show');
-
-/* ═══ API ماشین‌حساب تعرفه ═══ */
-Route::prefix('api/tariff')->name('api.tariff.')->group(function () {
-    Route::get('/items/{itemId}/schema',    [\App\Http\Controllers\Public\TariffCalculatorController::class, 'schema'])->whereNumber('itemId')->name('schema');
-    Route::post('/items/{itemId}/calculate', [\App\Http\Controllers\Public\TariffCalculatorController::class, 'calculate'])->whereNumber('itemId')->name('calculate');
-});
-
 /* ═══ فرم ۲ و ۳ تعرفه ═══ */
-Route::middleware('auth')->prefix('admin/tariffs')->name('admin.tariffs.')->group(function () {
-    Route::get('/{id}/form2', [\App\Http\Controllers\Admin\TariffFormController::class, 'form2'])->whereNumber('id')->name('form2');
-    Route::get('/{id}/form3', [\App\Http\Controllers\Admin\TariffFormController::class, 'form3'])->whereNumber('id')->name('form3');
-});
-
 /* ═══ هدایت به تعرفه رسمی روستا ═══ */
-Route::get('/fees/view-tariff/{villageId}', [\App\Http\Controllers\Public\FeeCalculatorController::class, 'viewTariff'])
-    ->whereNumber('villageId')->name('fees.view-tariff');

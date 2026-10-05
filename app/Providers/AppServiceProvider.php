@@ -20,7 +20,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // ═══ Policy های ماژول تعرفه ═══
-        \Illuminate\Support\Facades\Gate::policy(\App\Models\TariffSet::class, \App\Policies\TariffSetPolicy::class);
 
         \App\Models\Village::observe(\App\Observers\VillageObserver::class);
         //

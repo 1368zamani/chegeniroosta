@@ -185,28 +185,15 @@
     </div>
 
     <ul class="sb-menu">
-        <li>
-            <a href="/admin" class="sb-item {{ $path === 'admin' ? 'active' : '' }}">
-                <span class="sb-icon">🏠</span> داشبورد
-            </a>
-        </li>
-
-        @if($isSuper || $isSection || $isOfficer)
-            <li class="sb-section">💰 عوارض و بهای خدمات</li>
-            <li><a href="{{ route('admin.fees.dashboard') }}" class="sb-item {{ request()->routeIs('admin.fees.dashboard') ? 'active' : '' }}"><span class="sb-icon">📊</span> داشبورد عوارض</a></li>
+            <li></li>
             <li>
-                <a href="{{ route('admin.fees.payments.index') }}" class="sb-item {{ request()->routeIs('admin.fees.payments.*') ? 'active' : '' }}">
-                    <span class="sb-icon">💳</span> پرداخت‌ها
-                    @php $pending = \App\Models\Payment::where('status','pending_review')->count(); @endphp
-                    @if($pending > 0)<span class="sb-badge">{{ $pending }}</span>@endif
-                </a>
             </li>
-            <li><a href="{{ route('admin.fees.bills.index') }}" class="sb-item {{ request()->routeIs('admin.fees.bills.*') ? 'active' : '' }}"><span class="sb-icon">🧾</span> قبوض</a></li>
-            <li><a href="{{ route('admin.fees.tariffs.index') }}" class="sb-item {{ request()->routeIs('admin.fees.tariffs.*') ? 'active' : '' }}"><span class="sb-icon">📋</span> تعرفه‌ها</a></li>
-            <li><a href="{{ route('admin.fees.accounts.index') }}" class="sb-item {{ request()->routeIs('admin.fees.accounts.*') ? 'active' : '' }}"><span class="sb-icon">🏦</span> حساب‌ها</a></li>
-            <li><a href="{{ route('admin.fees.categories.index') }}" class="sb-item {{ request()->routeIs('admin.fees.categories.*') ? 'active' : '' }}"><span class="sb-icon">🗂</span> دسته‌بندی</a></li>
-            <li><a href="{{ route('admin.fees.types.index') }}" class="sb-item {{ request()->routeIs('admin.fees.types.*') ? 'active' : '' }}"><span class="sb-icon">📋</span> عناوین خدمت</a></li>
-            <li><a href="{{ route('admin.fees.reports.index') }}" class="sb-item {{ request()->routeIs('admin.fees.reports.*') ? 'active' : '' }}"><span class="sb-icon">📈</span> گزارش‌ها</a></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
         @endif
 
         @if($isSuper || $isSection)
@@ -223,8 +210,8 @@
         @if($isSuper || $isSection)
             <li class="sb-section">👥 کاربران</li>
             <li><a href="{{ route('admin.users.index') }}" class="sb-item"><span class="sb-icon">👤</span> کاربران</a></li>
-            <li><a href="{{ route('admin.passwords.index') }}" class="sb-item {{ request()->routeIs('admin.passwords.*') ? 'active' : '' }}"><span class="sb-icon">🔑</span> مدیریت رمزها</a></li>
-            <li><a href="{{ route('admin.fees.officers.index') }}" class="sb-item"><span class="sb-icon">🔐</span> کارشناسان</a></li>
+            <li></li>
+            <li></li>
         @endif
 
         @if($isSuper || $isSection)
