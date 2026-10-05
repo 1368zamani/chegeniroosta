@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
             $r->register('waste_residential',  \App\Services\Tariff\Calculators\WasteCalculator::class);
             $r->register('waste_commercial',   \App\Services\Tariff\Calculators\WasteCalculator::class);
             $r->register('waste_industrial',   \App\Services\Tariff\Calculators\WasteCalculator::class);
+            $r->register('article_99_penalty', \App\Services\Tariff\Calculators\Article99PenaltyCalculator::class);
             return $r;
         });
 
