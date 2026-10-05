@@ -14,6 +14,8 @@
             <a href="{{ route('admin.tariffs.exemptions.index', $tariffSet) }}" class="bg-amber-600 text-white px-4 py-2 rounded">📋 معافیت‌ها</a>
             <a href="{{ route('admin.tariffs.logs.index', $tariffSet) }}" class="bg-gray-600 text-white px-4 py-2 rounded">📜 تاریخچه</a>
             <a href="{{ route('admin.tariffs.print.form2', $tariffSet) }}" target="_blank" class="bg-gray-700 text-white px-4 py-2 rounded">🖨 فرم ۲ (عوارض)</a>
+            <a href="{{ route('admin.tariffs.pdf.form2', $tariffSet) }}" class="bg-red-700 text-white px-4 py-2 rounded">📄 PDF فرم ۲</a>
+            <a href="{{ route('admin.tariffs.pdf.form3', $tariffSet) }}" class="bg-red-700 text-white px-4 py-2 rounded">📄 PDF فرم ۳</a>
             <a href="{{ route('admin.tariffs.print.form3', $tariffSet) }}" target="_blank" class="bg-gray-700 text-white px-4 py-2 rounded">🖨 فرم ۳ (بهای خدمات)</a>
             <a href="{{ route('admin.tariffs.index') }}" class="px-4 py-2 border rounded">بازگشت</a>
         </div>

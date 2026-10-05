@@ -742,3 +742,11 @@ Route::middleware(['auth'])
         Route::get('/{tariffSet}/logs',
             [\App\Http\Controllers\Admin\TariffWorkflowLogController::class, 'index'])->name('logs.index');
     });
+
+// PDF فرم‌های تعرفه
+Route::middleware(['auth'])
+    ->prefix('admin/tariffs')->name('admin.tariffs.')
+    ->group(function () {
+        Route::get('/{tariffSet}/pdf/form2', [\App\Http\Controllers\Admin\TariffPdfController::class, 'form2'])->name('pdf.form2');
+        Route::get('/{tariffSet}/pdf/form3', [\App\Http\Controllers\Admin\TariffPdfController::class, 'form3'])->name('pdf.form3');
+    });
