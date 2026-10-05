@@ -16,7 +16,17 @@ class PasswordManagerController extends Controller
     private function authorizeManager(): void
     {
         $u = auth()->user();
-        if (!$u || (!$u->isSuperAdmin() && !$u->isSectionAdmin())) {
+        if (!$u) {
+            abort(403, 'دسترسی ندارید.');
+        }
+
+        // دهیار → داشبورد روستای خودش
+        if ($u->isVillageAdmin() && $u->village_id) {
+            redirect()->route('admin.village.dashboard', $u->village_id)->send();
+            exit;
+        }
+
+        if (!$u->isSuperAdmin() && !$u->isSectionAdmin()) {
             abort(403, 'دسترسی ندارید.');
         }
     }
