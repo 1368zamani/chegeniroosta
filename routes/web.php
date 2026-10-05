@@ -720,3 +720,25 @@ Route::middleware(['auth'])
         Route::get('/{tariffSet}/print/form2', [\App\Http\Controllers\Admin\TariffPrintController::class, 'form2'])->name('print.form2');
         Route::get('/{tariffSet}/print/form3', [\App\Http\Controllers\Admin\TariffPrintController::class, 'form3'])->name('print.form3');
     });
+
+// معافیت‌های تعرفه
+Route::middleware(['auth'])
+    ->prefix('admin/tariffs')->name('admin.tariffs.')
+    ->group(function () {
+        Route::get('/{tariffSet}/exemptions',
+            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'index'])->name('exemptions.index');
+        Route::post('/{tariffSet}/exemptions',
+            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'store'])->name('exemptions.store');
+        Route::put('/{tariffSet}/exemptions/{exemption}',
+            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'update'])->name('exemptions.update');
+        Route::delete('/{tariffSet}/exemptions/{exemption}',
+            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'destroy'])->name('exemptions.destroy');
+    });
+
+// لاگ‌های workflow تعرفه
+Route::middleware(['auth'])
+    ->prefix('admin/tariffs')->name('admin.tariffs.')
+    ->group(function () {
+        Route::get('/{tariffSet}/logs',
+            [\App\Http\Controllers\Admin\TariffWorkflowLogController::class, 'index'])->name('logs.index');
+    });
