@@ -11,6 +11,7 @@ use App\Services\Tariff\TariffSetService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
 
 class TariffSetController extends Controller
@@ -19,6 +20,12 @@ class TariffSetController extends Controller
 
     public function index(Request $request)
     {
+        // 🔒 اجبار عبور از فرم ورود کارشناسان
+        if (!$this->hasTariffOfficerMode($request)) {
+            return redirect()->route('tariff.officer.login')
+                ->withErrors(['identifier' => 'برای ورود به پنل کارشناسان، ابتدا از این صفحه وارد شوید.']);
+        }
+
         Gate::authorize('viewAny', TariffSet::class);
         $query = TariffSet::with('village')->orderByDesc('jalali_year')->orderByDesc('id');
         $user = $request->user();
@@ -156,4 +163,38 @@ class TariffSetController extends Controller
         }
         return $q->get();
     }
+
+    /**
+     * بررسی اینکه کاربر از مسیر /tariff-officer/login آمده باشد.
+     * super_admin از این قاعده مستثنا است.
+     */
+    private function hasTariffOfficerMode(Request $request): bool
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+
+        // flag اصلی
+        $mode  = $request->session()->get('tariff_officer_mode') === true;
+
+        // اعتبار زمانی (۸ ساعت)
+        $until = (int) $request->session()->get('tariff_officer_until', 0);
+        $valid = $until > 0 && now()->timestamp <= $until;
+
+        // IP یکسان (جلوگیری از hijack)
+        $ip    = $request->session()->get('tariff_officer_ip');
+        $ipOk  = !$ip || $ip === $request->ip();
+
+        if (!$mode || !$valid || !$ipOk) {
+            $request->session()->forget([
+                'tariff_officer_mode',
+                'tariff_officer_until',
+                'tariff_officer_ip',
+            ]);
+            return false;
+        }
+
+        return true;
+    }
+
 }

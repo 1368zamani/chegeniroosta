@@ -629,6 +629,11 @@ Route::middleware(['section'])->group(function () {
         ->name('section.site.request.track');
     Route::post('/track', [\App\Http\Controllers\PublicSectionRequestController::class, 'requestTrackResult'])
         ->name('section.site.request.track.result');
+
+// تعرفه عوارض روستاهای بخش
+Route::get('/tariff', [\App\Http\Controllers\PublicSectionTariffController::class, 'index'])
+    ->name('section.site.tariff');
+
 });
 
 /*
@@ -750,3 +755,18 @@ Route::middleware(['auth'])
         Route::get('/{tariffSet}/pdf/form2', [\App\Http\Controllers\Admin\TariffPdfController::class, 'form2'])->name('pdf.form2');
         Route::get('/{tariffSet}/pdf/form3', [\App\Http\Controllers\Admin\TariffPdfController::class, 'form3'])->name('pdf.form3');
     });
+
+// ═══ ورود اختصاصی کارشناسان عوارض ═══
+Route::get('/tariff-officer/login',  [\App\Http\Controllers\TariffOfficerAuthController::class, 'showLogin'])->name('tariff.officer.login');
+Route::post('/tariff-officer/login', [\App\Http\Controllers\TariffOfficerAuthController::class, 'login'])->name('tariff.officer.login.post');
+Route::post('/tariff-officer/logout',[\App\Http\Controllers\TariffOfficerAuthController::class, 'logout'])->name('tariff.officer.logout');
+
+// ═══ مدیریت کارشناسان عوارض (فقط super_admin) ═══
+Route::middleware(['auth'])->prefix('admin/tariff-officers')->name('admin.tariff-officers.')->group(function () {
+    Route::get('/',              [\App\Http\Controllers\Admin\TariffOfficerController::class, 'index'])->name('index');
+    Route::post('/',             [\App\Http\Controllers\Admin\TariffOfficerController::class, 'store'])->name('store');
+    Route::put('/{officer}',     [\App\Http\Controllers\Admin\TariffOfficerController::class, 'update'])->name('update');
+    Route::delete('/{officer}',  [\App\Http\Controllers\Admin\TariffOfficerController::class, 'destroy'])->name('destroy');
+    Route::post('/{officer}/reset-password',
+        [\App\Http\Controllers\Admin\TariffOfficerController::class, 'resetPassword'])->name('reset-password');
+});

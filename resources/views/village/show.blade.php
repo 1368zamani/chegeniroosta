@@ -229,7 +229,102 @@
             .v-council-grid { grid-template-columns: repeat(2, 1fr); }
             .v-attractions-grid { grid-template-columns: 1fr; }
         }
-    </style>
+    
+/* ═══════ تعرفه عوارض — dropdown ═══════ */
+.v-tariff-dropdown { position: relative; display: inline-block; }
+.v-tariff-dropdown .v-btn-tariff {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: all .2s;
+}
+.v-tariff-dropdown .v-btn-tariff:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(30,91,156,0.25); }
+.v-tariff-dropdown .v-caret {
+    display: inline-block;
+    font-size: 11px;
+    transition: transform .25s ease;
+    opacity: 0.9;
+}
+.v-tariff-dropdown.open .v-caret { transform: rotate(180deg); }
+.v-tariff-dropdown .v-tariff-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 280px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 20px 55px rgba(30,91,156,0.20), 0 4px 12px rgba(0,0,0,0.08);
+    padding: 8px 0;
+    z-index: 99999;
+    overflow: hidden;
+    border: 1px solid #e3f2fd;
+}
+@keyframes vMenuIn {
+    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.v-tariff-dropdown.open .v-tariff-menu {
+    display: block;
+    animation: vMenuIn .22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.v-tariff-dropdown .v-tariff-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #37474f;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background .15s, color .15s, padding-right .15s;
+    white-space: nowrap;
+    border-right: 3px solid transparent;
+}
+.v-tariff-dropdown .v-tariff-menu a:hover {
+    background: linear-gradient(90deg, #f0f7ff, #e3f2fd);
+    color: #1e5b9c;
+    border-right-color: #1e5b9c;
+    padding-right: 24px;
+}
+.v-tariff-dropdown .v-tariff-menu a .m-icon {
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: #f0f7ff;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+.v-tariff-dropdown .v-tariff-menu .menu-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e3f2fd 30%, #e3f2fd 70%, transparent);
+    margin: 6px 12px;
+}
+.v-tariff-dropdown .v-tariff-menu .menu-label {
+    font-size: 10.5px;
+    color: #94a3b8;
+    padding: 10px 20px 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+.v-tariff-dropdown .v-tariff-menu .menu-note {
+    font-size: 11.5px;
+    color: #78350f;
+    background: #fef3c7;
+    padding: 10px 20px;
+    line-height: 1.7;
+    border-right: 3px solid #d97706;
+    margin: 4px 12px 8px;
+    border-radius: 8px;
+}
+</style>
 
 <style>
 /* CARD-HOVER-2026 */
@@ -650,6 +745,30 @@ a[href^="tel:"] {
         <div class="v-request-buttons">
             <a href="{{ route('village.site.request.create', $village->slug) }}" class="v-btn v-btn-primary">✍️ ثبت درخواست</a>
             <a href="{{ route('village.site.request.track', $village->slug) }}" class="v-btn v-btn-secondary">🔍 پیگیری</a>
+            @if(\App\Models\TariffSet::where('village_id', $village->id)->where('status', 'published')->exists())
+            <div class="v-tariff-dropdown" id="vTariffDropdown">
+                <button type="button" class="v-btn v-btn-primary v-btn-tariff">
+                    <span>🧾 تعرفه عوارض و بهای خدمات</span>
+                    <span class="v-caret">▾</span>
+                </button>
+                <div class="v-tariff-menu" role="menu">
+                    <div class="menu-label">مشاهده</div>
+                    <a href="{{ route('tariff.public', $village->slug) }}" role="menuitem">
+                        <span class="m-icon">📋</span>
+                        <span>تعرفه‌ی کامل سال جاری</span>
+                    </a>
+                    <a href="{{ route('tariff.public', $village->slug) }}#calculator-section" role="menuitem">
+                        <span class="m-icon">🧮</span>
+                        <span>ماشین‌حساب تعرفه</span>
+                    </a>
+                    <div class="menu-divider"></div>
+                    <div class="menu-label">اطلاعات حقوقی</div>
+                    <div class="menu-note">
+                        دریافت وجه نقد توسط دهیار یا کارکنان <strong>ممنوع</strong> است. وجوه به حساب بانکی دهیاری واریز شود.
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 
@@ -686,6 +805,41 @@ a[href^="tel:"] {
     <h2 class="section-title">📍 موقعیت {{ $village->name }} روی نقشه</h2>
     @include('partials.village-map', ['village' => $village])
 @endif
+
+
+<script>
+(function () {
+    function initTariffDropdown() {
+        var dd = document.getElementById('vTariffDropdown');
+        if (!dd) return;
+
+        var btn = dd.querySelector('.v-btn-tariff');
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dd.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!dd.contains(e.target)) dd.classList.remove('open');
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') dd.classList.remove('open');
+        });
+
+        // بستن هنگام کلیک روی آیتم‌های داخل
+        dd.querySelectorAll('.v-tariff-menu a').forEach(function (a) {
+            a.addEventListener('click', function () { dd.classList.remove('open'); });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTariffDropdown);
+    } else {
+        initTariffDropdown();
+    }
+})();
+</script>
 
 @include('partials.gov-footer')
 @include('partials.back-to-top')

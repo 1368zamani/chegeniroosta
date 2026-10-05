@@ -847,7 +847,23 @@ img, iframe, video {
             }
         }
 
-    </style>
+    
+/* ═══════ تعرفه عوارض — dropdown بخشداری ═══════ */
+.s-tariff-dropdown { position: relative; display: inline-block; }
+.s-tariff-btn { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); color: #fff; padding: 12px 28px; border-radius: 8px; font-family: inherit; font-size: 15px; font-weight: 600; transition: all .2s; }
+.s-tariff-btn:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
+.s-tariff-btn .caret { font-size: 11px; transition: transform .25s; }
+.s-tariff-dropdown.open .caret { transform: rotate(180deg); }
+.s-tariff-menu { display: none; position: absolute; top: calc(100% + 10px); right: 50%; transform: translateX(50%); min-width: 300px; background: #fff; border-radius: 14px; box-shadow: 0 20px 55px rgba(13,46,79,0.25), 0 4px 12px rgba(0,0,0,0.08); padding: 8px 0; z-index: 99999; overflow: hidden; border: 1px solid #e3f2fd; text-align: right; }
+@keyframes sMenuIn { from { opacity: 0; transform: translateX(50%) translateY(-6px) scale(0.98); } to { opacity: 1; transform: translateX(50%) translateY(0) scale(1); } }
+.s-tariff-dropdown.open .s-tariff-menu { display: block; animation: sMenuIn .22s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+.s-tariff-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #37474f; text-decoration: none; font-size: 13.5px; font-weight: 500; transition: background .15s, color .15s, padding-right .15s; white-space: nowrap; border-right: 3px solid transparent; }
+.s-tariff-menu a:hover { background: linear-gradient(90deg, #f0f7ff, #e3f2fd); color: #1e5b9c; border-right-color: #1e5b9c; padding-right: 24px; }
+.s-tariff-menu a .m-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #f0f7ff; border-radius: 8px; font-size: 17px; flex-shrink: 0; }
+.s-tariff-menu .menu-divider { height: 1px; background: linear-gradient(90deg, transparent, #e3f2fd 30%, #e3f2fd 70%, transparent); margin: 6px 12px; }
+.s-tariff-menu .menu-label { font-size: 10.5px; color: #94a3b8; padding: 10px 20px 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; }
+.s-tariff-menu .menu-note { font-size: 11.5px; color: #78350f; background: #fef3c7; padding: 10px 20px; line-height: 1.7; border-right: 3px solid #d97706; margin: 4px 12px 8px; border-radius: 8px; }
+</style>
 
 <style>
 /* CARD-HOVER-2026 */
@@ -1187,7 +1203,53 @@ a[href^="tel:"] {
                style="display: inline-block; background: rgba(255,255,255,0.15); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid rgba(255,255,255,0.3);">
                 🔍 پیگیری درخواست
             </a>
+            <div class="s-tariff-dropdown" id="sTariffDropdown">
+                <button type="button" class="s-tariff-btn">
+                    <span>🧾 تعرفه عوارض</span>
+                    <span class="caret">▾</span>
+                </button>
+                <div class="s-tariff-menu" role="menu">
+                    <div class="menu-label">مشاهده</div>
+                    <a href="{{ route('section.site.tariff') }}" role="menuitem">
+                        <span class="m-icon">📋</span>
+                        <span>تعرفه‌های روستاهای بخش</span>
+                    </a>
+                    <div class="menu-divider"></div>
+                    <div class="menu-note">
+                        ⚠️ دریافت وجه نقد توسط دهیار یا کارکنان <strong>ممنوع</strong> است.
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+
+
+<script>
+(function () {
+    function init() {
+        var dd = document.getElementById('sTariffDropdown');
+        if (!dd) return;
+        var btn = dd.querySelector('.s-tariff-btn');
+        btn.addEventListener('click', function (e) { e.stopPropagation(); dd.classList.toggle('open'); });
+        document.addEventListener('click', function (e) { if (!dd.contains(e.target)) dd.classList.remove('open'); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') dd.classList.remove('open'); });
+        dd.querySelectorAll('.s-tariff-menu a').forEach(function (a) { a.addEventListener('click', function () { dd.classList.remove('open'); }); });
+    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
+})();
+</script>
+
+<div class="section-tariff-admin-link" style="max-width: 1100px; margin: 0 auto 30px; padding: 0 20px;">
+    <div style="background: #e8f5e9; border-right: 4px solid #2e7d32; color: #1b5e20; padding: 14px 20px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div style="font-size: 13.5px; line-height: 1.9;">
+            <strong>🔐 کارشناسان فنی و مالی دهیاری‌ها:</strong>
+            برای ثبت، ویرایش و مدیریت تعرفه‌ی عوارض روستاهای این بخش وارد شوید.
+        </div>
+        <a href="{{ route('tariff.officer.login') }}"
+           style="display: inline-block; background: #2e7d32; color: #fff; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13.5px; white-space: nowrap;">
+            ورود کارشناسان ←
+        </a>
     </div>
 </div>
 
