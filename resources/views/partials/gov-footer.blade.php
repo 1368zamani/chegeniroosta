@@ -8,7 +8,7 @@
         color: rgba(255,255,255,0.85);
         padding: 50px 0 0;
         margin-top: 60px;
-        border-top: 4px solid #ffd54f;
+        border-top: none;
         position: relative;
     }
 
@@ -624,8 +624,6 @@ img, iframe, video {
 
 <footer class="gov-footer">
 
-    <div style="width:100%;text-align:center;padding:14px 16px;background:#ffd54f;color:#0d3b2e">
-</div>
 
 <div class="gov-footer-main">
 
@@ -755,7 +753,7 @@ img, iframe, video {
     .gov-footer-main {
         background: linear-gradient(135deg, #065f46 0%, #10b981 100%) !important;
         color: #ffffff !important;
-        border-top: 4px solid #ffd54f !important;
+        border-top: none !important;
     }
 
     /* اگر فوتر نوار بالایی دارد */
