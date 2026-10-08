@@ -62,7 +62,7 @@ class AdminUserController extends Controller
         $this->ensureManagerAccess();
 
         $allowedRoles = $this->isSuper()
-            ? 'in:super_admin,section_admin,village_admin'
+            ? 'in:super_admin,section_admin,village_admin,fee_officer'
             : 'in:village_admin';
 
         $data = $request->validate([
@@ -71,7 +71,8 @@ class AdminUserController extends Controller
             'password'   => 'required|string|min:6',
             'role'       => 'required|' . $allowedRoles,
             'section_id' => 'nullable|exists:sections,id',
-            'village_id' => 'nullable|exists:villages,id',
+            'village_id'   => 'nullable|exists:villages,id',
+            'officer_type' => 'nullable|in:financial,technical',
         ]);
 
         if ($data['role'] === 'section_admin' && empty($data['section_id'])) {
@@ -91,6 +92,11 @@ class AdminUserController extends Controller
         }
 
         $data['password'] = Hash::make($data['password']);
+
+        if (($data['role'] ?? null) !== 'fee_officer') {
+            $data['officer_type'] = null;
+        }
+
         User::create($data);
 
         return redirect()->route('admin.users.index')
@@ -120,7 +126,7 @@ class AdminUserController extends Controller
         $user = $this->findUserInScopeOrFail($id);
 
         $allowedRoles = $this->isSuper()
-            ? 'in:super_admin,section_admin,village_admin'
+            ? 'in:super_admin,section_admin,village_admin,fee_officer'
             : 'in:village_admin';
 
         $data = $request->validate([
@@ -129,7 +135,8 @@ class AdminUserController extends Controller
             'password'   => 'nullable|string|min:6',
             'role'       => 'required|' . $allowedRoles,
             'section_id' => 'nullable|exists:sections,id',
-            'village_id' => 'nullable|exists:villages,id',
+            'village_id'   => 'nullable|exists:villages,id',
+            'officer_type' => 'nullable|in:financial,technical',
         ]);
 
         if ($data['role'] === 'section_admin' && empty($data['section_id'])) {
@@ -152,6 +159,10 @@ class AdminUserController extends Controller
             unset($data['password']);
         } else {
             $data['password'] = Hash::make($data['password']);
+        }
+
+        if (($data['role'] ?? null) !== 'fee_officer') {
+            $data['officer_type'] = null;
         }
 
         $user->update($data);

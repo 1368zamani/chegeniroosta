@@ -32,7 +32,9 @@
         .photo-empty { width: 44px; height: 44px; border-radius: 50%; background: #cfd8dc; display: inline-flex; align-items: center; justify-content: center; color: #90a4ae; font-size: 18px; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-</head>
+<link rel="stylesheet" href="/css/admin-master.css?v=2">
+<link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
 <body>
 
 <div class="header">

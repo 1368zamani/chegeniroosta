@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /expert
+Disallow: /tariff-officer
+Disallow: /api/
 
-Sitemap: /sitemap.xml
+# Sitemaps
+Sitemap: https://chegeniroosta.ir/sitemap.xml
+Sitemap: https://chegeniroosta.ir/sitemap-news.xml
+Sitemap: https://chegeniroosta.ir/villages/sitemap.xml
+Sitemap: https://chegeniroosta.ir/feed.xml
+
+Crawl-delay: 1

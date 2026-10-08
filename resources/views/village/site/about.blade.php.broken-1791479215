@@ -1,0 +1,144 @@
+@extends('village.site._layout')
+@section('title', 'درباره ' . $village->name)
+
+@section('content')
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">درباره روستای {{ $village->name }}</h1>
+
+    @if($village->description ?? false)
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <p class="leading-relaxed text-gray-700">{{ $village->description }}</p>
+    </div>
+    @endif
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-bold mb-4">اطلاعات کلی</h2>
+            <dl class="space-y-3">
+                <div class="flex justify-between border-b pb-2">
+                    <dt class="text-gray-600">بخش</dt>
+                    <dd class="font-semibold">{{ optional($village->section)->name ?? '-' }}</dd>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <dt class="text-gray-600">دهستان</dt>
+                    <dd class="font-semibold">{{ $village->district ?? '-' }}</dd>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <dt class="text-gray-600">جمعیت</dt>
+                    <dd class="font-semibold">{{ number_format($village->population ?? 0) }} نفر</dd>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <dt class="text-gray-600">تعداد خانوار</dt>
+                    <dd class="font-semibold">{{ number_format($village->households ?? 0) }}</dd>
+                </div>
+                <div class="flex justify-between border-b pb-2">
+                    <dt class="text-gray-600">کد آماری</dt>
+                    <dd class="font-semibold">{{ $village->code ?? '-' }}</dd>
+                </div>
+            </dl>
+        </div>
+
+        @if($village->contact ?? false)
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-bold mb-4">اطلاعات تماس</h2>
+            <dl class="space-y-3">
+                @if($village->contact->phone ?? false)
+                <div class="flex justify-between border-b pb-2">
+                    <dt class="text-gray-600">تلفن دهیاری</dt>
+                    <dd class="font-semibold" dir="ltr">{{ $village->contact->phone }}</dd>
+                </div>
+                @endif
+                @if($village->contact->address ?? false)
+                <div class="border-b pb-2">
+                    <dt class="text-gray-600 mb-1">آدرس</dt>
+                    <dd class="text-sm">{{ $village->contact->address }}</dd>
+                </div>
+                @endif
+            </dl>
+        </div>
+        @endif
+    </div>
+
+    @if(isset($attractions) && $attractions->count())
+    <section class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">جاذبه‌های گردشگری</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach($attractions as $attr)
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                @if($attr->image ?? false)
+                <img src="{{ asset('storage/' . $attr->image) }}"
+                     alt="{{ $attr->title ?? '' }}"
+                     class="w-full h-40 object-cover">
+                @endif
+                <div class="p-4">
+                    <h3 class="font-bold mb-2">{{ $attr->title ?? '-' }}</h3>
+                    @if($attr->description ?? false)
+                    <p class="text-sm text-gray-700 leading-relaxed">{{ Str::limit($attr->description, 120) }}</p>
+                    @endif
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+    @endif
+
+    @if(isset($gallery) && $gallery->count())
+    <section>
+        <h2 class="text-2xl font-bold mb-4">گالری تصاویر</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            @foreach($gallery as $img)
+            <a href="{{ asset('storage/' . ($img->path ?? $img->image ?? '')) }}"
+               data-lightbox="village-gallery"
+               class="block rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                <img src="{{ asset('storage/' . ($img->path ?? $img->image ?? '')) }}"
+                     alt="{{ $img->caption ?? $village->name }}"
+                     class="w-full h-32 object-cover hover:scale-105 transition duration-300"
+                     loading="lazy">
+            </a>
+            @endforeach
+        </div>
+    </section>
+    @endif
+</div>
+@endsection
+cat > facilities.blade.php << 'EOF'
+@extends('village.site._layout')
+@section('title', 'امکانات ' . $village->name)
+
+@section('content')
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">امکانات و خدمات روستای {{ $village->name }}</h1>
+
+    @forelse($facilities as $category => $items)
+    <section class="mb-8">
+        <h2 class="text-xl font-bold mb-3 text-green-700 border-r-4 border-green-500 pr-3">
+            {{ $category ?: 'سایر امکانات' }}
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach($items as $facility)
+            <div class="bg-white rounded-lg shadow p-5">
+                <h3 class="font-bold mb-2">{{ $facility->name ?? '-' }}</h3>
+                @if($facility->type ?? false)
+                <p class="text-sm text-gray-600 mb-1">نوع: {{ $facility->type }}</p>
+                @endif
+                @if($facility->description ?? false)
+                <p class="text-sm text-gray-700 leading-relaxed">{{ $facility->description }}</p>
+                @endif
+                @if($facility->status ?? false)
+                <span class="inline-block mt-2 px-2 py-1 text-xs rounded
+                    @if($facility->status === 'active') bg-green-100 text-green-800
+                    @else bg-yellow-100 text-yellow-800 @endif">
+                    {{ $facility->status === 'active' ? 'فعال' : $facility->status }}
+                </span>
+                @endif
+            </div>
+            @endforeach
+        </div>
+    </section>
+    @empty
+    <div class="bg-blue-50 border border-blue-200 rounded p-4 text-blue-800">
+        امکاناتی برای این روستا ثبت نشده است.
+    </div>
+    @endforelse
+</div>
+@endsection

@@ -745,7 +745,6 @@ a[href^="tel:"] {
         <div class="v-request-buttons">
             <a href="{{ route('village.site.request.create', $village->slug) }}" class="v-btn v-btn-primary">✍️ ثبت درخواست</a>
             <a href="{{ route('village.site.request.track', $village->slug) }}" class="v-btn v-btn-secondary">🔍 پیگیری</a>
-            @if(\App\Models\TariffSet::where('village_id', $village->id)->where('status', 'published')->exists())
             <div class="v-tariff-dropdown" id="vTariffDropdown">
                 <button type="button" class="v-btn v-btn-primary v-btn-tariff">
                     <span>🧾 تعرفه عوارض و بهای خدمات</span>
@@ -768,7 +767,6 @@ a[href^="tel:"] {
                     </div>
                 </div>
             </div>
-            @endif
         </div>
     </div>
 

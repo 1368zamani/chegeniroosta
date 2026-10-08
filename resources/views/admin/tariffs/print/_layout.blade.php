@@ -22,7 +22,9 @@
         .warning { background: #fef3c7; border: 1px solid #d97706; padding: 6px; margin: 8px 0; font-size: 9.5pt; }
         @media print { .no-print { display: none; } }
     </style>
-</head>
+<link rel="stylesheet" href="/css/admin-master.css?v=2">
+<link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
 <body>
 
 @if(request()->has('print') === false)

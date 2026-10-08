@@ -86,7 +86,9 @@
         .empty .icon { font-size: 60px; opacity: .4; margin-bottom: 20px; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-</head>
+<link rel="stylesheet" href="/css/admin-master.css?v=2">
+<link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
 <body>
 
 <div class="header">

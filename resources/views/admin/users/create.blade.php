@@ -34,6 +34,7 @@
                     <option value="super_admin" {{ old('role') == 'super_admin' ? 'selected' : '' }}>سوپر ادمین</option>
                     <option value="section_admin" {{ old('role') == 'section_admin' ? 'selected' : '' }}>ادمین بخش</option>
                     <option value="village_admin" {{ old('role') == 'village_admin' ? 'selected' : '' }}>ادمین روستا</option>
+                    <option value="fee_officer" {{ old('role') == 'fee_officer' ? 'selected' : '' }}>کارشناس مالی و فنی</option>
                 </select>
             </div>
         </div>
@@ -64,6 +65,20 @@
         </div>
 
     </div>
+
+
+<div id="officerTypeBox" style="display:none;margin-top:15px;">
+    <label>نوع کارشناس</label>
+    <select name="officer_type" class="form-control">
+        <option value="">انتخاب کنید</option>
+        <option value="financial" {{ old('officer_type') == 'financial' ? 'selected' : '' }}>
+            کارشناس مالی
+        </option>
+        <option value="technical" {{ old('officer_type') == 'technical' ? 'selected' : '' }}>
+            کارشناس فنی و عمرانی
+        </option>
+    </select>
+</div>
 
 </form>
 

@@ -1,196 +1,146 @@
-/* ═══════════════════════════════════════════════════════
-   ADMIN-MASTER-2026 — تم واحد همه پنل‌های ادمین
-   زمینه: سفید | متن: آبی | چک‌باکس: بدون تغییر در hover
-   ═══════════════════════════════════════════════════════ */
+/* ==============================
+   FINAL ADMIN LIGHT THEME FIX
+   ============================== */
 
-/* ═══ بدنه همه صفحات ادمین ═══ */
-body.admin-panel,
-body,
-html {
-    background: #ffffff !important;
-    color: #1565c0 !important;
+body {
+    background:#f5f7fa !important;
+    color:#263238 !important;
+    font-family:Tahoma,Arial,sans-serif !important;
 }
 
-/* ═══ همه کارت‌ها سفید ═══ */
-.card,
-.box,
-.panel,
-.settings-group,
-.setting-group,
-.form-card,
-.card-body,
-.content,
-.container,
-main,
-aside,
-section,
-article,
-div.card {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-    background-image: none !important;
-    color: #1565c0 !important;
-    border-color: #e3f2fd !important;
+
+/* هدر همه پنل ها */
+.header,
+.page-header,
+.top-header {
+    background:#ffffff !important;
+    color:#1565c0 !important;
+    border-bottom:3px solid #1565c0 !important;
 }
 
-/* ═══ همه متن‌ها آبی ═══ */
-h1, h2, h3, h4, h5, h6,
-p, span, div, li, td, th,
-label, small, strong, b, em,
-legend, fieldset,
-a:not(.btn) {
-    color: #1565c0 !important;
+
+.header h1,
+.header h2,
+.header h3,
+.page-title,
+.page-title h2 {
+    color:#1565c0 !important;
 }
 
-h1, h2, h3, h4 {
-    color: #0d47a1 !important;
-    font-weight: 800 !important;
+
+/* لینک های هدر */
+.header a,
+.nav a {
+    background:#eaf3ff !important;
+    color:#1565c0 !important;
+    border-radius:8px !important;
 }
 
-/* ═══ چک‌باکس و لیبل — همیشه یکسان ═══ */
-.checkbox-field,
-.checkbox-field:hover,
-.checkbox-field:focus,
-.checkbox-field:active,
-.checkbox-field:visited,
-label.checkbox-field,
-.checkbox-field *,
-.checkbox-field label,
-.checkbox-field span {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-    background-image: none !important;
-    color: #1565c0 !important;
-    border-color: #e3f2fd !important;
-    transition: none !important;
-    box-shadow: none !important;
+
+.header a:hover,
+.nav a:hover {
+    background:#1565c0 !important;
+    color:#ffffff !important;
 }
 
-.checkbox-field {
-    padding: 12px 16px !important;
-    margin-bottom: 8px !important;
-    border-radius: 10px !important;
-    border: 1.5px solid #e3f2fd !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    cursor: pointer !important;
+
+/* دکمه ها */
+.btn,
+button.btn,
+a.btn {
+    background:#1565c0 !important;
+    color:white !important;
+    border:none !important;
 }
 
-/* فقط border عوض شود، نه background */
-.checkbox-field:hover {
-    border-color: #1565c0 !important;
-    background: #ffffff !important;
-    color: #1565c0 !important;
+
+.btn:hover,
+button.btn:hover,
+a.btn:hover {
+    background:#0d47a1 !important;
+    color:white !important;
 }
 
-.checkbox-field input[type="checkbox"],
-input[type="checkbox"] {
-    width: 20px !important;
-    height: 20px !important;
-    accent-color: #1565c0 !important;
-    cursor: pointer !important;
-    background: #ffffff !important;
-}
 
-/* ═══ فیلدهای ورودی ═══ */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="date"],
-input[type="tel"],
-input[type="url"],
-select,
-textarea {
-    background: #ffffff !important;
-    color: #1565c0 !important;
-    border: 1.5px solid #1565c0 !important;
-    border-radius: 8px !important;
-}
-
-input:focus, select:focus, textarea:focus {
-    outline: none !important;
-    border-color: #0d47a1 !important;
-    background: #ffffff !important;
-    color: #1565c0 !important;
-    box-shadow: 0 0 0 3px rgba(21,101,192,0.12) !important;
-}
-
-/* ═══ جدول‌ها ═══ */
-table {
-    background: #ffffff !important;
-    color: #1565c0 !important;
-}
-
-table thead th {
-    background: #e3f2fd !important;
-    color: #0d47a1 !important;
-    border-bottom: 2px solid #1565c0 !important;
-    font-weight: 800 !important;
-}
-
-table tbody td {
-    background: #ffffff !important;
-    color: #1565c0 !important;
-}
-
-table tbody tr:hover,
-table tbody tr:hover td {
-    background: #f5f9ff !important;
-    color: #0d47a1 !important;
-}
-
-/* ═══ سایدبار ═══ */
-.sidebar,
-.sidebar-menu,
-.sidebar-menu a,
-.admin-sidebar,
-.unified-sidebar {
-    background: #ffffff !important;
-    color: #1565c0 !important;
-}
-
-.sidebar-menu a {
-    color: #1565c0 !important;
-}
-
-.sidebar-menu a:hover {
-    background: #e3f2fd !important;
-    color: #0d47a1 !important;
-}
-
-.sidebar-menu a.active {
-    background: #1565c0 !important;
-    color: #ffffff !important;
-}
-
-/* ═══ دکمه‌ها ═══ */
-.btn-primary,
-.btn-blue {
-    background: #1565c0 !important;
-    color: #ffffff !important;
-}
-
-.btn-success,
-.btn-green {
-    background: #10b981 !important;
-    color: #ffffff !important;
-}
-
+/* دکمه حذف */
 .btn-danger,
-.btn-red {
-    background: #D32F2F !important;
-    color: #ffffff !important;
+button.btn-danger {
+    background:#d32f2f !important;
+    color:white !important;
 }
 
-/* ═══ Alert ها ═══ */
-.success, .alert-success {
-    background: #e8f5e9 !important;
-    color: #2e7d32 !important;
+
+/* کارت ها */
+.card,
+.stat-card,
+.action-card,
+.stat {
+    background:#ffffff !important;
+    color:#263238 !important;
 }
 
-.error, .alert-error {
-    background: #ffebee !important;
-    color: #c62828 !important;
+
+/* تیتر کارت ها */
+.card h3,
+.card h2,
+.section-title {
+    color:#1565c0 !important;
+}
+
+
+/* جدول */
+table th {
+    background:#eaf3ff !important;
+    color:#1565c0 !important;
+}
+
+table td {
+    color:#263238 !important;
+}
+
+
+/* لینک ها */
+a {
+    color:#1565c0;
+}
+
+
+/* منوی کناری */
+.sidebar {
+    background:#ffffff !important;
+    border-left:1px solid #e3f2fd;
+}
+
+
+.sidebar a {
+    color:#1565c0 !important;
+}
+
+
+.sidebar a.active {
+    background:#1565c0 !important;
+    color:#ffffff !important;
+}
+
+
+/* رفع متن مخفی روی دکمه */
+button,
+.btn,
+.nav a {
+    text-shadow:none !important;
+}
+
+
+/* دکمه افزودن کاربر */
+.btn-primary,
+.create-btn {
+    background:#1565c0 !important;
+    color:#ffffff !important;
+}
+
+
+/* جلوگیری از سفید شدن متن */
+.text-dark,
+.text-muted {
+    color:#263238 !important;
 }

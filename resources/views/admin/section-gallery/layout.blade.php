@@ -33,7 +33,9 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
-</head>
+<link rel="stylesheet" href="/css/admin-master.css?v=2">
+<link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
 <body>
 <div class="header">
     <h1>@yield('header')</h1>
@@ -51,4 +53,3 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; c
 </body>
 </html>
 
-<link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=1791127161">

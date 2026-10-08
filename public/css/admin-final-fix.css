@@ -1,0 +1,91 @@
+/* FINAL OVERRIDE */
+
+body{
+    background:#f5f7fa!important;
+    color:#263238!important;
+}
+
+
+/* همه هدرهای پنل */
+.header{
+    background:#ffffff!important;
+    color:#1565c0!important;
+    border-bottom:3px solid #1565c0!important;
+}
+
+
+.header h1,
+.header h2,
+.header h3,
+.header a,
+.header .user,
+.header .user-info{
+    color:#1565c0!important;
+}
+
+
+/* لینک های هدر */
+.header a{
+    background:#eaf3ff!important;
+}
+
+
+/* دکمه های آبی */
+.btn,
+.btn-primary,
+button.btn,
+a.btn,
+.create-btn{
+    background:#1565c0!important;
+    color:#ffffff!important;
+}
+
+
+.btn:hover,
+.btn-primary:hover{
+    background:#0d47a1!important;
+}
+
+
+/* حذف دکمه هایی که متنشان با زمینه یکی شده */
+button,
+a{
+    text-shadow:none!important;
+}
+
+
+/* جدول */
+table th{
+    background:#eaf3ff!important;
+    color:#1565c0!important;
+}
+
+
+/* کارت ها */
+.card,
+.stat,
+.stat-card,
+.action-card{
+    background:#ffffff!important;
+}
+
+
+/* سایدبار */
+.sidebar{
+    background:#ffffff!important;
+}
+
+.sidebar a{
+    color:#1565c0!important;
+}
+
+.sidebar a.active{
+    background:#1565c0!important;
+    color:white!important;
+}
+
+
+/* عنوان ها */
+h1,h2,h3,h4{
+    color:#1565c0;
+}

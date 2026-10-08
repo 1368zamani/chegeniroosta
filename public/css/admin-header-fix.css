@@ -1,0 +1,58 @@
+/* یکسان سازی هدر تمام پنل های ادمین */
+
+.header,
+.admin-header,
+.top-header,
+.page-header {
+    background:#ffffff !important;
+    color:#1565c0 !important;
+    border-bottom:1px solid #e3f2fd !important;
+    box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
+}
+
+
+.header h1,
+.header h2,
+.header h3,
+.admin-header h1,
+.admin-header h2,
+.page-header h1 {
+    color:#1565c0 !important;
+}
+
+
+.header .user-info,
+.header .user,
+.admin-header small {
+    color:#546e7a !important;
+}
+
+
+/* لینک های داخل هدر */
+
+.header a,
+.admin-header a {
+    color:#1565c0 !important;
+    background:#e3f2fd !important;
+}
+
+
+.header a:hover,
+.admin-header a:hover {
+    background:#bbdefb !important;
+}
+
+
+/* دکمه خروج */
+
+.header button {
+    background:#1565c0 !important;
+    color:white !important;
+}
+
+
+/* حذف گرادینت های قدیمی */
+
+.header {
+    background-image:none !important;
+}

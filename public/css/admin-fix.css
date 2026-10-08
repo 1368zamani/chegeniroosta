@@ -1,0 +1,16 @@
+body{
+direction:rtl;
+}
+
+button,input,select,textarea{
+font-family:Tahoma,Arial;
+}
+
+.container,
+.content{
+direction:rtl;
+}
+
+img{
+max-width:100%;
+}

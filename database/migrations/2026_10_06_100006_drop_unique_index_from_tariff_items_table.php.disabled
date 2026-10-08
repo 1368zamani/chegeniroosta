@@ -1,0 +1,86 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        $driver = DB::connection()->getDriverName();
+
+        if ($driver === 'sqlite') {
+            DB::statement('DROP INDEX IF EXISTS tariff_items_tariff_set_id_tariff_title_id_unique');
+            return;
+        }
+
+        if ($driver === 'mysql' || $driver === 'mariadb') {
+            // 1. چک کن index وجود داره
+            $indexes = DB::select("SHOW INDEX FROM tariff_items WHERE Key_name = 'tariff_items_tariff_set_id_tariff_title_id_unique'");
+            if (empty($indexes)) {
+                return; // index وجود نداره، کاری نمی‌کنیم
+            }
+
+            // 2. چک کن foreign key ها چی هستن
+            $fks = DB::select("
+                SELECT CONSTRAINT_NAME, COLUMN_NAME, REFERENCED_TABLE_NAME
+                FROM information_schema.KEY_COLUMN_USAGE
+                WHERE TABLE_SCHEMA = DATABASE()
+                  AND TABLE_NAME = 'tariff_items'
+                  AND REFERENCED_TABLE_NAME IS NOT NULL
+            ");
+
+            // 3. حذف FK ها
+            $droppedFks = [];
+            foreach ($fks as $fk) {
+                try {
+                    DB::statement("ALTER TABLE tariff_items DROP FOREIGN KEY `{$fk->CONSTRAINT_NAME}`");
+                    $droppedFks[] = [
+                        'name' => $fk->CONSTRAINT_NAME,
+                        'column' => $fk->COLUMN_NAME,
+                        'ref_table' => $fk->REFERENCED_TABLE_NAME,
+                    ];
+                } catch (\Exception $e) {
+                    // ادامه بده حتی اگر خطا خورد
+                }
+            }
+
+            // 4. حذف index
+            try {
+                DB::statement('ALTER TABLE tariff_items DROP INDEX tariff_items_tariff_set_id_tariff_title_id_unique');
+            } catch (\Exception $e) {
+                // اگر خطا داد، احتمالاً index رو با نام دیگه‌ای داره
+            }
+
+            // 5. دوباره FK ها رو با نام جدید بساز (بدون unique)
+            foreach ($droppedFks as $fk) {
+                // نام FK جدید
+                $newName = 'fk_tariff_items_' . $fk['column'];
+                try {
+                    DB::statement("
+                        ALTER TABLE tariff_items 
+                        ADD CONSTRAINT `{$newName}` 
+                        FOREIGN KEY (`{$fk['column']}`) 
+                        REFERENCES `{$fk['ref_table']}` (`id`) 
+                        ON DELETE CASCADE
+                    ");
+                } catch (\Exception $e) {
+                    // اگر خطا داد، شاید FK با این نام هست یا وجود نداره
+                }
+            }
+        }
+    }
+
+    public function down(): void
+    {
+        // در MySQL فقط unique index رو برمی‌گردونیم
+        $driver = DB::connection()->getDriverName();
+        if ($driver === 'mysql' || $driver === 'mariadb') {
+            $exists = DB::select("SHOW INDEX FROM tariff_items WHERE Key_name = 'tariff_items_tariff_set_id_tariff_title_id_unique'");
+            if (empty($exists)) {
+                DB::statement('ALTER TABLE tariff_items ADD UNIQUE INDEX tariff_items_tariff_set_id_tariff_title_id_unique (tariff_set_id, tariff_title_id)');
+            }
+        }
+    }
+};

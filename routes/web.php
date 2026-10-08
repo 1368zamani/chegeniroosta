@@ -437,6 +437,8 @@ Route::prefix('village/{slug}')->group(function () {
 
     Route::get('/about', [\App\Http\Controllers\PublicVillageSiteController::class, 'about'])
         ->name('village.site.about');
+        Route::get('/attractions', [\App\Http\Controllers\PublicVillageSiteController::class, 'attractions'])->name('village.site.attractions');
+        Route::get('/gallery', [\App\Http\Controllers\PublicVillageSiteController::class, 'gallery'])->name('village.site.gallery');
 
     Route::get('/council', [\App\Http\Controllers\PublicVillageSiteController::class, 'council'])
         ->name('village.site.council');
@@ -679,6 +681,13 @@ Route::get('/sitemap-news.xml', [\App\Http\Controllers\SitemapController::class,
     ->name('seo.sitemap.news');
 
 /* ═══ مدیریت رمزهای کاربران (سوپرادمین + بخشدار) ═══ */
+Route::middleware(["auth"])->prefix("admin")->group(function () {
+    Route::get("/passwords", [\App\Http\Controllers\AdminPasswordController::class, "index"])
+        ->name("admin.passwords.index");
+
+    Route::post("/passwords/{user}/reset", [\App\Http\Controllers\AdminPasswordController::class, "reset"])
+        ->name("admin.passwords.reset");
+});
 /* ═══ مدیریت کارشناسان مالی و فنی/عمرانی ═══ */
 /* ═══ ایجاد کاربر جدید ═══ */
 Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin.village.dehyar.')->group(function () {
@@ -770,3 +779,25 @@ Route::middleware(['auth'])->prefix('admin/tariff-officers')->name('admin.tariff
     Route::post('/{officer}/reset-password',
         [\App\Http\Controllers\Admin\TariffOfficerController::class, 'resetPassword'])->name('reset-password');
 });
+
+// ═══════════════════════════════════════════════════════════
+// پنل کارشناسان فنی و مالی (Expert Panel)
+// ═══════════════════════════════════════════════════════════
+Route::prefix('expert')->name('expert.')->group(function () {
+    // ورود و خروج
+    Route::get('/login',  [\App\Http\Controllers\Expert\ExpertAuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [\App\Http\Controllers\Expert\ExpertAuthController::class, 'login'])->name('login.post');
+    Route::post('/logout',[\App\Http\Controllers\Expert\ExpertAuthController::class, 'logout'])->name('logout');
+
+    // صفحات محافظت‌شده
+    Route::middleware(['web', \App\Http\Middleware\EnsureExpertAccess::class])->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\Expert\ExpertDashboardController::class, 'index'])->name('dashboard');
+    });
+});
+
+// ═══════════════════════════════════════════════════════════
+// فاز ۱۰: RSS و Sitemap اختصاصی روستا
+// ═══════════════════════════════════════════════════════════
+Route::get('/village/{slug}/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'villageSitemap'])->name('village.sitemap');
+Route::get('/village/{slug}/feed.xml',    [\App\Http\Controllers\SitemapController::class, 'villageRss'])->name('village.rss');
+Route::get('/villages/sitemap.xml',       [\App\Http\Controllers\SitemapController::class, 'villagesIndex'])->name('villages.sitemap.index');

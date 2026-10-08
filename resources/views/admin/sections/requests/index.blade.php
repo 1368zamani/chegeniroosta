@@ -30,7 +30,9 @@ tr:hover { background: #f8fafc; }
 .empty { text-align: center; padding: 60px 20px; color: #90a4ae; background: white; border-radius: 12px; }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-</head>
+<link rel="stylesheet" href="/css/admin-master.css?v=2">
+<link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
 <body>
 
 <div class="header">

@@ -147,4 +147,141 @@ class SitemapController extends Controller
         return response($xml)->header('Content-Type', 'application/xml');
     }
 
+
+    /**
+     * Sitemap اختصاصی هر روستا
+     */
+    public function villageSitemap(string $slug)
+    {
+        $village = \App\Models\Village::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $urls = [];
+        $base = url('/village/' . $village->slug);
+
+        $urls[] = ['loc' => $base, 'priority' => '1.0', 'changefreq' => 'daily'];
+        $urls[] = ['loc' => $base . '/about', 'priority' => '0.8', 'changefreq' => 'weekly'];
+        $urls[] = ['loc' => $base . '/news', 'priority' => '0.8', 'changefreq' => 'daily'];
+        $urls[] = ['loc' => $base . '/council', 'priority' => '0.7', 'changefreq' => 'monthly'];
+        $urls[] = ['loc' => $base . '/dehyar', 'priority' => '0.7', 'changefreq' => 'monthly'];
+        $urls[] = ['loc' => $base . '/projects', 'priority' => '0.6', 'changefreq' => 'weekly'];
+        $urls[] = ['loc' => $base . '/events', 'priority' => '0.6', 'changefreq' => 'weekly'];
+        $urls[] = ['loc' => $base . '/facilities', 'priority' => '0.5', 'changefreq' => 'monthly'];
+        $urls[] = ['loc' => $base . '/attractions', 'priority' => '0.6', 'changefreq' => 'monthly'];
+        $urls[] = ['loc' => $base . '/gallery', 'priority' => '0.5', 'changefreq' => 'monthly'];
+        $urls[] = ['loc' => $base . '/resolutions', 'priority' => '0.5', 'changefreq' => 'monthly'];
+
+        // اخبار روستا
+        $news = \App\Models\VillageNews::where('village_id', $village->id)
+            ->where('is_published', true)
+            ->orderBy('published_at', 'desc')
+            ->limit(100)
+            ->get();
+
+        foreach ($news as $n) {
+            $urls[] = [
+                'loc' => $base . '/news/' . $n->slug,
+                'lastmod' => optional($n->updated_at)->toAtomString(),
+                'priority' => '0.6',
+                'changefreq' => 'monthly',
+            ];
+        }
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+
+        foreach ($urls as $u) {
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . htmlspecialchars($u['loc']) . '</loc>' . PHP_EOL;
+            if (!empty($u['lastmod'])) {
+                $xml .= '    <lastmod>' . $u['lastmod'] . '</lastmod>' . PHP_EOL;
+            }
+            if (!empty($u['changefreq'])) {
+                $xml .= '    <changefreq>' . $u['changefreq'] . '</changefreq>' . PHP_EOL;
+            }
+            if (!empty($u['priority'])) {
+                $xml .= '    <priority>' . $u['priority'] . '</priority>' . PHP_EOL;
+            }
+            $xml .= '  </url>' . PHP_EOL;
+        }
+
+        $xml .= '</urlset>';
+
+        return response($xml, 200)->header('Content-Type', 'application/xml; charset=utf-8');
+    }
+
+    /**
+     * RSS اخبار هر روستا
+     */
+    public function villageRss(string $slug)
+    {
+        $village = \App\Models\Village::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $news = \App\Models\VillageNews::where('village_id', $village->id)
+            ->where('is_published', true)
+            ->orderBy('published_at', 'desc')
+            ->limit(50)
+            ->get();
+
+        $base = url('/village/' . $village->slug);
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+        $xml .= '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">' . PHP_EOL;
+        $xml .= '  <channel>' . PHP_EOL;
+        $xml .= '    <title>اخبار روستای ' . htmlspecialchars($village->name) . '</title>' . PHP_EOL;
+        $xml .= '    <link>' . htmlspecialchars($base) . '</link>' . PHP_EOL;
+        $xml .= '    <description>آخرین اخبار و اطلاعیه‌های روستای ' . htmlspecialchars($village->name) . '</description>' . PHP_EOL;
+        $xml .= '    <language>fa-IR</language>' . PHP_EOL;
+        $xml .= '    <atom:link href="' . htmlspecialchars($base . '/feed.xml') . '" rel="self" type="application/rss+xml" />' . PHP_EOL;
+
+        foreach ($news as $n) {
+            $link = $base . '/news/' . $n->slug;
+            $pubDate = optional($n->published_at ?? $n->created_at)->toRfc2822String();
+
+            $xml .= '    <item>' . PHP_EOL;
+            $xml .= '      <title>' . htmlspecialchars($n->title ?? '') . '</title>' . PHP_EOL;
+            $xml .= '      <link>' . htmlspecialchars($link) . '</link>' . PHP_EOL;
+            $xml .= '      <guid isPermaLink="true">' . htmlspecialchars($link) . '</guid>' . PHP_EOL;
+            if ($pubDate) {
+                $xml .= '      <pubDate>' . $pubDate . '</pubDate>' . PHP_EOL;
+            }
+            $desc = strip_tags($n->summary ?? $n->content ?? '');
+            $desc = mb_substr($desc, 0, 300);
+            $xml .= '      <description>' . htmlspecialchars($desc) . '</description>' . PHP_EOL;
+            $xml .= '    </item>' . PHP_EOL;
+        }
+
+        $xml .= '  </channel>' . PHP_EOL;
+        $xml .= '</rss>';
+
+        return response($xml, 200)->header('Content-Type', 'application/rss+xml; charset=utf-8');
+    }
+
+    /**
+     * Sitemap ایندکس همه روستاها
+     */
+    public function villagesIndex()
+    {
+        $villages = \App\Models\Village::where('is_active', true)
+            ->orderBy('id')
+            ->get();
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+        $xml .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+
+        foreach ($villages as $v) {
+            $xml .= '  <sitemap>' . PHP_EOL;
+            $xml .= '    <loc>' . htmlspecialchars(url('/village/' . $v->slug . '/sitemap.xml')) . '</loc>' . PHP_EOL;
+            $xml .= '    <lastmod>' . optional($v->updated_at)->toAtomString() . '</lastmod>' . PHP_EOL;
+            $xml .= '  </sitemap>' . PHP_EOL;
+        }
+
+        $xml .= '</sitemapindex>';
+
+        return response($xml, 200)->header('Content-Type', 'application/xml; charset=utf-8');
+    }
+
 }

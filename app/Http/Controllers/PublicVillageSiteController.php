@@ -244,6 +244,28 @@ class PublicVillageSiteController extends Controller
         return view('village.site.request-track-result', compact('village', 'found'));
     }
 
+    public function attractions($slug)
+    {
+        $village = $this->getVillage($slug);
+
+        $attractions = VillageAttraction::where('village_id', $village->id)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('village.site.attractions', compact('village', 'attractions'));
+    }
+
+    public function gallery($slug)
+    {
+        $village = $this->getVillage($slug);
+
+        $images = VillageImage::where('village_id', $village->id)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('village.site.gallery', compact('village', 'images'));
+    }
+
     private function getVillage($slug): Village
     {
         return Village::where('slug', $slug)

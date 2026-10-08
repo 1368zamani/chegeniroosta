@@ -1,0 +1,246 @@
+/* ADMIN GLOBAL LIGHT BLUE THEME */
+
+html, body {
+    background:#ffffff !important;
+    color:#263238 !important;
+    font-family:Tahoma, Arial, sans-serif !important;
+}
+
+/* همه هدرهای ادمین */
+.header,
+header.header,
+.admin-header {
+    background:#1565C0 !important;
+    background-image:none !important;
+    color:white !important;
+    border-bottom:4px solid #D32F2F !important;
+}
+
+.header *,
+header.header *,
+.admin-header * {
+    color:white !important;
+}
+
+/* متن اصلی */
+h1,h2,h3,h4,h5,
+.page-title,
+.page-title h2 {
+    color:#1565C0 !important;
+}
+
+
+/* حذف رنگ های تیره */
+.sidebar,
+.content,
+.main-content,
+.container,
+.card,
+.box,
+.panel {
+    background:#ffffff !important;
+    color:#263238 !important;
+}
+
+
+/* منو */
+.sidebar-menu a,
+.sidebar a {
+    color:#1565C0 !important;
+    background:#ffffff !important;
+}
+
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background:#EAF3FF !important;
+    color:#1565C0 !important;
+    border-right-color:#1565C0 !important;
+}
+
+
+/* کارت ها */
+.card,
+.stat-card,
+.box {
+    border:1px solid #E3F2FD !important;
+    box-shadow:0 4px 15px rgba(21,101,192,.08) !important;
+}
+
+
+/* جدول */
+table {
+    background:#ffffff !important;
+}
+
+th {
+    background:#EAF3FF !important;
+    color:#1565C0 !important;
+}
+
+td {
+    color:#263238 !important;
+}
+
+
+/* دکمه اصلی */
+.btn-primary,
+button.btn-primary {
+    background:#1565C0 !important;
+    color:white !important;
+}
+
+
+/* لینک ها */
+a {
+    color:#1565C0;
+}
+
+
+/* حذف هدر قرمز روستا */
+.header[style],
+div.header {
+    background:#1565C0 !important;
+}
+
+
+/* موبایل */
+@media(max-width:768px){
+    body{
+        background:#fff !important;
+    }
+}
+
+
+/* اصلاح خوانایی دکمه های هدر ادمین */
+.header a,
+.header button,
+.top-actions a,
+.top-actions button,
+.header .nav a {
+    background:#1565C0 !important;
+    color:#ffffff !important;
+    border:1px solid rgba(255,255,255,.25) !important;
+}
+
+
+.header a *,
+.header button *,
+.top-actions a *,
+.top-actions button * {
+    color:#ffffff !important;
+}
+
+
+/* آیکن و متن منوی بالا */
+.header svg,
+.header i,
+.header span {
+    color:#ffffff !important;
+}
+
+
+/* هاور */
+.header a:hover,
+.header button:hover,
+.top-actions a:hover,
+.top-actions button:hover {
+    background:#0D47A1 !important;
+    color:white !important;
+}
+
+
+/* کارت بخش ها */
+.card h3,
+.card h4,
+.section-title {
+    color:#1565C0 !important;
+}
+
+
+
+/* FIX ADMIN DASHBOARD HEADER TEXT */
+body .header a,
+body .header button,
+body .header .nav a,
+body .header .top-actions a,
+body .header .top-actions button,
+body header a,
+body header button {
+    color:#ffffff !important;
+    background:#1565C0 !important;
+    opacity:1 !important;
+    text-shadow:none !important;
+}
+
+
+/* حذف رنگ های آبی تیره روی متن */
+body .header a span,
+body .header button span,
+body .header a i,
+body .header button i,
+body .header a svg,
+body .header button svg {
+    color:#ffffff !important;
+    fill:#ffffff !important;
+}
+
+
+/* عنوان پنل */
+body .header h1,
+body .header h2,
+body .header h3 {
+    color:#1565C0 !important;
+}
+
+
+/* دکمه های منو */
+body .header a:hover,
+body .header button:hover {
+    background:#0D47A1 !important;
+    color:#fff !important;
+}
+
+
+
+/* FIX DASHBOARD INLINE MENU COLORS */
+
+body .header .nav a {
+    background:#1565C0 !important;
+    color:#FFFFFF !important;
+    border:1px solid rgba(255,255,255,.35) !important;
+}
+
+
+body .header .nav a:hover {
+    background:#0D47A1 !important;
+    color:#FFFFFF !important;
+}
+
+
+/* تنظیمات که inline زرد دارد */
+body .header .nav a[style] {
+    background:#1565C0 !important;
+    color:#FFFFFF !important;
+}
+
+
+/* متن داخل لینک ها */
+body .header .nav a,
+body .header .nav a span {
+    color:#FFFFFF !important;
+}
+
+
+/* عنوان پنل */
+body .header h1 {
+    color:#1565C0 !important;
+}
+
+
+/* کارت های بنفش کنار بخش ها */
+body .section-card .enter {
+    background:#1565C0 !important;
+    color:#fff !important;
+}
+

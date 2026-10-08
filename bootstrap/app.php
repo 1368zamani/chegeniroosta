@@ -15,11 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'admin-section' => \App\Http\Middleware\IdentifyAdminSubdomain::class,
-        'section' => \App\Http\Middleware\IdentifySection::class,
-            'village' => \App\Http\Middleware\IdentifyVillage::class,
+            'admin-section'  => \App\Http\Middleware\IdentifyAdminSubdomain::class,
+            'section'        => \App\Http\Middleware\IdentifySection::class,
+            'village'        => \App\Http\Middleware\IdentifyVillage::class,
             'village-access' => \App\Http\Middleware\CheckVillageAccess::class,
-            'fee-officer' => \App\Http\Middleware\FeeOfficerScope::class,
+            'fee-officer'    => \App\Http\Middleware\FeeOfficerScope::class,
+            'expert.access'  => \App\Http\Middleware\EnsureExpertAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -25,7 +25,9 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            $table->unique(['tariff_set_id', 'tariff_title_id']);
+            // ⚠️ unique composite حذف شد — چون فقط برای داده‌های seed استفاده می‌شد
+            // و مشکل FK در MySQL ایجاد می‌کرد. اگر نیاز به unique داری،
+            // می‌تونی در یک migration جداگانه بعداً اضافه کنی.
         });
     }
 
