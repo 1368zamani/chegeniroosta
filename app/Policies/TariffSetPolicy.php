@@ -4,67 +4,77 @@ namespace App\Policies;
 
 use App\Models\TariffSet;
 use App\Models\User;
-use App\Models\Village;
 
 class TariffSetPolicy
 {
-    public function viewAny(User $u): bool
+    public function before(User $user, string $ability): ?bool
     {
-        return $u->isSuperAdmin() || $u->isSectionAdmin() || $u->isVillageAdmin() || $u->isFeeOfficer();
+        return $user->role === 'super_admin' ? true : null;
     }
 
-    public function view(User $u, TariffSet $set): bool
+    public function viewAny(User $user): bool
     {
-        if ($u->isSuperAdmin()) return true;
-        if ($u->isFeeOfficer()) return true;
+        return in_array($user->role, [
+            'super_admin', 'section_admin', 'village_admin', 'fee_officer',
+        ]);
+    }
 
-        if ($u->isSectionAdmin()) {
-            return $this->villageInSection($set->village_id, $u->section_id);
+    public function view(User $user, TariffSet $set): bool
+    {
+        return match ($user->role) {
+            'section_admin' => $set->village?->section_id === $user->section_id,
+            'village_admin' => $set->village_id === $user->village_id,
+            'fee_officer'   => true,
+            default         => false,
+        };
+    }
+
+    /**
+     * آیا کاربر می‌تواند آیتم‌های این مجموعه را ویرایش کند؟
+     */
+    public function updateItems(User $user, TariffSet $set): bool
+    {
+        if (!$this->view($user, $set)) return false;
+
+        if (in_array($user->role, ['super_admin', 'section_admin', 'village_admin'])) {
+            return true;
         }
-        if ($u->isVillageAdmin()) {
-            return (int) $u->village_id === (int) $set->village_id;
+
+        if ($user->role === 'fee_officer') {
+            return in_array($user->officer_type, ['technical', 'financial']);
         }
+
         return false;
     }
 
-    public function create(User $u): bool
+    /**
+     * ⭐ چک نهایی — آیا این کارشناس می‌تواند این نوع تعرفه را تغییر دهد؟
+     */
+    public function canEditType(User $user, string $type): bool
     {
-        return $u->isSuperAdmin() || $u->isSectionAdmin() || $u->isVillageAdmin();
-    }
-
-    public function update(User $u, TariffSet $set): bool
-    {
-        if (!$this->view($u, $set)) return false;
-        if ($u->isFeeOfficer()) return false;
-        return !$set->isLocked();
-    }
-
-    public function transition(User $u, TariffSet $set, string $to): bool
-    {
-        if ($set->isLocked()) return false;
-        if (!$this->view($u, $set)) return false;
-        if ($u->isSuperAdmin()) return true;
-
-        if ($u->isVillageAdmin() && $to === 'proposed') {
-            return (int) $u->village_id === (int) $set->village_id;
+        if (in_array($user->role, ['super_admin', 'section_admin', 'village_admin'])) {
+            return true;
         }
-        if ($u->isSectionAdmin()) {
-            if (!in_array($to, ['village_council_approved', 'district_council_approved'], true)) {
-                return false;
-            }
-            return $this->villageInSection($set->village_id, $u->section_id);
+
+        if ($user->role === 'fee_officer') {
+            return match ($user->officer_type) {
+                'technical' => $type === 'levy',
+                'financial' => $type === 'service_fee',
+                default     => false,
+            };
         }
+
         return false;
     }
 
-    public function delete(User $u, TariffSet $set): bool
+    public function update(User $user, TariffSet $set): bool
     {
-        return $u->isSuperAdmin() && $set->status === 'draft';
+        return in_array($user->role, ['super_admin', 'section_admin'])
+            && $this->view($user, $set);
     }
 
-    private function villageInSection(int $villageId, ?int $sectionId): bool
+    public function delete(User $user, TariffSet $set): bool
     {
-        if (!$sectionId) return false;
-        return Village::where('id', $villageId)->where('section_id', $sectionId)->exists();
+        return $user->role === 'super_admin';
     }
 }

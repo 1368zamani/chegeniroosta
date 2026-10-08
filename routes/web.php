@@ -801,3 +801,16 @@ Route::prefix('expert')->name('expert.')->group(function () {
 Route::get('/village/{slug}/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'villageSitemap'])->name('village.sitemap');
 Route::get('/village/{slug}/feed.xml',    [\App\Http\Controllers\SitemapController::class, 'villageRss'])->name('village.rss');
 Route::get('/villages/sitemap.xml',       [\App\Http\Controllers\SitemapController::class, 'villagesIndex'])->name('villages.sitemap.index');
+
+// ═══════════════════════════════════════════════════════════
+// سیستم ویرایش تعرفه توسط کارشناسان
+// ═══════════════════════════════════════════════════════════
+Route::middleware(['web', 'auth'])->prefix('village/{slug}/tariff')->group(function () {
+    Route::post('/calculate',  [\App\Http\Controllers\Public\TariffEditController::class, 'calculate'])
+        ->name('tariff.edit.calculate');
+    Route::post('/save',       [\App\Http\Controllers\Public\TariffEditController::class, 'update'])
+        ->name('tariff.edit.update');
+    Route::get('/history/{item}', [\App\Http\Controllers\Public\TariffEditController::class, 'history'])
+        ->name('tariff.edit.history');
+});
+

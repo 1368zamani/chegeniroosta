@@ -3,23 +3,41 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\TariffSet;
+use App\Models\User;
+use App\Policies\TariffSetPolicy;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        //
+        // Registry در همان جای قبلی (پایین در boot)
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        \Illuminate\Support\Facades\Gate::policy(\App\Models\TariffSet::class, \App\Policies\TariffSetPolicy::class);
+        // ═══ Policy برای مدل TariffSet ═══
+        Gate::policy(TariffSet::class, TariffSetPolicy::class);
+
+        // ═══ Gate برای canEditType (بدون Model) ═══
+        Gate::define('tariff.canEditType', function (User $user, string $type) {
+            // Super/section/village admin: همه چیز
+            if (in_array($user->role, ['super_admin', 'section_admin', 'village_admin'], true)) {
+                return true;
+            }
+
+            // کارشناس فنی/مالی
+            if ($user->role === 'fee_officer') {
+                return match ($user->officer_type) {
+                    'technical' => $type === 'levy',
+                    'financial' => $type === 'service_fee',
+                    default     => false,
+                };
+            }
+
+            return false;
+        });
 
         // ═══ Registry محاسبه‌گرهای تعرفه ═══
         $this->app->singleton(\App\Services\Tariff\Calculators\CalculatorRegistry::class, function () {
@@ -39,13 +57,19 @@ class AppServiceProvider extends ServiceProvider
             $r->register('waste_commercial',   \App\Services\Tariff\Calculators\WasteCalculator::class);
             $r->register('waste_industrial',   \App\Services\Tariff\Calculators\WasteCalculator::class);
             $r->register('article_99_penalty', \App\Services\Tariff\Calculators\Article99PenaltyCalculator::class);
+
+            // فرمول‌های جدید
+            $r->register('per_square_meter',       \App\Services\Tariff\Calculators\PerSquareMeterCalculator::class);
+            $r->register('per_unit',               \App\Services\Tariff\Calculators\PerUnitCalculator::class);
+            $r->register('fixed_amount',           \App\Services\Tariff\Calculators\FixedAmountCalculator::class);
+            $r->register('percentage_of_value',    \App\Services\Tariff\Calculators\PercentageOfValueCalculator::class);
+            $r->register('area_with_coefficient',  \App\Services\Tariff\Calculators\AreaWithCoefficientCalculator::class);
+            $r->register('per_person',             \App\Services\Tariff\Calculators\PerPersonCalculator::class);
+
             return $r;
         });
 
-
-        // ═══ Policy های ماژول تعرفه ═══
-
+        // Observer
         \App\Models\Village::observe(\App\Observers\VillageObserver::class);
-        //
     }
 }
