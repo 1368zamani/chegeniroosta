@@ -20,7 +20,7 @@
     <div class="flex justify-between items-center mb-4">
         <a href="{{ route('admin.tariff-invoices.index') }}" class="text-emerald-700 text-sm">← بازگشت به لیست</a>
         <div class="flex gap-2">
-            <a href="{{ route('tariff.invoice.show', $invoice->public_token) }}" target="_blank"
+            <a href="{{ route('village.tariff.invoice.show', $invoice->public_token) }}" target="_blank"
                class="text-sm border px-3 py-2 rounded bg-white">👁️ نمایش عمومی</a>
         </div>
     </div>

@@ -171,7 +171,7 @@
     @endif
 
     @if($invoice->canUploadReceipt())
-    <form method="POST" action="{{ route('tariff.invoice.receipt', $invoice->public_token) }}" enctype="multipart/form-data" class="no-print bg-white rounded-lg shadow p-5">
+    <form method="POST" action="{{ route('village.tariff.invoice.receipt', $invoice->public_token) }}" enctype="multipart/form-data" class="no-print bg-white rounded-lg shadow p-5">
         @csrf
         <h2 class="font-bold text-emerald-800 mb-4">📤 بارگذاری رسید پرداخت</h2>
         <div class="grid md:grid-cols-2 gap-4">

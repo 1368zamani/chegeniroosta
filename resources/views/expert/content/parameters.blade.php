@@ -156,7 +156,7 @@
                     <tr>
                         <td>
                             <div class="fw-bold">{{ $info['title'] }}</div>
-                            <div class="text-muted small font-monospace" style="font-size:11px;">{{ $p->key }}</div>
+                            
                             @if($info['ref'] !== '—')
                             <div class="text-info small mt-1" style="font-size:10px;">
                                 <i class="bi bi-bookmark-fill"></i> {{ $info['ref'] }}

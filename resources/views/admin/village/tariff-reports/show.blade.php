@@ -13,7 +13,7 @@
     <div class="mb-4 flex justify-between items-center">
         <a href="{{ route('admin.village.tariff-reports.index', $village->id) }}"
            class="text-emerald-700 text-sm">← بازگشت به لیست</a>
-        <a href="{{ route('tariff.invoice.show', $invoice->public_token) }}" target="_blank"
+        <a href="{{ route('village.tariff.invoice.show', $invoice->public_token) }}" target="_blank"
            class="text-sm border px-3 py-2 rounded bg-white">👁️ نمایش عمومی</a>
     </div>
 

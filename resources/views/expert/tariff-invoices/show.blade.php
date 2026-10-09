@@ -19,7 +19,7 @@
     <a href="{{ route('expert.tariff-invoices.index') }}" class="text-decoration-none">
         <i class="bi bi-arrow-right"></i> بازگشت به لیست
     </a>
-    <a href="{{ route('tariff.invoice.show', $invoice->public_token) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+    <a href="{{ route('village.tariff.invoice.show', $invoice->public_token) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
         👁️ نمایش عمومی
     </a>
 </div>
