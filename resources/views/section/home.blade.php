@@ -1246,7 +1246,7 @@ a[href^="tel:"] {
             <strong>🔐 کارشناسان فنی و مالی دهیاری‌ها:</strong>
             برای ثبت، ویرایش و مدیریت تعرفه‌ی عوارض روستاهای این بخش وارد شوید.
         </div>
-        <a href="{{ route('tariff.officer.login') }}"
+        <a href="{{ route('expert.login') }}"
            style="display: inline-block; background: #2e7d32; color: #fff; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13.5px; white-space: nowrap;">
             ورود کارشناسان ←
         </a>

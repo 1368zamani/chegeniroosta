@@ -766,9 +766,19 @@ Route::middleware(['auth'])
     });
 
 // ═══ ورود اختصاصی کارشناسان عوارض ═══
-Route::get('/tariff-officer/login',  [\App\Http\Controllers\TariffOfficerAuthController::class, 'showLogin'])->name('tariff.officer.login');
-Route::post('/tariff-officer/login', [\App\Http\Controllers\TariffOfficerAuthController::class, 'login'])->name('tariff.officer.login.post');
-Route::post('/tariff-officer/logout',[\App\Http\Controllers\TariffOfficerAuthController::class, 'logout'])->name('tariff.officer.logout');
+// ═══ Redirect قدیمی به پنل جدید کارشناسان ═══
+Route::get('/tariff-officer/login', function () {
+    return redirect()->route('expert.login');
+})->name('tariff.officer.login');
+Route::post('/tariff-officer/login', function () {
+    return redirect()->route('expert.login');
+})->name('tariff.officer.login.post');
+Route::post('/tariff-officer/logout', function () {
+    auth()->logout();
+    session()->invalidate();
+    session()->regenerateToken();
+    return redirect()->route('expert.login');
+})->name('tariff.officer.logout');
 
 // ═══ مدیریت کارشناسان عوارض (فقط super_admin) ═══
 Route::middleware(['auth'])->prefix('admin/tariff-officers')->name('admin.tariff-officers.')->group(function () {
@@ -792,6 +802,34 @@ Route::prefix('expert')->name('expert.')->group(function () {
     // صفحات محافظت‌شده
     Route::middleware(['web', \App\Http\Middleware\EnsureExpertAccess::class])->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Expert\ExpertDashboardController::class, 'index'])->name('dashboard');
+
+        // ═══ تعرفه‌ها — از کنترلر ادمین استفاده می‌کنیم ═══
+        Route::get('/tariffs', [\App\Http\Controllers\Admin\TariffSetController::class, 'index'])
+            ->name('tariffs.index');
+        Route::get('/tariffs/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'show'])
+            ->where('tariffSet', '[0-9]+')
+            ->name('tariffs.show');
+        Route::get('/tariffs/{tariffSet}/edit', [\App\Http\Controllers\Admin\TariffSetController::class, 'edit'])
+            ->where('tariffSet', '[0-9]+')
+            ->name('tariffs.edit');
+
+        // ═══ مفروضات ═══
+        Route::get('/parameters', function() {
+            return redirect()->route('expert.tariffs.index')
+                ->with('info', 'مفروضات در صفحه هر تعرفه قابل ویرایش است.');
+        })->name('parameters.index');
+
+        // ═══ آیتم‌ها ═══
+        Route::get('/items', function() {
+            return redirect()->route('expert.tariffs.index')
+                ->with('info', 'آیتم‌ها در صفحه هر تعرفه قابل ویرایش هستند.');
+        })->name('items.index');
+
+        // ═══ معافیت‌ها ═══
+        Route::get('/exemptions', function() {
+            return redirect()->route('expert.tariffs.index')
+                ->with('info', 'معافیت‌ها در صفحه هر تعرفه قابل ویرایش هستند.');
+        })->name('exemptions.index');
 
         // ═══ فیش‌های عوارض در پنل کارشناسان ═══
         Route::prefix('tariff-invoices')->name('tariff-invoices.')->group(function () {

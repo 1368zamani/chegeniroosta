@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
             <h1 class="text-2xl font-bold">👨‍💼 کارشناسان فنی و مالی تعرفه</h1>
-            <p class="text-sm text-gray-600 mt-1">این کارشناسان به پنل تعرفه دسترسی دارند — از طریق <code dir="ltr">/tariff-officer/login</code></p>
+            <p class="text-sm text-gray-600 mt-1">این کارشناسان به پنل تعرفه دسترسی دارند — از طریق <code dir="ltr">/expert/login</code></p>
         </div>
         <a href="{{ route('admin.tariffs.index') }}" class="px-4 py-2 border rounded">← لیست تعرفه‌ها</a>
     </div>
@@ -197,7 +197,7 @@
     <div class="mt-6 bg-blue-50 border-r-4 border-blue-500 p-4 rounded text-sm text-blue-900">
         <strong>ℹ️ راهنما:</strong>
         <ul class="list-disc pr-5 mt-2 space-y-1">
-            <li>کارشناسان از طریق <code dir="ltr">{{ url('/tariff-officer/login') }}</code> وارد می‌شوند.</li>
+            <li>کارشناسان از طریق <code dir="ltr">{{ url('/expert/login') }}</code> وارد می‌شوند.</li>
             <li>لینک ورود در سایت بخشداری هر بخش در پایین صفحه موجود است.</li>
             <li>هر کارشناس فقط به تعرفه‌ی روستاهای <strong>بخش خودش</strong> دسترسی دارد.</li>
         </ul>
