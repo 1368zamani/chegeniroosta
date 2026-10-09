@@ -73,13 +73,29 @@
 
     $grouped = [];
     foreach ($parameters as $p) {
+        // ═══ نام‌های فارسی برای پارامترهای اضافی ═══
+        $extraNames = [
+            'value'             => 'مقدار',
+            'formula_key'       => 'کلید فرمول',
+            'title'             => 'عنوان',
+            'notes'             => 'توضیحات',
+            'type'              => 'نوع',
+            'usage_factors_json'=> 'ضرایب کاربری (JSON)',
+            'coefficient'       => 'ضریب',
+            'rate'              => 'نرخ',
+            'base_rate'         => 'نرخ پایه',
+            'penalty_rate'      => 'نرخ جریمه',
+            'min_amount'        => 'حداقل مبلغ',
+            'max_amount'        => 'حداکثر مبلغ',
+        ];
+
         $info = $map[$p->key] ?? [
-            'title' => $p->key,
-            'help'  => 'پارامتر سفارشی',
-            'unit'  => $p->unit ?? '—',
+            'title'    => $extraNames[$p->key] ?? 'پارامتر بدون عنوان',
+            'help'     => 'پارامتر فنی — با مدیر سیستم تماس بگیرید',
+            'unit'     => $p->unit ?? '—',
             'category' => 'سایر پارامترها',
-            'icon' => '⚙️',
-            'ref' => '—',
+            'icon'     => '⚙️',
+            'ref'      => '—',
         ];
         $grouped[$info['category']][] = ['model' => $p, 'info' => $info];
     }

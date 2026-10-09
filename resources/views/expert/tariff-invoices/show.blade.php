@@ -131,18 +131,26 @@
                     </a>
                 @endif
 
-                @if($r->status === 'pending' && $canApprove)
-                <div class="d-flex gap-2 flex-wrap mt-2">
-                    <form method="POST" action="{{ route('expert.tariff-invoices.receipts.approve', $r->id) }}">
+                @php
+                    $isPending = $r->status === 'pending';
+                    $isFinancial = $user->role === 'fee_officer' && $user->officer_type === 'financial';
+                    $isAdmin = in_array($user->role, ['super_admin', 'section_admin']);
+                    $showApprove = $isPending && ($isFinancial || $isAdmin);
+                @endphp
+
+                @if($showApprove)
+                <div class="d-flex gap-2 flex-wrap mt-3 pt-3 border-top">
+                    <form method="POST" action="{{ route('expert.tariff-invoices.receipts.approve', $r->id) }}" class="d-inline">
                         @csrf
-                        <button class="btn btn-success btn-sm">
+                        <button type="submit" class="btn btn-success">
                             ✅ تایید و علامت پرداخت
                         </button>
                     </form>
-                    <button type="button" class="btn btn-danger btn-sm" onclick="showRejectForm({{ $r->id }})">
+                    <button type="button" class="btn btn-danger" onclick="showRejectForm({{ $r->id }})">
                         ❌ رد کردن
                     </button>
                 </div>
+                @endif
 
                 <div id="rejectForm-{{ $r->id }}" class="d-none mt-2">
                     <form method="POST" action="{{ route('expert.tariff-invoices.receipts.reject', $r->id) }}">
@@ -152,7 +160,6 @@
                         <button class="btn btn-danger btn-sm">ارسال رد</button>
                     </form>
                 </div>
-                @endif
 
                 @if($r->status === 'rejected' && $r->reject_reason)
                     <div class="text-danger small mt-2">
