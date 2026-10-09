@@ -792,6 +792,19 @@ Route::prefix('expert')->name('expert.')->group(function () {
     // صفحات محافظت‌شده
     Route::middleware(['web', \App\Http\Middleware\EnsureExpertAccess::class])->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Expert\ExpertDashboardController::class, 'index'])->name('dashboard');
+
+        // ═══ فیش‌های عوارض در پنل کارشناسان ═══
+        Route::prefix('tariff-invoices')->name('tariff-invoices.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'index'])->name('index');
+            Route::get('/account', [\App\Http\Controllers\Expert\ExpertBankAccountController::class, 'edit'])->name('account');
+            Route::post('/account', [\App\Http\Controllers\Expert\ExpertBankAccountController::class, 'save'])->name('account.save');
+            Route::get('/{id}', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'show'])->where('id','[0-9]+')->name('show');
+            Route::post('/receipts/{receiptId}/approve', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'approveReceipt'])->where('receiptId','[0-9]+')->name('receipts.approve');
+            Route::post('/receipts/{receiptId}/reject', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'rejectReceipt'])->where('receiptId','[0-9]+')->name('receipts.reject');
+            Route::post('/{id}/cancel', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'cancel'])->where('id','[0-9]+')->name('cancel');
+            Route::post('/{id}/restore', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'restore'])->where('id','[0-9]+')->name('restore');
+            Route::delete('/{id}', [\App\Http\Controllers\Expert\ExpertTariffInvoiceController::class, 'destroy'])->where('id','[0-9]+')->name('destroy');
+        });
     });
 });
 
@@ -812,5 +825,85 @@ Route::middleware(['web', 'auth'])->prefix('village/{slug}/tariff')->group(funct
         ->name('tariff.edit.update');
     Route::get('/history/{item}', [\App\Http\Controllers\Public\TariffEditController::class, 'history'])
         ->name('tariff.edit.history');
+});
+
+// ═══════════════════════════════════════════════════════════
+// فاز فیش‌دهی عوارض
+// ═══════════════════════════════════════════════════════════
+
+// عمومی — برای هر روستا
+Route::prefix('village/{slug}/tariff/invoice')->name('tariff.invoice.')->group(function () {
+    Route::get('/create', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'create'])
+        ->name('create');
+    Route::post('/', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'store'])
+        ->name('store');
+    Route::get('/track', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'trackForm'])
+        ->name('track.form');
+    Route::post('/track', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'track'])
+        ->name('track');
+});
+
+// نمایش فیش با توکن (بدون نیاز به slug)
+Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'show'])
+    ->name('tariff.invoice.show');
+
+Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'uploadReceipt'])
+    ->name('tariff.invoice.receipt');
+
+// ═══════════════════════════════════════════════════════════
+// پنل ادمین — فیش‌های عوارض
+// ═══════════════════════════════════════════════════════════
+Route::middleware(['web', 'auth'])->prefix('admin/tariff-invoices')->name('admin.tariff-invoices.')->group(function () {
+
+    // لیست فیش‌ها
+    Route::get('/', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'index'])
+        ->name('index');
+
+    // حساب بانکی
+    Route::get('/account', [\App\Http\Controllers\Admin\AdminBankAccountController::class, 'edit'])
+        ->name('account');
+    Route::post('/account', [\App\Http\Controllers\Admin\AdminBankAccountController::class, 'save'])
+        ->name('account.save');
+
+    // نمایش یک فیش
+    Route::get('/{id}', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'show'])
+        ->where('id', '[0-9]+')
+        ->name('show');
+
+    // تایید / رد رسید
+    Route::post('/receipts/{receiptId}/approve', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'approveReceipt'])
+        ->where('receiptId', '[0-9]+')
+        ->name('receipts.approve');
+
+    Route::post('/receipts/{receiptId}/reject', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'rejectReceipt'])
+        ->where('receiptId', '[0-9]+')
+        ->name('receipts.reject');
+
+    // ابطال / بازگردانی / حذف
+    Route::post('/{id}/cancel', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'cancel'])
+        ->where('id', '[0-9]+')
+        ->name('cancel');
+
+    Route::post('/{id}/restore', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'restore'])
+        ->where('id', '[0-9]+')
+        ->name('restore');
+
+    Route::delete('/{id}', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'destroy'])
+        ->where('id', '[0-9]+')
+        ->name('destroy');
+
+    // تغییر سریع وضعیت
+    Route::post('/{id}/status', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'quickChangeStatus'])
+        ->where('id', '[0-9]+')
+        ->name('status');
+});
+
+// ═══════════════════════════════════════════════════════════
+// پنل دهیار — گزارش فیش‌های عوارض (خواندنی)
+// ═══════════════════════════════════════════════════════════
+Route::middleware(['web', 'auth'])->prefix('admin/village/{village}/tariff-reports')->name('admin.village.tariff-reports.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'index'])->name('index');
+    Route::get('/summary', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'summary'])->name('summary');
+    Route::get('/{id}', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'show'])->where('id', '[0-9]+')->name('show');
 });
 

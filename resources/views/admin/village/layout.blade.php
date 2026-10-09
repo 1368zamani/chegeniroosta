@@ -294,6 +294,7 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.village.news.index', $village->id) }}" class="{{ request()->routeIs('admin.village.news.*') ? 'active' : '' }}">📰 اخبار</a></li>
             <li><a href="{{ route('admin.village.projects.index', $village->id) }}" class="{{ request()->routeIs('admin.village.projects.*') ? 'active' : '' }}">🏗 پروژه‌ها</a></li>
             <li><a href="{{ route('admin.village.events.index', $village->id) }}" class="{{ request()->routeIs('admin.village.events.*') ? 'active' : '' }}">📅 رویدادها</a></li>
+            <li><a href="{{ route('admin.village.tariff-reports.index', $village->id) }}" class="{{ request()->routeIs('admin.village.tariff-reports.*') ? 'active' : '' }}">📊 گزارش عوارض</a></li>
             <li><a href="{{ route('admin.village.facilities.index', $village->id) }}" class="{{ request()->routeIs('admin.village.facilities.*') ? 'active' : '' }}">🏛 امکانات</a></li>
             <li><a href="{{ route('admin.village.council.index', $village->id) }}" class="{{ request()->routeIs('admin.village.council.*') ? 'active' : '' }}">👥 شورا</a></li>
             <li><a href="{{ route('admin.village.resolutions.index', $village->id) }}" class="{{ request()->routeIs('admin.village.resolutions.*') ? 'active' : '' }}">📋 مصوبات شورا</a></li>

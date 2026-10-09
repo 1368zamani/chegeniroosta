@@ -58,4 +58,11 @@ class TariffSet extends Model
             ->orderByDesc('jalali_year')
             ->first();
     }
+
+    // ═══ روابط فاز فیش‌دهی ═══
+    public function tariffInvoices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(TariffInvoice::class, 'tariff_set_id');
+    }
+
 }

@@ -144,4 +144,21 @@ class Village extends Model
         return $this->hasMany(\App\Models\VillageCouncilResolution::class)->orderBy('sort_order')->orderBy('session_date', 'desc');
     }
 
+
+    // ═══ روابط فاز فیش‌دهی ═══
+    public function bankAccounts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BankAccount::class);
+    }
+
+    public function tariffInvoices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(TariffInvoice::class);
+    }
+
+    public function defaultBankAccount(): ?BankAccount
+    {
+        return BankAccount::getDefaultForVillage($this->id);
+    }
+
 }

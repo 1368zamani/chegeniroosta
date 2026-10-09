@@ -4,22 +4,49 @@ namespace App\Support;
 
 class Number
 {
-    private const FA = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-
+    /**
+     * تبدیل اعداد لاتین به فارسی
+     */
     public static function fa($value): string
     {
-        if ($value === null || $value === '') return '';
-        return str_replace(range(0, 9), self::FA, (string) $value);
+        if ($value === null || $value === '') {
+            return '';
+        }
+
+        $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+        return str_replace($english, $persian, (string) $value);
     }
 
-    public static function rialToToman(int $rial): float
+    /**
+     * تبدیل اعداد فارسی به لاتین
+     */
+    public static function en($value): string
     {
-        return $rial / 10;
+        if ($value === null || $value === '') {
+            return '';
+        }
+
+        $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        $arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+        $value = str_replace($persian, $english, (string) $value);
+        $value = str_replace($arabic, $english, $value);
+
+        return $value;
     }
 
-    public static function money(int $rial, string $unit = 'rial'): string
+    /**
+     * فرمت پول با جداکننده هزارگان و اعداد فارسی
+     */
+    public static function money($value, bool $persian = true): string
     {
-        $val = $unit === 'toman' ? self::rialToToman($rial) : $rial;
-        return self::fa(number_format($val)) . ' ' . ($unit === 'toman' ? 'تومان' : 'ریال');
+        if ($value === null || $value === '') {
+            return $persian ? '۰' : '0';
+        }
+        $formatted = number_format((int) $value);
+        return $persian ? self::fa($formatted) : $formatted;
     }
 }

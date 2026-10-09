@@ -139,6 +139,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('expert.tariff-invoices.*') ? 'active' : '' }}"
+                   href="{{ route('expert.tariff-invoices.index') }}">
+                    <i class="bi bi-receipt"></i> 📋 فیش‌های عوارض
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('expert.parameters.*') ? 'active' : '' }}"
                    href="{{ route('expert.parameters.index') }}">
                     <i class="bi bi-sliders"></i> مفروضات

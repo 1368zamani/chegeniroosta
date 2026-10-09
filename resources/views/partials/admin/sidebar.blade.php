@@ -219,6 +219,25 @@
             <li><a href="{{ route('admin.section-news.index') }}" class="sb-item"><span class="sb-icon">📰</span> اخبار</a></li>
         @endif
 
+        @if($isSuper || $isSection || $isVillage || $isOfficer)
+            <li class="sb-section">💰 مالی و عوارض</li>
+            <li>
+                <a href="{{ route('admin.tariff-invoices.index') }}" class="sb-item">
+                    <span class="sb-icon">📋</span> فیش‌های عوارض
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.tariff-invoices.account') }}" class="sb-item">
+                    <span class="sb-icon">🏦</span> حساب بانکی دهیاری
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.tariffs.index') }}" class="sb-item">
+                    <span class="sb-icon">📄</span> تعرفه‌ها
+                </a>
+            </li>
+        @endif
+
         @if($isSuper)
             <li class="sb-section">⚙️ سیستم</li>
             <li><a href="/admin/settings" class="sb-item"><span class="sb-icon">⚙️</span> تنظیمات سایت</a></li>
