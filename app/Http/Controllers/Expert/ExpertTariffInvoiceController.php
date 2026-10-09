@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 class ExpertTariffInvoiceController extends Controller
 {
     /**
-     * لیست فیش‌ها
+     * لیست فیش‌ها — با فیلتر بخش
      */
     public function index(Request $request)
     {
@@ -23,16 +23,15 @@ class ExpertTariffInvoiceController extends Controller
         $query = TariffInvoice::with(['village', 'set'])
             ->orderByDesc('created_at');
 
-        // کارشناس مالی همه رو می‌بینه، کارشناس فنی فقط levy (بر اساس آیتم‌ها)
-        // برای سادگی، همه فیش‌ها رو نشون می‌دیم چون نقششون مالی/فنی است
-        // در صورت نیاز می‌تونیم فیلتر کنیم
+        // ═══ فیلتر بخش ═══
+        $this->applySectionFilter($query, $user);
 
         // فیلتر وضعیت
         if ($status = $request->query('status')) {
             $query->where('status', $status);
         }
 
-        // فیلتر روستا (اختیاری)
+        // فیلتر روستا
         if ($villageId = $request->query('village_id')) {
             $query->where('village_id', $villageId);
         }
@@ -49,16 +48,20 @@ class ExpertTariffInvoiceController extends Controller
 
         $invoices = $query->paginate(20)->withQueryString();
 
+        // ═══ Counts با فیلتر بخش ═══
+        $countsQuery = fn() => $this->filteredInvoicesQuery($user);
+
         $counts = [
-            'all'              => TariffInvoice::count(),
-            'pending_review'   => TariffInvoice::where('status', 'pending_review')->count(),
-            'issued'           => TariffInvoice::where('status', 'issued')->count(),
-            'receipt_uploaded' => TariffInvoice::where('status', 'receipt_uploaded')->count(),
-            'paid'             => TariffInvoice::where('status', 'paid')->count(),
-            'cancelled'        => TariffInvoice::where('status', 'cancelled')->count(),
+            'all'              => $countsQuery()->count(),
+            'pending_review'   => $countsQuery()->where('status', 'pending_review')->count(),
+            'issued'           => $countsQuery()->where('status', 'issued')->count(),
+            'receipt_uploaded' => $countsQuery()->where('status', 'receipt_uploaded')->count(),
+            'paid'             => $countsQuery()->where('status', 'paid')->count(),
+            'cancelled'        => $countsQuery()->where('status', 'cancelled')->count(),
         ];
 
-        $villages = Village::orderBy('name')->get();
+        // ═══ لیست روستاهای مجاز ═══
+        $villages = $this->allowedVillages($user);
 
         return view('expert.tariff-invoices.index', compact('invoices', 'counts', 'villages'));
     }
@@ -68,8 +71,12 @@ class ExpertTariffInvoiceController extends Controller
      */
     public function show(Request $request, int $id)
     {
+        $user = $request->user();
         $invoice = TariffInvoice::with(['lines', 'receipts.reviewedBy', 'village', 'set'])
             ->findOrFail($id);
+
+        // چک دسترسی
+        $this->authorizeVillageAccess($user, $invoice->village_id);
 
         $account = BankAccount::getDefaultForVillage($invoice->village_id);
 
@@ -81,11 +88,14 @@ class ExpertTariffInvoiceController extends Controller
      */
     public function approveReceipt(Request $request, int $receiptId)
     {
-        $receipt = TariffReceipt::with('invoice')->findOrFail($receiptId);
+        $user = $request->user();
+        $receipt = TariffReceipt::with('invoice.village')->findOrFail($receiptId);
         $invoice = $receipt->invoice;
 
-        $user = $request->user();
-        $canApprove = in_array($user->role, ['super_admin', 'section_admin'])
+        $this->authorizeVillageAccess($user, $invoice->village_id);
+
+        $canApprove = $user->role === 'super_admin'
+            || $user->role === 'section_admin'
             || ($user->role === 'fee_officer' && $user->officer_type === 'financial');
 
         if (!$canApprove) {
@@ -103,7 +113,6 @@ class ExpertTariffInvoiceController extends Controller
 
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error('Receipt approve failed', ['error' => $e->getMessage()]);
             return back()->withErrors(['error' => 'خطا: ' . $e->getMessage()]);
         }
     }
@@ -113,11 +122,14 @@ class ExpertTariffInvoiceController extends Controller
      */
     public function rejectReceipt(Request $request, int $receiptId)
     {
-        $receipt = TariffReceipt::with('invoice')->findOrFail($receiptId);
+        $user = $request->user();
+        $receipt = TariffReceipt::with('invoice.village')->findOrFail($receiptId);
         $invoice = $receipt->invoice;
 
-        $user = $request->user();
-        $canReject = in_array($user->role, ['super_admin', 'section_admin'])
+        $this->authorizeVillageAccess($user, $invoice->village_id);
+
+        $canReject = $user->role === 'super_admin'
+            || $user->role === 'section_admin'
             || ($user->role === 'fee_officer' && $user->officer_type === 'financial');
 
         if (!$canReject) {
@@ -148,9 +160,12 @@ class ExpertTariffInvoiceController extends Controller
      */
     public function cancel(Request $request, int $id)
     {
+        $user = $request->user();
         $invoice = TariffInvoice::findOrFail($id);
 
-        if (!in_array($request->user()->role, ['super_admin', 'section_admin'])) {
+        $this->authorizeVillageAccess($user, $invoice->village_id);
+
+        if (!in_array($user->role, ['super_admin', 'section_admin'])) {
             return back()->withErrors(['error' => 'شما مجاز به ابطال فیش نیستید.']);
         }
 
@@ -177,11 +192,14 @@ class ExpertTariffInvoiceController extends Controller
      */
     public function restore(Request $request, int $id)
     {
-        if (!in_array($request->user()->role, ['super_admin', 'section_admin'])) {
+        $user = $request->user();
+        $invoice = TariffInvoice::findOrFail($id);
+
+        $this->authorizeVillageAccess($user, $invoice->village_id);
+
+        if (!in_array($user->role, ['super_admin', 'section_admin'])) {
             return back()->withErrors(['error' => 'دسترسی ندارید.']);
         }
-
-        $invoice = TariffInvoice::findOrFail($id);
 
         if ($invoice->status !== 'cancelled') {
             return back()->withErrors(['error' => 'فقط فیش‌های ابطال‌شده قابل بازگردانی هستند.']);
@@ -212,6 +230,90 @@ class ExpertTariffInvoiceController extends Controller
 
         return redirect()
             ->route('expert.tariff-invoices.index')
-            ->with('success', "فیش {$tracking} حذف شد.");
+            ->with("success", "فیش {$tracking} حذف شد.");
+    }
+
+    /**
+     * ═══ فیلتر بخش بر اساس نقش کاربر ═══
+     */
+    private function applySectionFilter($query, $user): void
+    {
+        if ($user->role === 'super_admin') {
+            return;
+        }
+
+        $query->whereHas('village', function ($q) use ($user) {
+            if ($user->role === 'section_admin' && $user->section_id) {
+                $q->where('section_id', $user->section_id);
+            } elseif ($user->role === 'village_admin' && $user->village_id) {
+                $q->where('id', $user->village_id);
+            } elseif ($user->role === 'fee_officer' && $user->section_id) {
+                $q->where('section_id', $user->section_id);
+            }
+        });
+    }
+
+    /**
+     * کوئری فیش‌ها با فیلتر
+     */
+    private function filteredInvoicesQuery($user)
+    {
+        $q = TariffInvoice::query();
+        $this->applySectionFilter($q, $user);
+        return $q;
+    }
+
+    /**
+     * لیست روستاهای مجاز
+     */
+    private function allowedVillages($user)
+    {
+        $q = Village::orderBy('name');
+
+        if ($user->role === 'section_admin' && $user->section_id) {
+            $q->where('section_id', $user->section_id);
+        } elseif ($user->role === 'village_admin' && $user->village_id) {
+            $q->where('id', $user->village_id);
+        } elseif ($user->role === 'fee_officer' && $user->section_id) {
+            $q->where('section_id', $user->section_id);
+        }
+
+        return $q->get();
+    }
+
+    /**
+     * ═══ چک دسترسی به یک روستا ═══
+     */
+    private function authorizeVillageAccess($user, int $villageId): void
+    {
+        if ($user->role === 'super_admin') {
+            return;
+        }
+
+        $village = Village::find($villageId);
+        if (!$village) {
+            abort(404);
+        }
+
+        if ($user->role === 'section_admin' && $user->section_id) {
+            if ((int) $village->section_id !== (int) $user->section_id) {
+                abort(403, 'شما فقط به روستاهای بخش خود دسترسی دارید.');
+            }
+            return;
+        }
+
+        if ($user->role === 'village_admin' && $user->village_id) {
+            if ((int) $village->id !== (int) $user->village_id) {
+                abort(403, 'شما فقط به روستای خود دسترسی دارید.');
+            }
+            return;
+        }
+
+        if ($user->role === 'fee_officer' && $user->section_id) {
+            if ((int) $village->section_id !== (int) $user->section_id) {
+                abort(403, 'شما فقط به روستاهای بخش خود دسترسی دارید.');
+            }
+            return;
+        }
     }
 }

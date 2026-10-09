@@ -12,17 +12,23 @@ class ExpertBankAccountController extends Controller
 {
     public function edit(Request $request)
     {
-        $villages = Village::orderBy('name')->get();
+        $user = $request->user();
+
+        // ═══ لیست روستاهای مجاز ═══
+        $villages = $this->allowedVillages($user);
 
         if ($villages->isEmpty()) {
-            abort(403, 'روستایی وجود ندارد.');
+            abort(403, 'شما به هیچ روستایی دسترسی ندارید.');
         }
 
         $villageId = (int) ($request->query('village_id') ?? $villages->first()->id);
+
+        // چک: روستای انتخابی در لیست مجاز هست؟
         $village = $villages->firstWhere('id', $villageId);
 
         if (!$village) {
-            abort(404);
+            $village = $villages->first();
+            $villageId = $village->id;
         }
 
         $account = BankAccount::getDefaultForVillage($villageId);
@@ -32,6 +38,8 @@ class ExpertBankAccountController extends Controller
 
     public function save(Request $request)
     {
+        $user = $request->user();
+
         $data = $request->validate([
             'village_id'     => ['required', 'integer', 'exists:villages,id'],
             'bank_name'      => ['required', 'string', 'in:melli,post'],
@@ -41,6 +49,9 @@ class ExpertBankAccountController extends Controller
             'account_number' => ['nullable', 'string', 'max:30'],
             'note'           => ['nullable', 'string', 'max:1000'],
         ]);
+
+        // ═══ چک دسترسی ═══
+        $this->authorizeVillageAccess($user, $data['village_id']);
 
         try {
             DB::beginTransaction();
@@ -74,5 +85,55 @@ class ExpertBankAccountController extends Controller
             DB::rollBack();
             return back()->withErrors(['error' => 'خطا: ' . $e->getMessage()]);
         }
+    }
+
+    private function allowedVillages($user)
+    {
+        $q = Village::orderBy('name');
+
+        if ($user->role === 'section_admin' && $user->section_id) {
+            $q->where('section_id', $user->section_id);
+        } elseif ($user->role === 'village_admin' && $user->village_id) {
+            $q->where('id', $user->village_id);
+        } elseif ($user->role === 'fee_officer' && $user->section_id) {
+            $q->where('section_id', $user->section_id);
+        }
+
+        return $q->get();
+    }
+
+    private function authorizeVillageAccess($user, int $villageId): void
+    {
+        if ($user->role === 'super_admin') {
+            return;
+        }
+
+        $village = Village::find($villageId);
+        if (!$village) {
+            abort(404);
+        }
+
+        if ($user->role === 'section_admin' && $user->section_id) {
+            if ((int) $village->section_id !== (int) $user->section_id) {
+                abort(403, 'شما به این روستا دسترسی ندارید.');
+            }
+            return;
+        }
+
+        if ($user->role === 'village_admin' && $user->village_id) {
+            if ((int) $village->id !== (int) $user->village_id) {
+                abort(403);
+            }
+            return;
+        }
+
+        if ($user->role === 'fee_officer' && $user->section_id) {
+            if ((int) $village->section_id !== (int) $user->section_id) {
+                abort(403, 'شما به این روستا دسترسی ندارید.');
+            }
+            return;
+        }
+
+        abort(403);
     }
 }

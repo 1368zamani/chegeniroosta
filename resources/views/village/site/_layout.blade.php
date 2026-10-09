@@ -27,7 +27,7 @@
             <a href="{{ route('village.site.projects', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">پروژه‌ها</a>
             <a href="{{ route('village.site.resolutions', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">مصوبات</a>
             <a href="{{ route('village.site.request.create', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">ثبت درخواست</a>
-            <a href="{{ route('tariff.public', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">عوارض</a>
+            <a href="{{ route('village.tariff.index', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">عوارض</a>
         </div>
     </div>
 </nav>

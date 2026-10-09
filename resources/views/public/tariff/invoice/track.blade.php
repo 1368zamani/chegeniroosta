@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mx-auto px-4 py-8 max-w-lg" dir="rtl">
     <div class="mb-6">
-        <a href="{{ route('tariff.public', $village->slug) }}" class="text-emerald-700 text-sm">← بازگشت</a>
+        <a href="{{ route('village.tariff.index', $village->slug) }}" class="text-emerald-700 text-sm">← بازگشت</a>
         <h1 class="text-2xl font-bold text-emerald-800 mt-2">🔍 پیگیری فیش عوارض</h1>
         <p class="text-gray-600 text-sm mt-1">روستای {{ $village->name }}</p>
     </div>

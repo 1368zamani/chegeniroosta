@@ -14,7 +14,7 @@
 <div class="container mx-auto px-4 py-8" dir="rtl" x-data="invoiceCreate()">
 
     <div class="mb-6">
-        <a href="{{ route('tariff.public', $village->slug) }}" class="text-emerald-700 text-sm">← بازگشت به تعرفه‌ها</a>
+        <a href="{{ route('village.tariff.index', $village->slug) }}" class="text-emerald-700 text-sm">← بازگشت به تعرفه‌ها</a>
         <h1 class="text-2xl font-bold text-emerald-800 mt-2">📄 صدور فیش عوارض</h1>
         <p class="text-gray-600 text-sm mt-1">روستای {{ $village->name }} — سال {{ \App\Support\Number::fa($set->jalali_year ?? '') }}</p>
     </div>
@@ -102,7 +102,7 @@
         </div>
 
         <div class="flex gap-3 justify-end">
-            <a href="{{ route('tariff.public', $village->slug) }}" class="px-6 py-3 border rounded-lg">انصراف</a>
+            <a href="{{ route('village.tariff.index', $village->slug) }}" class="px-6 py-3 border rounded-lg">انصراف</a>
             <button type="submit" :disabled="selectedItems.length === 0" class="bg-emerald-700 text-white px-6 py-3 rounded-lg disabled:opacity-50">
                 📄 صدور فیش
             </button>

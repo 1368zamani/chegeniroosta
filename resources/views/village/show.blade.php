@@ -752,48 +752,10 @@ a[href^="tel:"] {
                 </button>
                 <div class="v-tariff-menu" role="menu">
                     <div class="menu-label">مشاهده</div>
-                    <a href="{{ route('tariff.public', $village->slug) }}" role="menuitem">
+                    <a href="{{ route('village.tariff.index', $village->slug) }}" role="menuitem">
                         <span class="m-icon">📋</span>
                         <span>تعرفه‌ی کامل سال جاری</span>
                     </a>
-                    <a href="{{ route('tariff.public', $village->slug) }}#calculator-section" role="menuitem">
-                        <span class="m-icon">🧮</span>
-                        <span>ماشین‌حساب تعرفه</span>
-                    </a>
-                    <div class="menu-divider"></div>
-                    <div class="menu-label">اطلاعات حقوقی</div>
-                    <div class="menu-note">
-                        دریافت وجه نقد توسط دهیار یا کارکنان <strong>ممنوع</strong> است. وجوه به حساب بانکی دهیاری واریز شود.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-        </main>
-
-        <aside class="village-sidebar">
-                @if($village->dehyar_name)
-        <div class="dehyar-side-card">
-            @if($village->dehyar_photo)
-                <img src="{{ asset('storage/' . $village->dehyar_photo) }}" alt="{{ $village->dehyar_name }}"
-                     style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #e3f2fd;">
-            @else
-                <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #e3f2fd, #bbdefb); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #90a4ae; border: 3px solid #e3f2fd;">👤</div>
-            @endif
-            <div style="flex: 1; min-width: 200px;">
-                <h3 style="margin: 0 0 6px; color: #1e5b9c; font-size: 18px;">👤 دهیار روستا: {{ $village->dehyar_name }}</h3>
-                <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
-                    برای مشاهده اطلاعات کامل، تحصیلات، سوابق و راه‌های تماس، صفحه اختصاصی دهیار را ببینید.
-                </p>
-            </div>
-            <a href="{{ route('village.site.dehyar', $village->slug) }}"
-               style="display: inline-block; background: #1e5b9c; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
-                مشاهده پروفایل دهیار ←
-            </a>
-        </div>
-    @endif
         </aside>
     </div>
 </div>

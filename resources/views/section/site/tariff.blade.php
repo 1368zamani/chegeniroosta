@@ -87,7 +87,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
                             </td>
                             <td>
                                 @if($pubSet)
-                                    <a href="{{ route('tariff.public', $village->slug) }}" class="s-link">مشاهده →</a>
+                                    <a href="{{ route('village.tariff.index', $village->slug) }}" class="s-link">مشاهده →</a>
                                 @else
                                     <span style="color:#90a4ae;font-size:12px;">—</span>
                                 @endif

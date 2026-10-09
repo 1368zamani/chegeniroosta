@@ -27,7 +27,7 @@
                 @if($years->count() > 1)
                 <div class="flex gap-2 flex-wrap">
                     @foreach($years as $y)
-                    <a href="{{ route('tariff.public', ['slug' => $village->slug, 'year' => $y]) }}"
+                    <a href="{{ route('village.tariff.index', ['slug' => $village->slug, 'year' => $y]) }}"
                        class="px-3 py-1 rounded-lg border text-sm
                               {{ $y == $year ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-700 border-gray-300 hover:border-emerald-500' }}">
                         {{ \App\Support\Number::fa($y) }}
@@ -95,10 +95,7 @@
         {{-- ═══ تب ویرایش ═══ --}}
         @auth
         <div x-show="activeTab === 'edit'" x-cloak class="bg-white rounded-lg shadow-md p-6">
-            @include('public.tariff._calculator', [
-                'schemas' => $schemas ?? [],
-                'slug' => $village->slug,
-            ])
+            
         </div>
         @endauth
 

@@ -705,8 +705,7 @@ Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin
 /* ═══ هدایت به تعرفه رسمی روستا ═══ */
 
 // ═══ ماژول تعرفه عوارض و بهای خدمات ═══
-Route::get('/village/{slug}/tariff', [\App\Http\Controllers\Public\TariffController::class, 'show'])
-    ->name('tariff.public');
+// ═══ Route قدیمی حذف شد — جایگزین: village.tariff.index با alias tariff.public ═══
 
 Route::middleware(['auth'])
     ->prefix('admin/tariffs')->name('admin.tariffs.')
@@ -813,23 +812,20 @@ Route::prefix('expert')->name('expert.')->group(function () {
             ->where('tariffSet', '[0-9]+')
             ->name('tariffs.edit');
 
-        // ═══ مفروضات ═══
-        Route::get('/parameters', function() {
-            return redirect()->route('expert.tariffs.index')
-                ->with('info', 'مفروضات در صفحه هر تعرفه قابل ویرایش است.');
-        })->name('parameters.index');
-
         // ═══ آیتم‌ها ═══
-        Route::get('/items', function() {
-            return redirect()->route('expert.tariffs.index')
-                ->with('info', 'آیتم‌ها در صفحه هر تعرفه قابل ویرایش هستند.');
-        })->name('items.index');
+        Route::get('/items', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'items'])->name('items.index');
+        Route::get('/items/{id}/edit', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'editItem'])->where('id','[0-9]+')->name('items.edit');
+        Route::put('/items/{id}', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'updateItem'])->where('id','[0-9]+')->name('items.update');
+
+        // ═══ مفروضات ═══
+        Route::get('/parameters', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'parameters'])->name('parameters.index');
+        Route::get('/parameters/{id}/edit', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'editParameter'])->where('id','[0-9]+')->name('parameters.edit');
+        Route::put('/parameters/{id}', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'updateParameter'])->where('id','[0-9]+')->name('parameters.update');
 
         // ═══ معافیت‌ها ═══
-        Route::get('/exemptions', function() {
-            return redirect()->route('expert.tariffs.index')
-                ->with('info', 'معافیت‌ها در صفحه هر تعرفه قابل ویرایش هستند.');
-        })->name('exemptions.index');
+        Route::get('/exemptions', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'exemptions'])->name('exemptions.index');
+        Route::get('/exemptions/{id}/edit', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'editExemption'])->where('id','[0-9]+')->name('exemptions.edit');
+        Route::put('/exemptions/{id}', [\App\Http\Controllers\Expert\ExpertTariffContentController::class, 'updateExemption'])->where('id','[0-9]+')->name('exemptions.update');
 
         // ═══ فیش‌های عوارض در پنل کارشناسان ═══
         Route::prefix('tariff-invoices')->name('tariff-invoices.')->group(function () {
@@ -944,4 +940,45 @@ Route::middleware(['web', 'auth'])->prefix('admin/village/{village}/tariff-repor
     Route::get('/summary', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'summary'])->name('summary');
     Route::get('/{id}', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'show'])->where('id', '[0-9]+')->name('show');
 });
+
+// ═══════════════════════════════════════════════════════════
+// صفحه تعرفه روستا با صدور فیش و آپلود رسید
+// ═══════════════════════════════════════════════════════════
+Route::prefix('village/{slug}/tariff')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Public\VillageTariffController::class, 'index'])
+        ->name('tariff.public')
+        ->middleware('alias:tariff.public');
+    Route::get('/', [\App\Http\Controllers\Public\VillageTariffController::class, 'index'])
+        ->name('village.tariff.index');
+    Route::post('/invoice', [\App\Http\Controllers\Public\VillageTariffController::class, 'issueInvoice'])->name('invoice.issue');
+    Route::post('/track', [\App\Http\Controllers\Public\VillageTariffController::class, 'track'])->name('track');
+});
+
+Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\VillageTariffController::class, 'showInvoice'])
+    ->name('village.tariff.invoice.show');
+Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\VillageTariffController::class, 'uploadReceipt'])
+    ->name('village.tariff.invoice.receipt');
+
+
+// Alias حذف شد
+
+// ═══════════════════════════════════════════════════════════
+// صفحه تعرفه روستا — صدور فیش و پیگیری
+// ═══════════════════════════════════════════════════════════
+Route::prefix('village/{slug}/tariff')->name('village.tariff.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Public\VillageTariffController::class, 'index'])
+        ->name('index');
+    Route::post('/invoice', [\App\Http\Controllers\Public\VillageTariffController::class, 'issueInvoice'])
+        ->name('invoice.issue');
+    Route::post('/track', [\App\Http\Controllers\Public\VillageTariffController::class, 'track'])
+        ->name('track');
+});
+
+// نمایش فیش با توکن
+Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\VillageTariffController::class, 'showInvoice'])
+    ->name('village.tariff.invoice.show');
+
+// آپلود رسید
+Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\VillageTariffController::class, 'uploadReceipt'])
+    ->name('village.tariff.invoice.receipt');
 
