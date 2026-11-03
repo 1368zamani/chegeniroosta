@@ -9,17 +9,17 @@
 body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
 .wrap { max-width: 900px; margin: 40px auto; padding: 0 15px; }
 .profile-card { background: white; border-radius: 16px; box-shadow: 0 10px 35px rgba(0,0,0,0.08); overflow: hidden; }
-.profile-top { display: flex; gap: 30px; padding: 35px; background: linear-gradient(135deg, #e3f2fd, #f5f7fa); align-items: center; flex-wrap: wrap; }
+.profile-top { display: flex; gap: 30px; padding: 35px; background: linear-gradient(135deg, #e8f5e9, #f5f7fa); align-items: center; flex-wrap: wrap; }
 .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 8px 25px rgba(30,91,156,0.25); flex-shrink: 0; }
 .profile-photo-ph { width: 180px; height: 180px; border-radius: 50%; background: #cfd8dc; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #90a4ae; border: 5px solid white; flex-shrink: 0; }
 .profile-info h2 { margin: 0 0 8px; color: #c62828; font-size: 28px; }
-.profile-info .role { color: #1e5b9c; font-size: 16px; margin-bottom: 12px; font-weight: 600; }
+.profile-info .role { color: #2e7d32; font-size: 16px; margin-bottom: 12px; font-weight: 600; }
 .profile-info .contact { font-size: 14px; color: #607d8b; line-height: 2; }
-.profile-info .contact a { color: #1565c0; text-decoration: none; direction: ltr; }
+.profile-info .contact a { color: #2e7d32; text-decoration: none; direction: ltr; }
 .profile-body { padding: 35px; }
 .profile-section { margin-bottom: 30px; }
-.profile-section h3 { color: #c62828; font-size: 18px; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 2px solid #e3f2fd; }
-.profile-section p { color: #1a3a5c; line-height: 2; margin: 0; white-space: pre-line; }
+.profile-section h3 { color: #c62828; font-size: 18px; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 2px solid #e8f5e9; }
+.profile-section p { color: #14432f; line-height: 2; margin: 0; white-space: pre-line; }
 .empty-note { color: #90a4ae; font-style: italic; font-size: 14px; }
 @media (max-width: 700px) {
     .profile-top { flex-direction: column; text-align: center; padding: 25px; }
@@ -64,7 +64,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
                 @if($deputy->experience)<p>{{ $deputy->experience }}</p>@else<p class="empty-note">در حال تکمیل</p>@endif
             </div>
             <div style="text-align:center;margin-top:30px;">
-                <a href="{{ route('officials.deputies') }}" style="display:inline-block;background:#1e5b9c;color:white;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;">→ لیست معاونین</a>
+                <a href="{{ route('officials.deputies') }}" style="display:inline-block;background:#2e7d32;color:white;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;">→ لیست معاونین</a>
             </div>
         </div>
     </div>

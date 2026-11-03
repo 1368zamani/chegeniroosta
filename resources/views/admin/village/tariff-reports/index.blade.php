@@ -23,7 +23,7 @@
         </div>
         <div>
             <a href="{{ route('admin.village.tariff-reports.summary', $village->id) }}"
-               class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+               class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
                 📈 گزارش خلاصه
             </a>
         </div>
@@ -61,7 +61,7 @@
             <div class="text-xs opacity-90 mb-2">⏳ در انتظار پرداخت (ریال)</div>
             <div class="text-2xl font-bold font-mono">{{ Number::fa(number_format($income['unpaid_amount'])) }}</div>
         </div>
-        <div class="bg-gradient-to-l from-blue-500 to-blue-700 text-white rounded-lg shadow p-5">
+        <div class="bg-gradient-to-l from-green-500 to-green-700 text-white rounded-lg shadow p-5">
             <div class="text-xs opacity-90 mb-2">📊 جمع کل صادرشده (ریال)</div>
             <div class="text-2xl font-bold font-mono">{{ Number::fa(number_format($income['total_amount'])) }}</div>
         </div>

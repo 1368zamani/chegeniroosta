@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ورود | سامانه چه‌گنی روستا</title>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    {{-- فونت وزیرمتن به‌صورت محلی از css/persian-fonts.css لود می‌شود — نیازی به CDN نیست --}}
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -33,7 +32,7 @@
         }
         .brand h1 {
             font-size: 1.4rem;
-            color: #1565c0;
+            color: #2e7d32;
             margin-bottom: .35rem;
         }
         .brand p {
@@ -61,7 +60,7 @@
         }
         input:focus {
             outline: none;
-            border-color: #1565c0;
+            border-color: #2e7d32;
             background: #fff;
             box-shadow: 0 0 0 3px rgba(15,118,110,.15);
         }
@@ -76,7 +75,7 @@
         button {
             width: 100%;
             padding: .85rem;
-            background: #1565c0;
+            background: #2e7d32;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -86,7 +85,7 @@
             cursor: pointer;
             transition: background .15s;
         }
-        button:hover { background: #0d47a1; }
+        button:hover { background: #1b5e20; }
         .errors {
             background: #fef2f2;
             border: 1px solid #fecaca;

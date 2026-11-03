@@ -42,6 +42,7 @@
             </td>
             <td>
                 <a href="{{ route('admin.village.council.edit', [$village->id, $m->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                @include('partials.admin.toggle', ['type' => 'village-council', 'model' => $m])
                 <form method="POST" action="{{ route('admin.village.council.destroy', [$village->id, $m->id]) }}" style="display:inline;" onsubmit="return confirm('حذف؟');">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">حذف</button>

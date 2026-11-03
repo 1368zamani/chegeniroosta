@@ -16,7 +16,7 @@ class AdminSectionNewsController extends Controller
         $user = auth()->user();
         $sectionId = $request->query('section_id');
 
-        $query = SectionNews::with(['section', 'user'])->orderBy('created_at', 'desc');
+        $query = SectionNews::with(['section', 'user', 'stat'])->orderBy('created_at', 'desc');
 
         if ($user->isSuperAdmin()) {
             if ($sectionId) {

@@ -13,11 +13,11 @@
 .checkbox-field:focus,
 .checkbox-field:active {
     background: #ffffff !important;
-    color: #1565c0 !important;
+    color: #2e7d32 !important;
     padding: 14px 18px !important;
     margin-bottom: 10px !important;
     border-radius: 10px !important;
-    border: 1.5px solid #e3f2fd !important;
+    border: 1.5px solid #e8f5e9 !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
@@ -27,7 +27,7 @@
 
 /* فقط border عوض شه، نه background */
 .checkbox-field:hover {
-    border-color: #1565c0 !important;
+    border-color: #2e7d32 !important;
     box-shadow: 0 2px 8px rgba(21,101,192,0.12) !important;
 }
 
@@ -35,7 +35,7 @@
 .checkbox-field label,
 .checkbox-field span,
 .checkbox-field * {
-    color: #1565c0 !important;
+    color: #2e7d32 !important;
     background: transparent !important;
     font-weight: 700 !important;
 }
@@ -44,7 +44,7 @@
 .checkbox-field input[type="checkbox"] {
     width: 20px !important;
     height: 20px !important;
-    accent-color: #1565c0 !important;
+    accent-color: #2e7d32 !important;
     cursor: pointer !important;
     flex-shrink: 0 !important;
 }
@@ -52,11 +52,11 @@
 /* اطمینان از کارت سفید */
 .card {
     background: #ffffff !important;
-    color: #1565c0 !important;
+    color: #2e7d32 !important;
 }
 
 .card h3 {
-    color: #0d47a1 !important;
+    color: #1b5e20 !important;
     background: transparent !important;
 }
 </style>
@@ -79,17 +79,17 @@
     background: #ffffff !important;
     background-color: #ffffff !important;
     background-image: none !important;
-    color: #1565c0 !important;
+    color: #2e7d32 !important;
 }
 
 .card {
-    border: 1px solid #e3f2fd !important;
+    border: 1px solid #e8f5e9 !important;
     box-shadow: 0 2px 10px rgba(21,101,192,0.06) !important;
 }
 
 .card h3 {
-    color: #0d47a1 !important;
-    border-bottom: 2px solid #e3f2fd !important;
+    color: #1b5e20 !important;
+    border-bottom: 2px solid #e8f5e9 !important;
     font-weight: 800 !important;
 }
 
@@ -103,18 +103,18 @@
 }
 
 .checkbox-field:hover {
-    background: #e3f2fd !important;
+    background: #e8f5e9 !important;
 }
 
 .checkbox-field input[type="checkbox"] {
     width: 20px !important;
     height: 20px !important;
-    accent-color: #1565c0 !important;
+    accent-color: #2e7d32 !important;
     cursor: pointer !important;
 }
 
 label, span {
-    color: #1565c0 !important;
+    color: #2e7d32 !important;
     font-weight: 700 !important;
 }
 
@@ -124,20 +124,20 @@ input[type="number"],
 select,
 textarea {
     background: #ffffff !important;
-    color: #1565c0 !important;
-    border: 1.5px solid #1565c0 !important;
+    color: #2e7d32 !important;
+    border: 1.5px solid #2e7d32 !important;
     border-radius: 8px !important;
     padding: 10px 14px !important;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none !important;
-    border-color: #0d47a1 !important;
+    border-color: #1b5e20 !important;
     box-shadow: 0 0 0 3px rgba(21,101,192,0.15) !important;
 }
 
 .btn-primary {
-    background: #1565c0 !important;
+    background: #2e7d32 !important;
     color: #fff !important;
 }
 
@@ -153,8 +153,8 @@ input:focus, select:focus, textarea:focus {
 </div>
 
 {{-- ═══ عکس دهیار ═══ --}}
-    <div style="background:#f5f9ff;border:2px solid #1565c0;border-radius:14px;padding:18px;margin-bottom:20px">
-        <h3 style="margin:0 0 12px;font-size:15px;color:#1565c0;font-weight:800">📸 عکس دهیار</h3>
+    <div style="background:#f1f8e9;border:2px solid #2e7d32;border-radius:14px;padding:18px;margin-bottom:20px">
+        <h3 style="margin:0 0 12px;font-size:15px;color:#2e7d32;font-weight:800">📸 عکس دهیار</h3>
 
         @if(session('success'))
             <div style="background:#e8f5e9;color:#2e7d32;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">✅ {{ session('success') }}</div>
@@ -173,9 +173,9 @@ input:focus, select:focus, textarea:focus {
                 @if($village->dehyar_photo && Storage::disk('public')->exists($village->dehyar_photo))
                     <img src="{{ Storage::disk('public')->url($village->dehyar_photo) }}"
                          alt="{{ $village->dehyar_name }}"
-                         style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #1565c0;box-shadow:0 4px 14px rgba(21,101,192,0.3)">
+                         style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #2e7d32;box-shadow:0 4px 14px rgba(21,101,192,0.3)">
                 @else
-                    <div style="width:140px;height:140px;border-radius:50%;background:#e3f2fd;display:flex;align-items:center;justify-content:center;font-size:50px;color:#90a4ae;border:4px solid #1565c0">👤</div>
+                    <div style="width:140px;height:140px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:50px;color:#90a4ae;border:4px solid #2e7d32">👤</div>
                 @endif
             </div>
 
@@ -188,7 +188,7 @@ input:focus, select:focus, textarea:focus {
                     <input type="file" name="dehyar_photo" accept=".jpg,.jpeg,.png,.webp" required
                            style="padding:10px;border:1.5px solid #cfd8dc;border-radius:8px;background:#fff;font-family:inherit">
                     <button type="submit"
-                            style="padding:11px 22px;background:#1565c0;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit;align-self:flex-start">
+                            style="padding:11px 22px;background:#2e7d32;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit;align-self:flex-start">
                         📤 آپلود عکس
                     </button>
                 </form>

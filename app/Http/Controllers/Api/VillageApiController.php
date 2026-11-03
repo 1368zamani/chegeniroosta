@@ -40,7 +40,7 @@ class VillageApiController extends Controller
             ->firstOrFail();
 
         $images = VillageImage::where('village_id', $village->id)
-            ->orderBy('sort_order')
+            ->orderBy('id')
             ->limit(20)
             ->get()
             ->map(fn($i) => [
@@ -80,7 +80,7 @@ class VillageApiController extends Controller
         $village = Village::where('slug', $slug)->firstOrFail();
 
         $images = VillageImage::where('village_id', $village->id)
-            ->orderBy('sort_order')
+            ->orderBy('id')
             ->get()
             ->map(fn($i) => [
                 'id' => $i->id,

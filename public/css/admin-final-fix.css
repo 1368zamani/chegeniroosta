@@ -9,8 +9,8 @@ body{
 /* همه هدرهای پنل */
 .header{
     background:#ffffff!important;
-    color:#1565c0!important;
-    border-bottom:3px solid #1565c0!important;
+    color:#2e7d32!important;
+    border-bottom:3px solid #2e7d32!important;
 }
 
 
@@ -20,13 +20,13 @@ body{
 .header a,
 .header .user,
 .header .user-info{
-    color:#1565c0!important;
+    color:#2e7d32!important;
 }
 
 
 /* لینک های هدر */
 .header a{
-    background:#eaf3ff!important;
+    background:#e8f5e9!important;
 }
 
 
@@ -36,14 +36,14 @@ body{
 button.btn,
 a.btn,
 .create-btn{
-    background:#1565c0!important;
+    background:#2e7d32!important;
     color:#ffffff!important;
 }
 
 
 .btn:hover,
 .btn-primary:hover{
-    background:#0d47a1!important;
+    background:#1b5e20!important;
 }
 
 
@@ -56,8 +56,8 @@ a{
 
 /* جدول */
 table th{
-    background:#eaf3ff!important;
-    color:#1565c0!important;
+    background:#e8f5e9!important;
+    color:#2e7d32!important;
 }
 
 
@@ -76,16 +76,16 @@ table th{
 }
 
 .sidebar a{
-    color:#1565c0!important;
+    color:#2e7d32!important;
 }
 
 .sidebar a.active{
-    background:#1565c0!important;
+    background:#2e7d32!important;
     color:white!important;
 }
 
 
 /* عنوان ها */
 h1,h2,h3,h4{
-    color:#1565c0;
+    color:#2e7d32;
 }

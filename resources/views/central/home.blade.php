@@ -10,7 +10,7 @@
     <title>پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی | استان لرستان</title>
     <meta name="description" content="سامانه رسمی معرفی و اطلاع‌رسانی بخش‌های شهرستان چگنی، استان لرستان">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0d2e4f">
+    <meta name="theme-color" content="#0d3b2e">
 
     {{-- Open Graph --}}
     <meta property="og:site_name" content="سامانه اطلاع‌رسانی چگنی">
@@ -47,7 +47,7 @@
         }
 
         .page-title h2 {
-            color: #0d2e4f;
+            color: #0d3b2e;
             margin: 0 0 10px;
             font-size: 28px;
             font-weight: 800;
@@ -85,7 +85,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            border-top: 5px solid #0d2e4f;
+            border-top: 5px solid #0d3b2e;
             position: relative;
         }
 
@@ -94,7 +94,7 @@
             box-shadow: 0 18px 45px rgba(13,46,79,0.15);
         }
 
-        .section-card[data-slug="visian"] { border-top-color: #1565c0; }
+        .section-card[data-slug="visian"] { border-top-color: #2e7d32; }
         .section-card[data-slug="markazi"] { border-top-color: #2e7d32; }
         .section-card[data-slug="shahivand"] { border-top-color: #c62828; }
 
@@ -108,7 +108,7 @@
         .section-card .icon {
             width: 68px;
             height: 68px;
-            background: #e3f2fd;
+            background: #e8f5e9;
             border-radius: 18px;
             display: flex;
             align-items: center;
@@ -118,13 +118,13 @@
             box-shadow: 0 5px 18px rgba(21,101,192,0.12);
         }
 
-        .section-card[data-slug="visian"] .icon { background: #e3f2fd; color: #1565c0; }
+        .section-card[data-slug="visian"] .icon { background: #e8f5e9; color: #2e7d32; }
         .section-card[data-slug="markazi"] .icon { background: #e8f5e9; color: #2e7d32; }
         .section-card[data-slug="shahivand"] .icon { background: #ffebee; color: #c62828; }
 
         .section-card h3 {
             margin: 0 0 12px;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 22px;
             font-weight: 800;
         }
@@ -161,7 +161,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: white;
             padding: 12px 22px;
             border-radius: 8px;
@@ -173,7 +173,7 @@
 
         .section-card:hover .enter-btn {
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
         }
 
         .empty-state {
@@ -626,9 +626,100 @@ img, iframe, video {
     height: auto !important;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   آخرین اخبار همه‌ی بخش‌ها — فهرست یکپارچه
+   (کلاس‌های cf- تا با استایل اخبار صفحه‌ی بخش تداخل نکند)
+   ═══════════════════════════════════════════════════════════ */
+.cf-news-list { display: flex; flex-direction: column; gap: 12px; }
+
+.cf-news-item {
+    display: flex;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid #e6ece7;
+    border-radius: 12px;
+    padding: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s, box-shadow .15s, transform .1s;
+}
+.cf-news-item:hover {
+    border-color: #2e7d32;
+    box-shadow: 0 6px 22px rgba(46, 125, 50, .11);
+    transform: translateY(-1px);
+}
+
+.cf-news-thumb {
+    width: 120px;
+    height: 88px;
+    border-radius: 9px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #e8f5e9;
+}
+.cf-news-thumb-ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #a5d6a7;
+}
+
+.cf-news-body { flex: 1; min-width: 0; }
+
+.cf-news-item h4 {
+    margin: 0 0 5px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1b5e20;
+    font-weight: 700;
+}
+
+.cf-news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    font-size: 11.5px;
+    color: #78909c;
+}
+.cf-news-sec {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.cf-news-item p {
+    margin: 7px 0 0;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #546e7a;
+}
+
+.cf-news-empty {
+    text-align: center;
+    padding: 40px 16px;
+    color: #90a4ae;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px dashed #d7e3da;
+}
+
+@media (max-width: 640px) {
+    .cf-news-thumb { width: 84px; height: 68px; border-radius: 8px; }
+    .cf-news-thumb-ph { font-size: 24px; }
+    .cf-news-item { gap: 10px; padding: 12px; }
+    .cf-news-item h4 { font-size: 13.5px; }
+    .cf-news-item p { font-size: 11.5px; }
+}
+
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body>
 
@@ -637,8 +728,83 @@ img, iframe, video {
 
 
 <main class="container">
+    {{-- ═══════════════════════════════════════════════════════
+         آخرین اخبار همه‌ی بخش‌ها
+         فهرست یکپارچه، مرتب بر اساس تاریخ انتشار (جدیدترین اول)
+         ═══════════════════════════════════════════════════════ --}}
+    <div class="page-title anim-reveal">
+        <h2>📰 آخرین اخبار بخش‌ها</h2>
+        <p>خبرهای همه‌ی بخش‌های شهرستان چگنی — به ترتیب تاریخ انتشار</p>
+        <div class="line"></div>
+    </div>
 
-    <div class="page-title">
+    @if(isset($news) && $news->isNotEmpty())
+        <div class="cf-news-list">
+            @foreach($news as $item)
+                @php
+                    $sec = $item->section;
+                    $newsUrl = null;
+
+                    if ($sec && $sec->subdomain) {
+                        $newsUrl = request()->getScheme()
+                            . '://' . $sec->subdomain . '.' . config('app.base_domain')
+                            . '/news/' . $item->slug;
+                    }
+                @endphp
+
+                <a href="{{ $newsUrl ?: '#' }}"
+                   class="cf-news-item anim-reveal"
+                   @if(!$newsUrl) style="cursor:default;" @endif>
+
+                    @if($item->image)
+                        <img src="{{ asset('storage/' . $item->image) }}"
+                             alt="{{ $item->title }}"
+                             class="cf-news-thumb"
+                             loading="lazy">
+                    @else
+                        <div class="cf-news-thumb cf-news-thumb-ph">📰</div>
+                    @endif
+
+                    <div class="cf-news-body">
+                        <h4>{{ $item->title }}</h4>
+
+                        <div class="cf-news-meta">
+                            @if($sec)
+                                <span class="cf-news-sec">{{ $sec->name }}</span>
+                            @endif
+
+                            @if($item->published_at)
+                                <span>🗓 {{ \App\Support\Number::fa(\Morilog\Jalali\Jalalian::fromCarbon($item->published_at)->format('Y/m/d')) }}</span>
+                            @endif
+
+                            @if(($item->stat_views ?? 0) > 0)
+                                <span>👁 {{ \App\Support\Number::fa(number_format($item->stat_views)) }} بازدید</span>
+                            @endif
+                        </div>
+
+                        @if($item->excerpt)
+                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->excerpt), 150) }}</p>
+                        @endif
+                    </div>
+                </a>
+            @endforeach
+        </div>
+
+        @if(isset($newsTotal) && $newsTotal > $news->count())
+            <p style="text-align:center; margin-top:16px; font-size:12.5px; color:#78909c;">
+                نمایش {{ \App\Support\Number::fa(number_format($news->count())) }}
+                از {{ \App\Support\Number::fa(number_format($newsTotal)) }} خبر
+                — برای دیدن بقیه، وارد سایت هر بخش شوید.
+            </p>
+        @endif
+    @else
+        <div class="cf-news-empty">
+            <div style="font-size:34px; margin-bottom:8px;">📭</div>
+            <p style="margin:0;">هنوز خبری منتشر نشده است.</p>
+        </div>
+    @endif
+
+    <div class="page-title anim-reveal" style="margin-top:42px;">
         <h2>📁 بخش‌های شهرستان چگنی</h2>
         <p>برای ورود به پایگاه اطلاع‌رسانی هر بخش، روی آن کلیک کنید</p>
         <div class="line"></div>
@@ -648,7 +814,7 @@ img, iframe, video {
         <div class="sections-grid">
             @foreach($sections as $section)
                 <a href="{{ request()->getScheme() }}://{{ $section->subdomain }}.{{ config('app.base_domain') }}"
-                   class="section-card"
+                   class="section-card anim-reveal"
                    data-slug="{{ $section->slug }}">
                     <div class="section-card-inner">
                         <div class="icon">📍</div>
@@ -691,6 +857,7 @@ img, iframe, video {
 @include('partials.gov-footer')
 @include('partials.back-to-top')
 @include('partials.analytics')
+
 
 </body>
 </html>

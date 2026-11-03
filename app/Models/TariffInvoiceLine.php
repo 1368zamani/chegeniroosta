@@ -61,7 +61,7 @@ class TariffInvoiceLine extends Model
     ): self {
         $line = new self();
         $line->tariff_item_id = $item->id;
-        $line->title_name = $item->title?->title ?? 'نامشخص';
+        $line->title_name = $item->title?->name_fa ?? 'نامشخص';
         $line->amount_before = $amount;
         $line->discount_percent = $discountPercent;
         $line->inputs = $inputs;

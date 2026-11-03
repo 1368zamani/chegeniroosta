@@ -8,12 +8,12 @@
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
 .wrap { max-width: 1000px; margin: 30px auto; padding: 0 15px; }
-.page-title { font-size: 26px; color: #1e5b9c; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #ffd54f; }
-.page-title span { color: #14497f; }
+.page-title { font-size: 26px; color: #2e7d32; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #ffd54f; }
+.page-title span { color: #1b5e20; }
 
 .res-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 25px; }
-.res-stat { background: white; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.06); border-top: 4px solid #1e5b9c; }
-.res-stat .num { font-size: 22px; font-weight: 800; color: #1e5b9c; display: block; }
+.res-stat { background: white; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.06); border-top: 4px solid #2e7d32; }
+.res-stat .num { font-size: 22px; font-weight: 800; color: #2e7d32; display: block; }
 .res-stat .lbl { font-size: 12px; color: #78909c; margin-top: 4px; }
 
 .res-card {
@@ -22,19 +22,19 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
     padding: 22px 24px;
     margin-bottom: 16px;
     box-shadow: 0 4px 15px rgba(0,0,0,.06);
-    border-right: 5px solid #1e5b9c;
+    border-right: 5px solid #2e7d32;
     transition: transform .2s, box-shadow .2s;
 }
-.res-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(30,91,156,.12); }
+.res-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(46,125,50,.12); }
 
-.res-card.status-approved { border-right-color: #1e40af; }
+.res-card.status-approved { border-right-color: #475569; }
 .res-card.status-in_progress { border-right-color: #f59e0b; }
 .res-card.status-completed { border-right-color: #16a34a; }
 .res-card.status-suspended { border-right-color: #6b7280; }
 .res-card.status-rejected { border-right-color: #dc2626; }
 
 .res-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
-.res-title { margin: 0; font-size: 18px; color: #14497f; line-height: 1.5; flex: 1; min-width: 250px; }
+.res-title { margin: 0; font-size: 18px; color: #1b5e20; line-height: 1.5; flex: 1; min-width: 250px; }
 .res-badge { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
 
 .res-meta { display: flex; flex-wrap: wrap; gap: 16px; color: #78909c; font-size: 12.5px; margin-bottom: 14px; }
@@ -47,10 +47,10 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 .res-progress-bar { background: #e2e8f0; border-radius: 10px; height: 12px; overflow: hidden; }
 .res-progress-fill { height: 100%; border-radius: 10px; transition: width .5s ease; }
 
-.res-note { background: #f8fafc; border-right: 3px solid #1e5b9c; padding: 12px 16px; border-radius: 8px; margin-top: 14px; font-size: 13px; color: #546e7a; line-height: 1.9; }
-.res-note strong { color: #14497f; display: block; margin-bottom: 6px; }
+.res-note { background: #f8fafc; border-right: 3px solid #2e7d32; padding: 12px 16px; border-radius: 8px; margin-top: 14px; font-size: 13px; color: #546e7a; line-height: 1.9; }
+.res-note strong { color: #1b5e20; display: block; margin-bottom: 6px; }
 
-.res-attachment { display: inline-block; margin-top: 12px; padding: 7px 16px; background: #f0f9ff; color: #1e5b9c; text-decoration: none; border-radius: 8px; font-size: 13px; border: 1px solid #bae6fd; }
+.res-attachment { display: inline-block; margin-top: 12px; padding: 7px 16px; background: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 8px; font-size: 13px; border: 1px solid #a5d6a7; }
 
 .empty-box { background: white; padding: 60px 20px; text-align: center; border-radius: 14px; color: #90a4ae; }
 .empty-box .icon { font-size: 60px; margin-bottom: 14px; }
@@ -62,6 +62,8 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body>
 
@@ -135,7 +137,13 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
                 @endif
 
                 @if($res->attachment)
-                    <a href="{{ asset('storage/' . $res->attachment) }}" target="_blank" class="res-attachment">📎 دانلود فایل پیوست</a>
+                    {{-- دانلود از مسیر شمارش‌دار (تعداد دانلود ثبت می‌شود) --}}
+                    <a href="{{ route('download.file', ['resolution', $res->id]) }}" class="res-attachment">
+                        📎 دانلود فایل پیوست
+                        @if($res->stat_downloads > 0)
+                            <span style="color:#607d8b;font-size:12px;">({{ \App\Support\Number::fa(number_format($res->stat_downloads)) }} دانلود)</span>
+                        @endif
+                    </a>
                 @endif
             </div>
         @endforeach

@@ -73,6 +73,46 @@ class TariffSetPolicy
             && $this->view($user, $set);
     }
 
+    /**
+     * ساخت مجموعه تعرفه جدید.
+     * قبلاً این متد وجود نداشت و Gate::authorize('create', TariffSet::class)
+     * برای همه (به‌جز سوپرادمین که از before() رد می‌شد) خطای 403 می‌داد.
+     */
+    public function create(User $user): bool
+    {
+        return in_array($user->role, [
+            'super_admin', 'section_admin', 'village_admin',
+        ], true);
+    }
+
+    /**
+     * تغییر وضعیت در گردش کار تعرفه.
+     * قبلاً وجود نداشت و همه‌ی مراحل (proposed → ... → published)
+     * برای همه‌ی نقش‌ها 403 می‌شدند.
+     */
+    public function transition(User $user, TariffSet $set, string $to): bool
+    {
+        static $allowedTargets = [
+            'proposed',
+            'village_council_approved',
+            'district_council_approved',
+            'finalized',
+            'published',
+        ];
+
+        if (!in_array($to, $allowedTargets, true)) {
+            return false;
+        }
+
+        if (!in_array($user->role, [
+            'super_admin', 'section_admin', 'village_admin',
+        ], true)) {
+            return false;
+        }
+
+        return $this->view($user, $set);
+    }
+
     public function delete(User $user, TariffSet $set): bool
     {
         return $user->role === 'super_admin';

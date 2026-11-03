@@ -6,13 +6,13 @@
 <style>
 * { box-sizing: border-box; }
 body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; color:#263238; }
-.header { background: linear-gradient(135deg, #1e5b9c, #2470b8); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.header { background: linear-gradient(135deg, #2e7d32, #388e3c); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
 .header h1 { margin: 0; font-size: 20px; }
 .header .nav a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; margin-left: 8px; }
 .header .nav a:hover { background: rgba(255,255,255,0.25); }
 .container { max-width: 900px; margin: auto; padding: 30px 20px; }
 .card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 18px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-.card h3 { color: #1e5b9c; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid #e3f2fd; font-size: 17px; }
+.card h3 { color: #2e7d32; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid #e8f5e9; font-size: 17px; }
 .info-row { display: grid; grid-template-columns: 140px 1fr; gap: 8px 16px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
 .info-row:last-child { border-bottom: none; }
 .info-row strong { color: #64748b; font-size: 13px; }
@@ -23,7 +23,7 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
 .field textarea { min-height: 140px; resize: vertical; }
 .success { background: #d1fae5; color: #065f46; padding: 12px 18px; border-radius: 10px; margin-bottom: 16px; }
 .btn-save { padding: 12px 24px; background: #16a34a; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 600; }
-.btn-cancel { padding: 12px 20px; background: #f1f5f9; color: #1e5b9c; text-decoration: none; border-radius: 8px; display: inline-block; }
+.btn-cancel { padding: 12px 20px; background: #f1f5f9; color: #2e7d32; text-decoration: none; border-radius: 8px; display: inline-block; }
 @media (max-width: 600px) { .info-row { grid-template-columns: 1fr; gap: 2px; } }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
@@ -50,7 +50,7 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
 
         <div class="info-row">
             <strong>کد پیگیری:</strong>
-            <span style="font-family:monospace;direction:ltr;color:#1e5b9c;font-weight:700;font-size:15px;">{{ $request->tracking_code }}</span>
+            <span style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;font-size:15px;">{{ $request->tracking_code }}</span>
         </div>
         <div class="info-row">
             <strong>نام درخواست‌کننده:</strong>
@@ -58,7 +58,7 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
         </div>
         <div class="info-row">
             <strong>شماره تماس:</strong>
-            <span style="direction:ltr;"><a href="tel:{{ $request->phone }}" style="color:#1e5b9c;">{{ $request->phone }}</a></span>
+            <span style="direction:ltr;"><a href="tel:{{ $request->phone }}" style="color:#2e7d32;">{{ $request->phone }}</a></span>
         </div>
         <div class="info-row">
             <strong>موضوع:</strong>
@@ -81,7 +81,7 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
         @if($request->attachment)
             <div style="margin-top:16px;">
                 <strong style="color:#64748b;font-size:13px;">فایل پیوست:</strong><br><br>
-                <a href="{{ asset('storage/' . $request->attachment) }}" target="_blank" style="display:inline-block;padding:8px 16px;background:#f0f9ff;color:#1e5b9c;text-decoration:none;border-radius:8px;border:1px solid #bae6fd;">📎 دانلود فایل</a>
+                <a href="{{ asset('storage/' . $request->attachment) }}" target="_blank" style="display:inline-block;padding:8px 16px;background:#f1f8e9;color:#2e7d32;text-decoration:none;border-radius:8px;border:1px solid #a5d6a7;">📎 دانلود فایل</a>
             </div>
         @endif
     </div>

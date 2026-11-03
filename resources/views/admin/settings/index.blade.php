@@ -9,7 +9,7 @@
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
 
         .header {
-            background: linear-gradient(135deg, #0d2e4f, #103d68);
+            background: linear-gradient(135deg, #0d3b2e, #14432f);
             color: white;
             padding: 20px 30px;
             display: flex;
@@ -58,7 +58,7 @@
         }
 
         .card-header {
-            background: linear-gradient(135deg, #0d2e4f, #1565c0);
+            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
             color: white;
             padding: 18px 24px;
             font-size: 15px;
@@ -91,7 +91,7 @@
         }
         .field input:focus,
         .field textarea:focus {
-            border-color: #1565c0;
+            border-color: #2e7d32;
             box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
         }
         .field textarea {
@@ -134,7 +134,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
             z-index: 10;
-            border: 2px solid #e3f2fd;
+            border: 2px solid #e8f5e9;
         }
 
         .btn {
@@ -149,7 +149,7 @@
             transition: all 0.2s;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #0d2e4f, #1565c0);
+            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
             color: white;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(13,46,79,0.3); }

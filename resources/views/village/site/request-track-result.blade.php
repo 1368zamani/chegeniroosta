@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نتیجه پیگیری | {{ $village->name }}</title>
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+{{-- فونت وزیرمتن اکنون محلی از css/persian-fonts.css لود می‌شود (قبلاً از jsDelivr بود) --}}
 @include('village.site._styles')
 
 <style>
@@ -32,6 +32,8 @@ a[href^="tel:"] {
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body>
 <div class="wrap">
@@ -52,8 +54,8 @@ a[href^="tel:"] {
             <div class="info-row"><div class="k">توضیحات:</div><div class="v">{{ $found->description }}</div></div>
 
             @if($found->admin_response)
-                <div style="background:#f0f9ff; border-right:4px solid #1565c0; padding:1rem; border-radius:8px; margin-top:1rem">
-                    <strong style="color:#0d47a1">پاسخ مدیر:</strong>
+                <div style="background:#f1f8e9; border-right:4px solid #2e7d32; padding:1rem; border-radius:8px; margin-top:1rem">
+                    <strong style="color:#1b5e20">پاسخ مدیر:</strong>
                     <p style="margin-top:.5rem">{{ $found->admin_response }}</p>
                 </div>
             @endif

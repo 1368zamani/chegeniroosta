@@ -9,7 +9,7 @@
 body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; color: #263238; }
 
 .header {
-    background: linear-gradient(135deg, #1e5b9c, #2470b8);
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
     color: white;
     padding: 18px 24px;
     display: flex;
@@ -39,7 +39,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 .sidebar {
     width: 250px;
     background: white;
-    border-left: 1px solid #e3f2fd;
+    border-left: 1px solid #e8f5e9;
     padding: 20px 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.03);
     flex-shrink: 0;
@@ -57,8 +57,8 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     border-right: 3px solid transparent;
     transition: all .2s;
 }
-.sidebar-menu a:hover { background: #f0f7ff; color: #1e5b9c; border-right-color: #1e5b9c; }
-.sidebar-menu a.active { background: #e3f2fd; color: #1e5b9c; font-weight: 700; border-right-color: #1e5b9c; }
+.sidebar-menu a:hover { background: #f1f8e9; color: #2e7d32; border-right-color: #2e7d32; }
+.sidebar-menu a.active { background: #e8f5e9; color: #2e7d32; font-weight: 700; border-right-color: #2e7d32; }
 
 .content { flex: 1; padding: 24px; overflow-x: auto; }
 
@@ -70,7 +70,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     flex-wrap: wrap;
     gap: 12px;
 }
-.page-title h2 { margin: 0; color: #1e5b9c; font-size: 20px; }
+.page-title h2 { margin: 0; color: #2e7d32; font-size: 20px; }
 
 .success { background: #c8e6c9; color: #2e7d32; padding: 12px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 13.5px; }
 
@@ -83,10 +83,10 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 }
 .card h3 {
     margin: 0 0 16px;
-    color: #1e5b9c;
+    color: #2e7d32;
     font-size: 16px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #e3f2fd;
+    border-bottom: 2px solid #e8f5e9;
 }
 
 table { width: 100%; background: white; border-radius: 12px; overflow: hidden; border-collapse: collapse; }
@@ -108,14 +108,14 @@ tr:hover { background: #f8fafc; }
     background: white;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-    border-color: #1e5b9c;
+    border-color: #2e7d32;
     box-shadow: 0 0 0 3px rgba(30,91,156,0.1);
 }
 .field textarea { min-height: 100px; resize: vertical; }
 
 .btn { display: inline-block; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all .2s; }
-.btn-primary { background: #1e5b9c; color: white; }
-.btn-primary:hover { background: #14497f; }
+.btn-primary { background: #2e7d32; color: white; }
+.btn-primary:hover { background: #1b5e20; }
 .btn-success { background: #2e7d32; color: white; }
 .btn-secondary { background: #cfd8dc; color: #37474f; }
 .btn-sm { padding: 6px 12px; font-size: 12px; }

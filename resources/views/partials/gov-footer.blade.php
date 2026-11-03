@@ -4,7 +4,7 @@
 
 <style>
     .gov-footer {
-        background: linear-gradient(180deg, #0d3b2e 0%, #071a2f 100%);
+        background: linear-gradient(180deg, #0d3b2e 0%, #071f16 100%);
         color: rgba(255,255,255,0.85);
         padding: 50px 0 0;
         margin-top: 60px;
@@ -661,8 +661,10 @@ img, iframe, video {
             <ul class="gov-footer-links">
                 <li><a href="https://www.moi.ir" target="_blank" rel="noopener">وزارت کشور</a></li>
                 <li><a href="https://lorestan.ostan-lr.ir" target="_blank" rel="noopener">استانداری لرستان</a></li>
-                <li><a href="#" target="_blank" rel="noopener">فرمانداری چگنی</a></li>
-                <li><a href="https://www.ir" target="_blank" rel="noopener">درگاه ملی ایران</a></li>
+                <li><a href="http://chegeni.gov.ir/" target="_blank" rel="noopener">فرمانداری چگنی</a></li>
+                <li><a href="https://tek.mcls.gov.ir" target="_blank" rel="noopener">سامانه جامع تسهیلات اشتغال کشور</a></li>
+                <li><a href="https://mojavez.ir/" target="_blank" rel="noopener">درگاه ملی مجوزهای کشور</a></li>
+                <li><a href="https://adliran.ir/" target="_blank" rel="noopener">درگاه خدمات الکترونیک قضایی</a></li>
                 <li><a href="https://www.dolat.ir" target="_blank" rel="noopener">پایگاه اطلاع‌رسانی دولت</a></li>
             </ul>
         </div>
@@ -672,7 +674,25 @@ img, iframe, video {
             <h3>⚡ دسترسی سریع</h3>
             <ul class="gov-footer-links">
                 <li><a href="/">صفحه اصلی</a></li>
-                @if(isset($section))
+                @php
+                    /* همین منطق هدر: فقط در صفحه‌ی واقعی یک روستا «معرفی دهیار» */
+                    $__ftrIsVillage = request()->routeIs('public.village.show')
+                        || request()->routeIs('village.site.*')
+                        || request()->routeIs('village.tariff.*');
+
+                    $__ftrVillageSlug = null;
+                    if ($__ftrIsVillage) {
+                        $__ftrVillageSlug = request()->route('slug')
+                            ?: (isset($village) && is_object($village) ? ($village->slug ?? null) : null);
+                    }
+
+                    $__ftrIsSection = app()->bound('currentSection')
+                        || request()->routeIs('section.*');
+                @endphp
+                @if($__ftrVillageSlug)
+                    <li><a href="{{ route('village.site.news', $__ftrVillageSlug) }}">اخبار و اطلاعیه‌ها</a></li>
+                    <li><a href="{{ route('village.site.dehyar', $__ftrVillageSlug) }}">معرفی دهیار</a></li>
+                @elseif($__ftrIsSection && isset($section))
                     <li><a href="/news">اخبار و اطلاعیه‌ها</a></li>
                     @if($section->bakhshdar_name ?? false)
                         <li><a href="/bakhshdar">معرفی بخشدار</a></li>
@@ -782,7 +802,7 @@ img, iframe, video {
     .s-footer p,
     .s-footer a,
     .s-footer li {
-        color: #e8f0fa !important;
+        color: #e8f5e9 !important;
     }
 
     .gov-footer a:hover,
@@ -813,7 +833,7 @@ img, iframe, video {
     .gov-footer .social a:hover,
     .gov-footer .social-link:hover {
         background: #ffd54f !important;
-        color: #14497f !important;
+        color: #1b5e20 !important;
     }
 
     /* لوگوها و نمادها — پس‌زمینه سفید برای خوانایی */
@@ -838,7 +858,7 @@ img, iframe, video {
     }
     .gov-footer-stats .label,
     .gov-footer .stat-label {
-        color: #e8f0fa !important;
+        color: #e8f5e9 !important;
     }
 
     /* نوار پایین (copyright) — تیره‌تر */
@@ -854,4 +874,20 @@ img, iframe, video {
     }
 
     /* پایان LIGHT-BLUE-FOOTER-2026 */
+</style>
+
+<style>
+    /* Fix Invisible News Text */
+    .news-list-item,
+    .news-list-item h4,
+    .news-list-item h4 a,
+    .news-list-item p,
+    .news-list-item span,
+    .news-list-item div,
+    .news-list-item .meta {
+        color: #333333 !important;
+    }
+    .news-list-item h4 a:hover {
+        color: #c62828 !important;
+    }
 </style>

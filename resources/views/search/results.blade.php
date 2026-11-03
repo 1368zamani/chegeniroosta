@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>جستجو: {{ $query }}</title>
     <meta name="robots" content="noindex, follow">
-    <meta name="theme-color" content="#1565c0">
+    <meta name="theme-color" content="#2e7d32">
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
 
-        .header { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; padding: 30px 20px; }
+        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 30px 20px; }
         .header-inner { width: min(1100px, 92%); margin: auto; text-align: center; }
         .header h1 { margin: 0 0 20px; font-size: 22px; }
 
@@ -39,7 +39,7 @@
             left: 8px;
             top: 50%;
             transform: translateY(-50%);
-            background: #1565c0;
+            background: #2e7d32;
             color: white;
             border: none;
             padding: 10px 18px;
@@ -55,15 +55,15 @@
             font-size: 14px;
             margin-bottom: 30px;
             padding-bottom: 16px;
-            border-bottom: 2px solid #e3f2fd;
+            border-bottom: 2px solid #e8f5e9;
         }
 
         .section-title {
             font-size: 18px;
-            color: #1565c0;
+            color: #2e7d32;
             margin: 30px 0 18px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #e3f2fd;
+            border-bottom: 2px solid #e8f5e9;
         }
 
         .result-grid {
@@ -79,14 +79,14 @@
             box-shadow: 0 5px 18px rgba(0,0,0,.06);
             text-decoration: none;
             color: inherit;
-            border-top: 4px solid #1565c0;
+            border-top: 4px solid #2e7d32;
             transition: transform .2s;
         }
         .result-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(21,101,192,0.12);
         }
-        .result-card h3 { margin: 0 0 8px; color: #1565c0; font-size: 16px; }
+        .result-card h3 { margin: 0 0 8px; color: #2e7d32; font-size: 16px; }
         .result-card .meta { color: #90a4ae; font-size: 12px; margin-bottom: 10px; }
         .result-card p { margin: 0; color: #607d8b; font-size: 13px; line-height: 1.9; }
 
@@ -100,7 +100,7 @@
         .empty-result .icon { font-size: 60px; margin-bottom: 20px; opacity: .5; }
 
         .footer { background: #263238; color: #cfd8dc; padding: 30px 20px; text-align: center; font-size: 13px; margin-top: 60px; }
-        .footer a { color: #64b5f6; text-decoration: none; }
+        .footer a { color: #81c784; text-decoration: none; }
     </style>
     @include("partials.analytics")
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">

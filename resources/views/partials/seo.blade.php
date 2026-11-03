@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="{{ $og_description ?? ($seo_description ?? '') }}">
 
 {{-- Theme Color --}}
-<meta name="theme-color" content="#1565c0">
+<meta name="theme-color" content="#2e7d32">
 
 {{-- Favicon --}}
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231565c0' width='100' height='100' rx='20'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='white' font-family='Tahoma'>چ</text></svg>">

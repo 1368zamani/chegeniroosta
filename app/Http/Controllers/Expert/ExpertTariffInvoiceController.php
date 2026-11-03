@@ -247,8 +247,12 @@ class ExpertTariffInvoiceController extends Controller
                 $q->where('section_id', $user->section_id);
             } elseif ($user->role === 'village_admin' && $user->village_id) {
                 $q->where('id', $user->village_id);
-            } elseif ($user->role === 'fee_officer' && $user->section_id) {
+            } elseif (in_array($user->role, ['fee_officer', 'tariff_officer'], true) && $user->section_id) {
                 $q->where('section_id', $user->section_id);
+            } else {
+                // ⚠️ امنیت: نقش ناشناخته یا کاربر بدون بخش/روستا →
+                // به‌جای دیدن «همه‌ی فیش‌ها»، هیچ فیشی
+                $q->whereRaw('1 = 0');
             }
         });
     }
@@ -268,14 +272,22 @@ class ExpertTariffInvoiceController extends Controller
      */
     private function allowedVillages($user)
     {
+        // ⚠️ امنیت: برای نقش ناشناخته یا کاربر بدون بخش/روستا،
+        // به‌جای «همه‌ی روستاها» هیچ روستایی برگردانده می‌شود.
+        if ($user->role === 'super_admin') {
+            return Village::orderBy('name')->get();
+        }
+
         $q = Village::orderBy('name');
 
         if ($user->role === 'section_admin' && $user->section_id) {
             $q->where('section_id', $user->section_id);
         } elseif ($user->role === 'village_admin' && $user->village_id) {
             $q->where('id', $user->village_id);
-        } elseif ($user->role === 'fee_officer' && $user->section_id) {
+        } elseif (in_array($user->role, ['fee_officer', 'tariff_officer'], true) && $user->section_id) {
             $q->where('section_id', $user->section_id);
+        } else {
+            $q->whereRaw('1 = 0');
         }
 
         return $q->get();
@@ -309,11 +321,25 @@ class ExpertTariffInvoiceController extends Controller
             return;
         }
 
-        if ($user->role === 'fee_officer' && $user->section_id) {
+        if (in_array($user->role, ['fee_officer', 'tariff_officer'], true) && $user->section_id) {
             if ((int) $village->section_id !== (int) $user->section_id) {
                 abort(403, 'شما فقط به روستاهای بخش خود دسترسی دارید.');
             }
             return;
         }
+
+        /*
+         * ═══ پیش‌فرض: ممنوع ═══
+         *
+         * بدون این خط، هر نقشی که به هیچ‌کدام از شرط‌های بالا نمی‌خورد
+         * «اجازه» می‌گرفت. دو حالت واقعی:
+         *   ۱) کارشناس تعرفه (tariff_officer) — در فهرست نقش‌های مجاز
+         *      پنل کارشناسان هست ولی اینجا هیچ شرطی برایش نبود، پس به
+         *      «همه‌ی فیش‌های کل سامانه» دسترسی داشت.
+         *   ۲) کاربری که village_id آن خالی شده (مثلاً روستایش حذف شده؛
+         *      ستون با nullOnDelete تعریف شده) — شرط village_admin برقرار
+         *      نمی‌شد و در نتیجه به همه‌ی روستاها دسترسی می‌گرفت.
+         */
+        abort(403, 'شما اجازه دسترسی به این روستا را ندارید.');
     }
 }

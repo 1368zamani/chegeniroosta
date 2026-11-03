@@ -17,7 +17,7 @@
 {{-- آمار --}}
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px;">
     <div style="background:white;padding:16px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.05);text-align:center;">
-        <div style="font-size:24px;font-weight:800;color:#1e5b9c;">{{ $stats['total'] }}</div>
+        <div style="font-size:24px;font-weight:800;color:#2e7d32;">{{ $stats['total'] }}</div>
         <div style="font-size:12px;color:#64748b;margin-top:4px;">کل درخواست‌ها</div>
     </div>
     <div style="background:white;padding:16px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.05);text-align:center;">
@@ -54,9 +54,9 @@
             </select>
         </div>
         <div>
-            <button type="submit" style="padding:10px 20px;background:#1e5b9c;color:white;border:none;border-radius:8px;cursor:pointer;font-family:inherit;">فیلتر</button>
+            <button type="submit" style="padding:10px 20px;background:#2e7d32;color:white;border:none;border-radius:8px;cursor:pointer;font-family:inherit;">فیلتر</button>
             @if(request()->filled('status') || request()->filled('q'))
-                <a href="{{ route('admin.village.requests.index', $village->id) }}" style="padding:10px 16px;background:#f1f5f9;color:#1e5b9c;border-radius:8px;text-decoration:none;margin-right:6px;">پاک کردن</a>
+                <a href="{{ route('admin.village.requests.index', $village->id) }}" style="padding:10px 16px;background:#f1f5f9;color:#2e7d32;border-radius:8px;text-decoration:none;margin-right:6px;">پاک کردن</a>
             @endif
         </div>
     </form>
@@ -79,13 +79,13 @@
             <tbody>
                 @foreach($requests as $req)
                     <tr style="border-top:1px solid #eceff1;">
-                        <td style="padding:12px;font-size:12.5px;font-family:monospace;direction:ltr;color:#1e5b9c;font-weight:700;">{{ $req->tracking_code }}</td>
+                        <td style="padding:12px;font-size:12.5px;font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;">{{ $req->tracking_code }}</td>
                         <td style="padding:12px;font-size:13px;">{{ $req->full_name }}</td>
                         <td style="padding:12px;font-size:13px;">{{ $req->subject }}</td>
                         <td style="padding:12px;">
                             @php
                                 $badges = [
-                                    'submitted'  => ['bg'=>'#dbeafe','color'=>'#1e40af','label'=>'ثبت شده'],
+                                    'submitted'  => ['bg'=>'#e2e8f0','color'=>'#475569','label'=>'ثبت شده'],
                                     'reviewing'  => ['bg'=>'#fef3c7','color'=>'#92400e','label'=>'در حال بررسی'],
                                     'assigned'   => ['bg'=>'#fef3c7','color'=>'#92400e','label'=>'ارجاع شده'],
                                     'processing' => ['bg'=>'#fef3c7','color'=>'#92400e','label'=>'در حال پیگیری'],
@@ -101,7 +101,7 @@
                         <td style="padding:12px;font-size:12px;color:#64748b;">{{ jalali($req->created_at, 'Y/m/d H:i') }}</td>
                         <td style="padding:12px;">
                             <a href="{{ route('admin.village.requests.show', [$village->id, $req->id]) }}"
-                               style="display:inline-block;padding:6px 14px;background:#1e5b9c;color:white;text-decoration:none;border-radius:6px;font-size:12px;">
+                               style="display:inline-block;padding:6px 14px;background:#2e7d32;color:white;text-decoration:none;border-radius:6px;font-size:12px;">
                                 مشاهده و پاسخ
                             </a>
                         </td>

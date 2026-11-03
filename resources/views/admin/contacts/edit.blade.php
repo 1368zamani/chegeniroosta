@@ -30,7 +30,7 @@
         }
 
         h1 {
-            color: #1565C0;
+            color: #2e7d32;
             margin-bottom: 30px;
         }
 
@@ -55,7 +55,7 @@
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #1565C0;
+            border-color: #2e7d32;
         }
 
         .error {
@@ -66,7 +66,7 @@
 
         button {
             margin-top: 25px;
-            background: #1565C0;
+            background: #2e7d32;
             color: white;
             border: none;
             padding: 13px 30px;
@@ -83,7 +83,7 @@
         .back {
             display: inline-block;
             margin-bottom: 15px;
-            color: #1565C0;
+            color: #2e7d32;
             text-decoration: none;
         }
 

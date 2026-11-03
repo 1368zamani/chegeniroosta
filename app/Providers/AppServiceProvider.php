@@ -39,6 +39,33 @@ class AppServiceProvider extends ServiceProvider
             return false;
         });
 
+        // ═══ Gateهای بخش «عوارض پسماند و ساخت‌وساز» ═══
+
+        /** دیدن پنل مدیریت عوارض */
+        Gate::define('works-fees.view', function (User $user) {
+            return $user->isSuperAdmin()
+                || $user->isTechnicalOfficer()
+                || $user->isFinancialOfficer()
+                || in_array($user->role, ['section_admin', 'village_admin'], true);
+        });
+
+        /**
+         * ویرایش/افزودن/حذف عوارض.
+         * اگر $category داده شود، فقط همان دسته مجاز است.
+         */
+        Gate::define('works-fees.manage', function (User $user, ?string $category = null) {
+            if ($user->isSuperAdmin() || $user->isTechnicalOfficer()) {
+                return true;
+            }
+
+            // کارشناس مالی فقط عوارض پسماند را ویرایش می‌کند
+            if ($user->isFinancialOfficer()) {
+                return $category === 'waste';
+            }
+
+            return false;
+        });
+
         // ═══ Registry محاسبه‌گرهای تعرفه ═══
         $this->app->singleton(\App\Services\Tariff\Calculators\CalculatorRegistry::class, function () {
             $r = new \App\Services\Tariff\Calculators\CalculatorRegistry();

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasStats;
 use Illuminate\Database\Eloquent\Model;
 
 class SectionRequest extends Model
 {
+    use HasStats;
+
     protected $fillable = [
         'section_id', 'tracking_code', 'full_name', 'phone',
         'subject', 'description', 'attachment', 'status',

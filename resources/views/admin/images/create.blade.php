@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 19px; }
         .header a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; }
 
@@ -23,13 +23,13 @@
             width: 100%; padding: 12px 14px; border: 1px solid #cfd8dc; border-radius: 8px;
             font-family: inherit; font-size: 14px; outline: none; background: white;
         }
-        .field input:focus { border-color: #1565c0; }
+        .field input:focus { border-color: #2e7d32; }
         .hint { font-size: 12px; color: #90a4ae; margin-top: 6px; }
 
         .actions { display: flex; gap: 12px; margin-top: 24px; }
         .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-family: inherit; font-size: 14px; cursor: pointer; border: none; }
-        .btn-primary { background: #1565c0; color: white; }
-        .btn-primary:hover { background: #0d47a1; }
+        .btn-primary { background: #2e7d32; color: white; }
+        .btn-primary:hover { background: #1b5e20; }
         .btn-secondary { background: #cfd8dc; color: #37474f; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">

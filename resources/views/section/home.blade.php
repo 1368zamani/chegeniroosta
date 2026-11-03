@@ -13,7 +13,7 @@
     <meta property="og:title" content="{{ $section->name }} | پایگاه اطلاع‌رسانی">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta name="theme-color" content="#0d2e4f">
+    <meta name="theme-color" content="#0d3b2e">
 
     <style>
         * { box-sizing: border-box; }
@@ -62,7 +62,7 @@
         }
         .box-header h3 {
             margin: 0;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 15px;
             font-weight: 800;
             display: flex;
@@ -111,7 +111,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #e3f2fd, #f0f3f7);
+            background: linear-gradient(135deg, #e8f5e9, #f0f3f7);
             color: #90a4ae;
             font-size: 32px;
         }
@@ -126,10 +126,10 @@
             line-height: 1.6;
         }
         .news-list-item h4 a {
-            color: #0d2e4f;
+            color: #0d3b2e;
             text-decoration: none;
         }
-        .news-list-item h4 a:hover { color: #1565c0; }
+        .news-list-item h4 a:hover { color: #2e7d32; }
         .news-list-item .meta {
             font-size: 11.5px;
             color: #90a4ae;
@@ -144,7 +144,7 @@
         .pin-badge {
             display: inline-block;
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 10.5px;
             padding: 2px 8px;
             border-radius: 10px;
@@ -170,7 +170,7 @@
         .bakhshdar-side-card .label {
             display: inline-block;
             font-size: 10.5px;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: #ffd54f;
             padding: 2px 10px;
             border-radius: 12px;
@@ -179,7 +179,7 @@
         }
         .bakhshdar-side-card h4 {
             margin: 0 0 4px;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 15px;
         }
         .bakhshdar-side-card .role {
@@ -189,7 +189,7 @@
         }
         .bakhshdar-side-card .btn {
             display: inline-block;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: #fff;
             padding: 8px 18px;
             border-radius: 6px;
@@ -200,7 +200,7 @@
         }
         .bakhshdar-side-card .btn:hover {
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
         }
 
         .empty-note {
@@ -240,7 +240,6 @@
             color: #546e7a;
             background: #fff;
         }
-
 
 /* ============================================
    MOBILE FIXES - نمایش بهتر روی موبایل
@@ -634,7 +633,6 @@ button, a, input[type="submit"] {
     touch-action: manipulation;
 }
 
-
 /* ============================================
    MOBILE OVERRIDE - نمایش بهتر
    ============================================ */
@@ -666,7 +664,6 @@ img, iframe, video {
     height: auto !important;
 }
 
-
         /* ============ عکس بخشدار - مربع و بزرگ ============ */
         .bakhshdar-side-card {
             text-align: center;
@@ -688,7 +685,7 @@ img, iframe, video {
             max-width: 220px;
             height: 220px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+            background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -701,7 +698,7 @@ img, iframe, video {
         .bakhshdar-side-card .label {
             display: inline-block;
             font-size: 11px;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: #ffd54f;
             padding: 3px 14px;
             border-radius: 14px;
@@ -710,7 +707,7 @@ img, iframe, video {
         }
         .bakhshdar-side-card h4 {
             margin: 0 0 4px;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 17px;
             font-weight: 800;
         }
@@ -721,7 +718,7 @@ img, iframe, video {
         }
         .bakhshdar-side-card .btn {
             display: inline-block;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: #fff;
             padding: 10px 22px;
             border-radius: 8px;
@@ -732,7 +729,7 @@ img, iframe, video {
         }
         .bakhshdar-side-card .btn:hover {
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
             transform: translateY(-2px);
         }
 
@@ -773,7 +770,7 @@ img, iframe, video {
             position: relative;
         }
         .village-item-link:hover {
-            background: linear-gradient(90deg, #f0f7ff 0%, #f5f7fa 100%);
+            background: linear-gradient(90deg, #f1f8e9 0%, #f5f7fa 100%);
             padding-right: 18px;
         }
         .village-item-link::before {
@@ -784,7 +781,7 @@ img, iframe, video {
             transform: translateY(-50%) scaleY(0);
             width: 3px;
             height: 70%;
-            background: #1565c0;
+            background: #2e7d32;
             border-radius: 2px;
             transition: transform 0.2s;
         }
@@ -794,7 +791,7 @@ img, iframe, video {
 
         .village-name-text {
             font-weight: 700;
-            color: #0d2e4f;
+            color: #0d3b2e;
             flex: 1;
             min-width: 0;
             overflow: hidden;
@@ -802,7 +799,7 @@ img, iframe, video {
             white-space: nowrap;
         }
         .village-item-link:hover .village-name-text {
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .village-enter-text {
@@ -810,8 +807,8 @@ img, iframe, video {
             align-items: center;
             gap: 5px;
             font-size: 11px;
-            color: #1565c0;
-            background: #e3f2fd;
+            color: #2e7d32;
+            background: #e8f5e9;
             padding: 4px 10px;
             border-radius: 12px;
             font-weight: 600;
@@ -820,7 +817,7 @@ img, iframe, video {
             transition: all 0.2s;
         }
         .village-item-link:hover .village-enter-text {
-            background: #1565c0;
+            background: #2e7d32;
             color: white;
         }
         .village-enter-text .enter-arrow {
@@ -854,13 +851,13 @@ img, iframe, video {
 .s-tariff-btn:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
 .s-tariff-btn .caret { font-size: 11px; transition: transform .25s; }
 .s-tariff-dropdown.open .caret { transform: rotate(180deg); }
-.s-tariff-menu { display: none; position: absolute; top: calc(100% + 10px); right: 50%; transform: translateX(50%); min-width: 300px; background: #fff; border-radius: 14px; box-shadow: 0 20px 55px rgba(13,46,79,0.25), 0 4px 12px rgba(0,0,0,0.08); padding: 8px 0; z-index: 99999; overflow: hidden; border: 1px solid #e3f2fd; text-align: right; }
+.s-tariff-menu { display: none; position: absolute; top: calc(100% + 10px); right: 50%; transform: translateX(50%); min-width: 300px; background: #fff; border-radius: 14px; box-shadow: 0 20px 55px rgba(13,46,79,0.25), 0 4px 12px rgba(0,0,0,0.08); padding: 8px 0; z-index: 99999; overflow: hidden; border: 1px solid #e8f5e9; text-align: right; }
 @keyframes sMenuIn { from { opacity: 0; transform: translateX(50%) translateY(-6px) scale(0.98); } to { opacity: 1; transform: translateX(50%) translateY(0) scale(1); } }
 .s-tariff-dropdown.open .s-tariff-menu { display: block; animation: sMenuIn .22s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
 .s-tariff-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #37474f; text-decoration: none; font-size: 13.5px; font-weight: 500; transition: background .15s, color .15s, padding-right .15s; white-space: nowrap; border-right: 3px solid transparent; }
-.s-tariff-menu a:hover { background: linear-gradient(90deg, #f0f7ff, #e3f2fd); color: #1e5b9c; border-right-color: #1e5b9c; padding-right: 24px; }
-.s-tariff-menu a .m-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #f0f7ff; border-radius: 8px; font-size: 17px; flex-shrink: 0; }
-.s-tariff-menu .menu-divider { height: 1px; background: linear-gradient(90deg, transparent, #e3f2fd 30%, #e3f2fd 70%, transparent); margin: 6px 12px; }
+.s-tariff-menu a:hover { background: linear-gradient(90deg, #f1f8e9, #e8f5e9); color: #2e7d32; border-right-color: #2e7d32; padding-right: 24px; }
+.s-tariff-menu a .m-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #f1f8e9; border-radius: 8px; font-size: 17px; flex-shrink: 0; }
+.s-tariff-menu .menu-divider { height: 1px; background: linear-gradient(90deg, transparent, #e8f5e9 30%, #e8f5e9 70%, transparent); margin: 6px 12px; }
 .s-tariff-menu .menu-label { font-size: 10.5px; color: #94a3b8; padding: 10px 20px 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; }
 .s-tariff-menu .menu-note { font-size: 11.5px; color: #78350f; background: #fef3c7; padding: 10px 20px; line-height: 1.7; border-right: 3px solid #d97706; margin: 4px 12px 8px; border-radius: 8px; }
 </style>
@@ -891,6 +888,7 @@ a[href^="tel:"] {
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+@include('partials.pwa')
 </head>
 <body>
 
@@ -936,7 +934,7 @@ a[href^="tel:"] {
                             </div>
                         @endforeach
                         <div style="text-align:center; padding-top:16px;">
-                            <a href="/news" style="color:#1565c0; text-decoration:none; font-size:13px;">مشاهده همه اخبار ←</a>
+                            <a href="/news" style="color:#2e7d32; text-decoration:none; font-size:13px;">مشاهده همه اخبار ←</a>
                         </div>
                     @else
                         <div class="empty-note">هنوز خبری منتشر نشده است.</div>
@@ -1022,7 +1020,6 @@ a[href^="tel:"] {
 
 </div>
 
-
 {{-- section-gallery-lightbox --}}
 <style>
     .sg-lightbox-trigger { cursor: pointer; position: relative; }
@@ -1031,7 +1028,7 @@ a[href^="tel:"] {
         position: absolute;
         top: 8px;
         left: 8px;
-        background: rgba(13,46,79,.75);
+        background: rgba(13,59,46,.75);
         color: #fff;
         width: 28px;
         height: 28px;
@@ -1119,7 +1116,7 @@ a[href^="tel:"] {
             border-radius: 8px;
         }
         .news-list-item:hover {
-            background: #0d2e4f !important;
+            background: #0d3b2e !important;
         }
         .news-list-item:hover h4,
         .news-list-item:hover h4 a,
@@ -1186,17 +1183,16 @@ a[href^="tel:"] {
 })();
 </script>
 
-
 {{-- باکس درخواست مردمی بخشداری --}}
 <div class="s-container" style="margin-bottom: 30px;">
-    <div class="section-request-box" style="background: linear-gradient(135deg, #1e5b9c, #2470b8); color: #fff; border-radius: 14px; padding: 30px 25px; box-shadow: 0 8px 25px rgba(13,46,79,0.15); text-align: center;">
+    <div class="section-request-box" style="background: linear-gradient(135deg, #2e7d32, #388e3c); color: #fff; border-radius: 14px; padding: 30px 25px; box-shadow: 0 8px 25px rgba(13,46,79,0.15); text-align: center;">
         <h3 style="margin: 0 0 10px; font-size: 20px; color: #fff;">📩 درخواست خود را ثبت کنید</h3>
         <p style="margin: 0 0 20px; opacity: 0.9; font-size: 14px; line-height: 2;">
             درخواست‌های خود در زمینه آب، برق، گاز، راه، عمران و ... را آنلاین ثبت کنید و با کد پیگیری دنبال کنید.
         </p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <a href="{{ route('section.site.request.create') }}"
-               style="display: inline-block; background: #ffd54f; color: #14497f; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; transition: all .2s;">
+               style="display: inline-block; background: #ffd54f; color: #1b5e20; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; transition: all .2s;">
                 ✍️ ثبت درخواست
             </a>
             <a href="{{ route('section.site.request.track') }}"
@@ -1223,7 +1219,6 @@ a[href^="tel:"] {
         </div>
     </div>
 </div>
-
 
 <script>
 (function () {

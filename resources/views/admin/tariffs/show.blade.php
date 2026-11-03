@@ -44,13 +44,13 @@
         $next = $transitions[$tariffSet->status] ?? [];
     @endphp
     @if(!empty($next))
-        <div class="bg-blue-50 border-r-4 border-blue-500 p-3 mb-6 rounded flex gap-2 flex-wrap items-center">
+        <div class="bg-green-50 border-r-4 border-green-500 p-3 mb-6 rounded flex gap-2 flex-wrap items-center">
             <span class="font-medium">مرحله بعد:</span>
             @foreach($next as $to => $label)
                 @can('transition', [$tariffSet, $to])
                 <form method="POST" action="{{ route('admin.tariffs.transition', [$tariffSet, $to]) }}" class="inline">
                     @csrf
-                    <button class="bg-blue-600 text-white px-4 py-1.5 rounded text-sm">{{ $label }}</button>
+                    <button class="bg-green-600 text-white px-4 py-1.5 rounded text-sm">{{ $label }}</button>
                 </form>
                 @endcan
             @endforeach

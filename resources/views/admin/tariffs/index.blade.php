@@ -4,9 +4,17 @@
 <div class="p-4 md:p-6" dir="rtl">
     <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
         <h1 class="text-2xl font-bold">تعرفه عوارض و بهای خدمات</h1>
-        @can('create', App\Models\TariffSet::class)
-            <a href="{{ route('admin.tariffs.create') }}" class="bg-emerald-600 text-white px-4 py-2 rounded">+ مجموعه سالانه جدید</a>
-        @endcan
+        <div class="flex flex-wrap gap-2">
+            @can('works-fees.view')
+                <a href="{{ route('admin.works-fees.index') }}"
+                   class="px-4 py-2 rounded bg-emerald-700 text-white text-sm hover:bg-emerald-800">
+                    💰 مدیریت عوارض پسماند و ساخت‌وساز
+                </a>
+            @endcan
+            @can('create', App\Models\TariffSet::class)
+                <a href="{{ route('admin.tariffs.create') }}" class="bg-emerald-600 text-white px-4 py-2 rounded">+ مجموعه سالانه جدید</a>
+            @endcan
+        </div>
     </div>
     @if(session('success'))
         <div class="bg-emerald-50 border-r-4 border-emerald-500 text-emerald-800 p-3 mb-4 rounded">{{ session('success') }}</div>
@@ -26,7 +34,7 @@
                     <td class="p-3">{{ \App\Support\Number::fa($set->inflation_rate) }}٪</td>
                     <td class="p-3">{{ \App\Support\Number::fa($set->items()->count()) }}</td>
                     <td class="p-3 whitespace-nowrap">
-                        <a href="{{ route('admin.tariffs.show', $set) }}" class="text-blue-600 hover:underline ml-2">مشاهده</a>
+                        <a href="{{ route('admin.tariffs.show', $set) }}" class="text-green-600 hover:underline ml-2">مشاهده</a>
                         @can('update', $set)
                             <a href="{{ route('admin.tariffs.edit', $set) }}" class="text-emerald-600 hover:underline">ویرایش</a>
                         @endcan

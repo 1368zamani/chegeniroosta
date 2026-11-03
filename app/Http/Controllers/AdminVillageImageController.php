@@ -72,11 +72,18 @@ class AdminVillageImageController extends Controller
     public function destroy($villageId, $imageId)
     {
         $village = Village::findOrFail($villageId);
-        $image = VillageImage::findOrFail($imageId);
 
         if (!auth()->user()->canManageVillage($village)) {
             abort(403);
         }
+
+        /*
+         * ⚠️ امنیت (IDOR): قبلاً `VillageImage::findOrFail($imageId)` بدون
+         * محدودیت روستا بود. یعنی ادمین روستای «الف» می‌توانست با فرستادن
+         * شناسه‌ی تصویر روستای «ب»، فایل و رکورد آن روستا را حذف کند.
+         * الان تصویر باید متعلق به همین روستا باشد.
+         */
+        $image = VillageImage::where('village_id', $village->id)->findOrFail($imageId);
 
         if ($image->image && Storage::disk('public')->exists($image->image)) {
             Storage::disk('public')->delete($image->image);
@@ -92,11 +99,13 @@ class AdminVillageImageController extends Controller
     public function setCover($villageId, $imageId)
     {
         $village = Village::findOrFail($villageId);
-        $image = VillageImage::findOrFail($imageId);
 
         if (!auth()->user()->canManageVillage($village)) {
             abort(403);
         }
+
+        // ⚠️ امنیت (IDOR): تصویر باید متعلق به همین روستا باشد
+        $image = VillageImage::where('village_id', $village->id)->findOrFail($imageId);
 
         // پاک کردن is_cover قبلی
         VillageImage::where('village_id', $village->id)

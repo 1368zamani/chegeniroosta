@@ -39,7 +39,7 @@
             font-size: 14px;
             transition: all 0.2s;
         }
-        .err-btn-primary { background: #ffd54f; color: #0d2e4f; }
+        .err-btn-primary { background: #ffd54f; color: #0d3b2e; }
         .err-btn-primary:hover { background: #ffb300; transform: translateY(-2px); }
         .err-btn-secondary {
             background: rgba(255,255,255,0.15);

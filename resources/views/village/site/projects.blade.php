@@ -12,7 +12,7 @@
             <span class="px-3 py-1 rounded-full text-xs
                 @if($project->status === 'completed') bg-green-100 text-green-800
                 @elseif($project->status === 'in_progress') bg-yellow-100 text-yellow-800
-                @elseif($project->status === 'planned') bg-blue-100 text-blue-800
+                @elseif($project->status === 'planned') bg-green-100 text-green-800
                 @else bg-gray-100 text-gray-800 @endif">
                 @switch($project->status)
                     @case('completed') تکمیل‌شده @break
@@ -38,7 +38,7 @@
         </div>
     </div>
     @empty
-    <div class="bg-blue-50 border border-blue-200 rounded p-4 text-blue-800">
+    <div class="bg-green-50 border border-green-200 rounded p-4 text-green-800">
         پروژه‌ای برای این روستا ثبت نشده است.
     </div>
     @endforelse

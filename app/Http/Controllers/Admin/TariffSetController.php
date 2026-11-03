@@ -20,11 +20,11 @@ class TariffSetController extends Controller
 
     public function index(Request $request)
     {
-        // 🔒 اجبار عبور از فرم ورود کارشناسان
-        if (!$this->hasTariffOfficerMode($request)) {
-            return redirect()->route('tariff.officer.login')
-                ->withErrors(['identifier' => 'برای ورود به پنل کارشناسان، ابتدا از این صفحه وارد شوید.']);
-        }
+        // 🔒 توجه: بررسی «حالت کارشناس» حذف شد.
+        // کلید session('tariff_officer_mode') فقط در TariffOfficerAuthController
+        // نوشته می‌شد و آن کنترلر به هیچ مسیری وصل نیست؛ در نتیجه این گیت
+        // همیشه فعال بود و کل بخش تعرفه‌ها (ادمین و کارشناس) را قفل می‌کرد.
+        // مجوزدهی هم‌اکنون توسط TariffSetPolicy انجام می‌شود.
 
         Gate::authorize('viewAny', TariffSet::class);
         $query = TariffSet::with('village')->orderByDesc('jalali_year')->orderByDesc('id');

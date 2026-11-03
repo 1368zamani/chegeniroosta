@@ -105,8 +105,8 @@
         </div>
         @elseif(!in_array($invoice->status, ['cancelled', 'paid']))
             @if($plan)
-            <div class="mt-4 border rounded p-3 bg-blue-50">
-                <h3 class="font-bold mb-2 text-blue-800">📅 برنامه‌ی تقسیط</h3>
+            <div class="mt-4 border rounded p-3 bg-green-50">
+                <h3 class="font-bold mb-2 text-green-800">📅 برنامه‌ی تقسیط</h3>
                 <p class="text-sm">پیش‌پرداخت: <b>{{ $fa($plan['down_payment'] ?? 0) }}</b> ریال · هر قسط: <b>{{ $fa($plan['per_installment'] ?? 0) }}</b> ریال × {{ Number::fa($plan['installments_count'] ?? 0) }}</p>
                 <p class="text-xs text-gray-600 mt-2">تحویل چک‌های اقساط به دهیاری الزامی است.</p>
             </div>

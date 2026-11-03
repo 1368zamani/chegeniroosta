@@ -17,7 +17,7 @@
            class="text-sm border px-3 py-2 rounded bg-white">👁️ نمایش عمومی</a>
     </div>
 
-    <div class="bg-blue-50 border-r-4 border-blue-500 p-3 rounded mb-4 text-sm text-blue-800">
+    <div class="bg-green-50 border-r-4 border-green-500 p-3 rounded mb-4 text-sm text-green-800">
         ℹ️ این صفحه فقط برای گزارش است. برای هرگونه تغییر با کارشناسان مالی تماس بگیرید.
     </div>
 

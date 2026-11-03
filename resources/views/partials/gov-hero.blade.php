@@ -6,7 +6,7 @@
     .gov-hero {
         position: relative;
         min-height: 320px;
-        background: linear-gradient(135deg, #0d2e4f 0%, #103d68 100%);
+        background: linear-gradient(135deg, #0d3b2e 0%, #14432f 100%);
         overflow: hidden;
         display: flex;
         align-items: center;

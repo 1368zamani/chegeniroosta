@@ -11,7 +11,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 .profile-card { background: white; border-radius: 16px; box-shadow: 0 10px 35px rgba(0,0,0,0.08); overflow: hidden; }
 .profile-top {
     display: flex; gap: 30px; padding: 35px;
-    background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+    background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
     align-items: center; flex-wrap: wrap;
 }
 .profile-photo {
@@ -24,17 +24,17 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
     background: #cfd8dc; display: flex; align-items: center; justify-content: center;
     font-size: 60px; color: #90a4ae; border: 5px solid white; flex-shrink: 0;
 }
-.profile-info h2 { margin: 0 0 8px; color: #1e5b9c; font-size: 26px; }
+.profile-info h2 { margin: 0 0 8px; color: #2e7d32; font-size: 26px; }
 .profile-info .role { color: #546e7a; font-size: 15px; margin-bottom: 12px; }
 .profile-info .contact { font-size: 14px; color: #607d8b; line-height: 2; }
-.profile-info .contact a { color: #1e5b9c; text-decoration: none; direction: ltr; display: inline-block; }
+.profile-info .contact a { color: #2e7d32; text-decoration: none; direction: ltr; display: inline-block; }
 .profile-info .contact a:hover { text-decoration: underline; }
 .profile-body { padding: 35px; }
 .profile-section { margin-bottom: 35px; }
 .profile-section:last-child { margin-bottom: 0; }
 .profile-section h3 {
-    color: #1e5b9c; font-size: 18px; margin: 0 0 15px;
-    padding-bottom: 10px; border-bottom: 2px solid #e3f2fd;
+    color: #2e7d32; font-size: 18px; margin: 0 0 15px;
+    padding-bottom: 10px; border-bottom: 2px solid #e8f5e9;
 }
 .profile-section p { color: #546e7a; line-height: 2; margin: 0; white-space: pre-line; }
 .empty-note { color: #90a4ae; font-style: italic; font-size: 14px; }
@@ -46,6 +46,8 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body>
 
@@ -118,7 +120,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 
             <div style="text-align:center;margin-top:30px;">
                 <a href="{{ route('public.village.show', $village->slug) }}"
-                   style="display:inline-block;background:#1e5b9c;color:white;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;">
+                   style="display:inline-block;background:#2e7d32;color:white;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;">
                     → بازگشت به سایت روستا
                 </a>
             </div>

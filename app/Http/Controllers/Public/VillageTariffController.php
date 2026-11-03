@@ -33,17 +33,81 @@ class VillageTariffController extends Controller
             return view('village.tariff.no-tariff', compact('village'));
         }
 
-        $items = TariffItem::with('title')
-            ->where('tariff_set_id', $set->id)
-            ->where('is_active', true)
-            ->whereHas('title')
-            ->orderBy('id')
-            ->get()
-            ->groupBy(fn($i) => $i->title->type ?? 'levy');
-
         $account = BankAccount::getDefaultForVillage($village->id);
 
-        return view('village.tariff.index', compact('village', 'set', 'items', 'account'));
+        /*
+         * ═══ بازطراحی «عوارض» ═══
+         *
+         * نمایش بر اساس «عنوان عوارض» است، نه ردیف خام.
+         *
+         * چرا؟ جدول tariff_items برای بعضی عناوین ده‌ها ردیف «ضریب»
+         * دارد (مثلاً عوارض زیربنا ۲۵ ردیف با اعداد ۲۰، ۲۵، ۳۰…).
+         * نمایش آن‌ها به شهروند بی‌معنا و گیج‌کننده بود.
+         *
+         * حالا برای هر عنوان یک کارت ساخته می‌شود که «مبلغ پایه»
+         * (قابل ویرایش توسط کارشناس) را نشان می‌دهد.
+         */
+        $titles = \App\Models\TariffTitle::categorized()
+            ->active()
+            ->ordered()
+            ->get();
+
+        // اگر هنوز دسته‌بندی اعمال نشده، به صفحه‌ی قبلی برگرد تا خالی نشود
+        if ($titles->isEmpty()) {
+            $legacy = TariffItem::with('title')
+                ->where('tariff_set_id', $set->id)
+                ->where('is_active', true)
+                ->whereHas('title')
+                ->orderBy('id')
+                ->get()
+                ->groupBy(fn ($i) => $i->title->type ?? 'levy');
+
+            return view('village.tariff.legacy', [
+                'village' => $village,
+                'set' => $set,
+                'items' => $legacy,
+                'account' => $account,
+            ]);
+        }
+
+        // ردیف‌های همین تعرفه، گروه‌بندی‌شده بر اساس عنوان
+        $setItems = TariffItem::where('tariff_set_id', $set->id)
+            ->where('is_active', true)
+            ->get()
+            ->groupBy('tariff_title_id');
+
+        $groups = ['waste' => collect(), 'new_build' => collect(), 'renovation' => collect()];
+
+        foreach ($titles as $title) {
+            $items = $setItems->get($title->id, collect());
+
+            // ردیف نماینده: بزرگ‌ترین مبلغ (یعنی ضریب واقعی، نه صفرِ پیش‌فرض)
+            $rep = $items->sortByDesc('final_amount')->first();
+
+            // مبلغ نمایشی = مبلغ پایه‌ی قابل ویرایش؛ اگر ثبت نشده بود، مبلغ ردیف
+            $amount = (int) ($title->base_amount ?? ($rep->final_amount ?? 0));
+
+            $card = (object) [
+                'title'       => $title,
+                'item'        => $rep,
+                'item_count'  => $items->count(),
+                'amount'      => $amount,
+                'selectable'  => $rep !== null && $amount > 0,
+            ];
+
+            $key = $title->category === \App\Models\TariffTitle::CATEGORY_WASTE
+                ? 'waste'
+                : ($title->subcategory === \App\Models\TariffTitle::SUB_RENOVATION ? 'renovation' : 'new_build');
+
+            $groups[$key]->push($card);
+        }
+
+        return view('village.tariff.index', [
+            'village' => $village,
+            'set'     => $set,
+            'groups'  => $groups,
+            'account' => $account,
+        ]);
     }
 
     /**
@@ -52,35 +116,28 @@ class VillageTariffController extends Controller
      */
     public function issueInvoice(Request $request, string $slug)
     {
-        Log::info('[STEP-1] Start issueInvoice', ['slug' => $slug, 'data' => $request->all()]);
-
         $village = Village::where('slug', $slug)->where('is_active', true)->firstOrFail();
-
-        Log::info('[STEP-2] Village found', ['village_id' => $village->id]);
 
         $data = $request->validate([
             'payer_name'        => ['required', 'string', 'max:200'],
             'payer_national_id' => ['nullable', 'string', 'max:20'],
             'payer_mobile'      => ['required', 'string', 'max:20'],
+            'subject'           => ['nullable', 'string', 'max:500'],
             'items'             => ['required', 'array', 'min:1'],
             'items.*.id'        => ['required', 'integer', 'exists:tariff_items,id'],
             'items.*.amount'    => ['required', 'integer', 'min:0'],
+            'items.*.discount'  => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'items.*.notes'     => ['nullable', 'string'],
             'items.*.inputs'    => ['nullable', 'array'],
         ]);
 
-        Log::info('[STEP-3] Validation passed', ['data' => $data]);
-
         try {
             DB::beginTransaction();
-
-            Log::info('[STEP-4] Transaction started');
 
             $set = TariffSet::where('village_id', $village->id)
                 ->where('status', 'published')
                 ->orderByDesc('jalali_year')
                 ->firstOrFail();
-
-            Log::info('[STEP-5] TariffSet found', ['set_id' => $set->id]);
 
             // ساخت فیش
             $invoice = new TariffInvoice();
@@ -91,14 +148,12 @@ class VillageTariffController extends Controller
             $invoice->payer_name = $data['payer_name'];
             $invoice->payer_national_id = Number::en($data['payer_national_id'] ?? '');
             $invoice->payer_mobile = Number::en($data['payer_mobile']);
+            $invoice->subject = $data['subject'] ?? null;
             $invoice->issued_at = now();
             $invoice->due_date = now()->addDays(30);
             $invoice->status = 'issued';
-            Log::info('[STEP-6] About to save invoice');
 
             $invoice->save();
-
-            Log::info('[STEP-7] Invoice saved', ['invoice_id' => $invoice->id]);
 
             // ساخت ردیف‌ها
             $sort = 1;
@@ -110,15 +165,14 @@ class VillageTariffController extends Controller
                     throw new \RuntimeException('آیتم انتخاب‌شده متعلق به این تعرفه نیست.');
                 }
 
-                $line = new TariffInvoiceLine();
+                $line = TariffInvoiceLine::fromTariffItem(
+                    item: $item,
+                    amount: (int) $lineData['amount'],
+                    discountPercent: (float) ($lineData['discount'] ?? 0),
+                    inputs: $lineData['inputs'] ?? [],
+                    notes: $lineData['notes'] ?? null
+                );
                 $line->invoice_id = $invoice->id;
-                $line->tariff_item_id = $item->id;
-                $line->title_name = optional($item->title)->name_fa ?? 'نامشخص';
-                $line->amount_before = (int) $lineData['amount'];
-                $line->discount_percent = 0;
-                $line->discount_amount = 0;
-                $line->amount = (int) $lineData['amount'];
-                $line->inputs = $lineData['inputs'] ?? [];
                 $line->sort_order = $sort++;
                 $line->save();
             }

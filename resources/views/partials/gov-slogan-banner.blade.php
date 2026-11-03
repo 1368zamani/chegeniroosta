@@ -4,7 +4,7 @@
 
 <style>
     .gov-slogan-banner {
-        background: linear-gradient(135deg, #0d2e4f 0%, #103d68 100%);
+        background: linear-gradient(135deg, #0d3b2e 0%, #14432f 100%);
         position: relative;
         overflow: hidden;
         padding: 40px 20px;
@@ -36,7 +36,7 @@
         overflow: hidden;
         box-shadow: 0 15px 45px rgba(0,0,0,0.4), 0 0 0 4px rgba(255,213,79,0.3);
         aspect-ratio: 4/3;
-        background: #1a3a5c;
+        background: #14432f;
     }
 
     .gov-leader-photo img {

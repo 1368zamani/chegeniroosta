@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasStats;
 use Illuminate\Database\Eloquent\Model;
 
 class VillageRequest extends Model
 {
+    use HasStats;
+
     protected $fillable = [
         'village_id', 'tracking_code', 'full_name', 'phone',
         'subject', 'description', 'attachment', 'status',

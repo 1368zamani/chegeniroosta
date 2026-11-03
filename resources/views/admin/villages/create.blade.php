@@ -7,25 +7,25 @@
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 19px; }
         .header a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; }
         .container { max-width: 900px; margin: auto; padding: 30px 20px; }
         .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); margin-bottom: 20px; }
-        .card h2 { margin: 0 0 20px; font-size: 17px; color: #1565c0; border-bottom: 2px solid #e3f2fd; padding-bottom: 12px; }
+        .card h2 { margin: 0 0 20px; font-size: 17px; color: #2e7d32; border-bottom: 2px solid #e8f5e9; padding-bottom: 12px; }
         .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
         .field { margin-bottom: 18px; }
         .field label { display: block; margin-bottom: 6px; font-size: 13px; color: #546e7a; font-weight: 600; }
         .field input, .field select, .field textarea { width: 100%; padding: 11px 14px; border: 1px solid #cfd8dc; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; background: white; }
-        .field input:focus, .field select:focus, .field textarea:focus { border-color: #1565c0; }
+        .field input:focus, .field select:focus, .field textarea:focus { border-color: #2e7d32; }
         .field textarea { min-height: 90px; resize: vertical; }
         .hint { font-size: 12px; color: #90a4ae; margin-top: 5px; }
         .checkbox { display: flex; align-items: center; gap: 10px; }
         .checkbox input { width: 20px; height: 20px; }
         .actions { display: flex; gap: 12px; margin-top: 24px; }
         .btn { padding: 12px 24px; border-radius: 8px; text-decoration: none; font-family: inherit; font-size: 14px; cursor: pointer; border: none; }
-        .btn-primary { background: #1565c0; color: white; }
-        .btn-primary:hover { background: #0d47a1; }
+        .btn-primary { background: #2e7d32; color: white; }
+        .btn-primary:hover { background: #1b5e20; }
         .btn-secondary { background: #cfd8dc; color: #37474f; }
         .btn-secondary:hover { background: #b0bec5; }
         .error { background: #ffcdd2; color: #c62828; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; }

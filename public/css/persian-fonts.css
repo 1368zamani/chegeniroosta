@@ -1,7 +1,97 @@
-/* ═══ وزیرمتن کل سایت ═══ */
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+/* ══════════════════════════════════════════════════════════════════
+   استایل پایه‌ی کل سایت — فونت‌ها و متغیرهای رنگ
 
-/* ═══ Lalezar (شبیه B Titr) برای عنوان ═══ */
+   ⚠️ این فایل روی ۸۱ صفحه‌ی سایت لود می‌شود. هر تغییری اینجا
+      روی کل سایت اثر می‌گذارد.
+
+   تغییرات نسبت به نسخه‌ی قبلی:
+   ۱) فونت وزیرمتن دیگر از Google Fonts گرفته نمی‌شود
+      (در ایران کند یا فیلتر است و سایت به Tahoma برمی‌گشت).
+      فایل‌های فونت داخل خود سایت میزبانی می‌شوند: /fonts/vazirmatn/
+   ۲) تعریف فونت «BTitr» حذف شد — فایل BTitr.ttf روی سرور
+      وجود نداشت و مرورگر بی‌دلیل درخواست ناموفق می‌فرستاد.
+   ۳) رنگ‌ها به متغیر (CSS variable) تبدیل شدند تا از این به بعد
+      تغییر رنگ کل سایت فقط با ویرایش همین چند خط ممکن باشد.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────── متغیرهای طراحی ─────────────────────── */
+:root {
+    /* ── فونت‌ها ── */
+    --site-font: 'Vazirmatn', Tahoma, Arial, sans-serif;
+    --site-font-title: 'Lalezar', 'Vazirmatn', Tahoma, sans-serif;
+
+    /* ── رنگ اصلی سایت (سبز) ──
+       ⚠️ فقط همین چند خط را عوض کنید تا رنگ کل سایت تغییر کند. */
+    --brand-primary: #2e7d32;         /* سبز اصلی — دکمه‌ها، لینک‌ها، تیترها */
+    --brand-primary-dark: #1b5e20;    /* سبز تیره — حالت hover */
+    --brand-primary-light: #388e3c;   /* سبز روشن */
+    --brand-title: #2e7d32;           /* رنگ عنوان سایت */
+
+    /* ── سبز تیره‌ی سازمانی (هدر و فوتر) ── */
+    --brand-dark: #0d3b2e;
+
+    /* ── رنگ‌های وضعیت ── */
+    --state-success: #16a34a;         /* موفق / پاسخ داده شده */
+    --state-success-soft: #d1fae5;
+    --state-warning: #f59e0b;         /* در انتظار */
+    --state-warning-soft: #fef3c7;
+    --state-danger: #dc2626;          /* خطا / رد شده */
+    --state-danger-soft: #fee2e2;
+    --state-neutral: #475569;         /* عادی / ثبت شده */
+    --state-neutral-soft: #e2e8f0;
+
+    /* ── رنگ تأکیدی ── */
+    --brand-gold: #ffd54f;
+
+    /* ── متن و پس‌زمینه ── */
+    --text-main: #263238;
+    --text-muted: #546e7a;
+    --text-soft: #78909c;
+    --bg-page: #f5f7fa;
+    --bg-card: #ffffff;
+    --bg-tint: #e8f5e9;               /* سبز خیلی روشن برای کارت‌ها */
+
+    /* ── شکل و سایه ── */
+    --radius-card: 12px;
+    --shadow-card: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ═══════════════════════ فونت وزیرمتن (میزبانی محلی) ═══════════════════
+   دیگر به اینترنت وابسته نیست — سریع‌تر و در ایران پایدار.
+   ══════════════════════════════════════════════════════════════════════ */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('/fonts/vazirmatn/Vazirmatn-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('/fonts/vazirmatn/Vazirmatn-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('/fonts/vazirmatn/Vazirmatn-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('/fonts/vazirmatn/Vazirmatn-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ═══ Lalezar — فونت عنوان ═══ */
 @font-face {
     font-family: 'Lalezar';
     src: url('/fonts/Lalezar.ttf') format('truetype');
@@ -9,33 +99,26 @@
     font-display: swap;
 }
 
-/* ═══ B Titr (اگر دانلود شد) ═══ */
-@font-face {
-    font-family: 'BTitr';
-    src: url('/fonts/BTitr.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-}
-
+/* ───────────────────── اعمال فونت روی کل سایت ───────────────────── */
 html, body, input, select, textarea, button,
-h2, h3, h4, h5, h6, p, span, div, a, li, td, th {
-    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif !important;
+h1, h2, h3, h4, h5, h6, p, span, div, a, li, td, th {
+    font-family: var(--site-font) !important;
 }
 
-/* ═══ عنوان سایت — بزرگ + آبی ═══ */
+/* ═══ عنوان سایت — بزرگ و برجسته ═══ */
 h1.gov-main-title,
 .gov-main-title,
 .gov-titles h1 {
-    font-family: 'BTitr', 'Lalezar', 'Vazirmatn', Tahoma, sans-serif !important;
+    font-family: var(--site-font-title) !important;
     font-size: clamp(36px, 7.5vw, 64px) !important;
     font-weight: 700 !important;
     line-height: 1.4 !important;
-    color: #1565c0 !important;
+    color: var(--brand-title) !important;
     text-align: right !important;
     padding: 12px 4px !important;
     margin: 0 0 8px 0 !important;
     letter-spacing: 0 !important;
-    text-shadow: 0 2px 4px rgba(255,255,255,0.7), 0 0 20px rgba(21,101,192,0.15) !important;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(21, 101, 192, 0.15) !important;
 }
 
 @media (max-width: 700px) {
@@ -44,4 +127,56 @@ h1.gov-main-title,
         line-height: 1.35 !important;
         padding: 8px 4px !important;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   فونت نستعلیق — برای عنوان سایت و تیترهای تشریفاتی
+   منبع: Noto Nastaliq (SIL Open Font License)
+   ═══════════════════════════════════════════════════════════ */
+@font-face {
+    font-family: 'NotoNastaliq';
+    src: url('/fonts/NotoNastaliq.woff2') format('woff2'),
+         url('/fonts/NotoNastaliq.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* کلاس آماده برای استفاده در هر جای سایت */
+.font-nastaliq,
+.nastaliq {
+    font-family: 'NotoNastaliq', 'Vazirmatn', Tahoma, serif !important;
+    line-height: 2.1 !important;
+}
+
+/* متغیر CSS برای استفاده در استایل‌های جدید */
+:root {
+    --font-nastaliq: 'NotoNastaliq', 'Vazirmatn', Tahoma, serif;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   فونت B Titr — تیترهای اصلی و نام سایت
+   ─────────────────────────────────────────────────────────
+   فایل: /fonts/BTitrBold.woff2  (فقط ۲۰ کیلوبایت)
+   قبلاً تعریف نشده بود چون فایل روی سرور نبود؛ الان موجود است.
+   ═══════════════════════════════════════════════════════════ */
+@font-face {
+    font-family: 'BTitr';
+    src: url('/fonts/BTitrBold.woff2') format('woff2'),
+         url('/fonts/BTitrBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* کلاس آماده برای تیترها */
+.font-titr,
+.titr {
+    font-family: 'BTitr', 'Vazirmatn', Tahoma, sans-serif !important;
+    line-height: 1.55 !important;
+}
+
+/* متغیر CSS */
+:root {
+    --font-titr: 'BTitr', 'Vazirmatn', Tahoma, sans-serif;
 }

@@ -40,7 +40,7 @@
                 @if($o->type === 'governor')
                     <span class="badge" style="background:#c8e6c9;color:#2e7d32;">فرماندار</span>
                 @else
-                    <span class="badge" style="background:#dbeafe;color:#1e40af;">معاون</span>
+                    <span class="badge" style="background:#e2e8f0;color:#475569;">معاون</span>
                 @endif
             </td>
             <td>
@@ -52,6 +52,7 @@
             </td>
             <td style="white-space:nowrap;">
                 <a href="{{ route('admin.officials.edit', $o->id) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                @include('partials.admin.toggle', ['type' => 'official', 'model' => $o])
                 <form method="POST" action="{{ route('admin.officials.destroy', $o->id) }}" style="display:inline;" onsubmit="return confirm('حذف؟');">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" style="background:#c62828;color:#fff;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px;">حذف</button>

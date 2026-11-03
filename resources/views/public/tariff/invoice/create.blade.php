@@ -6,7 +6,7 @@
     $allItemsArray = $items->flatten()->map(function ($i) {
         return [
             'id'     => (int) $i->id,
-            'title'  => (string) ($i->title->title ?? ''),
+            'title'  => (string) ($i->title->name_fa ?? ''),
             'amount' => (int) $i->final_amount,
         ];
     })->values()->toArray();
@@ -25,7 +25,38 @@
     </div>
     @endif
 
-    <form method="POST" action="{{ route('tariff.invoice.store', $village->slug) }}" class="space-y-4">
+    {{-- ═══════════════════ اطلاعات حساب بانکی جهت پرداخت ═══════════════════ --}}
+    @if($village->bank_account || $village->bank_iban)
+    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-5 mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
+        <div>
+            <h2 class="font-bold text-blue-900 text-lg flex items-center gap-2">
+                🏦 اطلاعات حساب جهت واریز عوارض
+            </h2>
+            <p class="text-sm text-blue-700 mt-1 mb-0">
+                لطفاً مبالغ را به حساب زیر واریز نموده و فیش را در سیستم بارگذاری کنید.
+            </p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-blue-100 min-w-[280px]">
+            @if($village->bank_name)
+                <div class="text-sm text-gray-700 mb-2"><strong>بانک:</strong> {{ $village->bank_name }}</div>
+            @endif
+            @if($village->bank_account)
+                <div class="text-sm text-gray-700 mb-2 flex items-center justify-between gap-4">
+                    <strong>شماره حساب:</strong>
+                    <span class="font-mono text-base font-bold text-blue-900 select-all" dir="ltr">{{ $village->bank_account }}</span>
+                </div>
+            @endif
+            @if($village->bank_iban)
+                <div class="text-sm text-gray-700 flex items-center justify-between gap-4">
+                    <strong>شماره شبا:</strong>
+                    <span class="font-mono text-sm text-blue-900 select-all" dir="ltr">{{ $village->bank_iban }}</span>
+                </div>
+            @endif
+        </div>
+    </div>
+    @endif
+
+    <form method="POST" action="{{ route('village.tariff.invoice.issue', $village->slug) }}" class="space-y-4">
         @csrf
 
         <div class="bg-white rounded-lg shadow p-5">
@@ -63,7 +94,7 @@
                     <label class="flex items-start gap-3 p-3 border rounded cursor-pointer hover:bg-gray-50">
                         <input type="checkbox" class="mt-1" @change="toggleItem({{ $item->id }})" :checked="selectedItems.includes({{ $item->id }})">
                         <div class="flex-1">
-                            <div class="font-medium">{{ $item->title->title ?? '-' }}</div>
+                            <div class="font-medium">{{ $item->title->name_fa ?? '-' }}</div>
                             @if($item->notes)
                             <div class="text-xs text-gray-500 mt-1">{{ $item->notes }}</div>
                             @endif
@@ -96,7 +127,7 @@
                             <input type="text" :name="`items[${index}][notes]`" x-model="item.notes" class="w-full border rounded p-2 mt-1">
                         </label>
                     </div>
-                    <input type="hidden" :name="`items[${index}][item_id]`" :value="item.id">
+                    <input type="hidden" :name="`items[${index}][id]`" :value="item.id">
                 </div>
             </template>
         </div>

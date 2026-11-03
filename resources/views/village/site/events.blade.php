@@ -22,7 +22,7 @@
         @endif
     </div>
     @empty
-    <div class="bg-blue-50 border border-blue-200 rounded p-4 text-blue-800 mb-8">
+    <div class="bg-green-50 border border-green-200 rounded p-4 text-green-800 mb-8">
         رویداد پیش‌رویی ثبت نشده است.
     </div>
     @endforelse

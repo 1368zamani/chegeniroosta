@@ -37,7 +37,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">عنوان تعرفه</label>
-                        <input type="text" value="{{ $item->title->title ?? '-' }}" class="form-control" readonly>
+                        <input type="text" value="{{ $item->title->name_fa ?? '-' }}" class="form-control" readonly>
                     </div>
 
                     @if($item->title?->formula_display || $item->formula_display)

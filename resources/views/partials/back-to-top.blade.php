@@ -12,7 +12,7 @@
         right: 30px;
         width: 48px;
         height: 48px;
-        background: #1565c0;
+        background: #2e7d32;
         color: white;
         border: none;
         border-radius: 50%;
@@ -31,7 +31,7 @@
         visibility: visible;
     }
     #backToTop:hover {
-        background: #0d47a1;
+        background: #1b5e20;
         transform: translateY(-3px);
     }
     @media (max-width: 700px) {

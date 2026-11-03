@@ -68,7 +68,7 @@
                         :class="activeTab === 'service_fee' ? 'border-b-2 border-emerald-600 text-emerald-700 font-bold' : 'text-gray-600 hover:text-emerald-600'"
                         class="px-6 py-3 whitespace-nowrap transition">
                     💰 بهای خدمات
-                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full mr-2">
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full mr-2">
                         {{ $grouped->get('service_fee', collect())->count() }}
                     </span>
                 </button>

@@ -5,8 +5,8 @@
 .top-header,
 .page-header {
     background:#ffffff !important;
-    color:#1565c0 !important;
-    border-bottom:1px solid #e3f2fd !important;
+    color:#2e7d32 !important;
+    border-bottom:1px solid #e8f5e9 !important;
     box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
 }
 
@@ -17,7 +17,7 @@
 .admin-header h1,
 .admin-header h2,
 .page-header h1 {
-    color:#1565c0 !important;
+    color:#2e7d32 !important;
 }
 
 
@@ -32,21 +32,21 @@
 
 .header a,
 .admin-header a {
-    color:#1565c0 !important;
-    background:#e3f2fd !important;
+    color:#2e7d32 !important;
+    background:#e8f5e9 !important;
 }
 
 
 .header a:hover,
 .admin-header a:hover {
-    background:#bbdefb !important;
+    background:#c8e6c9 !important;
 }
 
 
 /* دکمه خروج */
 
 .header button {
-    background:#1565c0 !important;
+    background:#2e7d32 !important;
     color:white !important;
 }
 

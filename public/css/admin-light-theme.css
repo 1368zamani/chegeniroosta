@@ -4,12 +4,12 @@
 
 :root {
     --al-bg:       #ffffff;
-    --al-bg-soft:  #f5f9ff;
-    --al-blue:     #1565c0;
-    --al-blue-dk:  #0d47a1;
-    --al-blue-lt:  #e3f2fd;
-    --al-text:     #1565c0;
-    --al-border:   #e3f2fd;
+    --al-bg-soft:  #f1f8e9;
+    --al-blue:     #2e7d32;
+    --al-blue-dk:  #1b5e20;
+    --al-blue-lt:  #e8f5e9;
+    --al-text:     #2e7d32;
+    --al-border:   #e8f5e9;
 }
 
 /* ═══ بدنه اصلی ═══ */

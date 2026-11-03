@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasStats;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class VillageNews extends Model
 {
+    use HasStats;
+
     protected $table = 'village_news';
 
     protected $fillable = [

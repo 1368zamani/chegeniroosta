@@ -80,6 +80,12 @@ class AdminVillageController extends Controller
             'area'              => 'nullable|numeric|min:0',
             'dehyar_name'       => 'nullable|string|max:255',
             'dehyar_instagram'  => 'nullable|string|max:255',
+            'dehyar_phone'      => 'nullable|string|max:50',
+            'dehyar_email'      => 'nullable|email|max:100',
+            'dehyar_hours'      => 'nullable|string|max:255',
+            'dehyar_bio'        => 'nullable|string|max:2000',
+            'dehyar_education'  => 'nullable|string|max:2000',
+            'dehyar_experience' => 'nullable|string|max:2000',
             'council_head_name' => 'nullable|string|max:255',
             'is_active'         => 'nullable|boolean',
         ]);
@@ -134,6 +140,13 @@ class AdminVillageController extends Controller
             'households'        => ['nullable', 'integer', 'min:0'],
             'area'              => ['nullable', 'numeric', 'min:0'],
             'dehyar_name'       => ['nullable', 'string', 'max:255'],
+            'dehyar_instagram'  => ['nullable', 'string', 'max:255'],
+            'dehyar_phone'      => ['nullable', 'string', 'max:50'],
+            'dehyar_email'      => ['nullable', 'email', 'max:100'],
+            'dehyar_hours'      => ['nullable', 'string', 'max:255'],
+            'dehyar_bio'        => ['nullable', 'string', 'max:2000'],
+            'dehyar_education'  => ['nullable', 'string', 'max:2000'],
+            'dehyar_experience' => ['nullable', 'string', 'max:2000'],
             'council_head_name' => ['nullable', 'string', 'max:255'],
             'is_active'         => ['nullable', 'boolean'],
         ]);
@@ -159,6 +172,45 @@ class AdminVillageController extends Controller
 
         $state = $village->is_active ? 'فعال' : 'غیرفعال';
         return back()->with('success', "روستای «{$village->name}» {$state} شد.");
+    }
+
+    /**
+     * فعال/غیرفعال کردن گروهی همه‌ی روستاهای یک بخش — با یک دکمه.
+     *
+     * POST admin/sections/{sectionId}/villages/bulk-toggle
+     *
+     * دسترسی: سوپرادمین (همه‌ی بخش‌ها) و ادمین بخش (فقط بخش خودش).
+     * فقط روستاهایی که وضعیتشان متفاوت است تغییر می‌کنند، پس اگر
+     * همه از قبل فعال باشند، هیچ کوئری نوشتنی اجرا نمی‌شود.
+     */
+    public function bulkToggle(Request $request, $sectionId)
+    {
+        $section = Section::findOrFail($sectionId);
+
+        if (!auth()->user()->canManageSection($section->id)) {
+            abort(403, 'شما به این بخش دسترسی ندارید.');
+        }
+
+        $data = $request->validate([
+            'state' => ['required', 'in:active,inactive'],
+        ], [
+            'state.required' => 'وضعیت هدف مشخص نیست.',
+            'state.in'       => 'وضعیت انتخاب‌شده معتبر نیست.',
+        ]);
+
+        $target = $data['state'] === 'active';
+
+        $affected = Village::where('section_id', $section->id)
+            ->where('is_active', '!=', $target)
+            ->update(['is_active' => $target]);
+
+        $label = $target ? 'فعال' : 'غیرفعال';
+
+        if ($affected === 0) {
+            return back()->with('success', "همه‌ی روستاهای بخش «{$section->name}» از قبل {$label} بودند — تغییری لازم نبود.");
+        }
+
+        return back()->with('success', "«{$affected}» روستای بخش «{$section->name}» با موفقیت {$label} شدند.");
     }
 
     public function destroy($id)

@@ -108,7 +108,7 @@
                     </td>
                     <td class="p-2 text-xs">
                         <span class="px-2 py-1 rounded text-xs
-                            @if($o->role === 'section_admin') bg-blue-100 text-blue-800
+                            @if($o->role === 'section_admin') bg-green-100 text-green-800
                             @elseif($o->role === 'fee_officer') bg-purple-100 text-purple-800
                             @elseif($o->role === 'tariff_officer') bg-amber-100 text-amber-800
                             @else bg-gray-100 @endif">
@@ -122,7 +122,7 @@
                     </td>
                     <td class="p-2 text-xs" dir="ltr">{{ $o->email ?: ($o->phone ?: '—') }}</td>
                     <td class="p-2 whitespace-nowrap">
-                        <button type="button" class="text-blue-600 hover:underline text-xs ml-2"
+                        <button type="button" class="text-green-600 hover:underline text-xs ml-2"
                                 onclick="document.getElementById('edit-{{ $o->id }}').classList.toggle('hidden')">
                             ویرایش
                         </button>
@@ -167,7 +167,7 @@
                                 <div><label class="block text-xs mb-1">تلفن</label>
                                     <input type="text" name="phone" value="{{ $o->phone }}" dir="ltr" class="w-full border rounded p-1.5 text-sm font-mono"></div>
                             </div>
-                            <button class="bg-blue-600 text-white px-4 py-1.5 rounded text-sm">ذخیره</button>
+                            <button class="bg-green-600 text-white px-4 py-1.5 rounded text-sm">ذخیره</button>
                         </form>
                     </td>
                 </tr>
@@ -194,7 +194,7 @@
 
     <div class="mt-4">{{ $officers->links() }}</div>
 
-    <div class="mt-6 bg-blue-50 border-r-4 border-blue-500 p-4 rounded text-sm text-blue-900">
+    <div class="mt-6 bg-green-50 border-r-4 border-green-500 p-4 rounded text-sm text-green-900">
         <strong>ℹ️ راهنما:</strong>
         <ul class="list-disc pr-5 mt-2 space-y-1">
             <li>کارشناسان از طریق <code dir="ltr">{{ url('/expert/login') }}</code> وارد می‌شوند.</li>

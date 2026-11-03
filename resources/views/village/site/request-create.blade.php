@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ثبت درخواست | {{ $village->name }}</title>
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+{{-- فونت وزیرمتن اکنون محلی از css/persian-fonts.css لود می‌شود (قبلاً از jsDelivr بود) --}}
 @include('village.site._styles')
 
 <style>
@@ -32,6 +32,8 @@ a[href^="tel:"] {
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body>
 <div class="wrap">
@@ -92,6 +94,9 @@ a[href^="tel:"] {
             <a href="{{ route('village.site.request.track', $village->slug) }}" class="btn btn-secondary">🔍 پیگیری درخواست قبلی</a>
         </div>
     </div>
+
+    {{-- ═══ فایل‌های قابل دانلود روستا — پایین صفحه ═══ --}}
+    @include('partials.village-downloads', ['downloads' => $downloads ?? collect(), 'village' => $village])
 </div>
 </body>
 </html>

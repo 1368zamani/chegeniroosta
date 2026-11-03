@@ -39,7 +39,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 .sidebar {
     width: 240px;
     background: white;
-    border-left: 1px solid #e3f2fd;
+    border-left: 1px solid #e8f5e9;
     padding: 20px 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.03);
     flex-shrink: 0;
@@ -59,15 +59,15 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     transition: all .2s;
 }
 .sidebar-menu a:hover {
-    background: #f0f7ff;
-    color: #1565c0;
-    border-right-color: #1565c0;
+    background: #f1f8e9;
+    color: #2e7d32;
+    border-right-color: #2e7d32;
 }
 .sidebar-menu a.active {
-    background: #e3f2fd;
-    color: #0d2e4f;
+    background: #e8f5e9;
+    color: #0d3b2e;
     font-weight: 700;
-    border-right-color: #0d2e4f;
+    border-right-color: #0d3b2e;
 }
 
 .content {
@@ -85,7 +85,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 }
 .page-title h2 {
     margin: 0;
-    color: #0d2e4f;
+    color: #0d3b2e;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -107,8 +107,8 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     border: none;
     transition: all .2s;
 }
-.btn-primary { background: #1565c0; color: white; }
-.btn-primary:hover { background: #0d47a1; }
+.btn-primary { background: #2e7d32; color: white; }
+.btn-primary:hover { background: #1b5e20; }
 .btn-success { background: #2e7d32; color: white; }
 .btn-success:hover { background: #1b5e20; }
 .btn-danger { background: #c62828; color: white; }
@@ -128,10 +128,10 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 }
 .card h3 {
     margin: 0 0 16px;
-    color: #0d2e4f;
+    color: #0d3b2e;
     font-size: 16px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #e3f2fd;
+    border-bottom: 2px solid #e8f5e9;
 }
 
 .stats-grid {
@@ -146,14 +146,14 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     padding: 18px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-top: 4px solid #1565c0;
+    border-top: 4px solid #2e7d32;
     text-decoration: none;
     color: inherit;
     transition: transform .2s;
 }
 .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(21,101,192,0.12); }
 .stat-card .icon { font-size: 30px; display: block; margin-bottom: 6px; }
-.stat-card .num { font-size: 24px; font-weight: 800; color: #0d2e4f; display: block; line-height: 1.2; }
+.stat-card .num { font-size: 24px; font-weight: 800; color: #0d3b2e; display: block; line-height: 1.2; }
 .stat-card .label { font-size: 12px; color: #78909c; margin-top: 4px; display: block; font-weight: 600; }
 
 table {
@@ -198,7 +198,7 @@ tr:hover { background: #f8fafc; }
     background: white;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-    border-color: #1565c0;
+    border-color: #2e7d32;
     box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
 }
 .field textarea { min-height: 140px; resize: vertical; }
@@ -214,7 +214,7 @@ tr:hover { background: #f8fafc; }
     margin-bottom: 10px;
     cursor: pointer;
 }
-.checkbox-field:hover { border-color: #1565c0; }
+.checkbox-field:hover { border-color: #2e7d32; }
 .checkbox-field input[type="checkbox"] { width: 18px; height: 18px; }
 .checkbox-field label { margin: 0; cursor: pointer; font-weight: 600; color: #37474f; }
 
@@ -250,7 +250,7 @@ tr:hover { background: #f8fafc; }
     .sidebar-menu { display: flex; overflow-x: auto; }
     .sidebar-menu li { flex-shrink: 0; }
     .sidebar-menu a { padding: 10px 16px; border-right: none; border-bottom: 3px solid transparent; }
-    .sidebar-menu a.active { border-bottom-color: #0d2e4f; border-right: none; }
+    .sidebar-menu a.active { border-bottom-color: #0d3b2e; border-right: none; }
     .content { padding: 14px; }
     .row-2 { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -263,7 +263,8 @@ tr:hover { background: #f8fafc; }
 
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/mobile-admin.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">
@@ -274,6 +275,7 @@ tr:hover { background: #f8fafc; }
     <div class="top-actions">
         <a href="{{ request()->getScheme() }}://{{ config('app.base_domain') }}/village/{{ $village->slug }}" target="_blank">🌐 مشاهده سایت</a>
         <a href="{{ route('admin.dashboard') }}">🏠 داشبورد کل</a>
+        <a href="{{ route('profile.password.edit') }}">🔑 تغییر رمز</a>
         <form method="POST" action="{{ route('logout') }}" style="display:inline;">
             @csrf
             <button type="submit" style="color:white; background:rgba(255,255,255,0.15); border:none; padding:7px 14px; border-radius:8px; cursor:pointer; font-family:inherit; font-size:12.5px;">خروج</button>
@@ -299,6 +301,8 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.village.council.index', $village->id) }}" class="{{ request()->routeIs('admin.village.council.*') ? 'active' : '' }}">👥 شورا</a></li>
             <li><a href="{{ route('admin.village.resolutions.index', $village->id) }}" class="{{ request()->routeIs('admin.village.resolutions.*') ? 'active' : '' }}">📋 مصوبات شورا</a></li>
             <li><a href="{{ route('admin.village.attractions.index', $village->id) }}" class="{{ request()->routeIs('admin.village.attractions.*') ? 'active' : '' }}">🏞 جاذبه‌ها</a></li>
+            <li><a href="{{ route('admin.village.downloads.index', $village->id) }}" class="{{ request()->routeIs('admin.village.downloads.*') ? 'active' : '' }}">📥 فایل‌های دانلود</a></li>
+            <li><a href="{{ route('admin.village.products.index', $village->id) }}" class="{{ request()->routeIs('admin.village.products.*') ? 'active' : '' }}">🛒 محصولات روستا</a></li>
             <li><a href="{{ route('admin.village.images.index', $village->id) }}">🖼 گالری تصاویر</a></li>
         </ul>
     </aside>
@@ -308,7 +312,7 @@ tr:hover { background: #f8fafc; }
             <div class="success">✅ {{ session('success') }}</div>
         @endif
 
-        @if($errors->any())
+        @if(isset($errors) && $errors->any())
             <div class="error">
                 @foreach($errors->all() as $err)
                     <div>❌ {{ $err }}</div>

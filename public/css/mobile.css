@@ -1,0 +1,72 @@
+/* ═══════════════════════════════════════════════════════════════
+   بهینه‌سازی نمایش در موبایل — سایت‌های عمومی چگنی روستا
+   ─────────────────────────────────────────────────────────────
+   فقط قواعد ایمن و عمومی. استایل اختصاصی هر صفحه دست‌نخورده می‌ماند.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── جلوگیری از بزرگ‌نمایی خودکار متن در iOS ── */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* ── جلوگیری از اسکرول افقی صفحه ── */
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* ── رسانه‌ها هرگز از عرض صفحه بیرون نزنند ── */
+img,
+video,
+iframe,
+embed,
+object {
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+/* ── بازخورد لمسی نرم ── */
+a,
+button,
+[role="button"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+    -webkit-tap-highlight-color: rgba(46, 125, 50, .16);
+}
+
+/* ── جلوگیری از زوم خودکار iOS هنگام فوکوس روی فرم ── */
+@media (max-width: 768px) {
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* ── خوانایی بهتر متن در گوشی ── */
+@media (max-width: 560px) {
+    body {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        font-size: 13.5px;
+    }
+}
+
+/* ── احترام به تنظیم کاهش حرکت ── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+    }
+}

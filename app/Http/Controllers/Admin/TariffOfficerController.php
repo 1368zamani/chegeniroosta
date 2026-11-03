@@ -61,6 +61,17 @@ class TariffOfficerController extends Controller
             'role'       => $data['role'],
             'section_id' => $data['section_id'],
             'phone'      => $data['phone'] ?? null,
+            /*
+             * ⚠️ این فرم فقط «نقش» را می‌پرسد و فیلدی برای نوع کارشناس
+             * ندارد. قبلاً هیچ‌وقت `officer_type` ست نمی‌شد و در نتیجه
+             * `isFinancialOfficer()` برای کارشناس ساخته‌شده همیشه false
+             * بود و او نمی‌توانست رسید پرداخت را تأیید کند.
+             *
+             * گزینه‌ی این فرم «کارشناس مالی» است، پس نوع مالی ست می‌شود.
+             * (برای کارشناس فنی، از فرم «کاربران» استفاده کنید که
+             * انتخاب نوع دارد.)
+             */
+            'officer_type' => $data['role'] === 'fee_officer' ? 'financial' : null,
         ]);
 
         return back()->with('success', "کارشناس «{$data['name']}» با نام کاربری «{$data['username']}» ساخته شد.");

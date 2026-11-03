@@ -37,7 +37,7 @@
             font-weight: 700;
             font-size: 14px;
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
             transition: all 0.2s;
         }
         .err-btn:hover { background: #ffb300; transform: translateY(-2px); }

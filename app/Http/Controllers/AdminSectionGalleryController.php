@@ -59,7 +59,9 @@ class AdminSectionGalleryController extends Controller
         $section = Section::findOrFail($sectionId);
         if (!auth()->user()->canManageSection($section->id)) abort(403);
 
-        $image = SectionGallery::findOrFail($imageId);
+        // ⚠️ امنیت (IDOR): قبلاً بدون محدودیت بخش بود؛ ادمین یک بخش
+        // می‌توانست تصویر بخش دیگر را با تغییر شناسه حذف کند.
+        $image = SectionGallery::where('section_id', $section->id)->findOrFail($imageId);
         if (Storage::disk('public')->exists($image->image_path)) {
             Storage::disk('public')->delete($image->image_path);
         }

@@ -13,7 +13,7 @@ class AdminUserController extends Controller
     private function ensureManagerAccess(): void
     {
         $u = auth()->user();
-        if (!$u->isSuperAdmin() && !$u->isSectionAdmin()) {
+        if (!$u->isSuperAdmin()) {
             abort(403, 'دسترسی ندارید.');
         }
     }

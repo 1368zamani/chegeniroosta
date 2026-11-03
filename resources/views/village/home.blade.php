@@ -51,7 +51,7 @@
         }
 
         .brand {
-            color: #1565c0;
+            color: #2e7d32;
             font-size: 22px;
             font-weight: bold;
         }
@@ -68,11 +68,11 @@
         }
 
         .nav-links a:hover {
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .hero {
-            background: linear-gradient(135deg, #1565c0, #1976d2);
+            background: linear-gradient(135deg, #2e7d32, #388e3c);
             color: white;
             padding: 80px 20px;
         }
@@ -115,7 +115,7 @@
 
         .section-title h2 {
             margin: 0 0 5px;
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .section-title p {
@@ -140,7 +140,7 @@
         .stat-number {
             font-size: 26px;
             font-weight: bold;
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .stat-label {
@@ -170,7 +170,7 @@
 
         .news-card h3 {
             margin-top: 0;
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .news-card p {
@@ -283,6 +283,8 @@ a[href^="tel:"] {
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 
 <body>

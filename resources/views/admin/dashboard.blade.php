@@ -23,7 +23,7 @@ body{
 
 /* هدر */
 .header{
-    background:#1565C0;
+    background:#2e7d32;
     color:white;
     padding:20px 30px;
     display:flex;
@@ -53,7 +53,7 @@ body{
 }
 
 .nav a{
-    background:#1976D2;
+    background:#388e3c;
     color:white !important;
     text-decoration:none;
     padding:10px 18px;
@@ -63,7 +63,7 @@ body{
 }
 
 .nav a:hover{
-    background:#0D47A1;
+    background:#1b5e20;
 }
 
 
@@ -87,7 +87,7 @@ body{
 
 .stat-card{
     background:white;
-    border:1px solid #E3F2FD;
+    border:1px solid #e8f5e9;
     border-radius:14px;
     padding:25px;
     text-align:center;
@@ -99,13 +99,13 @@ body{
     display:block;
     font-size:32px;
     font-weight:bold;
-    color:#1565C0;
+    color:#2e7d32;
 }
 
 
 .stat-card .label{
     margin-top:10px;
-    color:#1565C0;
+    color:#2e7d32;
 }
 
 
@@ -114,9 +114,9 @@ body{
 
 .section-title{
     margin:35px 0 20px;
-    color:#1565C0;
+    color:#2e7d32;
     font-size:20px;
-    border-bottom:2px solid #E3F2FD;
+    border-bottom:2px solid #e8f5e9;
     padding-bottom:10px;
 }
 
@@ -136,7 +136,7 @@ body{
 
     background:#fff;
     border-radius:15px;
-    border-top:5px solid #1565C0;
+    border-top:5px solid #2e7d32;
     padding:25px;
     text-decoration:none;
     box-shadow:0 5px 20px rgba(0,0,0,.08);
@@ -146,7 +146,7 @@ body{
 
 .section-card h3{
 
-    color:#1565C0;
+    color:#2e7d32;
     font-size:20px;
 
 }
@@ -163,7 +163,7 @@ body{
 
     display:inline-block;
     margin-top:15px;
-    background:#1565C0;
+    background:#2e7d32;
     color:white;
     padding:8px 18px;
     border-radius:8px;

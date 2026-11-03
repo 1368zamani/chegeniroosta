@@ -39,7 +39,7 @@
     font-family: 'Vazirmatn', Tahoma, sans-serif;
     direction: rtl;
 }
-.v-glb-caption h4 { color: #1565c0; margin-bottom: .35rem; font-size: 1.05rem; }
+.v-glb-caption h4 { color: #2e7d32; margin-bottom: .35rem; font-size: 1.05rem; }
 .v-glb-caption p { color: #475569; font-size: .9rem; line-height: 1.6; }
 .v-glb-close {
     position: absolute;

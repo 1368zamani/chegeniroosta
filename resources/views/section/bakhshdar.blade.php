@@ -13,26 +13,26 @@
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; padding: 20px; }
+        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 20px; }
         .header-inner { width: min(1150px, 92%); margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 20px; }
         .header a { color: white; text-decoration: none; font-size: 14px; }
         .container { width: min(900px, 92%); margin: auto; padding: 40px 0; }
         .profile-card { background: white; border-radius: 16px; box-shadow: 0 10px 35px rgba(0,0,0,0.08); overflow: hidden; }
-        .profile-top { display: flex; gap: 30px; padding: 35px; background: linear-gradient(135deg, #e3f2fd, #f5f7fa); align-items: center; flex-wrap: wrap; }
+        .profile-top { display: flex; gap: 30px; padding: 35px; background: linear-gradient(135deg, #e8f5e9, #f5f7fa); align-items: center; flex-wrap: wrap; }
         .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 8px 25px rgba(21,101,192,0.25); flex-shrink: 0; }
         .profile-photo-placeholder { width: 180px; height: 180px; border-radius: 50%; background: #cfd8dc; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #90a4ae; border: 5px solid white; flex-shrink: 0; }
-        .profile-info h2 { margin: 0 0 8px; color: #1565c0; font-size: 26px; }
+        .profile-info h2 { margin: 0 0 8px; color: #2e7d32; font-size: 26px; }
         .profile-info .role { color: #546e7a; font-size: 15px; margin-bottom: 12px; }
         .profile-info .contact { font-size: 14px; color: #607d8b; line-height: 2; }
-        .profile-info .contact a { color: #1565c0; text-decoration: none; direction: ltr; display: inline-block; }
+        .profile-info .contact a { color: #2e7d32; text-decoration: none; direction: ltr; display: inline-block; }
         .profile-body { padding: 35px; }
         .profile-section { margin-bottom: 35px; }
         .profile-section:last-child { margin-bottom: 0; }
-        .profile-section h3 { color: #1565c0; font-size: 18px; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 2px solid #e3f2fd; }
+        .profile-section h3 { color: #2e7d32; font-size: 18px; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 2px solid #e8f5e9; }
         .profile-section p { color: #546e7a; line-height: 2; margin: 0; }
         .timeline-list { list-style: none; margin: 0; padding: 0; }
-        .timeline-list li { padding: 12px 20px; border-right: 3px solid #1565c0; margin-bottom: 10px; background: #f8fafc; border-radius: 6px; color: #37474f; line-height: 1.8; }
+        .timeline-list li { padding: 12px 20px; border-right: 3px solid #2e7d32; margin-bottom: 10px; background: #f8fafc; border-radius: 6px; color: #37474f; line-height: 1.8; }
         .empty-note { color: #90a4ae; font-style: italic; font-size: 14px; }
         @media (max-width: 700px) {
             .profile-top { flex-direction: column; text-align: center; padding: 25px; }
@@ -62,7 +62,7 @@
             max-width: 220px;
             height: 220px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+            background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,7 +75,7 @@
         .bakhshdar-side-card .label {
             display: inline-block;
             font-size: 11px;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: #ffd54f;
             padding: 3px 14px;
             border-radius: 14px;
@@ -84,7 +84,7 @@
         }
         .bakhshdar-side-card h4 {
             margin: 0 0 4px;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 17px;
             font-weight: 800;
         }
@@ -95,7 +95,7 @@
         }
         .bakhshdar-side-card .btn {
             display: inline-block;
-            background: #0d2e4f;
+            background: #0d3b2e;
             color: #fff;
             padding: 10px 22px;
             border-radius: 8px;
@@ -106,7 +106,7 @@
         }
         .bakhshdar-side-card .btn:hover {
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
             transform: translateY(-2px);
         }
 
@@ -146,6 +146,7 @@ a[href^="tel:"] {
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.pwa')
 </head>
 <body>
 

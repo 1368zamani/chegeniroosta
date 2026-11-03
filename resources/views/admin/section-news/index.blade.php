@@ -33,6 +33,7 @@
                 <th>بخش</th>
                 <th>وضعیت</th>
                 <th>تاریخ</th>
+                <th title="تعداد بازدید">بازدید</th>
                 <th>عملیات</th>
             </tr>
         </thead>
@@ -68,8 +69,12 @@
                     <td style="font-size:12px; color:#78909c;">
                         {{ jalali($item->created_at) }}
                     </td>
+                    <td style="font-size:13px; color:#2e7d32; font-weight:600; white-space:nowrap;">
+                        👁 {{ \App\Support\Number::fa(number_format($item->stat_views)) }}
+                    </td>
                     <td>
                         <a href="{{ route('admin.section-news.edit', $item->id) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                        @include('partials.admin.toggle', ['type' => 'section-news', 'model' => $item])
                         <form method="POST" action="{{ route('admin.section-news.destroy', $item->id) }}" style="display:inline;" onsubmit="return confirm('حذف این خبر؟');">
                             @csrf
                             @method('DELETE')

@@ -37,13 +37,14 @@
             </td>
             <td>
                 <div style="background:#f0f3f7; border-radius:4px; height:8px; width:80px; display:inline-block; vertical-align:middle;">
-                    <div style="background:#1565c0; width:{{ $project->progress }}%; height:100%; border-radius:4px;"></div>
+                    <div style="background:#2e7d32; width:{{ $project->progress }}%; height:100%; border-radius:4px;"></div>
                 </div>
                 <span style="font-size:12px; margin-right:6px;">{{ $project->progress }}%</span>
             </td>
             <td style="font-size:12px; color:#78909c;">{{ $project->contractor ?? '—' }}</td>
             <td>
                 <a href="{{ route('admin.village.projects.edit', [$village->id, $project->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                @include('partials.admin.toggle', ['type' => 'project', 'model' => $project])
                 <form method="POST" action="{{ route('admin.village.projects.destroy', [$village->id, $project->id]) }}" style="display:inline;" onsubmit="return confirm('حذف؟');">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">حذف</button>

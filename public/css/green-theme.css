@@ -182,12 +182,12 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ═══ ۸. حذف همه آبی‌های باقیمانده ═══ */
-[style*="#0d2e4f"], [style*="#1565c0"], [style*="#1e5b9c"],
-[style*="#2470b8"], [style*="#0288d1"], [style*="#0D47A1"] {
+[style*="#0d3b2e"], [style*="#2e7d32"], [style*="#2e7d32"],
+[style*="#388e3c"], [style*="#388e3c"], [style*="#1b5e20"] {
     background-color: var(--green-dark) !important;
 }
-[style*="color: #1565c0"], [style*="color:#1565c0"],
-[style*="color: #0D47A1"], [style*="color:#0D47A1"] {
+[style*="color: #2e7d32"], [style*="color:#2e7d32"],
+[style*="color: #1b5e20"], [style*="color:#1b5e20"] {
     color: var(--green-light) !important;
 }
 

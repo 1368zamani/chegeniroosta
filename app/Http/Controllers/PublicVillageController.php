@@ -36,18 +36,20 @@ class PublicVillageController extends Controller
         // آمار کارت‌ها
         $stats = [
             'last_news_date'    => optional(VillageNews::where('village_id', $village->id)->where('is_published', true)->orderBy('created_at', 'desc')->first())->created_at,
-            'active_projects'   => VillageProject::where('village_id', $village->id)->whereIn('status', ['planned', 'in_progress'])->count(),
+            'active_projects'   => VillageProject::where('village_id', $village->id)->where('is_active', true)->whereIn('status', ['planned', 'in_progress'])->count(),
             'tracking_requests' => VillageRequest::where('village_id', $village->id)->whereIn('status', ['submitted', 'reviewing', 'assigned', 'processing'])->count(),
             'pinned_news'       => VillageNews::where('village_id', $village->id)->where('is_published', true)->where('is_pinned', true)->count(),
         ];
 
         // پروژه‌ها
         $projects = VillageProject::where('village_id', $village->id)
+            ->where('is_active', true)
             ->orderBy('sort_order')
             ->limit(6)
             ->get();
         // امکانات
         $facilities = VillageFacility::where('village_id', $village->id)
+            ->where('is_active', true)
             ->orderBy('sort_order')
             ->limit(15)
             ->get();
@@ -60,8 +62,31 @@ class PublicVillageController extends Controller
 
         // جاذبه‌ها
         $attractions = VillageAttraction::where('village_id', $village->id)
+            ->where('is_active', true)
             ->orderBy('sort_order')
             ->limit(6)
+            ->get();
+
+        // ═══ شمارنده‌ی بازدید صفحه‌ی روستا (هر نشست یک بار) ═══
+        $village->recordView();
+
+        // محصولات روستا (برای نمایش کارت ورود در صفحه‌ی اصلی روستا)
+        $productCount = \App\Models\VillageProduct::forVillage($village->id)
+            ->active()
+            ->count();
+
+        // چند محصول برای نمایش پیش‌نمایش
+        $featuredProducts = \App\Models\VillageProduct::with('images')
+            ->forVillage($village->id)
+            ->active()
+            ->ordered()
+            ->limit(3)
+            ->get();
+
+        // فایل‌های قابل دانلود روستا (نشان داده‌شده در صفحه‌ی اصلی و صفحه‌ی درخواست)
+        $downloads = \App\Models\VillageDownload::forVillage($village->id)
+            ->active()
+            ->ordered()
             ->get();
 
         return view('village.show', compact(
@@ -72,7 +97,10 @@ class PublicVillageController extends Controller
             'projects',
             'facilities',
             'councilMembers',
-            'attractions'
+            'attractions',
+            'productCount',
+            'featuredProducts',
+            'downloads'
         ));
     }
 }

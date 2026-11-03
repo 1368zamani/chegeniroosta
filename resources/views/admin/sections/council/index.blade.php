@@ -48,6 +48,7 @@
             <td>{{ $m->sort_order }}</td>
             <td style="white-space:nowrap;">
                 <a href="{{ route('admin.sections.council.edit', [$section->id, $m->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                @include('partials.admin.toggle', ['type' => 'section-council', 'model' => $m])
                 <form method="POST" action="{{ route('admin.sections.council.destroy', [$section->id, $m->id]) }}" style="display:inline;" onsubmit="return confirm('حذف این عضو؟');">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" style="background:#c62828;color:#fff;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px;">حذف</button>

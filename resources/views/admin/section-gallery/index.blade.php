@@ -4,7 +4,7 @@
 
 @section('content')
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-    <h2 style="margin:0; color:#1565c0;">{{ $images->count() }} تصویر</h2>
+    <h2 style="margin:0; color:#2e7d32;">{{ $images->count() }} تصویر</h2>
     <a href="{{ route('admin.sections.gallery.create', $section->id) }}" class="btn btn-primary">➕ افزودن تصاویر</a>
 </div>
 

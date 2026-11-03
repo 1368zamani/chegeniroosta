@@ -13,7 +13,7 @@
         width: 100%;
         height: 420px;
         overflow: hidden;
-        background: #0d2e4f;
+        background: #0d3b2e;
     }
     .s-slide {
         position: absolute;
@@ -102,7 +102,7 @@
     .s-slider:hover .s-slider-nav { opacity: 1; }
     .s-slider-nav:hover {
         background: rgba(255,213,79,0.85);
-        color: #0d2e4f;
+        color: #0d3b2e;
     }
     .s-slider-prev { right: 20px; }
     .s-slider-next { left: 20px; }

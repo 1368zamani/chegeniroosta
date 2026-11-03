@@ -33,6 +33,7 @@
             <td>{{ $event->event_type ?? '—' }}</td>
             <td>
                 <a href="{{ route('admin.village.events.edit', [$village->id, $event->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                @include('partials.admin.toggle', ['type' => 'event', 'model' => $event])
                 <form method="POST" action="{{ route('admin.village.events.destroy', [$village->id, $event->id]) }}" style="display:inline;" onsubmit="return confirm('حذف؟');">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">حذف</button>

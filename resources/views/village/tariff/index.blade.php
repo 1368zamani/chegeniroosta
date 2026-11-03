@@ -1,200 +1,454 @@
 @extends('village.site._layout')
-@section('title', 'تعرفه عوارض — ' . $village->name)
+@section('title', 'عوارض و بهای خدمات — ' . $village->name)
 
-@php use App\Support\Number; @endphp
+@php
+    use App\Support\Number;
+
+    $groupMeta = [
+        'waste' => [
+            'title' => 'عوارض پسماند',
+            'icon'  => '🗑',
+            'desc'  => 'جمع‌آوری و دفع زباله‌ی خانگی، تجاری و صنعتی',
+            'color' => '#2e7d32',
+            'soft'  => '#e8f5e9',
+            'border'=> '#a5d6a7',
+        ],
+        'new_build' => [
+            'title' => 'ساخت‌وساز جدید',
+            'icon'  => '🏗',
+            'desc'  => 'پروانه‌ی ساخت، زیربنا، تفکیک و الحاق',
+            'color' => '#1565c0',
+            'soft'  => '#e3f2fd',
+            'border'=> '#90caf9',
+        ],
+        'renovation' => [
+            'title' => 'ساخت‌وساز تعمیری',
+            'icon'  => '🔨',
+            'desc'  => 'بازسازی، تمدید پروانه و تغییر کاربری',
+            'color' => '#e65100',
+            'soft'  => '#fff3e0',
+            'border'=> '#ffcc80',
+        ],
+    ];
+
+    $wasteCount = $groups['waste']->count();
+    $constrCount = $groups['new_build']->count() + $groups['renovation']->count();
+@endphp
 
 @section('content')
-<div class="container mx-auto px-4 py-6" dir="rtl">
+<div class="container mx-auto px-4 py-6" dir="rtl" id="tariffApp">
 
+    {{-- ═══════════════════ سرصفحه ═══════════════════ --}}
     <div class="mb-6">
-        <h1 class="text-2xl font-bold text-emerald-800">📋 تعرفه عوارض و بهای خدمات</h1>
-        <p class="text-gray-600 mt-1">
-            روستای <strong>{{ $village->name }}</strong> · سال {{ Number::fa($set->jalali_year) }}
+        <h1 class="text-2xl md:text-3xl font-bold text-emerald-800 m-0">💰 عوارض و بهای خدمات</h1>
+        <p class="text-gray-600 mt-2 mb-0 text-sm md:text-base">
+            روستای <strong class="text-emerald-700">{{ $village->name }}</strong>
+            · سال <strong>{{ Number::fa($set->jalali_year) }}</strong>
+            · تعرفه‌ی مصوب شورای اسلامی روستا
         </p>
-    </div>
 
-    <div class="bg-amber-50 border-r-4 border-amber-500 p-3 rounded mb-6 text-sm text-amber-900">
-        ⚠️ روی عنوان هر دسته کلیک کنید تا آیتم‌های آن نمایش داده شود، سپس انتخاب کنید.
+        {{-- دانلود PDF رسمی --}}
+        <div class="mt-3 flex flex-wrap items-center gap-2">
+            <a href="{{ route('download.tariff-pdf', [$set->id, 'form2']) }}"
+               class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-700 text-white rounded-lg text-sm hover:bg-emerald-800">
+                ⬇️ فرم ۲ (عوارض محلی)
+            </a>
+            <a href="{{ route('download.tariff-pdf', [$set->id, 'form3']) }}"
+               class="inline-flex items-center gap-2 px-4 py-2 border border-emerald-700 text-emerald-800 rounded-lg text-sm hover:bg-emerald-50">
+                ⬇️ فرم ۳ (بهای خدمات)
+            </a>
+            @if(($set->stat_downloads ?? 0) > 0)
+                <span class="text-xs text-gray-500">
+                    👁 {{ Number::fa(number_format($set->stat_downloads)) }} بار دانلود شده
+                </span>
+            @endif
+        </div>
     </div>
 
     @if($errors->any())
-    <div class="bg-red-50 border-r-4 border-red-500 p-3 rounded mb-4 text-red-800 text-sm">
-        @foreach($errors->all() as $e)<div>• {{ $e }}</div>@endforeach
-    </div>
+        <div class="mb-5 p-4 rounded-xl text-sm" style="background:#ffebee;color:#b71c1c;border-right:4px solid #c62828;">
+            @foreach($errors->all() as $e)<div>• {{ $e }}</div>@endforeach
+        </div>
     @endif
 
+    {{-- ═══════════════════ کارت‌های دسته ═══════════════════ --}}
+    <div id="catCards" class="grid md:grid-cols-2 gap-4 mb-6">
+
+        <button type="button" class="cat-card text-right rounded-2xl p-6 transition-all"
+                data-cat="waste"
+                style="background:{{ $groupMeta['waste']['soft'] }};border:2px solid {{ $groupMeta['waste']['border'] }};">
+            <div class="flex items-start justify-between">
+                <div class="text-4xl">{{ $groupMeta['waste']['icon'] }}</div>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-white/70"
+                      style="color:{{ $groupMeta['waste']['color'] }};">
+                    {{ Number::fa($wasteCount) }} قلم
+                </span>
+            </div>
+            <div class="mt-3 text-lg font-bold" style="color:{{ $groupMeta['waste']['color'] }};">
+                {{ $groupMeta['waste']['title'] }}
+            </div>
+            <div class="text-xs text-gray-600 mt-1">{{ $groupMeta['waste']['desc'] }}</div>
+            <div class="mt-3 text-xs font-bold" style="color:{{ $groupMeta['waste']['color'] }};">
+                مشاهده و انتخاب ←
+            </div>
+        </button>
+
+        <button type="button" class="cat-card text-right rounded-2xl p-6 transition-all"
+                data-cat="construction"
+                style="background:{{ $groupMeta['new_build']['soft'] }};border:2px solid {{ $groupMeta['new_build']['border'] }};">
+            <div class="flex items-start justify-between">
+                <div class="text-4xl">🏗</div>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-white/70"
+                      style="color:{{ $groupMeta['new_build']['color'] }};">
+                    {{ Number::fa($constrCount) }} قلم
+                </span>
+            </div>
+            <div class="mt-3 text-lg font-bold" style="color:{{ $groupMeta['new_build']['color'] }};">
+                عوارض ساخت‌وساز
+            </div>
+            <div class="text-xs text-gray-600 mt-1">
+                جدید و تعمیری — زیربنا، پروانه، تفکیک و بازسازی
+            </div>
+            <div class="mt-3 text-xs font-bold" style="color:{{ $groupMeta['new_build']['color'] }};">
+                مشاهده و انتخاب ←
+            </div>
+        </button>
+    </div>
+
+    {{-- ═══════════════════ فرم صدور فیش ═══════════════════ --}}
     <form method="POST" action="{{ route('village.tariff.invoice.issue', $village->slug) }}" id="invoiceForm">
         @csrf
+        <div id="hiddenItems"></div>
 
-        {{-- اطلاعات پرداخت‌کننده --}}
-        <div class="bg-white rounded-lg shadow p-5 mb-6">
-            <h2 class="font-bold mb-4 text-lg">👤 اطلاعات شما</h2>
-            <div class="grid md:grid-cols-3 gap-4">
-                <label class="block">
-                    <span class="text-sm font-medium">نام و نام خانوادگی *</span>
-                    <input name="payer_name" value="{{ old('payer_name') }}" required class="w-full border rounded p-2 mt-1">
-                </label>
-                <label class="block">
-                    <span class="text-sm font-medium">کد ملی</span>
-                    <input name="payer_national_id" value="{{ old('payer_national_id') }}" inputmode="numeric" maxlength="10" dir="ltr" class="w-full border rounded p-2 mt-1 font-mono">
-                </label>
-                <label class="block">
-                    <span class="text-sm font-medium">شماره موبایل *</span>
-                    <input name="payer_mobile" value="{{ old('payer_mobile') }}" required inputmode="numeric" maxlength="11" dir="ltr" class="w-full border rounded p-2 mt-1 font-mono" placeholder="09xxxxxxxxx">
-                </label>
+        {{-- ─── پنل پسماند ─── --}}
+        <div class="cat-panel" data-panel="waste" style="display:none;">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                <h2 class="text-lg font-bold m-0" style="color:{{ $groupMeta['waste']['color'] }};">
+                    🗑 عوارض پسماند
+                </h2>
+                <button type="button" class="back-to-cats text-xs px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600">
+                    ← بازگشت به دسته‌ها
+                </button>
+            </div>
+
+            @if($groups['waste']->isEmpty())
+                <div class="bg-white rounded-xl p-10 text-center text-gray-400 text-sm shadow-sm">
+                    برای این دسته قلمی تعریف نشده است.
+                </div>
+            @else
+                <div class="space-y-3">
+                    @foreach($groups['waste'] as $card)
+                        @include('village.tariff._item_card', ['card' => $card, 'meta' => $groupMeta['waste']])
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+        {{-- ─── پنل ساخت‌وساز ─── --}}
+        <div class="cat-panel" data-panel="construction" style="display:none;">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+                <h2 class="text-lg font-bold m-0" style="color:{{ $groupMeta['new_build']['color'] }};">
+                    🏗 عوارض ساخت‌وساز
+                </h2>
+                <button type="button" class="back-to-cats text-xs px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600">
+                    ← بازگشت به دسته‌ها
+                </button>
+            </div>
+
+            {{-- زیرتب‌ها --}}
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button type="button" class="sub-tab px-4 py-2 rounded-lg text-sm font-bold transition-all"
+                        data-sub="new_build">
+                    🏗 ساخت‌وساز جدید
+                    <span class="text-xs opacity-70">({{ Number::fa($groups['new_build']->count()) }})</span>
+                </button>
+                <button type="button" class="sub-tab px-4 py-2 rounded-lg text-sm font-bold transition-all"
+                        data-sub="renovation">
+                    🔨 ساخت‌وساز تعمیری
+                    <span class="text-xs opacity-70">({{ Number::fa($groups['renovation']->count()) }})</span>
+                </button>
+            </div>
+
+            {{-- زیرپنل جدید --}}
+            <div class="sub-panel" data-subpanel="new_build" style="display:none;">
+                @if($groups['new_build']->isEmpty())
+                    <div class="bg-white rounded-xl p-10 text-center text-gray-400 text-sm shadow-sm">
+                        برای این دسته قلمی تعریف نشده است.
+                    </div>
+                @else
+                    <div class="space-y-3">
+                        @foreach($groups['new_build'] as $card)
+                            @include('village.tariff._item_card', ['card' => $card, 'meta' => $groupMeta['new_build']])
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+            {{-- زیرپنل تعمیری --}}
+            <div class="sub-panel" data-subpanel="renovation" style="display:none;">
+                @if($groups['renovation']->isEmpty())
+                    <div class="bg-white rounded-xl p-10 text-center text-gray-400 text-sm shadow-sm">
+                        برای این دسته قلمی تعریف نشده است.
+                    </div>
+                @else
+                    <div class="space-y-3">
+                        @foreach($groups['renovation'] as $card)
+                            @include('village.tariff._item_card', ['card' => $card, 'meta' => $groupMeta['renovation']])
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
 
-        {{-- ═══ آیتم‌ها — همه باز ═══ --}}
-        @foreach($items as $type => $typeItems)
-        <div class="bg-white rounded-lg shadow mb-4 overflow-hidden">
-            <div class="bg-emerald-50 p-4 border-b-2 border-emerald-200">
-                <div class="font-bold text-lg text-emerald-800">
-                    {{ $type === 'levy' ? '🏗️ عوارض عمرانی' : '💰 بهای خدمات' }}
-                    <span class="text-sm text-gray-500 font-normal mr-2">({{ Number::fa($typeItems->count()) }} مورد)</span>
+        {{-- ─── مودال اطلاعات پرداخت‌کننده ─── --}}
+        <div id="payerModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,23,42,.55);align-items:center;justify-content:center;padding:16px;">
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.28);">
+                <div class="p-5 border-b border-gray-100" style="background:#e8f5e9;">
+                    <div class="font-bold text-base" style="color:#1b5e20;">📝 اطلاعات شما برای صدور فیش</div>
+                    <div class="text-xs text-gray-600 mt-1">
+                        جمع مبلغ انتخابی: <strong id="modalTotal" class="font-mono">—</strong>
+                    </div>
+                </div>
+
+                <div class="p-5">
+                    <div class="mb-4">
+                        <label class="block mb-1 text-sm font-bold text-gray-700">نام و نام خانوادگی *</label>
+                        <input name="payer_name" required minlength="3" maxlength="200"
+                               value="{{ old('payer_name') }}"
+                               class="w-full border-2 border-gray-300 rounded-lg p-2.5 focus:border-emerald-500 focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-1 text-sm font-bold text-gray-700">کد ملی</label>
+                        <input name="payer_national_id" inputmode="numeric" maxlength="10" dir="ltr"
+                               value="{{ old('payer_national_id') }}"
+                               class="w-full border-2 border-gray-300 rounded-lg p-2.5 font-mono text-left focus:border-emerald-500 focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-1 text-sm font-bold text-gray-700">شماره موبایل *</label>
+                        <input name="payer_mobile" required inputmode="numeric" maxlength="11" dir="ltr"
+                               value="{{ old('payer_mobile') }}" placeholder="09xxxxxxxxx"
+                               class="w-full border-2 border-gray-300 rounded-lg p-2.5 font-mono text-left focus:border-emerald-500 focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-1 text-sm font-bold text-gray-700">موضوع (اختیاری)</label>
+                        <input name="subject" maxlength="500" value="{{ old('subject') }}"
+                               placeholder="مثلاً: ساخت‌وساز مسکونی"
+                               class="w-full border-2 border-gray-300 rounded-lg p-2.5 focus:border-emerald-500 focus:outline-none">
+                    </div>
+
+                    <div class="rounded-lg p-3 mb-4 text-xs leading-relaxed" style="background:#f1f8e9;color:#33691e;">
+                        با تأیید، فیش برای شما صادر می‌شود و شماره پیگیری دریافت می‌کنید.
+                        پرداخت پس از تأیید کارشناس انجام می‌شود.
+                    </div>
+
+                    <div class="flex gap-2 justify-end">
+                        <button type="button" id="payerCancel"
+                                class="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 text-sm font-bold">انصراف</button>
+                        <button type="submit" id="submitBtn"
+                                class="px-5 py-2 rounded-lg text-white text-sm font-bold" style="background:#2e7d32;">
+                            📄 صدور فیش
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <div class="p-4 space-y-2">
-                @foreach($typeItems as $item)
-                <label class="flex items-start gap-3 p-3 border-2 border-gray-200 rounded cursor-pointer hover:bg-emerald-50 transition"
-                       id="label-{{ $item->id }}">
-                    <input type="checkbox"
-                           class="mt-1 w-5 h-5"
-                           data-id="{{ $item->id }}"
-                           data-amount="{{ $item->final_amount }}"
-                           data-title="{{ str_replace('"', '&quot;', optional($item->title)->name_fa) }}"
-                           onchange="toggleItem(this)">
-                    <div class="flex-1">
-                        <div class="font-medium text-gray-800">{{ optional($item->title)->name_fa }}</div>
-                        <div class="text-xs text-gray-500 font-mono mt-1">{{ optional($item->title)->code }}</div>
-                        @if($item->notes)
-                        <div class="text-xs text-gray-600 mt-1">{{ $item->notes }}</div>
-                        @endif
-                        <div class="text-sm mt-2 text-emerald-700">
-                            مبلغ: <span class="font-mono font-bold">{{ Number::fa(number_format($item->final_amount)) }}</span> ریال
-                        </div>
-                    </div>
-                </label>
-                @endforeach
-            </div>
         </div>
-        @endforeach
-
-        {{-- خلاصه --}}
-        <div id="summaryBox" class="hidden fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t-4 border-emerald-600 p-4 z-50">
-            <div class="container mx-auto">
-                <div class="flex flex-wrap justify-between items-center gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="text-xs text-gray-500 mb-1">آیتم‌های انتخاب‌شده:</div>
-                        <div id="summaryItems" class="text-sm space-y-1 max-h-24 overflow-y-auto"></div>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-xs text-gray-500">جمع کل (ریال):</div>
-                        <div id="summaryTotal" class="text-2xl font-bold font-mono text-emerald-700">۰</div>
-                        <div id="summaryToman" class="text-xs text-gray-500">معادل ۰ تومان</div>
-                    </div>
-                    <button type="submit" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-emerald-700">
-                        📄 صدور فیش
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div style="height:200px;"></div>
     </form>
 
-    <div class="mt-4 text-center text-sm">
-        <a href="{{ route('village.tariff.index', $village->slug) }}#track" class="text-emerald-700 underline">
-            🔍 پیگیری فیش صادرشده
-        </a>
+    {{-- ═══════════════════ نوار جمع کل ═══════════════════ --}}
+    <div id="summaryBox" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;background:#fff;border-top:4px solid #2e7d32;box-shadow:0 -6px 24px rgba(0,0,0,.12);padding:14px 16px;">
+        <div class="container mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex-1 min-w-0">
+                <div class="text-xs text-gray-500 mb-1">آیتم‌های انتخاب‌شده:</div>
+                <div id="summaryItems" class="text-xs space-y-0.5 max-h-20 overflow-y-auto text-gray-700"></div>
+            </div>
+            <div class="text-center px-3">
+                <div class="text-xs text-gray-500">جمع کل:</div>
+                <div id="summaryTotal" class="text-xl font-extrabold font-mono" style="color:#2e7d32;">۰</div>
+                <div id="summaryToman" class="text-[11px] text-gray-500">ریال</div>
+            </div>
+            <button type="button" id="continueBtn"
+                    class="px-6 py-3 rounded-xl text-white font-bold text-sm" style="background:#2e7d32;">
+                ادامه →
+            </button>
+        </div>
+    </div>
+
+    {{-- لینک پیگیری --}}
+    <div class="mt-6 mb-24 text-center text-sm">
+        <a href="{{ route('tariff.invoice.track.form', $village->slug) }}"
+           class="text-emerald-700 underline">🔍 پیگیری فیش صادرشده</a>
+    </div>
+
+    <div class="text-[11px] text-gray-400 leading-relaxed mb-4">
+        ℹ️ سایر عوارض (مشاغل، آرامستان، پارکینگ و…) در این صفحه نمایش داده نمی‌شوند.
+        برای پرداخت آن‌ها با دهیاری تماس بگیرید.
     </div>
 </div>
+@endsection
 
+@section('scripts')
 <script>
-let selectedItems = [];
+(function () {
+    'use strict';
 
-function toggleItem(checkbox) {
-    const id = parseInt(checkbox.dataset.id);
-    const amount = parseInt(checkbox.dataset.amount);
-    const title = checkbox.dataset.title;
-    const label = document.getElementById('label-' + id);
+    const FA = '۰۱۲۳۴۵۶۷۸۹';
+    const AR = '٠١٢٣٤٥٦٧٨٩';
 
-    if (checkbox.checked) {
-        selectedItems.push({ id, amount, title });
-        label.classList.add('border-emerald-500', 'bg-emerald-50');
-        label.classList.remove('border-gray-200');
-    } else {
-        selectedItems = selectedItems.filter(i => i.id !== id);
-        label.classList.remove('border-emerald-500', 'bg-emerald-50');
-        label.classList.add('border-gray-200');
-    }
-    updateSummary();
-}
-
-function updateSummary() {
-    const box = document.getElementById('summaryBox');
-    const itemsDiv = document.getElementById('summaryItems');
-    const totalDiv = document.getElementById('summaryTotal');
-    const tomanDiv = document.getElementById('summaryToman');
-
-    if (selectedItems.length === 0) {
-        box.classList.add('hidden');
-        return;
+    function faNum(n) {
+        const v = Number(n) || 0;
+        return v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '٬').replace(/\d/g, d => FA[d]);
     }
 
-    box.classList.remove('hidden');
+    // ═══════════ انتخاب دسته ═══════════
+    const catCards  = document.querySelectorAll('.cat-card');
+    const catPanels = document.querySelectorAll('.cat-panel');
 
-    let html = '';
-    let total = 0;
+    function showCategory(cat) {
+        document.getElementById('catCards').style.display = 'none';
 
-    selectedItems.forEach((item, idx) => {
-        total += item.amount;
-        html += '<div class="flex justify-between text-sm border-b pb-1">' +
-                '<span>• ' + item.title + '</span>' +
-                '<span class="font-mono">' + formatNumber(item.amount) + '</span>' +
-                '</div>' +
-                '<input type="hidden" name="items[' + idx + '][id]" value="' + item.id + '">' +
-                '<input type="hidden" name="items[' + idx + '][amount]" value="' + item.amount + '">';
+        catPanels.forEach(p => {
+            p.style.display = p.dataset.panel === cat ? '' : 'none';
+        });
+
+        if (cat === 'construction') {
+            showSubTab('new_build');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showCats() {
+        document.getElementById('catCards').style.display = '';
+        catPanels.forEach(p => { p.style.display = 'none'; });
+    }
+
+    catCards.forEach(c => c.addEventListener('click', () => showCategory(c.dataset.cat)));
+    document.querySelectorAll('.back-to-cats').forEach(b => b.addEventListener('click', showCats));
+
+    // ═══════════ زیرتب‌ها ═══════════
+    const subTabs   = document.querySelectorAll('.sub-tab');
+    const subPanels = document.querySelectorAll('.sub-panel');
+
+    function showSubTab(key) {
+        subTabs.forEach(t => {
+            const on = t.dataset.sub === key;
+            t.style.background = on ? '#1565c0' : '#eceff1';
+            t.style.color = on ? '#fff' : '#546e7a';
+        });
+        subPanels.forEach(p => {
+            p.style.display = p.dataset.subpanel === key ? '' : 'none';
+        });
+    }
+
+    subTabs.forEach(t => t.addEventListener('click', () => showSubTab(t.dataset.sub)));
+
+    // ═══════════ انتخاب آیتم‌ها ═══════════
+    let selected = [];
+
+    document.querySelectorAll('.item-check').forEach(cb => {
+        cb.addEventListener('change', () => {
+            const id     = parseInt(cb.dataset.id, 10);
+            const amount = parseInt(cb.dataset.amount, 10) || 0;
+            const title  = cb.dataset.title || '';
+
+            if (cb.checked) {
+                selected.push({ id, amount, title });
+            } else {
+                selected = selected.filter(x => x.id !== id);
+            }
+
+            const card = document.getElementById('card-' + id);
+            if (card) {
+                card.style.borderColor = cb.checked ? '#2e7d32' : '#e0e0e0';
+                card.style.background  = cb.checked ? '#f1f8e9' : '#fff';
+            }
+
+            updateSummary();
+        });
     });
 
-    itemsDiv.innerHTML = html;
-    totalDiv.textContent = formatNumber(total);
-    tomanDiv.textContent = 'معادل ' + formatNumber(Math.round(total / 10)) + ' تومان';
-}
+    function updateSummary() {
+        const box     = document.getElementById('summaryBox');
+        const itemsEl = document.getElementById('summaryItems');
+        const totalEl = document.getElementById('summaryTotal');
+        const tomanEl = document.getElementById('summaryToman');
+        const hidden  = document.getElementById('hiddenItems');
 
-function formatNumber(v) {
-    const n = Number(v) || 0;
-    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        .replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
-}
+        if (!selected.length) {
+            box.style.display = 'none';
+            hidden.innerHTML = '';
+            return;
+        }
 
-document.getElementById('invoiceForm').addEventListener('submit', function(e) {
-    if (selectedItems.length === 0) {
-        e.preventDefault();
-        alert('⚠️ لطفاً حداقل یک آیتم تعرفه را انتخاب کنید.');
-        return false;
+        box.style.display = '';
+        let total = 0;
+        let html = '';
+        let inputs = '';
+
+        selected.forEach((item, idx) => {
+            total += item.amount;
+            html += '<div class="flex justify-between gap-2">'
+                 +  '<span class="truncate">• ' + item.title + '</span>'
+                 +  '<span class="font-mono shrink-0">' + faNum(item.amount) + '</span>'
+                 +  '</div>';
+            inputs += '<input type="hidden" name="items[' + idx + '][id]" value="' + item.id + '">'
+                   +  '<input type="hidden" name="items[' + idx + '][amount]" value="' + item.amount + '">';
+        });
+
+        itemsEl.innerHTML = html;
+        hidden.innerHTML  = inputs;
+        totalEl.textContent = faNum(total);
+        tomanEl.textContent = 'ریال — معادل ' + faNum(Math.round(total / 10)) + ' تومان';
+
+        const modalTotal = document.getElementById('modalTotal');
+        if (modalTotal) modalTotal.textContent = faNum(total) + ' ریال';
     }
 
-    const name = document.querySelector('input[name="payer_name"]').value.trim();
-    const mobile = document.querySelector('input[name="payer_mobile"]').value.trim();
+    // ═══════════ مودال پرداخت‌کننده ═══════════
+    const modal = document.getElementById('payerModal');
 
-    if (!name || name.length < 3) {
-        e.preventDefault();
-        alert('⚠️ لطفاً نام و نام خانوادگی خود را کامل وارد کنید.');
-        return false;
-    }
+    document.getElementById('continueBtn').addEventListener('click', () => {
+        if (!selected.length) {
+            alert('⚠️ لطفاً حداقل یک آیتم را انتخاب کنید.');
+            return;
+        }
+        modal.style.display = 'flex';
+    });
 
-    if (!mobile || mobile.length < 10) {
-        e.preventDefault();
-        alert('⚠️ لطفاً شماره موبایل معتبر وارد کنید.');
-        return false;
-    }
+    document.getElementById('payerCancel').addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 
-    const submitBtn = this.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ در حال صدور...';
-    return true;
-});
+    modal.addEventListener('click', e => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // ═══════════ اعتبارسنجی نهایی ═══════════
+    document.getElementById('invoiceForm').addEventListener('submit', function (e) {
+        if (!selected.length) {
+            e.preventDefault();
+            alert('⚠️ لطفاً حداقل یک آیتم را انتخاب کنید.');
+            return;
+        }
+
+        const name   = (this.querySelector('input[name="payer_name"]').value || '').trim();
+        const mobile = (this.querySelector('input[name="payer_mobile"]').value || '').trim();
+
+        if (name.length < 3) {
+            e.preventDefault();
+            alert('⚠️ لطفاً نام و نام خانوادگی را کامل وارد کنید.');
+            return;
+        }
+        if (mobile.replace(/\D/g, '').length < 10) {
+            e.preventDefault();
+            alert('⚠️ لطفاً شماره موبایل معتبر وارد کنید.');
+            return;
+        }
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = '⏳ در حال صدور...';
+    });
+})();
 </script>
 @endsection

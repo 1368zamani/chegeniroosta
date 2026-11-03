@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'پنل کارشناسان') — چگنی روستا</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    {{-- Bootstrap و آیکون‌ها به‌صورت محلی روی همین سرور میزبانی می‌شوند
+         (قبلاً از cdn.jsdelivr.net گرفته می‌شدند که در ایران کند یا در دسترس نبود) --}}
+    <link href="{{ asset('vendor/bootstrap/bootstrap.rtl.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style>
         :root {
-            --expert-primary: #1a5490;
-            --expert-dark: #0d2f52;
-            --expert-light: #e8f0fa;
+            --expert-primary: #2e7d32;
+            --expert-dark: #0d3b2e;
+            --expert-light: #e8f5e9;
         }
         body {
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
@@ -93,7 +95,7 @@
         }
         .badge-draft { background: #fef3c7; color: #92400e; }
         .badge-published { background: #d1fae5; color: #065f46; }
-        .badge-approved { background: #dbeafe; color: #1e40af; }
+        .badge-approved { background: #e2e8f0; color: #475569; }
     </style>
     @stack('styles')
 </head>
@@ -187,7 +189,7 @@
     <small>© {{ date('Y') }} سامانه تعرفه‌های دهیاری چگنی روستا — نسخه کارشناسی</small>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

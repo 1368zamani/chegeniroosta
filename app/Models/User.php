@@ -8,7 +8,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'username', 'email', 'password', 'role', 'section_id', 'village_id'])]
+/*
+ * ⚠️ توجه: ستون‌های `officer_type`، `phone` و `is_active` قبلاً در این
+ * فهرست نبودند. نتیجه‌اش این بود که:
+ *   • `User::create([... 'officer_type' => 'financial'])` در
+ *     AdminUserController — با اینکه اعتبارسنجی می‌شد — بی‌صدا دور
+ *     ریخته می‌شد و کارشناس مالی بدون نوع ساخته می‌شد؛ در نتیجه
+ *     `isFinancialOfficer()` همیشه false بود و آن کاربر هرگز نمی‌توانست
+ *     رسید پرداخت را تأیید کند.
+ *   • `User::create([... 'phone' => ...])` در TariffOfficerController
+ *     همین‌طور دور ریخته می‌شد.
+ */
+#[Fillable([
+    'name', 'username', 'email', 'password', 'role',
+    'section_id', 'village_id',
+    'officer_type', 'phone', 'position', 'is_active',
+])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {

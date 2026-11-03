@@ -19,7 +19,7 @@
         }
 
         h1 {
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .message {
@@ -52,7 +52,7 @@
 
         .btn {
             display: inline-block;
-            background: #1565c0;
+            background: #2e7d32;
             color: white;
             text-decoration: none;
             padding: 10px 18px;

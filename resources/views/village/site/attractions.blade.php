@@ -10,11 +10,12 @@
         <div class="bg-white rounded-lg shadow overflow-hidden">
             @if(!empty($attr->image))
             <img src="{{ asset('storage/' . $attr->image) }}"
-                 alt="{{ $attr->title ?? '' }}"
+                 alt="{{ $attr->name ?? '' }}"
                  class="w-full h-48 object-cover">
             @endif
             <div class="p-4">
-                <h3 class="font-bold mb-2">{{ $attr->title ?? '-' }}</h3>
+                {{-- ستون این جدول «name» است، نه «title» — قبلاً نام جاذبه «-» نمایش داده می‌شد --}}
+                <h3 class="font-bold mb-2">{{ $attr->name ?? '-' }}</h3>
                 @if(!empty($attr->description))
                 <p class="text-sm text-gray-700 leading-relaxed">
                     {{ \Illuminate\Support\Str::limit($attr->description, 150) }}
@@ -23,7 +24,7 @@
             </div>
         </div>
         @empty
-        <div class="col-span-3 bg-blue-50 border border-blue-200 rounded p-4 text-blue-800">
+        <div class="col-span-3 bg-green-50 border border-green-200 rounded p-4 text-green-800">
             جاذبه‌ای برای این روستا ثبت نشده است.
         </div>
         @endforelse

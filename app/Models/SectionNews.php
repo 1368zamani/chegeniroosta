@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasStats;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SectionNews extends Model
 {
+    use HasStats;
+
     protected $table = 'section_news';
 
     protected $fillable = [

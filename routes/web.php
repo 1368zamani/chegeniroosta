@@ -22,7 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+
+    // ⚠️ امنیت: محدودیت تلاش ورود (۱۰ تلاش در دقیقه برای هر IP).
+    // قبلاً هیچ محدودیتی نبود و پسورد سوپرادمین یک عدد ۶ رقمی است،
+    // یعنی با حمله‌ی فرهنگ‌نامه‌ای در چند دقیقه قابل حدس زدن بود.
+    Route::post('/login', [AuthController::class, 'login'])
+        ->middleware('throttle:10,1')
+        ->name('login.attempt');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])
@@ -141,6 +147,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // فعال/غیرفعال کردن بخش و روستا (سوپرادمین)
     Route::post('sections/{id}/toggle', [\App\Http\Controllers\AdminSectionController::class, 'toggleActive'])->name('admin.sections.toggle');
     Route::post('villages/{id}/toggle', [\App\Http\Controllers\AdminVillageController::class, 'toggleActive'])->name('admin.villages.toggle');
+
+    // فعال/غیرفعال کردن بقیه‌ی انواع محتوا با یک مسیر مشترک
+    // (جاذبه، امکانات، پروژه، رویداد، شورای روستا/بخش، اخبار، مصوبات، مقامات)
+    Route::post('toggle/{type}/{id}', [\App\Http\Controllers\Admin\ToggleController::class, 'toggle'])
+        ->where('type', '[a-z][a-z\-]*')
+        ->where('id', '[0-9]+')
+        ->name('admin.toggle');
+
+    // آمار سایت (بازدید و دانلود)
+    // سوپرادمین: کل سایت — ادمین بخش: فقط بخش خودش
+    Route::get('stats', [\App\Http\Controllers\Admin\StatsController::class, 'index'])
+        ->name('admin.stats');
 
     Route::get('/villages', [\App\Http\Controllers\AdminVillageController::class, 'index'])
         ->name('admin.villages.index');
@@ -264,6 +282,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         [\App\Http\Controllers\AdminVillageController::class, 'bySection'])
         ->name('admin.sections.villages');
 
+    // فعال/غیرفعال کردن گروهی همه‌ی روستاهای یک بخش
+    Route::post('/sections/{sectionId}/villages/bulk-toggle',
+        [\App\Http\Controllers\AdminVillageController::class, 'bulkToggle'])
+        ->name('admin.sections.villages.bulk-toggle');
+
     Route::delete('/villages/{id}',
         [\App\Http\Controllers\AdminVillageController::class, 'destroy'])
         ->name('admin.villages.destroy');
@@ -293,6 +316,13 @@ Route::middleware('auth')->prefix('admin/section-news')->group(function () {
 
     Route::delete('/{id}', [\App\Http\Controllers\AdminSectionNewsController::class, 'destroy'])
         ->name('admin.section-news.destroy');
+
+    // حذف یک عکس از گالری خبر بخش
+    // (این مسیر قبلاً وجود نداشت و صفحه ویرایش خبر — به‌محض داشتن عکس — خطای 500 می‌داد)
+    Route::delete('/{id}/image/{imageId}', [\App\Http\Controllers\AdminSectionNewsController::class, 'destroyImage'])
+        ->where('id', '[0-9]+')
+        ->where('imageId', '[0-9]+')
+        ->name('admin.section-news.image.destroy');
 });
 
 /*
@@ -463,6 +493,27 @@ Route::prefix('village/{slug}')->group(function () {
 
     Route::post('/track', [\App\Http\Controllers\PublicVillageSiteController::class, 'requestTrackResult'])
         ->name('village.site.request.track.result');
+
+    // دانلود فایل‌های روستا (با شمارش تعداد دانلود)
+    Route::get('/download/{id}', [\App\Http\Controllers\PublicVillageSiteController::class, 'downloadFile'])
+        ->where('id', '[0-9]+')
+        ->name('village.site.download');
+
+    // مرکز دانلود روستا (صفحه‌ی فهرست فایل‌ها)
+    Route::get('/downloads', [\App\Http\Controllers\PublicVillageSiteController::class, 'downloads'])
+        ->name('village.site.downloads');
+
+    // ─── محصولات روستا (فروش) ───
+    Route::get('/products', [\App\Http\Controllers\PublicVillageSiteController::class, 'products'])
+        ->name('village.site.products');
+
+    Route::get('/products/{productSlug}', [\App\Http\Controllers\PublicVillageSiteController::class, 'productShow'])
+        ->name('village.site.products.show');
+
+    // دانلود فایل ضمیمه‌ی محصول (با شمارش)
+    Route::get('/product-file/{id}', [\App\Http\Controllers\PublicVillageSiteController::class, 'productFile'])
+        ->where('id', '[0-9]+')
+        ->name('village.site.product.file');
 });
 
 /*
@@ -531,6 +582,45 @@ Route::middleware(['auth', 'village-access'])->prefix('admin/village/{village}')
 
         Route::delete('/{id}/image/{imageId}', [\App\Http\Controllers\VillageAdmin\NewsController::class, 'destroyImage'])
             ->name('admin.village.news.image.destroy');
+    });
+
+    // ─── فایل‌های قابل دانلود (نمایش در پایین صفحه‌ی درخواست‌ها) ───
+    Route::prefix('downloads')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\DownloadController::class, 'index'])
+            ->name('admin.village.downloads.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\DownloadController::class, 'create'])
+            ->name('admin.village.downloads.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\DownloadController::class, 'store'])
+            ->name('admin.village.downloads.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\DownloadController::class, 'edit'])
+            ->name('admin.village.downloads.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\DownloadController::class, 'update'])
+            ->name('admin.village.downloads.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\DownloadController::class, 'destroy'])
+            ->name('admin.village.downloads.destroy');
+    });
+
+    // ─── محصولات روستا (جهت فروش) ───
+    Route::prefix('products')->group(function () {
+        Route::get('/', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'index'])
+            ->name('admin.village.products.index');
+        Route::get('/create', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'create'])
+            ->name('admin.village.products.create');
+        Route::post('/', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'store'])
+            ->name('admin.village.products.store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'edit'])
+            ->name('admin.village.products.edit');
+        Route::put('/{id}', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'update'])
+            ->name('admin.village.products.update');
+        Route::delete('/{id}', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'destroy'])
+            ->name('admin.village.products.destroy');
+
+        Route::post('/{id}/toggle', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'toggleActive'])
+            ->name('admin.village.products.toggle');
+        Route::delete('/{id}/image/{imageId}', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'destroyImage'])
+            ->name('admin.village.products.image.destroy');
+        Route::delete('/{id}/file/{fileId}', [\App\Http\Controllers\VillageAdmin\ProductController::class, 'destroyFile'])
+            ->name('admin.village.products.file.destroy');
     });
 
     // پروژه‌ها
@@ -688,6 +778,15 @@ Route::middleware(["auth"])->prefix("admin")->group(function () {
     Route::post("/passwords/{user}/reset", [\App\Http\Controllers\AdminPasswordController::class, "reset"])
         ->name("admin.passwords.reset");
 });
+
+/* ═══ تغییر رمز عبور توسط خود کاربر (همه‌ی نقش‌ها) ═══ */
+Route::middleware(['auth'])->prefix('admin/profile')->name('profile.')->group(function () {
+    Route::get('/password', [\App\Http\Controllers\ProfileController::class, 'passwordForm'])
+        ->name('password.edit');
+
+    Route::post('/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])
+        ->name('password.update');
+});
 /* ═══ مدیریت کارشناسان مالی و فنی/عمرانی ═══ */
 /* ═══ ایجاد کاربر جدید ═══ */
 Route::middleware('auth')->prefix('admin/village/{village}/dehyar')->name('admin.village.dehyar.')->group(function () {
@@ -719,6 +818,19 @@ Route::middleware(['auth'])
         Route::post('/{tariffSet}/items', [\App\Http\Controllers\Admin\TariffSetController::class, 'updateItems'])->name('items.update');
         Route::post('/{tariffSet}/transition/{to}', [\App\Http\Controllers\Admin\TariffSetController::class, 'transition'])->name('transition');
         Route::delete('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'destroy'])->name('destroy');
+    });
+
+// ═══ ماژول «عوارض پسماند و ساخت‌وساز» — مدیریت کارشناس عمران ═══
+// دسترسی واقعی در Gate های works-fees.view / works-fees.manage بررسی می‌شود
+Route::middleware(['auth'])
+    ->prefix('admin/works-fees')->name('admin.works-fees.')
+    ->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\WorksFeeController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Admin\WorksFeeController::class, 'store'])->name('store');
+        Route::put('/items/{title}', [\App\Http\Controllers\Admin\WorksFeeController::class, 'update'])->name('update');
+        Route::patch('/items/{title}/amount', [\App\Http\Controllers\Admin\WorksFeeController::class, 'updateAmount'])->name('amount');
+        Route::post('/items/{title}/toggle', [\App\Http\Controllers\Admin\WorksFeeController::class, 'toggle'])->name('toggle');
+        Route::get('/items/{title}/logs', [\App\Http\Controllers\Admin\WorksFeeController::class, 'logs'])->name('logs');
     });
 
 // ماشین‌حساب عمومی (بدون احراز هویت)
@@ -795,7 +907,10 @@ Route::middleware(['auth'])->prefix('admin/tariff-officers')->name('admin.tariff
 Route::prefix('expert')->name('expert.')->group(function () {
     // ورود و خروج
     Route::get('/login',  [\App\Http\Controllers\Expert\ExpertAuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [\App\Http\Controllers\Expert\ExpertAuthController::class, 'login'])->name('login.post');
+    // ⚠️ امنیت: محدودیت تلاش ورود پنل کارشناسان
+    Route::post('/login', [\App\Http\Controllers\Expert\ExpertAuthController::class, 'login'])
+        ->middleware('throttle:10,1')
+        ->name('login.post');
     Route::post('/logout',[\App\Http\Controllers\Expert\ExpertAuthController::class, 'logout'])->name('logout');
 
     // صفحات محافظت‌شده
@@ -981,4 +1096,21 @@ Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\VillageTarif
 // آپلود رسید
 Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\VillageTariffController::class, 'uploadReceipt'])
     ->name('village.tariff.invoice.receipt');
+
+
+/* ═══════════════════════════════════════════════════════════
+| دانلود عمومی فایل‌ها — با شمارش تعداد دانلود
+| ═══════════════════════════════════════════════════════════ */
+
+// PDF رسمی تعرفه‌ی منتشرشده (فرم ۲ و فرم ۳)
+Route::get('/download/tariff-pdf/{tariffSet}/{form?}', [\App\Http\Controllers\DownloadController::class, 'tariffPdf'])
+    ->where('tariffSet', '[0-9]+')
+    ->where('form', 'form[0-9]+')
+    ->name('download.tariff-pdf');
+
+// فایل پیوست محتوای عمومی (مصوبات شورای اسلامی)
+Route::get('/download/{type}/{id}', [\App\Http\Controllers\DownloadController::class, 'file'])
+    ->where('type', '[a-z][a-z\-]*')
+    ->where('id', '[0-9]+')
+    ->name('download.file');
 

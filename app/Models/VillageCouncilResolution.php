@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasStats;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class VillageCouncilResolution extends Model
 {
+    use HasStats;
+
     protected $table = 'village_council_resolutions';
 
     protected $fillable = [
@@ -47,9 +50,9 @@ class VillageCouncilResolution extends Model
     public function getStatusColorAttribute(): string
     {
         return [
-            'approved'    => '#1e40af',
+            'approved'    => '#2e7d32',
             'in_progress' => '#f59e0b',
-            'completed'   => '#16a34a',
+            'completed'   => '#065f46',
             'suspended'   => '#6b7280',
             'rejected'    => '#dc2626',
         ][$this->status] ?? '#6b7280';
@@ -58,7 +61,7 @@ class VillageCouncilResolution extends Model
     public function getStatusBgAttribute(): string
     {
         return [
-            'approved'    => '#dbeafe',
+            'approved'    => '#e8f5e9',
             'in_progress' => '#fef3c7',
             'completed'   => '#d1fae5',
             'suspended'   => '#e5e7eb',

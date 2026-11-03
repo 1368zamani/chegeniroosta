@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', $village->name ?? 'روستا')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- Tailwind به‌صورت محلی روی همین سرور (قبلاً از cdn.tailwindcss.com که در ایران کند/فیلتر است) --}}
+    <script src="{{ asset('vendor/tailwind/tailwind.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
     @yield('head')
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -28,6 +31,8 @@
             <a href="{{ route('village.site.resolutions', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">مصوبات</a>
             <a href="{{ route('village.site.request.create', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">ثبت درخواست</a>
             <a href="{{ route('village.tariff.index', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">عوارض</a>
+            <a href="{{ route('village.site.products', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">🛒 محصولات</a>
+            <a href="{{ route('village.site.downloads', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">📥 فایل‌ها</a>
         </div>
     </div>
 </nav>

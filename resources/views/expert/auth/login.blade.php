@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود کارشناسان — چگنی روستا</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    {{-- Bootstrap و آیکون‌ها محلی (قبلاً از jsDelivr) --}}
+    <link href="{{ asset('vendor/bootstrap/bootstrap.rtl.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style>
         body {
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
-            background: linear-gradient(135deg, #1a5490 0%, #0d2f52 100%);
+            background: linear-gradient(135deg, #2e7d32 0%, #0d3b2e 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -25,7 +26,7 @@
             overflow: hidden;
         }
         .login-header {
-            background: linear-gradient(135deg, #1a5490, #0d2f52);
+            background: linear-gradient(135deg, #2e7d32, #0d3b2e);
             color: white;
             padding: 2rem;
             text-align: center;
@@ -38,11 +39,11 @@
             border: 2px solid #e2e8f0;
         }
         .form-control:focus {
-            border-color: #1a5490;
+            border-color: #2e7d32;
             box-shadow: 0 0 0 3px rgba(26,84,144,0.1);
         }
         .btn-login {
-            background: linear-gradient(135deg, #1a5490, #0d2f52);
+            background: linear-gradient(135deg, #2e7d32, #0d3b2e);
             border: none;
             padding: 0.9rem;
             border-radius: 10px;

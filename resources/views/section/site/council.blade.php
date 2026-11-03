@@ -8,36 +8,36 @@
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
 .wrap { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
-.page-title { font-size: 26px; color: #1e5b9c; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #ffd54f; }
-.page-title span { color: #14497f; }
+.page-title { font-size: 26px; color: #2e7d32; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #ffd54f; }
+.page-title span { color: #1b5e20; }
 .council-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
 .council-card {
     background: white; border-radius: 14px; padding: 25px 20px;
     text-align: center; box-shadow: 0 4px 18px rgba(0,0,0,.06);
     transition: transform .25s ease, box-shadow .25s ease;
-    border-top: 4px solid #1e5b9c;
+    border-top: 4px solid #2e7d32;
 }
-.council-card:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(30,91,156,.15); }
+.council-card:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(46,125,50,.15); }
 .council-card .photo {
     width: 110px; height: 110px; border-radius: 50%;
-    object-fit: cover; border: 4px solid #e3f2fd;
+    object-fit: cover; border: 4px solid #e8f5e9;
     margin: 0 auto 15px; display: block;
 }
 .council-card .photo-ph {
     width: 110px; height: 110px; border-radius: 50%;
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
     display: flex; align-items: center; justify-content: center;
     font-size: 50px; color: #90a4ae; margin: 0 auto 15px;
-    border: 4px solid #e3f2fd;
+    border: 4px solid #e8f5e9;
 }
 .council-card .position-badge {
     display: inline-block; padding: 4px 14px;
-    background: #ffd54f; color: #14497f;
+    background: #ffd54f; color: #1b5e20;
     border-radius: 20px; font-size: 11.5px; font-weight: 800;
     margin-bottom: 10px;
 }
-.council-card h4 { margin: 0 0 6px; color: #1e5b9c; font-size: 17px; font-weight: 800; }
-.council-card .phone { color: #1565c0; font-size: 13px; text-decoration: none; direction: ltr; display: inline-block; margin-top: 8px; }
+.council-card h4 { margin: 0 0 6px; color: #2e7d32; font-size: 17px; font-weight: 800; }
+.council-card .phone { color: #2e7d32; font-size: 13px; text-decoration: none; direction: ltr; display: inline-block; margin-top: 8px; }
 .council-card .phone:hover { text-decoration: underline; }
 .council-card .bio { color: #64748b; font-size: 12.5px; line-height: 1.9; margin-top: 12px; text-align: right; }
 .empty-box { background: white; padding: 60px 20px; text-align: center; border-radius: 14px; color: #90a4ae; }
@@ -51,6 +51,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.pwa')
 </head>
 <body>
 

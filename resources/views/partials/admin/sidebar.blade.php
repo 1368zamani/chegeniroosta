@@ -11,7 +11,7 @@
 <style>
 .unified-sidebar {
     background: #ffffff;
-    border: 1px solid #e3f2fd;
+    border: 1px solid #e8f5e9;
     border-radius: 14px;
     box-shadow: 0 4px 16px rgba(21,101,192,0.08);
     width: 240px;
@@ -31,13 +31,13 @@
     background: #ffffff;
     padding: 18px 14px;
     text-align: center;
-    border-bottom: 2px solid #e3f2fd;
+    border-bottom: 2px solid #e8f5e9;
 }
 .unified-sidebar .sb-profile .avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #1565c0;
+    background: #2e7d32;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -46,16 +46,16 @@
     font-size: 26px;
     font-weight: 900;
     box-shadow: 0 4px 14px rgba(21,101,192,0.3);
-    border: 3px solid #e3f2fd;
+    border: 3px solid #e8f5e9;
 }
 .unified-sidebar .sb-profile .name {
-    color: #1565c0;
+    color: #2e7d32;
     font-size: 14px;
     font-weight: 800;
     margin: 0;
 }
 .unified-sidebar .sb-profile .role {
-    color: #1565c0;
+    color: #2e7d32;
     font-size: 11.5px;
     margin: 4px 0 0;
     font-weight: 700;
@@ -70,7 +70,7 @@
 }
 .unified-sidebar .sb-section {
     font-size: 10.5px;
-    color: #1565c0;
+    color: #2e7d32;
     font-weight: 900;
     padding: 14px 12px 6px;
     text-transform: uppercase;
@@ -82,7 +82,7 @@
     align-items: center;
     gap: 10px;
     padding: 11px 14px;
-    color: #1565c0;
+    color: #2e7d32;
     text-decoration: none;
     border-radius: 9px;
     font-size: 13.5px;
@@ -101,18 +101,18 @@
     top: 0;
     bottom: 0;
     width: 0;
-    background: #1565c0;
+    background: #2e7d32;
     transition: width 0.22s;
 }
 .unified-sidebar .sb-item:hover {
-    background: #e3f2fd;
-    color: #0d47a1;
+    background: #e8f5e9;
+    color: #1b5e20;
     padding-right: 22px;
-    border-color: #e3f2fd;
+    border-color: #e8f5e9;
 }
 .unified-sidebar .sb-item:hover::before { width: 4px; }
 .unified-sidebar .sb-item.active {
-    background: #1565c0;
+    background: #2e7d32;
     color: #ffffff !important;
     box-shadow: 0 3px 12px rgba(21,101,192,0.3);
 }
@@ -123,7 +123,7 @@
     text-align: center;
     font-size: 16px;
     flex-shrink: 0;
-    color: #1565c0;
+    color: #2e7d32;
 }
 .unified-sidebar .sb-item .sb-badge {
     background: #c62828;
@@ -136,7 +136,7 @@
 }
 .unified-sidebar .sb-divider {
     height: 1px;
-    background: #e3f2fd;
+    background: #e8f5e9;
     margin: 10px 14px;
 }
 
@@ -144,11 +144,11 @@
 .unified-sidebar .sb-menu form button.sb-item {
     background: #ffffff;
     border: 1px solid transparent;
-    color: #1565c0 !important;
+    color: #2e7d32 !important;
 }
 .unified-sidebar .sb-menu form button.sb-item:hover {
-    background: #e3f2fd;
-    color: #0d47a1 !important;
+    background: #e8f5e9;
+    color: #1b5e20 !important;
 }
 
 @media (max-width: 900px) {
@@ -207,7 +207,7 @@
             @endif
         @endif
 
-        @if($isSuper || $isSection)
+        @if($isSuper)
             <li class="sb-section">👥 کاربران</li>
             <li><a href="{{ route('admin.users.index') }}" class="sb-item"><span class="sb-icon">👤</span> کاربران</a></li>
             <li></li>
@@ -217,6 +217,11 @@
         @if($isSuper || $isSection)
             <li class="sb-section">📰 محتوا</li>
             <li><a href="{{ route('admin.section-news.index') }}" class="sb-item"><span class="sb-icon">📰</span> اخبار</a></li>
+        @endif
+
+        @if($isSuper || $isSection)
+            <li class="sb-section">📊 گزارش‌ها</li>
+            <li><a href="{{ route('admin.stats') }}" class="sb-item"><span class="sb-icon">📈</span> آمار سایت</a></li>
         @endif
 
         @if($isSuper || $isSection || $isVillage || $isOfficer)
@@ -248,7 +253,7 @@
         <li>
             <form method="POST" action="{{ route('logout') }}" style="margin:0">
                 @csrf
-                <button type="submit" class="sb-item" style="background:#ffffff;border:1px solid transparent;width:100%;text-align:right;cursor:pointer;font-family:inherit;color:#1565c0">
+                <button type="submit" class="sb-item" style="background:#ffffff;border:1px solid transparent;width:100%;text-align:right;cursor:pointer;font-family:inherit;color:#2e7d32">
                     <span class="sb-icon">🚪</span> خروج
                 </button>
             </form>

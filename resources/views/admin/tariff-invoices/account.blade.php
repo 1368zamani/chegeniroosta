@@ -47,7 +47,7 @@
         @csrf
         <input type="hidden" name="village_id" value="{{ $villageId }}">
 
-        <div class="p-3 bg-blue-50 rounded text-sm">
+        <div class="p-3 bg-green-50 rounded text-sm">
             در حال ویرایش حساب بانکی روستای <b>{{ $village->name ?? '' }}</b>
         </div>
 

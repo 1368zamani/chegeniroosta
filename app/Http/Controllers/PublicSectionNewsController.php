@@ -16,6 +16,7 @@ class PublicSectionNewsController extends Controller
         $section = app('currentSection');
 
         $news = $section->sectionNews()
+            ->with('stat')
             ->where('is_published', true)
             ->orderBy('is_pinned', 'desc')
             ->orderBy('published_at', 'desc')
@@ -33,6 +34,7 @@ class PublicSectionNewsController extends Controller
         $section = app('currentSection');
 
         $news = $section->sectionNews()
+            ->with('stat')
             ->where('slug', $slug)
             ->where('is_published', true)
             ->firstOrFail();
@@ -44,6 +46,9 @@ class PublicSectionNewsController extends Controller
             ->orderBy('published_at', 'desc')
             ->limit(4)
             ->get();
+
+        // ═══ شمارنده‌ی بازدید (هر نشست یک بار) ═══
+        $news->recordView();
 
         return view('section.news.show', compact('section', 'news', 'related'));
     }

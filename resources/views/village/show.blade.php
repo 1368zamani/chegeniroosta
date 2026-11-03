@@ -6,7 +6,7 @@
     <title>{{ $village->name }} | روستا نما</title>
     <meta name="description" content="{{ $village->description ?: 'اطلاعات و اخبار روستای ' . $village->name }}">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0d2e4f">
+    <meta name="theme-color" content="#0d3b2e">
 
     <style>
         * { box-sizing: border-box; }
@@ -15,12 +15,12 @@
         .container { width: min(1100px, 92%); margin: auto; padding: 30px 0; }
 
         .section-title {
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-size: 20px;
             font-weight: 800;
             margin: 30px 0 18px;
             padding-bottom: 12px;
-            border-bottom: 2px solid #e3f2fd;
+            border-bottom: 2px solid #e8f5e9;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -38,7 +38,7 @@
             border-radius: 10px;
             padding: 16px 18px;
             box-shadow: 0 3px 12px rgba(13,46,79,0.06);
-            border-right: 4px solid #1565c0;
+            border-right: 4px solid #2e7d32;
         }
         .info-item .label {
             display: block;
@@ -50,10 +50,10 @@
         .info-item .value {
             display: block;
             font-size: 16px;
-            color: #0d2e4f;
+            color: #0d3b2e;
             font-weight: 800;
         }
-        .info-item .value a { color: #1565c0; text-decoration: none; direction: ltr; display: inline-block; }
+        .info-item .value a { color: #2e7d32; text-decoration: none; direction: ltr; display: inline-block; }
 
         /* ============ گالری تصاویر ============ */
         .v-gallery-grid {
@@ -101,14 +101,14 @@
             flex-direction: column;
         }
         .v-news-card .body { padding: 18px; }
-        .v-news-card h4 { margin: 0 0 8px; color: #0d2e4f; font-size: 15px; }
+        .v-news-card h4 { margin: 0 0 8px; color: #0d3b2e; font-size: 15px; }
         .v-news-card .date { color: #90a4ae; font-size: 12px; margin-bottom: 8px; }
         .v-news-card p { margin: 0; color: #607d8b; font-size: 13px; line-height: 1.8; }
 
         /* ✨ افکت hover روی کارت خبر */
         .v-news-card { transition: all .25s ease; cursor: pointer; }
         .v-news-card:hover {
-            background: #0d2e4f !important;
+            background: #0d3b2e !important;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(13,46,79,0.3);
         }
@@ -133,11 +133,11 @@
             padding: 18px 12px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 2px solid #e3f2fd;
+            border: 2px solid #e8f5e9;
         }
         .v-facility-card.unavailable { border-color: #ffcdd2; opacity: 0.6; }
         .v-facility-card .icon { font-size: 30px; display: block; margin-bottom: 8px; }
-        .v-facility-card .name { font-size: 13px; font-weight: 700; color: #0d2e4f; }
+        .v-facility-card .name { font-size: 13px; font-weight: 700; color: #0d3b2e; }
         .v-facility-card .status { font-size: 11px; color: #78909c; margin-top: 4px; }
 
         /* ============ شورا ============ */
@@ -157,7 +157,7 @@
         .v-council-card .photo {
             width: 80px; height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+            background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 12px;
             font-size: 32px;
@@ -166,9 +166,9 @@
             overflow: hidden;
         }
         .v-council-card .photo img { width: 100%; height: 100%; object-fit: cover; }
-        .v-council-card h5 { margin: 0 0 4px; color: #0d2e4f; font-size: 14px; }
+        .v-council-card h5 { margin: 0 0 4px; color: #0d3b2e; font-size: 14px; }
         .v-council-card .position { color: #c62828; font-size: 12px; font-weight: 700; margin: 0 0 8px; }
-        .v-council-card .phone { color: #1565c0; font-size: 12.5px; text-decoration: none; direction: ltr; display: inline-block; }
+        .v-council-card .phone { color: #2e7d32; font-size: 12.5px; text-decoration: none; direction: ltr; display: inline-block; }
 
         /* ============ جاذبه‌ها ============ */
         .v-attractions-grid {
@@ -193,7 +193,7 @@
         }
         .v-attraction-card .image img { width: 100%; height: 100%; object-fit: cover; }
         .v-attraction-card .body { padding: 16px; }
-        .v-attraction-card h5 { margin: 0 0 6px; color: #0d2e4f; font-size: 15px; }
+        .v-attraction-card h5 { margin: 0 0 6px; color: #0d3b2e; font-size: 15px; }
         .v-attraction-card .category {
             display: inline-block; background: #e8f5e9; color: #2e7d32;
             font-size: 10.5px; padding: 2px 10px; border-radius: 10px;
@@ -203,7 +203,7 @@
 
         /* ============ درخواست مردمی ============ */
         .v-request-box {
-            background: linear-gradient(135deg, #0d2e4f, #1565c0);
+            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
             color: white;
             border-radius: 16px;
             padding: 32px 24px;
@@ -218,7 +218,7 @@
             display: inline-block; padding: 12px 28px; border-radius: 10px;
             text-decoration: none; font-weight: 700; font-size: 14px;
         }
-        .v-btn-primary { background: #ffd54f; color: #0d2e4f; }
+        .v-btn-primary { background: #ffd54f; color: #0d3b2e; }
         .v-btn-secondary { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
 
         @media (max-width: 700px) {
@@ -261,7 +261,7 @@
     padding: 8px 0;
     z-index: 99999;
     overflow: hidden;
-    border: 1px solid #e3f2fd;
+    border: 1px solid #e8f5e9;
 }
 @keyframes vMenuIn {
     from { opacity: 0; transform: translateY(-6px) scale(0.98); }
@@ -285,9 +285,9 @@
     border-right: 3px solid transparent;
 }
 .v-tariff-dropdown .v-tariff-menu a:hover {
-    background: linear-gradient(90deg, #f0f7ff, #e3f2fd);
-    color: #1e5b9c;
-    border-right-color: #1e5b9c;
+    background: linear-gradient(90deg, #f1f8e9, #e8f5e9);
+    color: #2e7d32;
+    border-right-color: #2e7d32;
     padding-right: 24px;
 }
 .v-tariff-dropdown .v-tariff-menu a .m-icon {
@@ -297,13 +297,13 @@
     justify-content: center;
     width: 26px;
     height: 26px;
-    background: #f0f7ff;
+    background: #f1f8e9;
     border-radius: 8px;
     flex-shrink: 0;
 }
 .v-tariff-dropdown .v-tariff-menu .menu-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, #e3f2fd 30%, #e3f2fd 70%, transparent);
+    background: linear-gradient(90deg, transparent, #e8f5e9 30%, #e8f5e9 70%, transparent);
     margin: 6px 12px;
 }
 .v-tariff-dropdown .v-tariff-menu .menu-label {
@@ -358,7 +358,7 @@ a[href^="tel:"] {
             padding: 24px 18px;
             margin: 0 20px 20px 0;
             box-shadow: 0 6px 22px rgba(30,91,156,0.12);
-            border-top: 4px solid #1e5b9c;
+            border-top: 4px solid #2e7d32;
             text-align: center;
             display: block;
         }
@@ -367,7 +367,7 @@ a[href^="tel:"] {
             height: 120px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
-            border: 4px solid #e3f2fd !important;
+            border: 4px solid #e8f5e9 !important;
             display: block !important;
             margin: 0 auto 12px !important;
         }
@@ -389,7 +389,7 @@ a[href^="tel:"] {
         .dehyar-side-card h3 {
             font-size: 16px !important;
             margin: 8px 0 6px !important;
-            color: #1e5b9c !important;
+            color: #2e7d32 !important;
             text-align: center !important;
             font-weight: 800 !important;
         }
@@ -402,7 +402,7 @@ a[href^="tel:"] {
         }
         .dehyar-side-card > a {
             display: inline-block !important;
-            background: #1e5b9c !important;
+            background: #2e7d32 !important;
             color: #ffffff !important;
             padding: 10px 20px !important;
             border-radius: 8px !important;
@@ -438,7 +438,7 @@ a[href^="tel:"] {
             border-radius: 14px;
             padding: 22px 16px;
             box-shadow: 0 6px 22px rgba(30,91,156,0.12);
-            border-top: 4px solid #1e5b9c;
+            border-top: 4px solid #2e7d32;
             text-align: center;
             display: block;
             float: none;
@@ -449,7 +449,7 @@ a[href^="tel:"] {
             height: 130px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
-            border: 4px solid #e3f2fd !important;
+            border: 4px solid #e8f5e9 !important;
             display: block !important;
             margin: 0 auto 12px !important;
         }
@@ -465,7 +465,7 @@ a[href^="tel:"] {
         }
         .village-sidebar .dehyar-side-card h3 {
             font-size: 16px !important;
-            color: #1e5b9c !important;
+            color: #2e7d32 !important;
             text-align: center !important;
             margin: 8px 0 6px !important;
             font-weight: 800 !important;
@@ -478,7 +478,7 @@ a[href^="tel:"] {
         }
         .village-sidebar .dehyar-side-card > a {
             display: inline-block !important;
-            background: #1e5b9c !important;
+            background: #2e7d32 !important;
             color: #fff !important;
             padding: 10px 20px !important;
             border-radius: 8px !important;
@@ -499,6 +499,8 @@ a[href^="tel:"] {
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
+@include('partials.site-animations')
+@include('partials.pwa')
 </head>
 <body>
 
@@ -717,10 +719,10 @@ a[href^="tel:"] {
             ->where('is_public', true)->count();
     @endphp
 
-    <div style="background: white; border-radius: 14px; padding: 25px 28px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(13,46,79,0.06); border-right: 5px solid #1e5b9c;">
+    <div style="background: white; border-radius: 14px; padding: 25px 28px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(13,46,79,0.06); border-right: 5px solid #2e7d32;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
             <div>
-                <h3 style="margin: 0 0 8px; color: #1e5b9c; font-size: 19px;">📋 مصوبات شورای اسلامی</h3>
+                <h3 style="margin: 0 0 8px; color: #2e7d32; font-size: 19px;">📋 مصوبات شورای اسلامی</h3>
                 <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
                     @if($resolutionCount > 0)
                         {{ $resolutionCount }} مصوبه ثبت شده — مشاهده و پیگیری میزان پیشرفت
@@ -730,11 +732,71 @@ a[href^="tel:"] {
                 </p>
             </div>
             <a href="{{ route('village.site.resolutions', $village->slug) }}"
-               style="display: inline-block; background: #1e5b9c; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
+               style="display: inline-block; background: #2e7d32; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
                 مشاهده مصوبات ←
             </a>
         </div>
     </div>
+
+    {{-- ============ محصولات روستا (فروش) ============ --}}
+    <div style="background:#fff; border-radius:14px; padding:25px 28px; margin-bottom:30px;
+                box-shadow:0 4px 20px rgba(13,46,79,0.06); border-right:5px solid #f9a825;">
+        <div style="display:flex; justify-content:space-between; align-items:center;
+                    flex-wrap:wrap; gap:14px; margin-bottom:{{ ($featuredProducts ?? collect())->count() ? '18px' : '0' }};">
+            <div>
+                <h3 style="margin:0 0 8px; color:#2e7d32; font-size:19px;">🛒 محصولات روستا</h3>
+                <p style="margin:0; color:#546e7a; font-size:13.5px; line-height:1.9;">
+                    @if(($productCount ?? 0) > 0)
+                        {{ \App\Support\Number::fa(number_format($productCount)) }} محصول محلی برای فروش
+                        — عسل، لبنیات، صنایع دستی و…
+                    @else
+                        محصولات محلی و قابل فروش روستا — به‌زودی اضافه می‌شود.
+                    @endif
+                </p>
+            </div>
+            <a href="{{ route('village.site.products', $village->slug) }}"
+               style="display:inline-block; background:#f9a825; color:#fff; padding:11px 24px;
+                      border-radius:8px; text-decoration:none; font-weight:700; font-size:14px; white-space:nowrap;">
+                مشاهده محصولات ←
+            </a>
+        </div>
+
+        @if(isset($featuredProducts) && $featuredProducts->count() > 0)
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px;">
+                @foreach($featuredProducts as $fp)
+                    @php $fpimg = $fp->images->first(); @endphp
+                    <a href="{{ route('village.site.products.show', [$village->slug, $fp->slug]) }}"
+                       style="background:#fafbfa; border:1px solid #eef2ef; border-radius:11px;
+                              overflow:hidden; text-decoration:none; color:inherit;">
+                        @if($fpimg)
+                            <img src="{{ asset('storage/' . $fpimg->image) }}" alt="{{ $fp->title }}"
+                                 style="width:100%; height:100px; object-fit:cover; display:block;" loading="lazy">
+                        @else
+                            <div style="width:100%; height:100px; display:flex; align-items:center;
+                                        justify-content:center; font-size:32px; background:#e8f5e9;">
+                                {{ $fp->categoryIcon() }}
+                            </div>
+                        @endif
+                        <div style="padding:9px 11px;">
+                            <div style="font-size:12.5px; font-weight:700; color:#0d3b2e; line-height:1.6;">
+                                {{ \Illuminate\Support\Str::limit($fp->title, 34) }}
+                            </div>
+                            <div style="font-size:12px; font-weight:800; color:#2e7d32; margin-top:4px;">
+                                {{ $fp->priceLabel() }}
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @endif
+    </div>
+
+    {{-- ============ فایل‌های قابل دانلود روستا ============ --}}
+    @if(isset($downloads) && $downloads->isNotEmpty())
+        <div style="margin-bottom:30px;">
+            @include('partials.village-downloads', ['downloads' => $downloads, 'village' => $village])
+        </div>
+    @endif
 
     {{-- ============ معرفی دهیار ============ --}}
 
@@ -756,15 +818,44 @@ a[href^="tel:"] {
                         <span class="m-icon">📋</span>
                         <span>تعرفه‌ی کامل سال جاری</span>
                     </a>
-        </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<aside class="village-sidebar">
+    @if($village->dehyar_name)
+        <div class="dehyar-side-card">
+            @if($village->dehyar_photo)
+                <img src="{{ asset('storage/' . $village->dehyar_photo) }}" alt="{{ $village->dehyar_name }}"
+                     style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #e8f5e9;">
+            @else
+                <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #90a4ae; border: 3px solid #e8f5e9;">👤</div>
+            @endif
+            <div style="flex: 1; min-width: 200px;">
+                <h3 style="margin: 0 0 6px; color: #2e7d32; font-size: 18px;">👤 دهیار روستا: {{ $village->dehyar_name }}</h3>
+                <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
+                    برای مشاهده اطلاعات کامل، تحصیلات، سوابق و راه‌های تماس، صفحه اختصاصی دهیار را ببینید.
+                </p>
+            </div>
+            <a href="{{ route('village.site.dehyar', $village->slug) }}"
+               style="display: inline-block; background: #2e7d32; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
+                مشاهده پروفایل دهیار ←
+            </a>
+        </div>
+    @endif
+</aside>
     </div>
 </div>
 
 {{-- ============ موقعیت روی نقشه ============ --}}
-@if(!empty($village->latitude) && !empty($village->longitude))
-    <h2 class="section-title">📍 موقعیت {{ $village->name }} روی نقشه</h2>
-    @include('partials.village-map', ['village' => $village])
-@endif
+{{-- پارشال خودش هر دو حالت را پوشش می‌دهد:
+     با مختصات → نقشه‌ی زنده
+     بدون مختصات → کارت جایگزین با جست‌وجو در نقشه --}}
+<h2 class="section-title">📍 موقعیت {{ $village->name }} روی نقشه</h2>
+@include('partials.village-map', ['village' => $village])
 
 
 <script>

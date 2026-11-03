@@ -24,7 +24,7 @@
         }
 
         h1 {
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         label {
@@ -61,7 +61,7 @@
             padding: 11px 20px;
             border: 0;
             border-radius: 7px;
-            background: #1565c0;
+            background: #2e7d32;
             color: white;
             font-family: inherit;
             text-decoration: none;

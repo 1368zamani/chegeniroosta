@@ -32,10 +32,11 @@
         <tbody>
             @foreach($items as $index => $item)
             @if($item->title)
-            <tr class="tariff-row hover:bg-gray-50" data-tariff-row data-search-text="{{ $item->title->title ?? '' }} {{ $item->notes ?? '' }}">
+            <tr class="tariff-row hover:bg-gray-50" data-tariff-row data-search-text="{{ $item->title->name_fa ?? '' }} {{ $item->notes ?? '' }}">
                 <td class="p-3 border-b text-sm text-gray-500">{{ $index + 1 }}</td>
                 <td class="p-3 border-b">
-                    <strong>{{ $item->title->title }}</strong>
+                    {{-- ستون این جدول «name_fa» است، نه «title» — قبلاً نام تعرفه خالی نمایش داده می‌شد --}}
+                    <strong>{{ $item->title->name_fa }}</strong>
                     @if($item->notes)
                     <div class="text-xs text-gray-500 mt-1">{{ $item->notes }}</div>
                     @endif
@@ -49,7 +50,7 @@
                 </td>
                 @auth
                 <td class="p-3 border-b no-print">
-                    <button @click="openEditor({{ $item->id }}, '{{ $item->title->title }}')"
+                    <button @click="openEditor({{ $item->id }}, @js($item->title->name_fa))"
                             class="text-xs bg-orange-100 text-orange-800 px-3 py-1 rounded hover:bg-orange-200">
                         ✏️ ویرایش
                     </button>

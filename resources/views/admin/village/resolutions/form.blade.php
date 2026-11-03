@@ -77,7 +77,7 @@
             <input type="file" name="attachment">
             @if(isset($resolution) && $resolution->attachment)
                 <div style="margin-top:8px;">
-                    <a href="{{ asset('storage/' . $resolution->attachment) }}" target="_blank" style="color:#1565c0;text-decoration:none;font-size:13px;">📎 دانلود فایل فعلی</a>
+                    <a href="{{ asset('storage/' . $resolution->attachment) }}" target="_blank" style="color:#2e7d32;text-decoration:none;font-size:13px;">📎 دانلود فایل فعلی</a>
                 </div>
             @endif
             <div class="hint">حداکثر ۲۵ مگابایت — PDF، تصویر، Word</div>

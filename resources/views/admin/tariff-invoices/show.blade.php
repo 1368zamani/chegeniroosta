@@ -103,7 +103,7 @@
         </div>
 
         @if($invoice->review_note)
-        <div class="mt-4 bg-blue-50 border-r-4 border-blue-500 p-3 rounded text-sm">
+        <div class="mt-4 bg-green-50 border-r-4 border-green-500 p-3 rounded text-sm">
             <b>توضیح کارشناس:</b> {{ $invoice->review_note }}
         </div>
         @endif
@@ -146,7 +146,7 @@
                 @if($r->fileUrl())
                 <div class="mt-3">
                     <a href="{{ $r->fileUrl() }}" target="_blank"
-                       class="inline-block bg-blue-600 text-white text-xs px-3 py-1 rounded">
+                       class="inline-block bg-green-600 text-white text-xs px-3 py-1 rounded">
                         📎 مشاهده رسید
                     </a>
                 </div>

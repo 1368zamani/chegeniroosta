@@ -27,7 +27,7 @@
         }
 
         h1 {
-            color: #1565c0;
+            color: #2e7d32;
         }
 
         .grid {
@@ -76,7 +76,7 @@
         button,
         .back {
             border: 0;
-            background: #1565c0;
+            background: #2e7d32;
             color: white;
             padding: 11px 22px;
             border-radius: 7px;
@@ -193,6 +193,36 @@
                     <label>لینک اینستاگرام دهیار</label>
                     <input type="text" name="dehyar_instagram" value="{{ old('dehyar_instagram', $village->dehyar_instagram ?? '') }}" dir="ltr" placeholder="مثال: dehyar_abuzar">
                     <div class="hint">بدون @ — نام کاربری یا آدرس کامل</div>
+                </div>
+
+                <div class="field">
+                    <label>تلفن دهیار</label>
+                    <input type="text" name="dehyar_phone" value="{{ old('dehyar_phone', $village->dehyar_phone ?? '') }}" dir="ltr" placeholder="0912xxxxxxx">
+                </div>
+
+                <div class="field">
+                    <label>ایمیل دهیار</label>
+                    <input type="email" name="dehyar_email" value="{{ old('dehyar_email', $village->dehyar_email ?? '') }}" dir="ltr">
+                </div>
+
+                <div class="field">
+                    <label>ساعات حضور دهیار</label>
+                    <input type="text" name="dehyar_hours" value="{{ old('dehyar_hours', $village->dehyar_hours ?? '') }}" placeholder="مثلاً: ۸ صبح تا ۲ بعدازظهر">
+                </div>
+
+                <div class="field">
+                    <label>درباره دهیار</label>
+                    <textarea name="dehyar_bio" rows="3" placeholder="توضیح کوتاه درباره دهیار...">{{ old('dehyar_bio', $village->dehyar_bio ?? '') }}</textarea>
+                </div>
+
+                <div class="field">
+                    <label>تحصیلات دهیار</label>
+                    <textarea name="dehyar_education" rows="2" placeholder="مثال: کارشناسی مدیریت...">{{ old('dehyar_education', $village->dehyar_education ?? '') }}</textarea>
+                </div>
+
+                <div class="field">
+                    <label>سوابق شغلی دهیار</label>
+                    <textarea name="dehyar_experience" rows="3" placeholder="مثال: دهیار ... از سال ...">{{ old('dehyar_experience', $village->dehyar_experience ?? '') }}</textarea>
                 </div>
 
                 <div>

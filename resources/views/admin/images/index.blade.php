@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 19px; }
         .header .nav { display: flex; gap: 10px; }
         .header a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; }
@@ -25,10 +25,10 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .actions-bar h2 { margin: 0; color: #1565c0; font-size: 18px; }
+        .actions-bar h2 { margin: 0; color: #2e7d32; font-size: 18px; }
         .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-family: inherit; font-size: 13px; cursor: pointer; border: none; display: inline-block; }
-        .btn-primary { background: #1565c0; color: white; }
-        .btn-primary:hover { background: #0d47a1; }
+        .btn-primary { background: #2e7d32; color: white; }
+        .btn-primary:hover { background: #1b5e20; }
         .btn-secondary { background: #cfd8dc; color: #37474f; }
         .btn-danger { background: #e53935; color: white; }
         .btn-warning { background: #f9a825; color: white; }
@@ -68,7 +68,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #1565c0;
+            background: #2e7d32;
             color: white;
             font-size: 11px;
             padding: 4px 10px;

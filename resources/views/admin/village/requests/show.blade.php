@@ -6,7 +6,7 @@
 
 <div class="page-title">
     <h2>📩 جزئیات درخواست</h2>
-    <a href="{{ route('admin.village.requests.index', $village->id) }}" style="display:inline-block;padding:8px 16px;background:#f1f5f9;color:#1e5b9c;text-decoration:none;border-radius:8px;font-size:13px;">
+    <a href="{{ route('admin.village.requests.index', $village->id) }}" style="display:inline-block;padding:8px 16px;background:#f1f5f9;color:#2e7d32;text-decoration:none;border-radius:8px;font-size:13px;">
         → بازگشت به لیست
     </a>
 </div>
@@ -22,14 +22,14 @@
 
     <div style="display:grid;grid-template-columns:140px 1fr;gap:8px 16px;padding:12px 0;border-bottom:1px solid #f1f5f9;">
         <strong style="color:#64748b;font-size:13px;">کد پیگیری:</strong>
-        <span style="font-family:monospace;direction:ltr;color:#1e5b9c;font-weight:700;font-size:15px;">{{ $request->tracking_code }}</span>
+        <span style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;font-size:15px;">{{ $request->tracking_code }}</span>
 
         <strong style="color:#64748b;font-size:13px;">نام درخواست‌کننده:</strong>
         <span>{{ $request->full_name }}</span>
 
         <strong style="color:#64748b;font-size:13px;">شماره تماس:</strong>
         <span style="direction:ltr;display:inline-block;">
-            <a href="tel:{{ $request->phone }}" style="color:#1e5b9c;text-decoration:none;">{{ $request->phone }}</a>
+            <a href="tel:{{ $request->phone }}" style="color:#2e7d32;text-decoration:none;">{{ $request->phone }}</a>
         </span>
 
         <strong style="color:#64748b;font-size:13px;">موضوع:</strong>
@@ -50,7 +50,7 @@
     @if($request->attachment)
         <div style="padding:12px 0;">
             <strong style="color:#64748b;font-size:13px;display:block;margin-bottom:8px;">فایل پیوست:</strong>
-            <a href="{{ asset('storage/' . $request->attachment) }}" target="_blank" style="display:inline-block;padding:8px 16px;background:#f0f9ff;color:#1e5b9c;text-decoration:none;border-radius:8px;border:1px solid #bae6fd;">
+            <a href="{{ asset('storage/' . $request->attachment) }}" target="_blank" style="display:inline-block;padding:8px 16px;background:#f1f8e9;color:#2e7d32;text-decoration:none;border-radius:8px;border:1px solid #a5d6a7;">
                 📎 دانلود فایل
             </a>
         </div>
@@ -86,7 +86,7 @@
             <button type="submit" style="padding:12px 24px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600;">
                 💾 ذخیره پاسخ
             </button>
-            <a href="{{ route('admin.village.requests.index', $village->id) }}" style="padding:12px 20px;background:#f1f5f9;color:#1e5b9c;text-decoration:none;border-radius:8px;">انصراف</a>
+            <a href="{{ route('admin.village.requests.index', $village->id) }}" style="padding:12px 20px;background:#f1f5f9;color:#2e7d32;text-decoration:none;border-radius:8px;">انصراف</a>
         </div>
     </div>
 </form>

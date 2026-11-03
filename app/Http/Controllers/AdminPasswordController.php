@@ -52,10 +52,43 @@ class AdminPasswordController extends Controller
 
     public function reset(Request $request, User $user)
     {
-        $request->validate([
-            'password' => 'required|min:6'
-        ]);
+        // سیاست رمز مشترک: حداقل ۸ کاراکتر + حرف + عدد
+        $request->validate(
+            \App\Support\PasswordPolicy::rules('password'),
+            \App\Support\PasswordPolicy::messages('password')
+        );
 
+        // ═══ بررسی دسترسی (هم‌راستا با index) ═══
+        // بدون این گارد، هر کاربر وارد‌شده‌ای می‌توانست رمز هر کاربری
+        // — از جمله سوپرادمین — را تغییر دهد و کنترل کامل سایت را بگیرد.
+        $current = auth()->user();
+
+        if ($current->role === 'super_admin') {
+
+            // سوپرادمین می‌تواند رمز همه را تغییر دهد.
+
+        } elseif ($current->role === 'section_admin') {
+
+            $targetIsSuperAdmin = $user->role === 'super_admin';
+            $sameSection        = (int) $user->section_id === (int) $current->section_id;
+            $roleAllowed        = in_array($user->role, [
+                'section_admin',
+                'village_admin',
+                'fee_officer',
+                'tariff_officer',
+            ], true);
+
+            abort_if(
+                $targetIsSuperAdmin || !$sameSection || !$roleAllowed,
+                403,
+                'شما اجازه تغییر رمز این کاربر را ندارید.'
+            );
+
+        } else {
+
+            abort(403, 'شما اجازه تغییر رمز کاربران را ندارید.');
+
+        }
 
         $user->password = Hash::make($request->password);
 

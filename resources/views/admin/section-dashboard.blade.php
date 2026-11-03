@@ -23,7 +23,7 @@ body{
 
 
 .header{
-    background:#1565c0;
+    background:#2e7d32;
     color:white;
     padding:20px 30px;
     display:flex;
@@ -110,7 +110,7 @@ text-align:center;
 display:block;
 font-size:32px;
 font-weight:bold;
-color:#1565c0;
+color:#2e7d32;
 
 }
 
@@ -131,11 +131,11 @@ color:#607d8b;
 
 margin:35px 0 20px;
 
-color:#1565c0;
+color:#2e7d32;
 
 font-size:20px;
 
-border-bottom:2px solid #e3f2fd;
+border-bottom:2px solid #e8f5e9;
 
 padding-bottom:10px;
 
@@ -169,7 +169,7 @@ text-decoration:none;
 
 color:#263238;
 
-border-top:4px solid #1565c0;
+border-top:4px solid #2e7d32;
 
 }
 
@@ -185,7 +185,7 @@ transform:translateY(-3px);
 
 .card h3{
 
-color:#1565c0;
+color:#2e7d32;
 
 margin-top:0;
 

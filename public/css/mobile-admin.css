@@ -1,0 +1,82 @@
+/* ═══════════════════════════════════════════════════════════════
+   بهینه‌سازی موبایل — پنل‌های مدیریت
+   ─────────────────────────────────────────────────────────────
+   • جدول‌های عریض داخل ظرف خودشان اسکرول افقی می‌شوند
+   • فرم‌ها در iOS بزرگ‌نمایی نمی‌شوند
+   • دکمه‌ها و عنوان‌ها در گوشی جمع‌وجور می‌شوند
+   ═══════════════════════════════════════════════════════════════ */
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ── تبلت و موبایل ── */
+@media (max-width: 900px) {
+    /* ظرف اصلی بتواند کوچک شود و اسکرول افقی بدهد */
+    .content,
+    .container {
+        min-width: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* جدول‌های عریض: داخل ظرف اسکرول می‌شوند، نه کل صفحه */
+    .content table,
+    .container table {
+        min-width: 620px;
+    }
+
+    /* عنوان صفحه و دکمه‌اش زیر هم */
+    .page-title {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 10px;
+    }
+}
+
+/* ── موبایل ── */
+@media (max-width: 560px) {
+    .content,
+    .container {
+        padding: 12px !important;
+    }
+
+    .page-title h2 {
+        font-size: 16px !important;
+        line-height: 1.6;
+    }
+
+    /* جلوگیری از بزرگ‌نمایی خودکار iOS */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    .btn {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+    }
+
+    /* کارت‌ها و آمارها: تک‌ستونی */
+    .stats-grid,
+    .row-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ── احترام به تنظیم کاهش حرکت ── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}

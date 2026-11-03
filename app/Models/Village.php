@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasStats;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Village extends Model
 {
+    use HasStats;
+
     protected $fillable = [
         'section_id',
         'name',
@@ -24,6 +27,15 @@ class Village extends Model
         'households',
         'area',
         'dehyar_name',
+        // ═══ فیلدهای دهیار (این ۶ مورد در $fillable نبودند و
+        //     اطلاعاتی که ادمین در تنظیمات دهیاری وارد می‌کرد
+        //     بی‌صدا دور ریخته می‌شد — نه ذخیره می‌شد و نه خطایی می‌داد) ═══
+        'dehyar_phone',
+        'dehyar_email',
+        'dehyar_bio',
+        'dehyar_education',
+        'dehyar_experience',
+        'dehyar_instagram',
         'council_head_name',
         'logo',
         'cover_image',

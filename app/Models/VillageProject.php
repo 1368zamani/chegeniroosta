@@ -9,16 +9,20 @@ class VillageProject extends Model
     protected $fillable = [
         'village_id', 'title', 'description', 'status', 'progress',
         'contractor', 'budget', 'start_date', 'end_date',
-        'before_image', 'after_image', 'cover_image', 'sort_order'
+        'before_image', 'after_image', 'cover_image', 'sort_order', 'is_active'
     ];
 
     protected $casts = [
         'start_date' => 'date',
         'end_date'   => 'date',
         'progress'   => 'integer',
+        'is_active'  => 'boolean',
     ];
 
     public function village() { return $this->belongsTo(Village::class); }
+
+    /** فقط موارد فعال — برای نمایش در سایت */
+    public function scopeActive($q) { return $q->where('is_active', true); }
 
     public function getStatusLabelAttribute(): string
     {

@@ -28,7 +28,7 @@
 <body>
 
 @if(request()->has('print') === false)
-<div class="no-print" style="background:#dbeafe;padding:8px;margin-bottom:12px;text-align:center">
+<div class="no-print" style="background:#e2e8f0;padding:8px;margin-bottom:12px;text-align:center">
     <button onclick="window.print()" style="padding:6px 16px;cursor:pointer">چاپ این فرم</button>
     <a href="{{ url()->previous() }}" style="margin-right:16px">بازگشت</a>
 </div>

@@ -19,11 +19,15 @@
         <span class="num">{{ $stats['villages'] }}</span>
         <span class="label">روستاهای بخش</span>
     </a>
+    @if(auth()->user()->isSuperAdmin())
+    @if(auth()->user()->isSuperAdmin())
     <a href="{{ route('admin.users.index') }}" class="stat-card">
         <span class="icon">👥</span>
         <span class="num">{{ $stats['village_admins'] }}</span>
         <span class="label">ادمین روستا</span>
     </a>
+    @endif
+    @endif
     <a href="{{ route('admin.sections.all-requests', $section->id) }}" class="stat-card">
         <span class="icon">📩</span>
         <span class="num">{{ $stats['section_requests'] + $stats['village_requests'] }}</span>
@@ -64,7 +68,7 @@
             <tbody>
                 @foreach($recentSectionRequests as $req)
                     <tr>
-                        <td style="font-family:monospace;direction:ltr;color:#1e5b9c;font-weight:700;">{{ $req->tracking_code }}</td>
+                        <td style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;">{{ $req->tracking_code }}</td>
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>
                         <td><span class="badge badge-{{ $req->status }}">{{ $req->status_label }}</span></td>
@@ -102,7 +106,7 @@
             <tbody>
                 @foreach($recentVillageRequests as $req)
                     <tr>
-                        <td style="font-family:monospace;direction:ltr;color:#1e5b9c;font-weight:700;">{{ $req->tracking_code }}</td>
+                        <td style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;">{{ $req->tracking_code }}</td>
                         <td>{{ optional($req->village)->name ?? '—' }}</td>
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>

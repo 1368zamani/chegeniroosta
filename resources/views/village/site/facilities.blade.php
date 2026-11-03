@@ -17,7 +17,7 @@
             @endif
         </div>
         @empty
-        <div class="col-span-3 bg-blue-50 border border-blue-200 rounded p-4 text-blue-800">
+        <div class="col-span-3 bg-green-50 border border-green-200 rounded p-4 text-green-800">
             امکاناتی برای این روستا ثبت نشده است.
         </div>
         @endforelse

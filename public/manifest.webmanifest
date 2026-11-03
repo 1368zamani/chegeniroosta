@@ -1,0 +1,42 @@
+{
+  "id": "/",
+  "name": "سامانه اطلاع‌رسانی چگنی روستا",
+  "short_name": "چگنی روستا",
+  "description": "پایگاه اطلاع‌رسانی روستاها و بخش‌های شهرستان چگنی — اخبار، عوارض، درخواست‌ها، محصولات روستا و فایل‌های دانلود",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "portrait-primary",
+  "background_color": "#f5f7fa",
+  "theme_color": "#2e7d32",
+  "categories": ["government", "news", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

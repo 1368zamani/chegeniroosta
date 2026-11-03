@@ -140,6 +140,7 @@ class AdminSectionRequestController extends Controller
             'villages' => $villageReqs->count(),
             'pending'  => $all->whereIn('status', ['submitted','reviewing','assigned','processing'])->count(),
             'resolved' => $all->where('status', 'resolved')->count(),
+            'rejected' => $all->where('status', 'rejected')->count(),
         ];
 
         $villages = \App\Models\Village::where('section_id', $section->id)->orderBy('name')->get();

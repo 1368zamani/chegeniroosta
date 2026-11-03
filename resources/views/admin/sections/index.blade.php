@@ -6,12 +6,12 @@
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: #1565c0; color: white; padding: 20px; }
+        .header { background: #2e7d32; color: white; padding: 20px; }
         .header h1 { margin: 0; font-size: 20px; }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         .nav-links { margin-bottom: 20px; }
-        .nav-links a { display: inline-block; padding: 10px 18px; background: white; color: #1565c0; text-decoration: none; border-radius: 8px; margin-right: 10px; font-size: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
-        .nav-links a:hover { background: #1565c0; color: white; }
+        .nav-links a { display: inline-block; padding: 10px 18px; background: white; color: #2e7d32; text-decoration: none; border-radius: 8px; margin-right: 10px; font-size: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
+        .nav-links a:hover { background: #2e7d32; color: white; }
         .success { background: #c8e6c9; color: #2e7d32; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; }
         table { width: 100%; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-collapse: collapse; }
         th, td { padding: 14px 16px; text-align: right; border-bottom: 1px solid #eceff1; font-size: 14px; }
@@ -21,14 +21,14 @@
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; }
         .badge-active { background: #c8e6c9; color: #2e7d32; }
         .badge-inactive { background: #ffcdd2; color: #c62828; }
-        .btn { display: inline-block; padding: 8px 16px; background: #1565c0; color: white; text-decoration: none; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-family: inherit; }
-        .btn:hover { background: #0d47a1; }
+        .btn { display: inline-block; padding: 8px 16px; background: #2e7d32; color: white; text-decoration: none; border-radius: 6px; font-size: 13px; border: none; cursor: pointer; font-family: inherit; }
+        .btn:hover { background: #1b5e20; }
         .btn-toggle { padding: 8px 14px; font-size: 13px; border: none; cursor: pointer; font-family: inherit; border-radius: 6px; margin-right: 4px; }
         .btn-toggle-off { background: #e53935; color: white; }
         .btn-toggle-off:hover { background: #c62828; }
         .btn-toggle-on { background: #43a047; color: white; }
         .btn-toggle-on:hover { background: #2e7d32; }
-        .photo-thumb { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #e3f2fd; }
+        .photo-thumb { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #e8f5e9; }
         .photo-empty { width: 44px; height: 44px; border-radius: 50%; background: #cfd8dc; display: inline-flex; align-items: center; justify-content: center; color: #90a4ae; font-size: 18px; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">

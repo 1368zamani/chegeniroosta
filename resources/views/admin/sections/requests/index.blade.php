@@ -6,7 +6,7 @@
 <style>
 * { box-sizing: border-box; }
 body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; color:#263238; }
-.header { background: linear-gradient(135deg, #1e5b9c, #2470b8); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.header { background: linear-gradient(135deg, #2e7d32, #388e3c); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
 .header h1 { margin: 0; font-size: 20px; }
 .header .nav { display: flex; gap: 10px; }
 .header .nav a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; }
@@ -19,14 +19,14 @@ body { margin:0; font-family: Tahoma, Arial, sans-serif; background:#f5f7fa; col
 .stat-card .lbl { font-size: 12px; color: #64748b; margin-top: 4px; }
 .filter { background: white; padding: 16px; border-radius: 10px; margin-bottom: 16px; display: flex; gap: 10px; flex-wrap: wrap; align-items: end; }
 .filter input, .filter select { padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; }
-.filter button { padding: 10px 20px; background: #1e5b9c; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; }
+.filter button { padding: 10px 20px; background: #2e7d32; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; }
 table { width: 100%; background: white; border-radius: 12px; overflow: hidden; border-collapse: collapse; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
 th, td { padding: 12px 14px; text-align: right; font-size: 13px; border-bottom: 1px solid #eceff1; }
 th { background: #f8fafc; color: #546e7a; font-weight: 600; }
 tr:hover { background: #f8fafc; }
 .badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; display: inline-block; }
-.btn { display: inline-block; padding: 6px 14px; background: #1e5b9c; color: white; text-decoration: none; border-radius: 6px; font-size: 12px; }
-.btn:hover { background: #14497f; }
+.btn { display: inline-block; padding: 6px 14px; background: #2e7d32; color: white; text-decoration: none; border-radius: 6px; font-size: 12px; }
+.btn:hover { background: #1b5e20; }
 .empty { text-align: center; padding: 60px 20px; color: #90a4ae; background: white; border-radius: 12px; }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
@@ -50,7 +50,7 @@ tr:hover { background: #f8fafc; }
     @endif
 
     <div class="stats">
-        <div class="stat-card"><div class="num" style="color:#1e5b9c;">{{ $stats['total'] }}</div><div class="lbl">کل درخواست‌ها</div></div>
+        <div class="stat-card"><div class="num" style="color:#2e7d32;">{{ $stats['total'] }}</div><div class="lbl">کل درخواست‌ها</div></div>
         <div class="stat-card"><div class="num" style="color:#f59e0b;">{{ $stats['pending'] }}</div><div class="lbl">در انتظار بررسی</div></div>
         <div class="stat-card"><div class="num" style="color:#16a34a;">{{ $stats['resolved'] }}</div><div class="lbl">پاسخ داده شده</div></div>
         <div class="stat-card"><div class="num" style="color:#dc2626;">{{ $stats['rejected'] }}</div><div class="lbl">رد شده</div></div>
@@ -76,7 +76,7 @@ tr:hover { background: #f8fafc; }
         <div>
             <button type="submit">فیلتر</button>
             @if(request()->filled('status') || request()->filled('q'))
-                <a href="{{ route('admin.sections.requests.index', $section->id) }}" style="padding:10px 16px;background:#f1f5f9;color:#1e5b9c;border-radius:8px;text-decoration:none;display:inline-block;font-size:13px;">پاک کردن</a>
+                <a href="{{ route('admin.sections.requests.index', $section->id) }}" style="padding:10px 16px;background:#f1f5f9;color:#2e7d32;border-radius:8px;text-decoration:none;display:inline-block;font-size:13px;">پاک کردن</a>
             @endif
         </div>
     </form>
@@ -96,13 +96,13 @@ tr:hover { background: #f8fafc; }
             <tbody>
                 @foreach($requests as $req)
                     <tr>
-                        <td style="font-family:monospace;direction:ltr;color:#1e5b9c;font-weight:700;">{{ $req->tracking_code }}</td>
+                        <td style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;">{{ $req->tracking_code }}</td>
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>
                         <td>
                             @php
                                 $badges = [
-                                    'submitted'  => ['bg'=>'#dbeafe','color'=>'#1e40af','label'=>'ثبت شده'],
+                                    'submitted'  => ['bg'=>'#e2e8f0','color'=>'#475569','label'=>'ثبت شده'],
                                     'reviewing'  => ['bg'=>'#fef3c7','color'=>'#92400e','label'=>'در حال بررسی'],
                                     'assigned'   => ['bg'=>'#fef3c7','color'=>'#92400e','label'=>'ارجاع شده'],
                                     'processing' => ['bg'=>'#fef3c7','color'=>'#92400e','label'=>'در حال پیگیری'],

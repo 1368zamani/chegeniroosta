@@ -89,14 +89,24 @@ class ExpertBankAccountController extends Controller
 
     private function allowedVillages($user)
     {
+        // ⚠️ امنیت: super_admin از این متد استفاده نمی‌کند (در فراخوان‌ها
+        // جداگانه بررسی می‌شود). برای هر نقش شناخته‌شده فقط روستاهای
+        // مجاز برگردانده می‌شود؛ برای نقش ناشناخته، «هیچ روستایی».
+        if ($user->role === 'super_admin') {
+            return Village::orderBy('name')->get();
+        }
+
         $q = Village::orderBy('name');
 
         if ($user->role === 'section_admin' && $user->section_id) {
             $q->where('section_id', $user->section_id);
         } elseif ($user->role === 'village_admin' && $user->village_id) {
             $q->where('id', $user->village_id);
-        } elseif ($user->role === 'fee_officer' && $user->section_id) {
+        } elseif (in_array($user->role, ['fee_officer', 'tariff_officer'], true) && $user->section_id) {
             $q->where('section_id', $user->section_id);
+        } else {
+            // نقش ناشناخته یا کاربر بدون بخش/روستا → هیچ روستایی
+            $q->whereRaw('1 = 0');
         }
 
         return $q->get();

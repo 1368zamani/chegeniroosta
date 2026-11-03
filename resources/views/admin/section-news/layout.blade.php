@@ -9,7 +9,7 @@
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
 
         .header {
-            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
             color: white;
             padding: 18px 30px;
             display: flex;
@@ -47,8 +47,8 @@
             cursor: pointer;
             border: none;
         }
-        .btn-primary { background: #1565c0; color: white; }
-        .btn-primary:hover { background: #0d47a1; }
+        .btn-primary { background: #2e7d32; color: white; }
+        .btn-primary:hover { background: #1b5e20; }
         .btn-secondary { background: #cfd8dc; color: #37474f; }
         .btn-secondary:hover { background: #b0bec5; }
         .btn-danger { background: #e53935; color: white; }
@@ -63,7 +63,7 @@
             width: 100%; padding: 11px 14px; border: 1px solid #cfd8dc; border-radius: 8px;
             font-family: inherit; font-size: 14px; outline: none; background: white;
         }
-        .field input:focus, .field select:focus, .field textarea:focus { border-color: #1565c0; }
+        .field input:focus, .field select:focus, .field textarea:focus { border-color: #2e7d32; }
         .field textarea { min-height: 200px; resize: vertical; }
         .hint { font-size: 12px; color: #90a4ae; margin-top: 5px; }
 
@@ -85,7 +85,7 @@
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; display: inline-block; }
         .badge-published { background: #c8e6c9; color: #2e7d32; }
         .badge-draft { background: #ffe0b2; color: #e65100; }
-        .badge-pinned { background: #e3f2fd; color: #1565c0; }
+        .badge-pinned { background: #e8f5e9; color: #2e7d32; }
 
         .thumb { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
         .thumb-empty { width: 60px; height: 60px; border-radius: 8px; background: #cfd8dc; display: inline-flex; align-items: center; justify-content: center; color: #90a4ae; }
@@ -97,7 +97,8 @@
 <link rel="stylesheet" href="{{ asset('css/admin-light-theme.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/mobile-admin.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">
@@ -106,6 +107,7 @@
         <a href="{{ route('admin.section-news.index') }}">لیست اخبار</a>
         <a href="{{ route('admin.section-news.create') }}">+ خبر جدید</a>
         <a href="{{ route('admin.dashboard') }}">داشبورد</a>
+        <a href="{{ route('profile.password.edit') }}">🔑 تغییر رمز</a>
     </div>
 </div>
 

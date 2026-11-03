@@ -7,19 +7,19 @@
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; color: #263238; padding-bottom: 40px; }
-.s-header { background: linear-gradient(135deg, #1e5b9c, #2470b8); color: white; padding: 26px 24px; box-shadow: 0 4px 15px rgba(30,91,156,0.2); }
+.s-header { background: linear-gradient(135deg, #2e7d32, #388e3c); color: white; padding: 26px 24px; box-shadow: 0 4px 15px rgba(30,91,156,0.2); }
 .s-header h1 { margin: 0 0 6px; font-size: 22px; }
 .s-header p { margin: 0; font-size: 13.5px; opacity: 0.9; }
 .s-header a.back { color: white; text-decoration: none; display: inline-block; margin-top: 14px; background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 8px; font-size: 13px; }
 .s-container { max-width: 1100px; margin: 24px auto; padding: 0 20px; }
 .s-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
-.s-stat { background: white; border-radius: 12px; padding: 18px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #1e5b9c; }
-.s-stat .num { font-size: 26px; font-weight: 800; color: #1e5b9c; }
+.s-stat { background: white; border-radius: 12px; padding: 18px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #2e7d32; }
+.s-stat .num { font-size: 26px; font-weight: 800; color: #2e7d32; }
 .s-stat .label { font-size: 12px; color: #78909c; margin-top: 4px; }
 .s-stat.ok { border-top-color: #2e7d32; } .s-stat.ok .num { color: #2e7d32; }
 .s-stat.warn { border-top-color: #d97706; } .s-stat.warn .num { color: #d97706; }
 .s-card { background: white; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 24px; }
-.s-card .card-head { padding: 16px 22px; background: #f8fafc; border-bottom: 2px solid #e3f2fd; font-weight: 700; color: #1e5b9c; display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
+.s-card .card-head { padding: 16px 22px; background: #f8fafc; border-bottom: 2px solid #e8f5e9; font-weight: 700; color: #2e7d32; display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
 .s-table { width: 100%; border-collapse: collapse; }
 .s-table th, .s-table td { padding: 12px 14px; text-align: right; border-bottom: 1px solid #eceff1; font-size: 13.5px; }
 .s-table th { background: #f8fafc; color: #546e7a; font-weight: 700; font-size: 12.5px; }
@@ -29,12 +29,13 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 .s-badge.ok { background: #c8e6c9; color: #2e7d32; }
 .s-badge.wait { background: #fef3c7; color: #92400e; }
 .s-badge.none { background: #eceff1; color: #607d8b; }
-.s-link { display: inline-block; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 12.5px; font-weight: 600; background: #1e5b9c; color: white; }
-.s-link:hover { background: #14497f; }
+.s-link { display: inline-block; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 12.5px; font-weight: 600; background: #2e7d32; color: white; }
+.s-link:hover { background: #1b5e20; }
 .s-warning { background: #fef3c7; border-right: 4px solid #d97706; color: #78350f; padding: 14px 18px; border-radius: 10px; margin-bottom: 24px; font-size: 13.5px; line-height: 1.9; }
 .s-empty { padding: 40px 20px; text-align: center; color: #90a4ae; }
 @media (max-width: 700px) { .s-table { font-size: 12px; } .s-table th, .s-table td { padding: 8px 10px; } .s-table .hide-sm { display: none; } }
 </style>
+@include('partials.pwa')
 </head>
 <body>
 <div class="s-header">

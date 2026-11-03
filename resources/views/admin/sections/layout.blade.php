@@ -61,8 +61,8 @@ font-size:14px;
 
 .sidebar-menu a:hover,
 .sidebar-menu a.active{
-background:#e3f2fd;
-color:#1565c0;
+background:#e8f5e9;
+color:#2e7d32;
 font-weight:bold;
 }
 
@@ -125,7 +125,7 @@ transform:translateY(-3px);
 display:block;
 font-size:32px;
 font-weight:bold;
-color:#1565c0;
+color:#2e7d32;
 }
 
 
@@ -152,7 +152,7 @@ background:white;
 
 
 th{
-background:#e3f2fd;
+background:#e8f5e9;
 padding:12px;
 }
 
@@ -164,7 +164,7 @@ border-bottom:1px solid #eee;
 
 
 .btn{
-background:#1565c0;
+background:#2e7d32;
 color:white;
 padding:8px 15px;
 border-radius:8px;
@@ -192,7 +192,8 @@ padding:15px;
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/mobile-admin.css') }}?v=1">
+</head>
 
 <body>
 
@@ -251,6 +252,12 @@ padding:15px;
 </a>
 </li>
 
+
+<li>
+<a href="{{ route('profile.password.edit') }}">
+🔑 تغییر رمز
+</a>
+</li>
 
 <li>
 <a href="/logout">

@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: linear-gradient(135deg, #0d2e4f, #1565c0);
+            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
             color: white;
             min-height: 100vh;
             display: flex;
@@ -58,7 +58,7 @@
         }
         .err-btn-primary {
             background: #ffd54f;
-            color: #0d2e4f;
+            color: #0d3b2e;
         }
         .err-btn-primary:hover {
             background: #ffb300;

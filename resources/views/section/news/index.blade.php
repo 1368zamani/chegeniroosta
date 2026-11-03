@@ -10,7 +10,7 @@
     <title>اخبار و اطلاعیه‌ها | {{ $section->name }}</title>
     <meta name="description" content="آخرین اخبار و اطلاعیه‌های بخش {{ $section->name }}">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0d2e4f">
+    <meta name="theme-color" content="#0d3b2e">
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f0f3f7; color: #263238; line-height: 1.8; }
@@ -29,18 +29,18 @@
 
         .box { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(13,46,79,0.06); margin-bottom: 20px; overflow: hidden; }
         .box-header { padding: 14px 18px; border-bottom: 2px solid #eceff1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .box-header h3 { margin: 0; color: #0d2e4f; font-size: 15px; font-weight: 800; }
+        .box-header h3 { margin: 0; color: #0d3b2e; font-size: 15px; font-weight: 800; }
         .box-header .line { width: 40px; height: 3px; background: #ffd54f; border-radius: 2px; }
         .box-body { padding: 18px; }
 
         .news-list-item { padding: 16px 0; border-bottom: 1px solid #eceff1; }
         .news-list-item:last-child { border-bottom: none; }
         .news-list-item h4 { margin: 0 0 6px; font-size: 15px; line-height: 1.6; }
-        .news-list-item h4 a { color: #0d2e4f; text-decoration: none; }
-        .news-list-item h4 a:hover { color: #1565c0; }
+        .news-list-item h4 a { color: #0d3b2e; text-decoration: none; }
+        .news-list-item h4 a:hover { color: #2e7d32; }
         .news-list-item .meta { font-size: 11.5px; color: #90a4ae; margin-bottom: 8px; }
         .news-list-item p { margin: 0; color: #546e7a; font-size: 13px; line-height: 1.9; }
-        .pin-badge { display: inline-block; background: #ffd54f; color: #0d2e4f; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 700; }
+        .pin-badge { display: inline-block; background: #ffd54f; color: #0d3b2e; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 700; }
 
         .pagination-wrap { text-align: center; padding: 20px 0; }
         .pagination-wrap nav { display: inline-block; }
@@ -49,7 +49,7 @@
         .quick-links li { border-bottom: 1px solid #f0f3f7; }
         .quick-links li:last-child { border-bottom: none; }
         .quick-links a { display: block; padding: 10px 14px; color: #37474f; text-decoration: none; font-size: 13px; }
-        .quick-links a:hover { background: #f5f7fa; color: #1565c0; }
+        .quick-links a:hover { background: #f5f7fa; color: #2e7d32; }
 
         @media (max-width: 900px) {
             .two-columns { grid-template-columns: 1fr; }
@@ -485,7 +485,7 @@ a[href^="tel:"] {
 
         .news-list-item { transition: all .25s ease; }
         .news-list-item:hover {
-            background: #0d2e4f !important;
+            background: #0d3b2e !important;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(13,46,79,0.3);
         }
@@ -497,7 +497,7 @@ a[href^="tel:"] {
         <style>
         /* ============ NEWS-CARD-DARK-2026 ============ */
         .news-list-item {
-            background: #0d2e4f !important;
+            background: #0d3b2e !important;
             border-radius: 10px !important;
             padding: 14px 16px !important;
             margin-bottom: 10px !important;
@@ -510,12 +510,13 @@ a[href^="tel:"] {
             -webkit-text-fill-color: #ffffff !important;
         }
         .news-list-item h4 a:hover { color: #ffd54f !important; }
-        .news-list-item:hover { background: #124a80 !important; }
+        .news-list-item:hover { background: #14432f !important; }
         /* ============ END ============ */
         </style>
         </style>
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+@include('partials.pwa')
 </head>
 <body>
 
@@ -539,7 +540,7 @@ a[href^="tel:"] {
                                     @endif
                                     <a href="{{ route('section.news.show', $item->slug) }}">{{ $item->title }}</a>
                                 </h4>
-                                <div class="meta">🗓 {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}</div>
+                                <div class="meta">🗓 {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }} · 👁 {{ \App\Support\Number::fa(number_format($item->stat_views)) }} بازدید</div>
                                 <p>{{ Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->content), 200) }}</p>
                             </div>
                         @endforeach
