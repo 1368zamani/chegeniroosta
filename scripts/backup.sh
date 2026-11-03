@@ -2,7 +2,7 @@
 
 set -e
 
-PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 BACKUP_DIR="$PROJECT_DIR/backups"
 DATE="$(date +%Y%m%d_%H%M%S)"
 

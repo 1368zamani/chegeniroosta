@@ -1,58 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div dir="rtl">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# چگنی‌روستا — سامانهٔ اطلاع‌رسانی روستایی شهرستان چگنی
 
-## About Laravel
+سامانهٔ رسمی معرفی و اطلاع‌رسانی بخش‌ها و روستاهای شهرستان چگنی (استان لرستان).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+یک اپلیکیشن Laravel که به‌صورت **چندبخشی (multi-tenant)** روی یک کدبیس و یک دیتابیس اجرا می‌شود: هر بخش و هر روستا نشانی اختصاصی خود را دارد و محتوایش با `section_id` و `village_id` تفکیک می‌شود.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| موضوع | مقدار |
+| --- | --- |
+| دامنهٔ اصلی | `https://chegeniroosta.ir` |
+| بخش‌ها | `visian` · `markazi` · `shahivand` (هرکدام روی زیردامنهٔ خودش) |
+| روستاها | زیردامنهٔ اختصاصی هر روستا روی `*.chegeniroosta.ir` |
+| پنل مدیریت مرکزی | `/admin` |
+| پنل کارشناسان تعرفه | `/expert` و `/tariff-officer` |
+| API | `/api/v1` |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## هستهٔ فناوری
 
-## Learning Laravel
+- PHP `^8.3` و Laravel `^13.17`
+- Blade + Vite + Tailwind CSS
+- دیتابیس: SQLite (پیش‌فرض `.env.example`) یا MySQL/MariaDB
+- `morilog/jalali` برای تاریخ شمسی و `barryvdh/laravel-dompdf` برای PDF صورتحساب
+- تست: PHPUnit 12 · فرمت کد: Laravel Pint
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## قابلیت‌ها
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **پورتال هر بخش**: صفحهٔ اصلی، اخبار و مطالب بخش، گالری، شورای بخش، معرفی بخشدار، درخواست‌های مردمی و آمار بازدید
+- **پورتال هر روستا**: خبر، رویداد، اماکن و جاذبه‌ها، شورا و مصوبات، دهیاری، محصولات، دانلودها، گالری تصاویر و اطلاعات تماس
+- **سامانهٔ تعرفه و عوارض**: مجموعه‌های تعرفه، اقلام و پارامترها، محاسبه‌گرها (املاک، کسب‌وکار، نوسازی، مادهٔ ۹۹، …)، صورتحساب و اقساط، معافیت‌ها، رسید پرداخت، گردش کار تأیید (کارشناس مالی و فنی)، خروجی PDF و فرم‌های چاپی
+- **پنل‌های مدیریت**: مدیریت مرکزی، بخش‌ها، روستاها و کارشناسان
+- **SEO**: `sitemap.xml`، `sitemap-news.xml`، sitemap روستاها و `feed.xml`
+- **API نسخهٔ ۱**: بخش‌ها، روستاها، اخبار، جستجو و آمار
+- **آمار بازدید محتوا** به‌صورت روزانه (`content_stats` / `content_stat_daily`)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## راه‌اندازی محلی
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+npm install
+npm run build
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+شناسایی بخش و روستا روی زیردامنه انجام می‌شود و دامنهٔ پایه از `APP_BASE_DOMAIN` خوانده می‌شود؛ برای محیط محلی:
 
-## Contributing
+```env
+APP_BASE_DOMAIN=localhost
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+سپس پورتال بخش‌ها با نشانی‌هایی مثل `http://visian.localhost:8000` باز می‌شود.
 
-## Code of Conduct
+## تست و کیفیت کد
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer test                 # پاک‌سازی کش کانفیگ و اجرای تست‌ها
+php artisan test
+./vendor/bin/pint --test
+```
 
-## Security Vulnerabilities
+## ساختار پروژه
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+app/
+  Console/Commands/   دستورات نگهداری (پشتیبان‌گیری، ورود داده‌ها، رمز ادمین‌ها)
+  Helpers/            jalali.php (تاریخ شمسی) و settings.php (تابع setting())
+  Http/Controllers/   کنترل‌رها، تفکیک‌شده بر اساس پنل (Admin, VillageAdmin, Expert, Public, Api)
+  Http/Middleware/    تشخیص بخش/روستا و کنترل دسترسی
+  Models/             مدل‌های دامنه (بخش، روستا، محتوا، تعرفه، کاربر، آمار)
+  Services/Tariff/    منطق تعرفه، اقساط و محاسبه‌گرها
+  Support/            ابزارهای کمکی (تبدیل اعداد، سیاست رمز عبور)
+docs/                 معماری، استقرار و راهنمای اسکریپت‌ها
+scripts/              اسکریپت‌های عملیاتی (پشتیبان‌گیری، پایش، آدیت)
+```
 
-## License
+جزئیات کامل در [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## مستندات
+
+- [معماری و نقشهٔ کد](docs/ARCHITECTURE.md)
+- [راهنمای استقرار](docs/DEPLOYMENT.md)
+- [اسکریپت‌های عملیاتی](docs/SCRIPTS.md)
+
+## بدهی فنی شناخته‌شده
+
+- میان‌افزار `fee-officer` در `bootstrap/app.php` به کلاس ناموجود `App\Http\Middleware\FeeOfficerScope` اشاره می‌کند؛ کلاس موجود `RequireTariffOfficerMode` است. تا وقتی هیچ مسیری از این نام مستعار استفاده نکند خطایی رخ نمی‌دهد.
+- یک مایگریشن با پسوند `.disabled` در `database/migrations` نگه داشته شده است.
+- `routes/web.php` حدود ۱۱۰۰ خط است و نامزد تفکیک به فایل‌های کوچک‌تر بر اساس پنل است.
+- `.env.example` هنوز مقادیر پیش‌فرض اسکلت لاراول را دارد (`APP_NAME=Laravel`، `APP_LOCALE=en`).
+- چند اسکریپت PHP یک‌بارمصرف در ریشهٔ پروژه باقی مانده‌اند؛ بهتر است به دستورات artisan تبدیل شوند.
+
+</div>
