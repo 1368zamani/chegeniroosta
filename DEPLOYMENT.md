@@ -86,7 +86,5 @@ sudo bash /var/www/chegeniroosta/scripts/deploy.sh <branch>
 2. **Cache و Session روی Redis** هستند (دیتابیس‌های ۳ و ۴). دیتابیس ۰ و ۱ برای بقیهٔ پروژه‌ها آزاد است. `QUEUE_CONNECTION` عمداً روی `database` مانده است.
 3. **کد زنده باید همیشه با گیت یکی باشد.** اگر روی سرور تغییری دادید، همان روز کامیت و پوش کنید.
 4. **بکاپ روزانه** ساعت ۳:۳۰ در `/root/backups-comprehensive` و ساعت ۴:۰۰ به گوگل‌درایو منتقل می‌شود (`/var/log/comprehensive-backup.log` و `/var/log/offsite-backup.log`).
-5. **تست‌ها** با SQLite حافظه‌ای اجرا می‌شوند و به دیتابیس واقعی دست نمی‌زنند: `sudo -u www-data php artisan test`.
+5. **تست‌ها** فقط با SQLite حافظه‌ای اجرا می‌شوند: `sudo bash scripts/test.sh`. فایل `tests/TestCase.php` اگر محیط به هر دلیلی به دیتابیس واقعی اشاره کند، **قبل از بوت شدن برنامه** با خطا متوقف می‌شود؛ `phpunit.xml` هم مسیر کش کانفیگ/روت پرودکشن را دور می‌زند.
 6. فایل `.env` در گیت نیست؛ تغییرات آن را مستند کنید (`.env.example` مرجع است).
-
-> ?????????????: `sudo bash scripts/test.sh` (???????? ?????? ?????????????? ?????????? ???????? ?????????????????).
