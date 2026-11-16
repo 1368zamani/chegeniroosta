@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +56,7 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.site-animations')
 @include('partials.pwa')
+    <link rel="canonical" href="{{ url()->current() }}">
 </head>
 <body>
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])

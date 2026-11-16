@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -501,6 +501,7 @@ a[href^="tel:"] {
 <link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
 @include('partials.site-animations')
 @include('partials.pwa')
+    <link rel="canonical" href="{{ url()->current() }}">
 </head>
 <body>
 

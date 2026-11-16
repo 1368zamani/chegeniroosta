@@ -304,6 +304,13 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.village.downloads.index', $village->id) }}" class="{{ request()->routeIs('admin.village.downloads.*') ? 'active' : '' }}">📥 فایل‌های دانلود</a></li>
             <li><a href="{{ route('admin.village.products.index', $village->id) }}" class="{{ request()->routeIs('admin.village.products.*') ? 'active' : '' }}">🛒 محصولات روستا</a></li>
             <li><a href="{{ route('admin.village.images.index', $village->id) }}">🖼 گالری تصاویر</a></li>
+        
+            <li style="margin-top:15px; border-top:1px dashed #e0e0e0; padding-top:12px;">
+                <a href="{{ route('admin.village.guide', $village->id) }}" style="background: #fef3c7; color: #92400e; font-weight: 700;">
+                    📘 راهنمای پنل
+                </a>
+            </li>
+        
         </ul>
     </aside>
 

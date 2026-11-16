@@ -111,6 +111,22 @@
 
             <div class="row">
                 <div class="field">
+                    <label>تعداد جمعیت (فقط عدد)</label>
+                    <input type="number" name="population_count" value="{{ old('population_count', $section->population_count) }}" dir="ltr">
+                </div>
+                <div class="field">
+                    <label>امکانات بخش (هر مورد در یک خط)</label>
+                    <textarea name="facilities" rows="4">{{ old('facilities', $section->facilities) }}</textarea>
+                </div>
+            </div>
+            <div class="field">
+                <label>مکان‌های تاریخی و زیارتی (هر مورد در یک خط)</label>
+                <textarea name="historical_sites" rows="4">{{ old('historical_sites', $section->historical_sites) }}</textarea>
+            </div>
+
+
+            <div class="row">
+                <div class="field">
                     <label>آدرس</label>
                     <input type="text" name="address" value="{{ old('address', $section->address) }}">
                 </div>
@@ -206,6 +222,42 @@
                 @endif
             </div>
         </div>
+    </div>
+
+
+    {{-- فرم آپلود عکس هدر --}}
+    <div class="card">
+        <h2>🖼 عکس هدر سایت</h2>
+        <div class="photo-preview" style="flex-direction: column; align-items: flex-start;">
+            @if($section->cover_image)
+                <img src="{{ asset('storage/' . $section->cover_image) }}" alt="" style="width: 100%; max-width: 600px; height: auto; border-radius: 10px; object-fit: cover;">
+            @else
+                <div style="width: 100%; max-width: 600px; height: 200px; background: #cfd8dc; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #90a4ae; border-radius: 10px;">بدون عکس</div>
+            @endif
+            <div class="photo-actions" style="margin-top: 15px;">
+                <form method="POST" action="{{ route('admin.sections.uploadCover', $section->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="cover_image" accept="image/*" class="file-input" required>
+                    <div class="hint">فرمت JPG یا PNG — حداکثر ۵ مگابایت</div>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px;">📤 آپلود عکس هدر</button>
+                </form>
+                @if($section->cover_image)
+                    <form method="POST" action="{{ route('admin.sections.deleteCover', $section->id) }}" onsubmit="return confirm('حذف عکس هدر؟');" style="margin-top:10px;">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="btn btn-danger">🗑 حذف عکس هدر</button>
+                    </form>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    {{-- دکمه مدیریت همکاران --}}
+    <div class="card" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <h2 style="margin:0; border:none; padding:0;">👥 کارکنان بخشداری</h2>
+            <p style="color:#78909c; font-size:13px; margin:5px 0 0;">مدیریت لیست همکاران، سمت‌ها و شماره تماس‌ها</p>
+        </div>
+        <a href="{{ route('admin.sections.staff.index', $section->id) }}" class="btn btn-primary">مدیریت همکاران ←</a>
     </div>
 
 </div>

@@ -221,6 +221,12 @@ padding:15px;
 <a href="{{ url('/admin/sections/'.$section->id.'/villages') }}">
 🏘 روستاهای بخش
 </a>
+
+<li>
+<a href="{{ url('/admin/sections/'.$section->id.'/council') }}">
+👥 شورای بخش
+</a>
+</li>
 </li>
 
 

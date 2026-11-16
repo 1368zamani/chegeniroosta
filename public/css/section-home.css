@@ -1,0 +1,144 @@
+
+
+/* ===== Section Home Styles ===== */
+
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f0f3f7; color: #263238; line-height: 1.8; }
+        .s-container { max-width: 1200px; margin: auto; padding: 0 15px; }
+        .two-columns { display: grid; grid-template-columns: 1fr 320px; gap: 24px; padding-bottom: 40px; }
+        .box { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(13,46,79,0.06); margin-bottom: 20px; overflow: hidden; }
+        .box-header { padding: 14px 18px; border-bottom: 2px solid #eceff1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .box-header h3 { margin: 0; color: #0d3b2e; font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .box-header .line { width: 40px; height: 3px; background: #ffd54f; border-radius: 2px; }
+        .box-body { padding: 18px; }
+
+        /* اخبار */
+        .news-list-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #eceff1; align-items: flex-start; }
+        .news-list-item:last-child { border-bottom: none; }
+        .news-thumb { width: 110px; height: 110px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #f0f3f7; display: flex; align-items: center; justify-content: center; }
+        .news-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .news-thumb-empty { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8f5e9, #f0f3f7); color: #90a4ae; font-size: 32px; }
+        .news-content { flex: 1; min-width: 0; }
+        .news-list-item h4 { margin: 0 0 6px; font-size: 15px; line-height: 1.6; }
+        .news-list-item h4 a { color: #0d3b2e; text-decoration: none; }
+        .news-list-item h4 a:hover { color: #2e7d32; }
+        .news-list-item .meta { font-size: 11.5px; color: #90a4ae; margin-bottom: 8px; }
+        .news-list-item p { margin: 0; color: #546e7a; font-size: 13px; line-height: 1.9; }
+        .pin-badge { display: inline-block; background: #ffd54f; color: #0d3b2e; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 700; }
+
+        /* کارت بخشدار */
+        .bakhshdar-side-card { text-align: center; padding: 22px 16px; }
+        .bakhshdar-side-card .photo { width: 100%; max-width: 220px; height: 220px; border-radius: 12px; object-fit: cover; border: 3px solid #ffd54f; box-shadow: 0 8px 25px rgba(255,213,79,0.4); display: block; margin: 0 auto 14px; }
+        .bakhshdar-side-card .photo-ph { width: 100%; max-width: 220px; height: 220px; border-radius: 12px; background: linear-gradient(135deg, #e8f5e9, #f5f7fa); display: flex; align-items: center; justify-content: center; font-size: 80px; color: #90a4ae; margin: 0 auto 14px; border: 3px solid #ffd54f; box-shadow: 0 8px 25px rgba(255,213,79,0.3); }
+        .bakhshdar-side-card .label { display: inline-block; font-size: 11px; background: #0d3b2e; color: #ffd54f; padding: 3px 14px; border-radius: 14px; margin-bottom: 10px; font-weight: 700; }
+        .bakhshdar-side-card h4 { margin: 0 0 4px; color: #0d3b2e; font-size: 17px; font-weight: 800; }
+        .bakhshdar-side-card .role { font-size: 12.5px; color: #78909c; margin: 0 0 16px; }
+        .bakhshdar-side-card .btn { display: inline-block; background: #0d3b2e; color: #fff; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+        .bakhshdar-side-card .btn:hover { background: #ffd54f; color: #0d3b2e; transform: translateY(-2px); }
+
+        /* لیست روستاها */
+        .villages-side-list { list-style: none; margin: 0; padding: 0; max-height: 400px; overflow-y: auto; }
+        .villages-side-list li { border-bottom: 1px solid #f0f3f7; }
+        .villages-side-list li:last-child { border-bottom: none; }
+        .village-item-link { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; color: #37474f; text-decoration: none; font-size: 13.5px; transition: all 0.2s; gap: 10px; position: relative; }
+        .village-item-link:hover { background: linear-gradient(90deg, #f1f8e9 0%, #f5f7fa 100%); padding-right: 18px; }
+        .village-name-text { font-weight: 700; color: #0d3b2e; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .village-item-link:hover .village-name-text { color: #2e7d32; }
+        .village-enter-text { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: #2e7d32; background: #e8f5e9; padding: 4px 10px; border-radius: 12px; font-weight: 600; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; }
+        .village-item-link:hover .village-enter-text { background: #2e7d32; color: white; }
+        .empty-note { color: #90a4ae; text-align: center; padding: 24px 0; font-size: 13px; }
+
+        @media (max-width: 900px) { .two-columns { grid-template-columns: 1fr; } }
+    
+
+        /* =========================================
+           MOBILE RESPONSIVE & ROUNDED CORNERS
+           ========================================= */
+        
+        /* گرد کردن تمام قاب‌های اصلی */
+        .box, .bakhshdar-side-card, .section-request-box, 
+        div[style*="border-radius: 12px"] {
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+        }
+
+        /* اصلاح فاصله‌ها و گریدها در موبایل */
+        @media (max-width: 768px) {
+            .s-container {
+                padding: 0 10px !important;
+            }
+            .box-header {
+                padding: 15px !important;
+            }
+            .box-header h3 {
+                font-size: 14px !important;
+            }
+            .box-body {
+                padding: 15px !important;
+            }
+            
+            /* نمایش اخبار به صورت تمام عرض و ستونی در موبایل */
+            .news-list-item {
+                flex-direction: column !important;
+                gap: 10px !important;
+                padding: 12px 0 !important;
+            }
+            .news-thumb {
+                width: 100% !important;
+                height: 140px !important;
+                border-radius: 12px !important;
+            }
+            .news-list-item h4 {
+                font-size: 14px !important;
+            }
+            
+            /* اصلاح تصویر بخشدار در موبایل */
+            .bakhshdar-side-card .photo, 
+            .bakhshdar-side-card .photo-ph {
+                max-width: 160px !important;
+                height: 160px !important;
+            }
+            
+            /* نمایش کارکنان به صورت دو ستونی در موبایل */
+            .staff-grid, div[style*="grid-template-columns: repeat(auto-fill, minmax(200px"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+            }
+            .staff-grid > div, div[style*="text-align: center; background: #fff"] {
+                padding: 12px 8px !important;
+            }
+            .staff-grid img, .staff-grid div[style*="width: 100px"] {
+                width: 70px !important;
+                height: 70px !important;
+            }
+            .staff-grid div[style*="font-weight: 800"] {
+                font-size: 13px !important;
+            }
+            .staff-grid div[style*="font-size: 13px"] {
+                font-size: 11px !important;
+            }
+            .staff-grid a[href^="tel:"] {
+                font-size: 11px !important;
+                padding: 6px 10px !important;
+            }
+
+            /* اصلاح باکس معرفی بخش و رنگ‌های آن در موبایل */
+            div[style*="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px"] {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+            
+            /* اصلاح باکس جمعیت */
+            div[style*="font-size: 50px"] {
+                font-size: 36px !important;
+            }
+        }
+
+        /* برای موبایل‌های خیلی کوچک */
+        @media (max-width: 400px) {
+            .staff-grid, div[style*="grid-template-columns: repeat(auto-fill, minmax(200px"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    

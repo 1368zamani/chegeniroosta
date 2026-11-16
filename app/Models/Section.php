@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Section extends Model
 {
+    public function staffs()
+    {
+        return $this->hasMany(SectionStaff::class)->orderBy("sort_order");
+    }
+
     use HasStats;
 
     protected $fillable = [
+        'facilities', 'historical_sites', 'population_count',
         'name',
         'slug',
         'subdomain',

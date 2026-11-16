@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -523,6 +523,7 @@ a[href^="tel:"] {
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.pwa')
+    <link rel="canonical" href="{{ url()->current() }}">
 </head>
 <body>
 
@@ -612,8 +613,8 @@ a[href^="tel:"] {
         .news-list-item h4, .news-list-item h4 a, .news-list-item p,
         .news-list-item span, .news-list-item .meta, .news-list-item .date,
         .news-list-item .news-content, .news-list-item .news-content * {
-            color: #ffffff !important;
-            -webkit-text-fill-color: #ffffff !important;
+            color: #333333 !important;
+            -webkit-text-fill-color: #333333 !important;
         }
         .news-list-item h4 a:hover { color: #ffd54f !important; }
         .news-list-item:hover { background: #14432f !important; }

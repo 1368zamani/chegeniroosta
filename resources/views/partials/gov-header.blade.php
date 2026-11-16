@@ -132,15 +132,6 @@
 /* ==================== هدر اصلی ==================== */
     
 
-    /* پس‌زمینه پل کشکان */
-    }');
-        background-size: cover;
-        background-position: center 40%;
-        background-repeat: no-repeat;
-        opacity: 0.45;
-        z-index: 0;
-        pointer-events: none;
-    }
 
     /* گرادیان محوکننده */
     
@@ -2245,3 +2236,7 @@ h1.gov-main-title span[style*="D32F2F"] {
     font-size: 1.4em !important;
 }
 </style>
+
+
+    
+    

@@ -31,6 +31,13 @@ class SettingsController extends Controller
 
         // اطلاعات پایه
         $baseData = $request->validate([
+            'name'           => 'nullable|string|max:255',
+            'province'       => 'nullable|string|max:100',
+            'county'         => 'nullable|string|max:100',
+            'section'        => 'nullable|string|max:100',
+            'district'       => 'nullable|string|max:100',
+            'households'     => 'nullable|string|max:50',
+            'population'     => 'nullable|string|max:50',
             'welcome_text'   => 'nullable|string',
             'history_text'   => 'nullable|string',
             'naming_story'   => 'nullable|string',

@@ -48,6 +48,9 @@ class AdminSectionController extends Controller
             'county'            => 'nullable|string|max:100',
             'province'          => 'nullable|string|max:100',
             'description'       => 'nullable|string',
+            'facilities'        => 'nullable|string',
+            'historical_sites'  => 'nullable|string',
+            'population_count'  => 'nullable|integer',
             'address'           => 'nullable|string|max:500',
             'phone'             => 'nullable|string|max:50',
             'email'             => 'nullable|email|max:100',
@@ -122,4 +125,36 @@ class AdminSectionController extends Controller
         return redirect()->route('admin.sections.edit', $section->id)
             ->with('success', 'عکس بخشدار حذف شد.');
     }
+
+    public function uploadCover(Request $request, $id)
+    {
+        $section = Section::findOrFail($id);
+        
+        $request->validate(['cover_image' => 'required|image|max:5120']);
+        
+        if ($section->cover_image && Storage::disk('public')->exists($section->cover_image)) {
+            Storage::disk('public')->delete($section->cover_image);
+        }
+        
+        $path = $request->file('cover_image')->store('sections/covers', 'public');
+        $section->cover_image = $path;
+        $section->save();
+        
+        return redirect()->route('admin.sections.edit', $section->id)->with('success', 'عکس هدر با موفقیت آپلود شد.');
+    }
+
+    public function deleteCover($id)
+    {
+        $section = Section::findOrFail($id);
+        
+        if ($section->cover_image && Storage::disk('public')->exists($section->cover_image)) {
+            Storage::disk('public')->delete($section->cover_image);
+        }
+        
+        $section->cover_image = null;
+        $section->save();
+        
+        return redirect()->route('admin.sections.edit', $section->id)->with('success', 'عکس هدر حذف شد.');
+    }
+
 }

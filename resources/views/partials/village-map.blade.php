@@ -236,14 +236,6 @@
              */
             var PROVIDERS = [
                 {
-                    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
-                    options: {
-                        maxZoom: 19,
-                        subdomains: ['a', 'b', 'c'],
-                        attribution: '© OpenStreetMap · © CARTO'
-                    }
-                },
-                {
                     url: 'https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png',
                     options: {
                         maxZoom: 19,

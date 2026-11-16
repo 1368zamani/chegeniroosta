@@ -95,6 +95,7 @@ Route::middleware('village')->group(function () {
 |--------------------------------------------------------------------------
 */
 
+
 Route::middleware('auth')->prefix('admin')->group(function () {
 
     // ═══ ماژول عوارض و بهای خدمات ═══
@@ -234,6 +235,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/sections/{id}/edit', [\App\Http\Controllers\AdminSectionController::class, 'edit'])
         ->name('admin.sections.edit');
+
+    // عکس هدر
+    Route::post('sections/{id}/upload-cover', [\App\Http\Controllers\AdminSectionController::class, 'uploadCover'])->name('admin.sections.uploadCover');
+    Route::delete('sections/{id}/delete-cover', [\App\Http\Controllers\AdminSectionController::class, 'deleteCover'])->name('admin.sections.deleteCover');
+
+    // مدیریت همکاران
+    Route::resource('sections/{section}/staff', \App\Http\Controllers\AdminSectionStaffController::class)->names('admin.sections.staff');
+
 
     Route::put('/sections/{id}', [\App\Http\Controllers\AdminSectionController::class, 'update'])
         ->name('admin.sections.update');
@@ -533,6 +542,11 @@ Route::get('/village/{slug}', [\App\Http\Controllers\PublicVillageController::cl
 */
 
 Route::middleware(['auth', 'village-access'])->prefix('admin/village/{village}')->group(function () {
+    // 📘 راهنمای پنل
+    Route::get('/guide', function (\App\Models\Village $village) {
+        return view('admin.village.guide.index', compact('village'));
+    })->name('admin.village.guide');
+
 
     // مصوبات شورای اسلامی
     Route::get('/resolutions', [\App\Http\Controllers\VillageAdmin\ResolutionController::class, 'index'])

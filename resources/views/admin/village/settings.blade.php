@@ -294,6 +294,51 @@ input:focus, select:focus, textarea:focus {
         </div>
     </div>
 
+
+    <div class="card">
+        <h3>🏘 اطلاعات جغرافیایی و جمعیتی روستا</h3>
+        <p style="color:#546e7a; font-size:13px; margin:0 0 16px;">اطلاعات پایه روستا که در صفحه اصلی سایت نمایش داده می‌شود.</p>
+
+        <div class="row-2">
+            <div class="field">
+                <label>نام روستا *</label>
+                <input type="text" name="name" value="{{ old('name', $village->name) }}" required>
+            </div>
+            <div class="field">
+                <label>استان</label>
+                <input type="text" name="province" value="{{ old('province', $village->province) }}">
+            </div>
+        </div>
+
+        <div class="row-2">
+            <div class="field">
+                <label>شهرستان</label>
+                <input type="text" name="county" value="{{ old('county', $village->county) }}">
+            </div>
+            <div class="field">
+                <label>بخش</label>
+                <input type="text" name="section" value="{{ old('section', $village->section) }}">
+            </div>
+        </div>
+
+        <div class="row-2">
+            <div class="field">
+                <label>دهستان</label>
+                <input type="text" name="district" value="{{ old('district', $village->district) }}">
+            </div>
+            <div class="field">
+                <label>تعداد خانوار</label>
+                <input type="number" name="households" value="{{ old('households', $village->households) }}" dir="ltr" placeholder="مثال: 38">
+            </div>
+        </div>
+
+        <div class="field">
+            <label>جمعیت روستا (نفر)</label>
+            <input type="number" name="population" value="{{ old('population', $village->population) }}" dir="ltr" placeholder="مثال: 111">
+            <small style="color:#64748b; font-size:12px;">این عدد در کارت‌های اطلاعاتی سایت نمایش داده می‌شود.</small>
+        </div>
+    </div>
+
     <div class="card">
         <h3>📞 اطلاعات تماس و دهیاری</h3>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,36 @@
     @yield('head')
 @include('partials.site-animations')
 @include('partials.pwa')
+
+    <style>
+        /* =========================================
+           MOBILE RESPONSIVE FOR VILLAGE PAGES
+           ========================================= */
+        @media (max-width: 768px) {
+            /* گرد کردن تمام قاب‌ها و کارت‌ها در صفحات روستا */
+            .box, .card, .profile-card, [class*="card"], [class*="box"] {
+                border-radius: 16px !important;
+                overflow: hidden !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+            }
+            .s-container, .container {
+                padding: 0 10px !important;
+            }
+            /* اصلاح منوها و تصاویر در موبایل */
+            img { max-width: 100% !important; height: auto !important; }
+            .profile-photo, .profile-photo-placeholder {
+                width: 140px !important; height: 140px !important;
+            }
+        }
+    </style>
+    
+
+    
+
+
+    
+
+    <link rel="canonical" href="{{ url()->current() }}">
 </head>
 <body class="bg-gray-50 font-sans">
 
