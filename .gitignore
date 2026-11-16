@@ -14,7 +14,7 @@ storage/framework/views/*
 *.bak-*
 *.backup
 *.backup-*
-routes/web.php.before-dedup-*
+routes/web.php.before-*
 routes/web.php.bak-*
 routes/web.php.backup-*
 
@@ -31,7 +31,7 @@ storage/logs/*
 storage/framework/cache/*
 storage/framework/sessions/*
 storage/framework/views/*
-routes/web.php.before-dedup-*
+routes/web.php.before-*
 routes/web.php.bak-*
 routes/web.php.backup-*
 *.sqlite
