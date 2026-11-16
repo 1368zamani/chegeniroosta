@@ -8,11 +8,13 @@ chegeniroosta.ir
 
 admin.chegeniroosta.ir
 
-## زیردامنه روستاها
+## روستاها
 
-sabzevar.chegeniroosta.ir
-cham-divan.chegeniroosta.ir
-abuzar.chegeniroosta.ir
+روستاها زیردامنه ندارند و هرکدام از مسیر یکتای زیر دامنهٔ اصلی در دسترس‌اند:
+
+/village/{slug}
+
+زیردامنه‌های قدیمی (sabzevar / cham-divan / abuzar) با ۳۰۱ به همین مسیر هدایت می‌شوند.
 
 ## Wildcard DNS
 
@@ -34,7 +36,7 @@ SSL Let's Encrypt
 
 یک Database
 
-هر روستا با village_id و subdomain از سایر روستاها تفکیک می‌شود.
+هر روستا با village_id و slug یکتا از سایر روستاها تفکیک می‌شود و از مسیر /village/{slug} در دسترس است.
 
 ## DNS
 
@@ -48,7 +50,11 @@ Nginx باید درخواست‌های زیر را به یک Laravel Application
 
 chegeniroosta.ir
 admin.chegeniroosta.ir
-*.chegeniroosta.ir
+visian.chegeniroosta.ir
+markazi.chegeniroosta.ir
+shahivand.chegeniroosta.ir
+
+زیردامنه‌های روستاها (sabzevar / cham-divan / abuzar) فقط با ۳۰۱ به /village/{slug} هدایت می‌شوند.
 
 ## SSL
 
