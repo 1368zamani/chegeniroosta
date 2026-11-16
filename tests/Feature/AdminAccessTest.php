@@ -2,24 +2,58 @@
 
 namespace Tests\Feature;
 
+use App\Models\Section;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AdminAccessTest extends TestCase
 {
-    protected function setUp(): void
+    use RefreshDatabase;
+
+    public function test_guest_is_redirected_to_login(): void
     {
-        parent::setUp();
-        // از دیتابیس واقعی استفاده کن، نه in-memory
-        config(['database.default' => 'mysql']);
-        \DB::purge('mysql');
+        $section = $this->makeSection('بخش تست', 'test-section');
+
+        $this->get("/admin/sections/{$section->id}/edit")
+            ->assertRedirect('/login');
     }
 
-    public function test_section_manager_can_open_fee_categories(): void
+    public function test_section_admin_can_edit_only_their_own_section(): void
     {
-        $u = User::where('email', 'visian@chegeniroosta.ir')->firstOrFail();
+        $own = $this->makeSection('بخش خودم', 'own-section');
+        $other = $this->makeSection('بخش دیگر', 'other-section');
 
-        $res = $this->actingAs($u)->get('/admin/fees/categories');
-        $res->assertStatus(200);
+        $user = User::factory()->create([
+            'role' => 'section_admin',
+            'section_id' => $own->id,
+        ]);
+
+        $this->actingAs($user)
+            ->get("/admin/sections/{$own->id}/edit")
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->get("/admin/sections/{$other->id}/edit")
+            ->assertForbidden();
+    }
+
+    public function test_super_admin_can_edit_any_section(): void
+    {
+        $section = $this->makeSection('بخش سوپر', 'super-section');
+
+        $user = User::factory()->create(['role' => 'super_admin']);
+
+        $this->actingAs($user)
+            ->get("/admin/sections/{$section->id}/edit")
+            ->assertOk();
+    }
+
+    private function makeSection(string $name, string $slug): Section
+    {
+        return Section::create([
+            'name' => $name,
+            'slug' => $slug,
+        ]);
     }
 }

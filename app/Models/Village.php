@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasStats;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Village extends Model
 {
-    use HasStats;
+    use HasFactory, HasStats;
 
     protected $fillable = [
         'section_id',

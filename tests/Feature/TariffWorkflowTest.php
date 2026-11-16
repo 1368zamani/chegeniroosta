@@ -2,9 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\TariffSet;
 use App\Models\TariffTitle;
-use App\Models\User;
 use App\Models\Village;
 use App\Services\Tariff\TariffSetService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -41,12 +39,15 @@ class TariffWorkflowTest extends TestCase
 
     public function test_exceeds_inflation_throws_on_approve(): void
     {
+        $this->seedTariffTitle();
+
         $village = Village::factory()->create();
         $svc = app(TariffSetService::class);
         $set = $svc->createForVillage($village, 1405);
 
         // افزایش از تورم بیشتر
         $item = $set->items()->first();
+        $this->assertNotNull($item, 'seedEmptyItems باید یک آیتم از عناوین فعال بسازد.');
         $item->update(['increase_percent' => 100]); // تورم 40%
 
         $svc->propose($set);
@@ -63,5 +64,17 @@ class TariffWorkflowTest extends TestCase
 
         $set->update(['status' => 'finalized', 'locked_at' => now()]);
         $this->assertTrue($set->fresh()->isLocked());
+    }
+
+    private function seedTariffTitle(): TariffTitle
+    {
+        return TariffTitle::create([
+            'code' => 'TEST-01',
+            'type' => 'levy',
+            'name_fa' => 'عوارض تست',
+            'is_optional' => false,
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
     }
 }

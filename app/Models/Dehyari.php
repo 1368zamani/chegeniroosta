@@ -18,9 +18,16 @@ class Dehyari extends Model
     protected $casts = ['is_active' => 'boolean'];
 
     public function village(): BelongsTo { return $this->belongsTo(Village::class); }
-    public function tariffs(): HasMany { return $this->hasMany(FeeTariff::class); }
-    public function accounts(): HasMany { return $this->hasMany(PaymentAccount::class); }
-    public function bills(): HasMany { return $this->hasMany(Bill::class); }
+
+    public function tariffs(): HasMany
+    {
+        return $this->hasMany(TariffSet::class, 'village_id', 'village_id');
+    }
+
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(BankAccount::class, 'village_id', 'village_id');
+    }
 
     public function defaultAccount()
     {
