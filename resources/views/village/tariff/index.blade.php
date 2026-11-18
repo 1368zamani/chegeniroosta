@@ -17,16 +17,16 @@
             'title' => 'ساخت‌وساز جدید',
             'icon'  => '🏗',
             'desc'  => 'پروانه‌ی ساخت، زیربنا، تفکیک و الحاق',
-            'color' => '#1565c0',
-            'soft'  => '#e3f2fd',
+            'color' => '#27689f',
+            'soft'  => '#eaf2fa',
             'border'=> '#90caf9',
         ],
         'renovation' => [
             'title' => 'ساخت‌وساز تعمیری',
             'icon'  => '🔨',
             'desc'  => 'بازسازی، تمدید پروانه و تغییر کاربری',
-            'color' => '#e65100',
-            'soft'  => '#fff3e0',
+            'color' => '#a8730f',
+            'soft'  => '#fff7dc',
             'border'=> '#ffcc80',
         ],
     ];
@@ -66,7 +66,7 @@
     </div>
 
     @if($errors->any())
-        <div class="mb-5 p-4 rounded-xl text-sm" style="background:#ffebee;color:#8e2f18;border-right:4px solid #b3401f;">
+        <div class="mb-5 p-4 rounded-xl text-sm" style="background:#fdeceb;color:#8e2f18;border-right:4px solid #b3401f;">
             @foreach($errors->all() as $e)<div>• {{ $e }}</div>@endforeach
         </div>
     @endif
@@ -236,7 +236,7 @@
                                class="w-full border-2 border-gray-300 rounded-lg p-2.5 focus:border-emerald-500 focus:outline-none">
                     </div>
 
-                    <div class="rounded-lg p-3 mb-4 text-xs leading-relaxed" style="background:#fff3e6;color:#33691e;">
+                    <div class="rounded-lg p-3 mb-4 text-xs leading-relaxed" style="background:#fff3e6;color:#5c2313;">
                         با تأیید، فیش برای شما صادر می‌شود و شماره پیگیری دریافت می‌کنید.
                         پرداخت پس از تأیید کارشناس انجام می‌شود.
                     </div>
@@ -332,7 +332,7 @@
     function showSubTab(key) {
         subTabs.forEach(t => {
             const on = t.dataset.sub === key;
-            t.style.background = on ? '#1565c0' : '#f7f0e6';
+            t.style.background = on ? '#27689f' : '#f7f0e6';
             t.style.color = on ? '#fff' : '#6b5a4a';
         });
         subPanels.forEach(p => {
@@ -359,7 +359,7 @@
 
             const card = document.getElementById('card-' + id);
             if (card) {
-                card.style.borderColor = cb.checked ? '#c94a2b' : '#e0e0e0';
+                card.style.borderColor = cb.checked ? '#c94a2b' : '#e6d8c3';
                 card.style.background  = cb.checked ? '#fff3e6' : '#fff';
             }
 

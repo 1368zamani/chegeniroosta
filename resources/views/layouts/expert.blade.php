@@ -93,8 +93,8 @@
             font-weight: 600;
             color: var(--expert-dark);
         }
-        .badge-draft { background: #fdf1dc; color: #92400e; }
-        .badge-published { background: #d1fae5; color: #5c2313; }
+        .badge-draft { background: #fdf1dc; color: #a8730f; }
+        .badge-published { background: #fdeee7; color: #5c2313; }
         .badge-approved { background: #efe2d1; color: #6b5a4a; }
     </style>
     @stack('styles')

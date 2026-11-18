@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-icon" style="background: linear-gradient(135deg,#c94a2b,#047857);">
+            <div class="stat-icon" style="background: linear-gradient(135deg,#c94a2b,#c94a2b);">
                 <i class="bi bi-sliders"></i>
             </div>
             <div class="stat-value">{{ number_format($stats['total_parameters']) }}</div>
@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-icon" style="background: linear-gradient(135deg,#f59e0b,#b45309);">
+            <div class="stat-icon" style="background: linear-gradient(135deg,#f5b841,#b45309);">
                 <i class="bi bi-shield-check"></i>
             </div>
             <div class="stat-value">{{ number_format($stats['total_exemptions']) }}</div>
@@ -60,7 +60,7 @@
     </div>
     <div class="col-md-6">
         <div class="stat-card">
-            <div class="stat-icon" style="background: linear-gradient(135deg,#ef4444,#b91c1c);">
+            <div class="stat-icon" style="background: linear-gradient(135deg,#c0392b,#8c1d17);">
                 <i class="bi bi-people"></i>
             </div>
             <div class="stat-value">{{ number_format($stats['total_users']) }}</div>

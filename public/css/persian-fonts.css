@@ -32,11 +32,11 @@
 
     /* ── رنگ‌های وضعیت ── */
     --state-success: #c94a2b;         /* موفق / پاسخ داده شده */
-    --state-success-soft: #d1fae5;
-    --state-warning: #f59e0b;         /* در انتظار */
+    --state-success-soft: #fdeee7;
+    --state-warning: #f5b841;         /* در انتظار */
     --state-warning-soft: #fdf1dc;
     --state-danger: #b3401f;          /* خطا / رد شده */
-    --state-danger-soft: #fee2e2;
+    --state-danger-soft: #fdeceb;
     --state-neutral: #6b5a4a;         /* عادی / ثبت شده */
     --state-neutral-soft: #efe2d1;
 
@@ -118,7 +118,7 @@ h1.gov-main-title,
     padding: 12px 4px !important;
     margin: 0 0 8px 0 !important;
     letter-spacing: 0 !important;
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(21, 101, 192, 0.15) !important;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(39,104,159, 0.15) !important;
 }
 
 @media (max-width: 700px) {

@@ -7,9 +7,9 @@
     --green-dark:  #5c2313;
     --green-mid:   #5c2313;
     --green-light: #c94a2b;
-    --green-soft:  #d1fae5;
-    --green-pale:  #f0fdf4;
-    --text-dark:   #0a2a20;
+    --green-soft:  #fdeee7;
+    --green-pale:  #fff7e9;
+    --text-dark:   #5c2313;
     --text-light:  #ffffff;
 }
 
@@ -27,7 +27,7 @@ header,
 .main-header,
 header.gov-header {
     background: var(--green-dark) !important;
-    background-image: linear-gradient(135deg, #5c2313 0%, #0a2a20 100%) !important;
+    background-image: linear-gradient(135deg, #5c2313 0%, #5c2313 100%) !important;
     border-bottom: 3px solid var(--green-light) !important;
     color: #fff !important;
 }
@@ -39,7 +39,7 @@ footer,
 footer.gov-footer,
 .gov-footer-main {
     background: var(--green-dark) !important;
-    background-image: linear-gradient(135deg, #5c2313 0%, #0a2a20 100%) !important;
+    background-image: linear-gradient(135deg, #5c2313 0%, #5c2313 100%) !important;
     border-top: 4px solid var(--green-light) !important;
     color: #fff !important;
 }
@@ -47,7 +47,7 @@ footer.gov-footer,
 .s-footer-bottom {
     background: rgba(0,0,0,0.25) !important;
     border-top: 1px solid rgba(16,185,129,0.3) !important;
-    color: #d1fae5 !important;
+    color: #fdeee7 !important;
 }
 
 /* نوار ناوبری */
@@ -161,7 +161,7 @@ header a, footer a, nav a, .gov-header a, .gov-footer a {
 
 /* ═══ ۶. فرم‌ها ═══ */
 input, select, textarea {
-    border: 1px solid #a7d8c0 !important;
+    border: 1px solid #fbdcd0 !important;
     border-radius: 9px !important;
     font-weight: 600 !important;
     background: #ffffff !important;
