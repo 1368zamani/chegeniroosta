@@ -524,10 +524,17 @@ a[href^="tel:"] {
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => 'پایگاه اطلاع‌رسانی بخشداری ' . $section->name])
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'بخش ' . $section->name, 'url' => url('/')],
+    ['label' => 'اخبار', 'url' => url('/news')],
+    ['label' => \Illuminate\Support\Str::limit($news->title, 42)],
+]])
 
 <div class="s-container">
     <div class="breadcrumb">

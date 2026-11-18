@@ -52,13 +52,19 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.pwa')
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => 'شورای اسلامی بخشداری ' . $section->name])
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'بخش ' . $section->name, 'url' => url('/')],
+    ['label' => 'شورای اسلامی بخش'],
+]])
 
 <div class="wrap">
-    <h1 class="page-title">👥 اعضای شورای اسلامی بخش <span>{{ $section->name }}</span></h1>
+    <h1 class="page-title">اعضای شورای اسلامی بخش <span>{{ $section->name }}</span></h1>
 
     @if($members->count() > 0)
         <div class="council-grid">

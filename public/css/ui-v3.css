@@ -840,3 +840,226 @@ a.s-card, a.card, a.vn, a.vchip, a.mini, a.feature-main { text-decoration: none;
 .section-cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .s-card .enter svg { width: 15px; height: 15px; flex: none; }
 .s-card .pill svg { width: 13px; height: 13px; flex: none; }
+
+/* =====================================================================
+   لایهٔ هماهنگ‌سازی صفحات داخلی با سیستم طراحی نسخهٔ ۳
+   (صفحات قدیمی که ساختار خودشان را دارند، ولی باید هم‌زبان بقیهٔ سایت شوند)
+   ===================================================================== */
+
+body { font-family: var(--font) !important; background: #fff7e9; }
+
+/* ── سرصفحهٔ صفحات داخلی ── */
+.page-title,
+.section-title,
+.article-title {
+    font-family: var(--font-display) !important;
+    font-weight: 400 !important;
+    color: var(--night) !important;
+    letter-spacing: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 6px 0 6px !important;
+    line-height: 1.5 !important;
+    display: block !important;
+}
+.page-title { font-size: clamp(26px, 3.2vw, 38px) !important; }
+.page-title::after {
+    content: ""; display: block; width: 76px; height: 4px; border-radius: 99px;
+    margin-top: 14px; background: linear-gradient(90deg, var(--teal-500), var(--saffron-500));
+}
+.page-title span { color: var(--teal-700) !important; }
+.page-sub { font-size: 13.5px !important; color: var(--muted) !important; margin: 10px 0 22px !important; }
+
+/* ── نان‌ریزه و ناوبری فرعی ── */
+.v3i-crumbs { padding-top: 4px; }
+.v3i-subnav {
+    display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 12px;
+    margin: 10px 0 4px; scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+.v3i-subnav::-webkit-scrollbar { height: 4px; }
+.v3i-subnav::-webkit-scrollbar-thumb { background: #e6d8c3; border-radius: 99px; }
+.v3i-subnav a {
+    flex: none; padding: 8px 15px; border-radius: 999px;
+    background: rgba(255, 255, 255, .72); color: var(--ink-2);
+    font-size: 12.5px; font-weight: 600; text-decoration: none;
+    box-shadow: var(--shadow-xs); white-space: nowrap;
+    transition: background .18s, color .18s, transform .18s;
+}
+.v3i-subnav a:hover { background: #fff; transform: translateY(-1px); }
+.v3i-subnav a.on {
+    background: linear-gradient(150deg, var(--teal-500), var(--teal-700));
+    color: #fff7e9; box-shadow: 0 12px 22px -16px rgba(201, 74, 43, .95);
+}
+
+/* ── قاب محتوا ── */
+.wrap { width: min(1120px, 94%) !important; margin-inline: auto !important; padding: 0 !important; }
+.page-hero { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 6px 0 0 !important; }
+
+/* ── کارت‌های عمومی ── */
+.news-card,
+.p-card,
+.file-card,
+.res-card,
+.result-card,
+.related-card,
+.info-card,
+.profile-card,
+.article,
+.section-card,
+.s-card {
+    background: var(--paper) !important;
+    border-radius: 22px !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 0 !important;
+}
+.news-card,
+.p-card,
+.file-card,
+.result-card,
+.related-card,
+.res-card,
+.info-card {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.news-card:hover,
+.p-card:hover,
+.file-card:hover,
+.result-card:hover,
+.related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow) !important;
+}
+
+/* ── تیترها و متن کارت ── */
+.news-body h3,
+.p-body h3,
+.file-title,
+.result-card h3,
+.related-card h3,
+.res-title,
+.article-title {
+    font-family: var(--font) !important;
+    font-weight: 700 !important;
+    color: var(--night) !important;
+    line-height: 1.75 !important;
+}
+.res-title { font-size: 17px !important; }
+.news-excerpt,
+.p-desc,
+.res-description,
+.article-body,
+.article-content {
+    color: var(--ink-2) !important;
+}
+
+/* ── متادیتا و برچسب‌ها ── */
+.news-meta,
+.article-meta,
+.res-meta,
+.file-meta,
+.result-card .meta,
+.meta {
+    font-family: var(--font-meta) !important;
+    color: var(--muted) !important;
+}
+.pinned,
+.pin-badge,
+.p-badge,
+.res-badge,
+.cat-badge,
+.p-cat,
+.chip {
+    font-family: var(--font-meta) !important;
+    border-radius: 999px !important;
+}
+
+/* ── دکمه‌ها و صفحه‌بندی ── */
+.news-btn,
+.btn-call,
+.file-arrow,
+.back-link,
+.p-foot .btn,
+.pagination a,
+.pagination span,
+.res-attachment {
+    border-radius: 999px !important;
+    font-family: var(--font) !important;
+}
+.news-btn,
+.btn-call {
+    background: linear-gradient(150deg, var(--teal-500), var(--teal-700)) !important;
+    color: #fff7e9 !important;
+    border: 0 !important;
+    box-shadow: 0 14px 26px -18px rgba(201, 74, 43, .9);
+}
+.news-btn:hover,
+.btn-call:hover { filter: brightness(1.06); color: #fff7e9 !important; }
+.pagination a,
+.pagination span {
+    background: var(--paper) !important;
+    color: var(--night) !important;
+    border: 0 !important;
+    box-shadow: var(--shadow-xs) !important;
+}
+.pagination .active,
+.pagination .current {
+    background: var(--teal-700) !important;
+    color: #fff7e9 !important;
+}
+
+/* ── حالت خالی ── */
+.empty-box,
+.empty {
+    background: var(--paper) !important;
+    border-radius: 22px !important;
+    color: var(--muted) !important;
+    box-shadow: var(--shadow-xs) !important;
+    border: 0 !important;
+}
+
+/* ── پروفایل مسئولان ── */
+.profile-top { background: linear-gradient(150deg, #fdeee7, #fff7e9) !important; }
+.profile-photo,
+.profile-photo-ph,
+.photo,
+.photo-ph {
+    box-shadow: 0 0 0 5px #fff, 0 0 0 6px #f7d9cc, 0 24px 40px -26px rgba(201, 74, 43, .8) !important;
+}
+.profile-info h2 {
+    font-family: var(--font-display) !important;
+    font-weight: 400 !important;
+    color: var(--night) !important;
+    font-size: 30px !important;
+}
+.profile-info .role,
+.position { font-family: var(--font-meta) !important; color: var(--teal-700) !important; }
+.profile-section h3 {
+    font-family: var(--font) !important;
+    color: var(--teal-700) !important;
+    border-bottom-color: #f2e4cd !important;
+}
+
+/* ── جدول‌های تعرفه و آمار ── */
+.table-responsive,
+.table-scroll {
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    overflow: auto;
+    background: var(--paper);
+}
+.table-responsive table,
+.table-scroll table { border-collapse: separate; border-spacing: 0; }
+.table-responsive thead th,
+.table-scroll thead th {
+    background: #fdf1dc !important;
+    color: #5c2313 !important;
+    font-family: var(--font) !important;
+    border-bottom: 0 !important;
+}
+.table-responsive tbody tr:nth-child(even),
+.table-scroll tbody tr:nth-child(even) { background: #fffdf9; }
+
+
+/* ???? ???? ??? ????? ????? (???? ?? ?????????? ????????????) */
+body.v3-body, .v3-body { font-family: var(--font) !important; }

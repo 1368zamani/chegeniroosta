@@ -181,16 +181,17 @@
     </style>
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
-
+<body class="v3-body">
+@include('partials.v3-village-nav', ['label' => 'محصولات روستا'])
 <div class="wrap">
 
     <div class="top-bar">
         <a href="{{ route('public.village.show', $village->slug) }}" class="back-link">← بازگشت به {{ $village->name }}</a>
     </div>
 
-    <h1 class="page-title">🛒 محصولات <span>{{ $village->name }}</span></h1>
+    <h1 class="page-title">محصولات <span>{{ $village->name }}</span></h1>
     <p class="page-sub">محصولات محلی و قابل فروش روستای {{ $village->name }} — برای خرید با فروشنده تماس بگیرید.</p>
 
     {{-- جست‌وجو و فیلتر --}}

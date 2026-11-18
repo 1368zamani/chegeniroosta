@@ -57,12 +57,13 @@
 @include('partials.site-animations')
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])
-
+@include('partials.v3-village-nav', ['label' => 'اخبار و اطلاعیه‌ها'])
 <div class="wrap">
-    <h1 class="page-title">📰 اخبار و اطلاعیه‌های <span>{{ $village->name }}</span></h1>
+    <h1 class="page-title">اخبار و اطلاعیه‌های <span>{{ $village->name }}</span></h1>
 
     @if($news->count() > 0)
         <div class="news-grid">

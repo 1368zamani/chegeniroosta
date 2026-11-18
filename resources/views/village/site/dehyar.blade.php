@@ -49,11 +49,12 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 @include('partials.site-animations')
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => 'معرفی دهیار ' . $village->name])
-
+@include('partials.v3-village-nav', ['label' => 'دهیاری و دهیار'])
 <div class="wrap">
     <div class="profile-card">
 

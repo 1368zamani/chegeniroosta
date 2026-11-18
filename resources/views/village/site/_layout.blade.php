@@ -3,80 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', $village->name ?? 'روستا')</title>
-    {{-- Tailwind به‌صورت محلی روی همین سرور (قبلاً از cdn.tailwindcss.com که در ایران کند/فیلتر است) --}}
+    <title>@yield('title', ($village->name ?? 'روستا') . ' | روستا نما')</title>
+    <meta name="theme-color" content="#c94a2b">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
+
+    {{-- Tailwind محلی: بدنهٔ صفحات قدیمی روستا بر پایهٔ کلاس‌های کاربردی نوشته شده‌اند --}}
     <script src="{{ asset('vendor/tailwind/tailwind.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
     @yield('head')
-@include('partials.site-animations')
-@include('partials.pwa')
-
-    <style>
-        /* =========================================
-           MOBILE RESPONSIVE FOR VILLAGE PAGES
-           ========================================= */
-        @media (max-width: 768px) {
-            /* گرد کردن تمام قاب‌ها و کارت‌ها در صفحات روستا */
-            .box, .card, .profile-card, [class*="card"], [class*="box"] {
-                border-radius: 16px !important;
-                overflow: hidden !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
-            }
-            .s-container, .container {
-                padding: 0 10px !important;
-            }
-            /* اصلاح منوها و تصاویر در موبایل */
-            img { max-width: 100% !important; height: auto !important; }
-            .profile-photo, .profile-photo-placeholder {
-                width: 140px !important; height: 140px !important;
-            }
-        }
-    </style>
-    
-
-    
-
-
-    
-
+    @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="v3-body">
 
-<nav class="bg-green-700 text-white shadow">
-    <div class="container mx-auto px-4 py-3">
-        <div class="flex items-center justify-between mb-2">
-            <h1 class="text-lg font-bold">{{ $village->name ?? 'روستا' }}</h1>
-            <a href="{{ url('/') }}" class="text-sm hover:underline">صفحه اصلی</a>
-        </div>
-        <div class="flex flex-wrap gap-1 text-sm">
-            <a href="{{ route('public.village.show', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">خانه</a>
-            <a href="{{ route('village.site.about', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">درباره</a>
-            <a href="{{ route('village.site.council', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">شورا</a>
-            <a href="{{ route('village.site.dehyar', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">دهیاری</a>
-            <a href="{{ route('village.site.news', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">اخبار</a>
-            <a href="{{ route('village.site.events', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">رویدادها</a>
-            <a href="{{ route('village.site.facilities', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">امکانات</a>
-            <a href="{{ route('village.site.projects', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">پروژه‌ها</a>
-            <a href="{{ route('village.site.resolutions', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">مصوبات</a>
-            <a href="{{ route('village.site.request.create', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">ثبت درخواست</a>
-            <a href="{{ route('village.tariff.index', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">عوارض</a>
-            <a href="{{ route('village.site.products', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">🛒 محصولات</a>
-            <a href="{{ route('village.site.downloads', $village->slug) }}" class="px-3 py-1 hover:bg-green-600 rounded">📥 فایل‌ها</a>
-        </div>
-    </div>
-</nav>
+@include('partials.gov-header', ['headerTitle' => 'روستای ' . ($village->name ?? '')])
 
-<main class="min-h-screen">@yield('content')</main>
+<div class="v3-wrap">
+    @include('partials.v3-village-nav', [
+        'label' => trim($__env->yieldContent('title')) ?: ($village->name ?? ''),
+        'heading' => true,
+    ])
 
-<footer class="bg-gray-800 text-white py-6 mt-10">
-    <div class="container mx-auto px-4 text-center text-sm">
-        <p>© {{ date('Y') }} — روستای {{ $village->name ?? '' }} — تمامی حقوق محفوظ است.</p>
-        <p class="mt-2 text-gray-400">
-            <a href="{{ url('/') }}" class="hover:underline">بازگشت به صفحه اصلی</a>
-        </p>
-    </div>
-</footer>
+    @yield('content')
+</div>
+
+@include('partials.gov-footer')
+@include('partials.back-to-top')
 
 @yield('scripts')
 </body>

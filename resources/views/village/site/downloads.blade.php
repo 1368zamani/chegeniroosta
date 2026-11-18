@@ -93,14 +93,15 @@
         }
     </style>
 @include('partials.pwa')
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
-
+<body class="v3-body">
+@include('partials.v3-village-nav', ['label' => 'فایل‌های قابل دانلود'])
 <div class="wrap">
 
     <a href="{{ route('public.village.show', $village->slug) }}" class="back-link">← بازگشت به {{ $village->name }}</a>
 
-    <h1 class="page-title">📥 فایل‌های دانلود <span>{{ $village->name }}</span></h1>
+    <h1 class="page-title">فایل‌های دانلود <span>{{ $village->name }}</span></h1>
     <p class="page-sub">
         فرم‌ها، اطلاعیه‌ها و مستندات روستای {{ $village->name }} — برای دانلود روی هر فایل کلیک کنید.
     </p>

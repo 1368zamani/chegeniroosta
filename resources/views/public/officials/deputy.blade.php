@@ -28,10 +28,20 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => 'معرفی معاون فرماندار چگنی'])
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'مسئولان شهرستان', 'url' => url('/officials/governor')],
+    ['label' => 'معاون فرماندار'],
+]])
+
+<div style="width: min(1120px, 94%); margin: 0 auto;">
+    <h1 class="page-title">معاون فرماندار</h1>
+</div>
 
 <div class="wrap">
     <div class="profile-card">

@@ -104,12 +104,21 @@
     </style>
     @include("partials.analytics")
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'جستجو'],
+]])
+
+<div style="width: min(1120px, 94%); margin: 0 auto;">
+    <h1 class="page-title">جستجو در سامانه</h1>
+</div>
 
 <div class="header">
     <div class="header-inner">
-        <h1>🔍 جستجو در سامانه</h1>
+        <h1>جستجو در سامانه</h1>
         <form method="GET" action="{{ route('search.index') }}" class="search-box">
             <input type="text" name="q" value="{{ $query }}" placeholder="نام روستا، بخش، دهیار، یا خبر..." autofocus>
             <button type="submit">جستجو</button>

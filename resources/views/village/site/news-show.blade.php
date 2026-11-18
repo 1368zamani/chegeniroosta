@@ -92,10 +92,11 @@
 @include('partials.site-animations')
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])
-
+@include('partials.v3-village-nav', ['label' => 'جزئیات خبر'])
 <div class="wrap">
     <a href="{{ route('village.site.news', $village->slug) }}" class="back-link">→ بازگشت به اخبار</a>
 
@@ -164,7 +165,8 @@ function openFullImage(url) {
     var w = window.open('', '_blank');
     w.document.write('<html><head><title>تصویر</title><style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;}</style>@include('partials.site-animations')
 @include('partials.pwa')
-</head><body><img src="' + url + '"></body></html>');
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
+</head><body class="v3-body"><img src="' + url + '"></body></html>');
     w.document.close();
 }
 </script>

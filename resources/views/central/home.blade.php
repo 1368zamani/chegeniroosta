@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=3">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
     @include('partials.pwa')
 </head>
 <body class="v3-body">

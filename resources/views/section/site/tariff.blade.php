@@ -36,8 +36,14 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; c
 @media (max-width: 700px) { .s-table { font-size: 12px; } .s-table th, .s-table td { padding: 8px 10px; } .s-table .hide-sm { display: none; } }
 </style>
 @include('partials.pwa')
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'بخش ' . $section->name, 'url' => url('/')],
+    ['label' => 'تعرفهٔ عوارض'],
+]])
 <div class="s-header">
     <h1>🧾 تعرفه عوارض و بهای خدمات دهیاری‌ها</h1>
     <p>بخشداری {{ $section->name }} — سال جاری</p>

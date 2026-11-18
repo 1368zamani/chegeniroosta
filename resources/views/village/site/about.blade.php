@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">درباره روستای {{ $village->name }}</h1>
+    
 
     @if(!empty($village->description))
     <div class="bg-white rounded-lg shadow p-6 mb-6">

@@ -147,10 +147,16 @@ a[href^="tel:"] {
 
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.pwa')
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => isset($section) ? 'پایگاه اطلاع‌رسانی بخشداری ' . $section->name : 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی'])
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'بخش ' . $section->name, 'url' => url('/')],
+    ['label' => 'بخشدار'],
+]])
 
 <div class="container">
     <div class="profile-card">

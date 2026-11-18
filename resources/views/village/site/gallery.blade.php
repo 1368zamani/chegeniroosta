@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">گالری تصاویر {{ $village->name }}</h1>
+    
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @forelse($images as $image)

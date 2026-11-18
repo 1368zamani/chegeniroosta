@@ -34,8 +34,10 @@ a[href^="tel:"] {
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.site-animations')
 @include('partials.pwa')
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
+@include('partials.v3-village-nav', ['label' => 'ثبت درخواست مردمی'])
 <div class="wrap">
     <a href="{{ url('/village/' . $village->slug) }}" class="back">→ بازگشت به صفحه روستا</a>
     <div class="card">

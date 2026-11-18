@@ -21,13 +21,19 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => 'معاونین فرماندار شهرستان چگنی'])
+@include('partials.v3-crumbs', ['crumbs' => [
+    ['label' => 'پرتال چگنی', 'url' => url('/')],
+    ['label' => 'مسئولان شهرستان', 'url' => url('/officials/governor')],
+    ['label' => 'معاونان فرماندار'],
+]])
 
 <div class="wrap">
-    <h1 class="page-title">👥 معاونین فرماندار چگنی</h1>
+    <h1 class="page-title">معاونین فرماندار چگنی</h1>
 
     @if($deputies->count() > 0)
         <div class="grid">

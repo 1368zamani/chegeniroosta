@@ -209,9 +209,10 @@
     </style>
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
-
+<body class="v3-body">
+@include('partials.v3-village-nav', ['label' => 'جزئیات محصول'])
 <div class="wrap">
 
     <a href="{{ route('village.site.products', $village->slug) }}" class="back-link">← بازگشت به محصولات {{ $village->name }}</a>

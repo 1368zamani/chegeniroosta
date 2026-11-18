@@ -64,14 +64,15 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.site-animations')
 @include('partials.pwa')
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
 </head>
-<body>
+<body class="v3-body">
 
 @include('partials.gov-header', ['headerTitle' => 'مصوبات شورای اسلامی ' . $village->name])
-
+@include('partials.v3-village-nav', ['label' => 'مصوبات شورای اسلامی'])
 <div class="wrap">
 
-    <h1 class="page-title">📋 مصوبات شورای اسلامی <span>{{ $village->name }}</span></h1>
+    <h1 class="page-title">مصوبات شورای اسلامی <span>{{ $village->name }}</span></h1>
 
     @if($resolutions->count() > 0)
 

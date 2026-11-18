@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">اعضای شورای اسلامی روستای {{ $village->name }}</h1>
+    
 
     @forelse($members as $member)
     <div class="bg-white rounded-lg shadow p-6 mb-4 flex items-center gap-4">
