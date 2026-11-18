@@ -104,7 +104,7 @@
     </style>
     @include("partials.analytics")
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
 </head>
 <body class="v3-body">
 @include('partials.v3-crumbs', ['crumbs' => [

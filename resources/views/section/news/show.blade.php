@@ -524,7 +524,7 @@ a[href^="tel:"] {
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
 </head>
 <body class="v3-body">
 
