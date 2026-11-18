@@ -1,0 +1,371 @@
+/* =====================================================================
+   پنل مدیریت — سیستم طراحی نسخهٔ ۳ (پالت نوروز)
+   این فایل روی همهٔ پنل‌ها آخر از همه لود می‌شود و ظاهر قدیمی (سبز/آبی)
+   را با زبان بصری سایت هم‌راستا می‌کند.
+   ===================================================================== */
+
+/* ── فونت‌ها (خودمیزبان، همان مسیر ui-v3.css) ── */
+@font-face { font-family: 'Lalezar'; src: url('/fonts/lalezar-arabic.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0600-06FF, U+0750-077F, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FEFC; }
+@font-face { font-family: 'Mikhak'; src: url('/fonts/mikhak-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Mikhak'; src: url('/fonts/mikhak-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Mikhak'; src: url('/fonts/mikhak-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Tanha'; src: url('/fonts/tanha-regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+
+:root {
+  --ink: #2b2119;
+  --ink-2: #5a4a3c;
+  --muted: #8a7a6a;
+
+  --night: #5c2313;
+  --night-2: #4a1b0f;
+
+  --brand: #c94a2b;      /* انار */
+  --brand-2: #e2603c;    /* مرجان */
+  --brand-dk: #8e2f18;
+  --brand-50: #fdeee7;
+  --brand-100: #fbdcd0;
+  --brand-300: #f0a58c;
+
+  --saffron: #f5b841;    /* زعفران */
+  --saffron-600: #a8730f;
+  --saffron-50: #fff7dc;
+  --saffron-100: #fdeec9;
+
+  --sky: #27689f;        /* آسمان */
+  --sky-50: #eaf2fa;
+
+  --cream: #fff7e9;
+  --paper: #fffdf9;
+  --line: #f2e4cd;
+  --line-2: #e6d8c3;
+
+  --danger: #b3261e;
+  --danger-dk: #8c1d17;
+  --danger-50: #fdeceb;
+
+  --shadow-xs: 0 1px 2px rgba(74, 27, 15, .05);
+  --shadow-sm: 0 10px 24px -18px rgba(74, 27, 15, .35);
+  --shadow: 0 26px 60px -38px rgba(74, 27, 15, .6), 0 8px 18px -14px rgba(74, 27, 15, .18);
+
+  --font: 'Mikhak', 'Vazirmatn', Tahoma, sans-serif;
+  --font-display: 'Lalezar', 'Mikhak', Tahoma, sans-serif;
+  --font-meta: 'Tanha', 'Mikhak', Tahoma, sans-serif;
+
+  /* سازگاری با متغیرهای تم قدیمی */
+  --site-font: 'Mikhak', 'Vazirmatn', Tahoma, sans-serif;
+  --bg-page: var(--cream);
+  --text-main: var(--ink);
+  --al-bg: var(--paper);
+  --al-bg-soft: var(--cream);
+  --al-blue: var(--brand);
+  --al-blue-dk: var(--brand-dk);
+  --al-blue-lt: var(--brand-50);
+  --al-text: var(--ink);
+  --al-border: var(--line);
+}
+
+/* ── پایه ── */
+html, body {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  font-family: var(--font) !important;
+  font-size: 14.5px;
+  line-height: 1.85;
+  -webkit-text-size-adjust: 100%;
+}
+h1, h2, h3, h4, h5, h6 { color: var(--night) !important; font-family: var(--font); }
+a { color: var(--brand); }
+.num, .count, .amount, code, kbd, .font-mono { font-family: var(--font-meta) !important; }
+label { color: var(--ink-2); }
+
+/* ── هدر همهٔ پنل‌ها ── */
+.header, .admin-header, .top-header, .page-header {
+  background: var(--paper) !important;
+  background-image: none !important;
+  color: var(--night) !important;
+  border-bottom: 3px solid var(--brand) !important;
+  box-shadow: var(--shadow-sm) !important;
+  padding: 16px 22px !important;
+}
+.header h1, .header h2, .header h3,
+.admin-header h1, .admin-header h2,
+.page-header h1, .page-header h2 {
+  color: var(--night) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: 21px !important;
+  letter-spacing: 0 !important;
+}
+.header .user-info, .header .user, .header small,
+.admin-header small { color: var(--muted) !important; font-family: var(--font-meta) !important; }
+.header a, .admin-header a, .page-header a {
+  background: var(--brand-50) !important;
+  color: var(--brand-dk) !important;
+  border: 1px solid var(--brand-100) !important;
+  border-radius: 999px !important;
+  padding: 7px 14px !important;
+  text-decoration: none !important;
+  font-size: 12.5px !important;
+  font-weight: 600;
+}
+.header a:hover, .admin-header a:hover, .page-header a:hover {
+  background: var(--brand) !important;
+  color: #fff7e9 !important;
+  border-color: var(--brand) !important;
+}
+.header button {
+  background: var(--brand) !important;
+  color: #fff7e9 !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 7px 14px !important;
+  cursor: pointer;
+  font-family: var(--font) !important;
+  font-size: 12.5px !important;
+}
+.header button:hover { background: var(--brand-dk) !important; }
+
+/* ── منوی کناری ── */
+.sidebar {
+  background: var(--paper) !important;
+  border-left: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-xs) !important;
+}
+.sidebar-menu a, .sidebar a {
+  color: var(--ink-2) !important;
+  border-right-color: transparent !important;
+  font-size: 13.5px !important;
+}
+.sidebar-menu a:hover, .sidebar a:hover {
+  background: var(--brand-50) !important;
+  color: var(--brand-dk) !important;
+  border-right-color: var(--brand-2) !important;
+}
+.sidebar-menu a.active, .sidebar a.active {
+  background: linear-gradient(150deg, var(--brand-2), var(--brand)) !important;
+  color: #fff7e9 !important;
+  border-right-color: var(--brand-dk) !important;
+}
+.menu-label, .menu-path { color: var(--muted) !important; }
+.menu-list a { color: var(--ink-2) !important; }
+
+/* ── کارت‌ها و پنل‌ها ── */
+.card, .box, .panel, .panel-card, .section-card, .stat, .stat-card,
+.info-bar, .wf-panel, .guide-container, .chart, .sig-box, .tab-content {
+  background: var(--paper) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-sm) !important;
+  color: var(--ink) !important;
+}
+.card h1, .card h2, .card h3, .card h4, .card h5,
+.box h1, .box h2, .box h3, .box h4, .box h5,
+.panel-card h3, .section-title, .card-header, .card-header h2, .card-header h3 {
+  color: var(--night) !important;
+  background: transparent !important;
+  border-bottom-color: var(--line) !important;
+}
+.card-header { border-bottom: 2px solid var(--line) !important; }
+.card-body, .box-body { color: var(--ink-2) !important; }
+
+/* ── آمار ── */
+.stat-card {
+  border-top: 4px solid var(--brand) !important;
+  transition: transform .2s, box-shadow .2s;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow) !important; }
+.stat-card .num, .stat .num { color: var(--night) !important; font-weight: 700 !important; }
+.stat-card .label, .stat-card small { color: var(--muted) !important; }
+
+/* ── عنوان صفحه ── */
+.page-title h2, .page-title h1 {
+  color: var(--night) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: 24px !important;
+}
+
+/* ── دکمه‌ها ── */
+.btn, button.btn, a.btn, .create-btn, .admin-wrapper .btn {
+  background: var(--brand) !important;
+  background-image: none !important;
+  color: #fff7e9 !important;
+  border: 1px solid transparent !important;
+  border-radius: 999px !important;
+  padding: 9px 18px !important;
+  font-family: var(--font) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-shadow: none !important;
+  box-shadow: 0 14px 26px -20px rgba(201, 74, 43, .9);
+  transition: filter .18s, transform .18s;
+}
+.btn:hover, button.btn:hover, a.btn:hover, .create-btn:hover {
+  background: var(--brand-dk) !important;
+  color: #fff7e9 !important;
+  filter: brightness(1.04);
+}
+.btn-primary, .btn-success { background: var(--brand) !important; }
+.btn-primary:hover, .btn-success:hover { background: var(--brand-dk) !important; }
+.btn-danger { background: var(--danger) !important; }
+.btn-danger:hover { background: var(--danger-dk) !important; }
+.btn-warning { background: var(--saffron) !important; color: var(--night) !important; }
+.btn-warning:hover { background: var(--saffron-600) !important; color: #fff7e9 !important; }
+.btn-secondary, .btn-cancel, .btn-reset, .btn-toggle {
+  background: var(--cream) !important;
+  color: var(--ink-2) !important;
+  border: 1px solid var(--line-2) !important;
+}
+.btn-secondary:hover, .btn-cancel:hover, .btn-reset:hover {
+  background: var(--brand-50) !important;
+  color: var(--brand-dk) !important;
+}
+.btn-sm { padding: 6px 13px !important; font-size: 12px !important; }
+
+/* ── جدول‌ها ── */
+table {
+  background: var(--paper) !important;
+  border-radius: 16px !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: hidden;
+}
+table th, .table th {
+  background: var(--saffron-50) !important;
+  color: var(--night) !important;
+  font-family: var(--font) !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+table td, .table td { color: var(--ink) !important; border-bottom: 1px solid var(--line) !important; }
+table tr:hover, tr:hover { background: #fffaf0 !important; }
+tr:last-child td { border-bottom: none !important; }
+.num-cell { font-family: var(--font-meta) !important; }
+
+/* ── فرم‌ها ── */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"],
+input[type="date"], input[type="time"], input[type="search"], input[type="url"],
+input[type="tel"], input[type="file"], select, textarea, .form-control {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--line-2) !important;
+  border-radius: 12px !important;
+  padding: 10px 13px !important;
+  font-family: var(--font) !important;
+  font-size: 13.5px !important;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus, .form-control:focus {
+  border-color: var(--brand-2) !important;
+  box-shadow: 0 0 0 3px var(--brand-50) !important;
+}
+.field label, .field-label { color: var(--ink-2) !important; font-weight: 600; }
+.field .hint, .hint { color: var(--muted) !important; }
+.checkbox-field { background: var(--cream) !important; border-radius: 12px !important; }
+.checkbox-field label { color: var(--ink) !important; }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--brand); }
+
+/* ── برچسب‌ها ── */
+.badge {
+  border-radius: 999px !important;
+  font-family: var(--font-meta) !important;
+  font-size: 11.5px !important;
+  padding: 4px 11px !important;
+}
+.badge-active, .badge-published, .badge-success, .status-ok, .success-badge {
+  background: var(--sky-50) !important; color: var(--sky) !important;
+}
+.badge-inactive, .badge-draft, .badge-danger {
+  background: var(--danger-50) !important; color: var(--danger) !important;
+}
+.badge-warning, .badge-pinned {
+  background: var(--saffron-100) !important; color: var(--saffron-600) !important;
+}
+.badge-cover { background: var(--brand-50) !important; color: var(--brand-dk) !important; }
+
+/* ── پیام‌ها ── */
+.success, .alert-success {
+  background: var(--sky-50) !important;
+  color: var(--sky) !important;
+  border-radius: 14px !important;
+  border: 1px solid #cfe2f3;
+}
+.error, .alert-danger, .alert-error {
+  background: var(--danger-50) !important;
+  color: var(--danger) !important;
+  border-radius: 14px !important;
+  border: 1px solid #f6d5d2;
+}
+.alert, .alert-box, .warning {
+  background: var(--saffron-50) !important;
+  color: var(--saffron-600) !important;
+  border: 1px solid var(--saffron-100) !important;
+  border-radius: 14px !important;
+}
+.info, .info-row, .note, .chart-note { color: var(--ink-2) !important; }
+
+/* ── حالت خالی ── */
+.empty-box, .empty, .empty-state, .photo-empty {
+  background: var(--paper) !important;
+  color: var(--muted) !important;
+  border-radius: 20px !important;
+  border: 1px dashed var(--line-2) !important;
+}
+
+/* ── تب‌ها و ردیف‌های ابزار ── */
+.tabs, .tools-bar, .actions-bar, .photo-actions, .gallery-actions, .top-actions { gap: 8px; }
+.tab-btn, .role-btn, .section-btn, .wf-tab, .wf-logs-btn, .wf-edit-btn, .wf-add-btn, .wf-amount-btn {
+  border-radius: 999px !important;
+  font-family: var(--font) !important;
+}
+.tab-btn.active, .role-btn.active, .section-btn.active {
+  background: var(--brand) !important;
+  color: #fff7e9 !important;
+  border-color: var(--brand) !important;
+}
+.thumb-sm, .photo-thumb, .preview-img { border-radius: 12px !important; }
+.gallery-item, .gallery-grid img, .photo-preview { border-radius: 14px !important; }
+.gallery-caption, .photo-empty { color: var(--muted) !important; }
+
+/* ── مودال‌ها ── */
+.wf-modal { background: rgba(74, 27, 15, .45) !important; backdrop-filter: blur(3px); }
+.wf-modal-box, .modal-box, .modal-content {
+  background: var(--paper) !important;
+  border-radius: 22px !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--ink) !important;
+}
+.wf-close { color: var(--muted) !important; }
+.wf-log-row { border-bottom: 1px solid var(--line) !important; }
+
+/* ── صفحه‌بندی ── */
+.pagination a, .pagination span, .pager a, .pager span {
+  background: var(--paper) !important;
+  color: var(--night) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px !important;
+}
+.pagination .active, .pagination .current, .pager .active {
+  background: var(--brand) !important;
+  color: #fff7e9 !important;
+  border-color: var(--brand) !important;
+}
+
+/* ── لیست‌ها و ریز‌جزئیات ── */
+.list-disc { padding-inline-start: 20px; }
+.step-list li, .step-list .step { border-color: var(--line) !important; }
+.guide-header { background: var(--saffron-50) !important; color: var(--night) !important; border-radius: 16px !important; }
+.sig-box { border: 1px dashed var(--line-2) !important; }
+.section-title, .title { color: var(--night) !important; }
+
+/* ── حالت‌های خطا در متن ── */
+.text-danger, .error-text { color: var(--danger) !important; }
+.text-success, .success-text { color: var(--sky) !important; }
+
+@media (max-width: 900px) {
+  .header { padding: 14px 16px !important; }
+  .header h1 { font-size: 18px !important; }
+  .sidebar-menu a { border-bottom: 3px solid transparent !important; }
+  .sidebar-menu a.active { border-bottom-color: var(--brand-dk) !important; }
+  .card, .box, .panel-card { padding: 18px !important; border-radius: 16px !important; }
+}

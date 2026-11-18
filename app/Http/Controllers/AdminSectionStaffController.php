@@ -19,6 +19,10 @@ class AdminSectionStaffController extends Controller
         return view('admin.sections.staff.index', compact('section', 'staffs'));
     }
 
+    public function show($section_id, $id) {
+        return redirect()->route("admin.sections.staff.edit", [$section_id, $id]);
+    }
+
     public function create($section_id) {
         $this->checkAccess($section_id);
         $section = Section::findOrFail($section_id);

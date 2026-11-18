@@ -6,12 +6,12 @@
 <title>@yield('title') | پنل {{ $village->name ?? '' }}</title>
 <style>
 * { box-sizing: border-box; }
-body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; color: #263238; }
+body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
 
 .header {
-    background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, #8e2f18 0%, #8c1d17 100%);
     color: #ffffff;
-    border-bottom: 3px solid #ffd54f;
+    border-bottom: 3px solid #f5b841;
     padding: 18px 24px;
     display: flex;
     justify-content: space-between;
@@ -27,9 +27,9 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     color: white;
     text-decoration: none;
     padding: 7px 14px;
-    background: rgba(255,213,79,0.15);
+    background: rgba(245,184,65,0.15);
     border-radius: 8px;
-    border: 1px solid rgba(255,213,79,0.3);
+    border: 1px solid rgba(245,184,65,0.3);
     font-size: 12.5px;
 }
 .header .top-actions a:hover { background: rgba(255,255,255,0.25); }
@@ -39,7 +39,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 .sidebar {
     width: 240px;
     background: white;
-    border-left: 1px solid #e8f5e9;
+    border-left: 1px solid #fdeee7;
     padding: 20px 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.03);
     flex-shrink: 0;
@@ -52,22 +52,22 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     align-items: center;
     gap: 10px;
     padding: 12px 22px;
-    color: #37474f;
+    color: #2b2119;
     text-decoration: none;
     font-size: 13.5px;
     border-right: 3px solid transparent;
     transition: all .2s;
 }
 .sidebar-menu a:hover {
-    background: #f1f8e9;
-    color: #2e7d32;
-    border-right-color: #2e7d32;
+    background: #fff7dc;
+    color: #c94a2b;
+    border-right-color: #c94a2b;
 }
 .sidebar-menu a.active {
-    background: #e8f5e9;
-    color: #0d3b2e;
+    background: #fdeee7;
+    color: #5c2313;
     font-weight: 700;
-    border-right-color: #0d3b2e;
+    border-right-color: #5c2313;
 }
 
 .content {
@@ -85,15 +85,15 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 }
 .page-title h2 {
     margin: 0;
-    color: #0d3b2e;
+    color: #5c2313;
     font-size: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.success { background: #c8e6c9; color: #2e7d32; padding: 12px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 13.5px; }
-.error { background: #ffcdd2; color: #c62828; padding: 12px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 13.5px; }
+.success { background: #fbdcd0; color: #c94a2b; padding: 12px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 13.5px; }
+.error { background: #f6d5d2; color: #b3261e; padding: 12px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 13.5px; }
 
 .btn {
     display: inline-block;
@@ -107,16 +107,16 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     border: none;
     transition: all .2s;
 }
-.btn-primary { background: #2e7d32; color: white; }
-.btn-primary:hover { background: #1b5e20; }
-.btn-success { background: #2e7d32; color: white; }
-.btn-success:hover { background: #1b5e20; }
-.btn-danger { background: #c62828; color: white; }
-.btn-danger:hover { background: #b71c1c; }
-.btn-warning { background: #f9a825; color: white; }
+.btn-primary { background: #c94a2b; color: white; }
+.btn-primary:hover { background: #8e2f18; }
+.btn-success { background: #c94a2b; color: white; }
+.btn-success:hover { background: #8e2f18; }
+.btn-danger { background: #b3261e; color: white; }
+.btn-danger:hover { background: #8c1d17; }
+.btn-warning { background: #f5b841; color: white; }
 .btn-warning:hover { background: #f57f17; }
-.btn-secondary { background: #cfd8dc; color: #37474f; }
-.btn-secondary:hover { background: #b0bec5; }
+.btn-secondary { background: #e6d8c3; color: #2b2119; }
+.btn-secondary:hover { background: #e6d8c3; }
 .btn-sm { padding: 6px 12px; font-size: 12px; }
 
 .card {
@@ -128,10 +128,10 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
 }
 .card h3 {
     margin: 0 0 16px;
-    color: #0d3b2e;
+    color: #5c2313;
     font-size: 16px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #e8f5e9;
+    border-bottom: 2px solid #fdeee7;
 }
 
 .stats-grid {
@@ -146,15 +146,15 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; c
     padding: 18px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-top: 4px solid #2e7d32;
+    border-top: 4px solid #c94a2b;
     text-decoration: none;
     color: inherit;
     transition: transform .2s;
 }
-.stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(21,101,192,0.12); }
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(39,104,159,0.12); }
 .stat-card .icon { font-size: 30px; display: block; margin-bottom: 6px; }
-.stat-card .num { font-size: 24px; font-weight: 800; color: #0d3b2e; display: block; line-height: 1.2; }
-.stat-card .label { font-size: 12px; color: #78909c; margin-top: 4px; display: block; font-weight: 600; }
+.stat-card .num { font-size: 24px; font-weight: 800; color: #5c2313; display: block; line-height: 1.2; }
+.stat-card .label { font-size: 12px; color: #8a7a6a; margin-top: 4px; display: block; font-weight: 600; }
 
 table {
     width: 100%;
@@ -166,19 +166,19 @@ table {
 th, td {
     padding: 12px 14px;
     text-align: right;
-    border-bottom: 1px solid #eceff1;
+    border-bottom: 1px solid #f5efe4;
     font-size: 13px;
 }
-th { background: #f8fafc; color: #546e7a; font-weight: 700; }
+th { background: #fffdf9; color: #5a4a3c; font-weight: 700; }
 tr:last-child td { border-bottom: none; }
-tr:hover { background: #f8fafc; }
+tr:hover { background: #fffdf9; }
 
 .field { margin-bottom: 18px; }
 .field label {
     display: block;
     margin-bottom: 6px;
     font-size: 13px;
-    color: #546e7a;
+    color: #5a4a3c;
     font-weight: 600;
 }
 .field input[type="text"],
@@ -190,7 +190,7 @@ tr:hover { background: #f8fafc; }
 .field textarea {
     width: 100%;
     padding: 11px 14px;
-    border: 1px solid #cfd8dc;
+    border: 1px solid #e6d8c3;
     border-radius: 8px;
     font-family: inherit;
     font-size: 14px;
@@ -198,25 +198,25 @@ tr:hover { background: #f8fafc; }
     background: white;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-    border-color: #2e7d32;
-    box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+    border-color: #c94a2b;
+    box-shadow: 0 0 0 3px rgba(39,104,159,0.1);
 }
 .field textarea { min-height: 140px; resize: vertical; }
-.field .hint { font-size: 11.5px; color: #90a4ae; margin-top: 5px; }
+.field .hint { font-size: 11.5px; color: #8a7a6a; margin-top: 5px; }
 
 .checkbox-field {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    background: #f8fafc;
+    background: #fffdf9;
     border-radius: 8px;
     margin-bottom: 10px;
     cursor: pointer;
 }
-.checkbox-field:hover { border-color: #2e7d32; }
+.checkbox-field:hover { border-color: #c94a2b; }
 .checkbox-field input[type="checkbox"] { width: 18px; height: 18px; }
-.checkbox-field label { margin: 0; cursor: pointer; font-weight: 600; color: #37474f; }
+.checkbox-field label { margin: 0; cursor: pointer; font-weight: 600; color: #2b2119; }
 
 .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -227,22 +227,22 @@ tr:hover { background: #f8fafc; }
     font-size: 11px;
     font-weight: 700;
 }
-.badge-active { background: #c8e6c9; color: #2e7d32; }
-.badge-inactive { background: #ffcdd2; color: #c62828; }
-.badge-warning { background: #ffe0b2; color: #e65100; }
+.badge-active { background: #fbdcd0; color: #c94a2b; }
+.badge-inactive { background: #f6d5d2; color: #b3261e; }
+.badge-warning { background: #ffe0b2; color: #a8730f; }
 
 .empty-box {
     background: white;
     border-radius: 12px;
     padding: 50px 20px;
     text-align: center;
-    color: #90a4ae;
+    color: #8a7a6a;
     font-size: 14px;
 }
 .empty-box .icon { font-size: 50px; opacity: .5; margin-bottom: 14px; display: block; }
 
 .thumb-sm { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
-.thumb-empty { width: 50px; height: 50px; border-radius: 8px; background: #f0f3f7; display: inline-flex; align-items: center; justify-content: center; color: #90a4ae; }
+.thumb-empty { width: 50px; height: 50px; border-radius: 8px; background: #f0f3f7; display: inline-flex; align-items: center; justify-content: center; color: #8a7a6a; }
 
 @media (max-width: 900px) {
     .layout { flex-direction: column; }
@@ -250,7 +250,7 @@ tr:hover { background: #f8fafc; }
     .sidebar-menu { display: flex; overflow-x: auto; }
     .sidebar-menu li { flex-shrink: 0; }
     .sidebar-menu a { padding: 10px 16px; border-right: none; border-bottom: 3px solid transparent; }
-    .sidebar-menu a.active { border-bottom-color: #0d3b2e; border-right: none; }
+    .sidebar-menu a.active { border-bottom-color: #5c2313; border-right: none; }
     .content { padding: 14px; }
     .row-2 { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -264,6 +264,8 @@ tr:hover { background: #f8fafc; }
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
 <link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/mobile-admin.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
 </head>
 <body>
 
@@ -305,8 +307,8 @@ tr:hover { background: #f8fafc; }
             <li><a href="{{ route('admin.village.products.index', $village->id) }}" class="{{ request()->routeIs('admin.village.products.*') ? 'active' : '' }}">🛒 محصولات روستا</a></li>
             <li><a href="{{ route('admin.village.images.index', $village->id) }}">🖼 گالری تصاویر</a></li>
         
-            <li style="margin-top:15px; border-top:1px dashed #e0e0e0; padding-top:12px;">
-                <a href="{{ route('admin.village.guide', $village->id) }}" style="background: #fef3c7; color: #92400e; font-weight: 700;">
+            <li style="margin-top:15px; border-top:1px dashed #e6d8c3; padding-top:12px;">
+                <a href="{{ route('admin.village.guide', $village->id) }}" style="background: #fdeec9; color: #a8730f; font-weight: 700;">
                     📘 راهنمای پنل
                 </a>
             </li>

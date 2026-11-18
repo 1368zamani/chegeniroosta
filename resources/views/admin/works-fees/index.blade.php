@@ -29,14 +29,14 @@
 {{-- ═══════════════ پیام‌ها ═══════════════ --}}
 @foreach(['success' => 'emerald', 'info' => 'blue', 'error' => 'red'] as $k => $c)
     @if(session($k))
-        <div class="mb-4 p-3 rounded-lg text-sm" style="background:{{ $c==='emerald'?'#e8f5e9':($c==='blue'?'#e3f2fd':'#ffebee') }};color:{{ $c==='emerald'?'#1b5e20':($c==='blue'?'#0d47a1':'#b71c1c') }};border-right:4px solid {{ $c==='emerald'?'#2e7d32':($c==='blue'?'#1565c0':'#c62828') }};">
+        <div class="mb-4 p-3 rounded-lg text-sm" style="background:{{ $c==='emerald'?'#fdeee7':($c==='blue'?'#eaf2fa':'#fdeceb') }};color:{{ $c==='emerald'?'#8e2f18':($c==='blue'?'#1d4f7a':'#8c1d17') }};border-right:4px solid {{ $c==='emerald'?'#c94a2b':($c==='blue'?'#27689f':'#b3261e') }};">
             {{ session($k) }}
         </div>
     @endif
 @endforeach
 
 @if(isset($errors) && $errors->any())
-    <div class="mb-4 p-3 rounded-lg text-sm" style="background:#ffebee;color:#b71c1c;border-right:4px solid #c62828;">
+    <div class="mb-4 p-3 rounded-lg text-sm" style="background:#fdeceb;color:#8c1d17;border-right:4px solid #b3261e;">
         @foreach($errors->all() as $e)<div>• {{ $e }}</div>@endforeach
     </div>
 @endif
@@ -45,10 +45,10 @@
 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
     @php
         $statCards = [
-            ['کل اقلام', $stats['total'], '📋', '#2e7d32'],
-            ['فعال', $stats['active'], '✅', '#2e7d32'],
-            ['غیرفعال', $stats['inactive'], '⛔', '#c62828'],
-            ['دارای مبلغ در تعرفه', $stats['with_items'], '💰', '#1565c0'],
+            ['کل اقلام', $stats['total'], '📋', '#c94a2b'],
+            ['فعال', $stats['active'], '✅', '#c94a2b'],
+            ['غیرفعال', $stats['inactive'], '⛔', '#b3261e'],
+            ['دارای مبلغ در تعرفه', $stats['with_items'], '💰', '#27689f'],
         ];
     @endphp
     @foreach($statCards as [$label, $value, $icon, $color])
@@ -68,7 +68,7 @@
             <button type="button"
                     class="wf-tab px-5 py-3.5 text-sm font-bold border-b-[3px] transition-all"
                     data-tab="{{ $key }}"
-                    style="border-color:transparent;color:#607d8b;">
+                    style="border-color:transparent;color:#8a7a6a;">
                 <span class="text-base">{{ $g['meta']['icon'] }}</span>
                 {{ $g['meta']['title'] }}
                 <span class="inline-block text-xs px-2 py-0.5 rounded-full mr-1"
@@ -164,9 +164,9 @@
 
                                 <td class="p-3 whitespace-nowrap">
                                     @if($row->is_active)
-                                        <span class="text-[11px] px-2.5 py-1 rounded-full" style="background:#e8f5e9;color:#1b5e20;">✅ فعال</span>
+                                        <span class="text-[11px] px-2.5 py-1 rounded-full" style="background:#fdeee7;color:#8e2f18;">✅ فعال</span>
                                     @else
-                                        <span class="text-[11px] px-2.5 py-1 rounded-full" style="background:#ffebee;color:#b71c1c;">⛔ غیرفعال</span>
+                                        <span class="text-[11px] px-2.5 py-1 rounded-full" style="background:#fdeceb;color:#8c1d17;">⛔ غیرفعال</span>
                                     @endif
                                 </td>
 
@@ -186,7 +186,7 @@
                                         @if($g['can_manage'])
                                             <button type="button"
                                                     class="wf-amount-btn text-[12px] px-2.5 py-1.5 rounded-lg font-bold"
-                                                    style="background:#fff3e0;color:#e65100;"
+                                                    style="background:#fff7dc;color:#a8730f;"
                                                     title="تغییر مبلغ"
                                                     data-id="{{ $row->id }}"
                                                     data-name="{{ $row->name_fa }}"
@@ -195,7 +195,7 @@
 
                                             <button type="button"
                                                     class="wf-edit-btn text-[12px] px-2.5 py-1.5 rounded-lg font-bold"
-                                                    style="background:#e3f2fd;color:#1565c0;"
+                                                    style="background:#eaf2fa;color:#27689f;"
                                                     title="ویرایش کامل"
                                                     data-id="{{ $row->id }}"
                                                     data-name="{{ $row->name_fa }}"
@@ -211,7 +211,7 @@
                                                   onsubmit="return confirm('وضعیت این قلم تغییر کند؟');">
                                                 @csrf
                                                 <button type="submit" class="text-[12px] px-2.5 py-1.5 rounded-lg font-bold"
-                                                        style="background:{{ $row->is_active ? '#ffebee' : '#e8f5e9' }};color:{{ $row->is_active ? '#b71c1c' : '#1b5e20' }};"
+                                                        style="background:{{ $row->is_active ? '#fdeceb' : '#fdeee7' }};color:{{ $row->is_active ? '#8c1d17' : '#8e2f18' }};"
                                                         title="{{ $row->is_active ? 'غیرفعال کردن' : 'فعال کردن' }}">
                                                     {{ $row->is_active ? '⛔' : '✅' }}
                                                 </button>
@@ -245,8 +245,8 @@
 {{-- ═══════════════════════════════════════════════════════ --}}
 <div id="amountModal" class="wf-modal" style="display:none;">
     <div class="wf-modal-box" style="max-width:480px;">
-        <div class="p-5 border-b border-gray-100" style="background:#fff3e0;">
-            <div class="font-bold text-base" style="color:#e65100;">💰 تغییر مبلغ عوارض</div>
+        <div class="p-5 border-b border-gray-100" style="background:#fff7dc;">
+            <div class="font-bold text-base" style="color:#a8730f;">💰 تغییر مبلغ عوارض</div>
             <div class="text-xs text-gray-600 mt-1" id="amItemName">—</div>
         </div>
 
@@ -254,7 +254,7 @@
             @csrf
             @method('PATCH')
 
-            <div class="mb-4 p-3 rounded-lg" style="background:#f5f7fa;">
+            <div class="mb-4 p-3 rounded-lg" style="background:#fff7e9;">
                 <div class="flex justify-between items-center text-sm">
                     <span class="text-gray-600">مبلغ فعلی:</span>
                     <strong class="font-mono text-gray-800" id="amCurrent">—</strong>
@@ -274,7 +274,7 @@
 
             <div class="flex gap-2 justify-end">
                 <button type="button" class="wf-close px-4 py-2 rounded-lg bg-gray-100 text-gray-700 text-sm font-bold">انصراف</button>
-                <button type="submit" class="px-5 py-2 rounded-lg text-white text-sm font-bold" style="background:#e65100;">
+                <button type="submit" class="px-5 py-2 rounded-lg text-white text-sm font-bold" style="background:#a8730f;">
                     ✅ تأیید و ذخیره
                 </button>
             </div>
@@ -287,8 +287,8 @@
 {{-- ═══════════════════════════════════════════════════════ --}}
 <div id="editModal" class="wf-modal" style="display:none;">
     <div class="wf-modal-box" style="max-width:620px;">
-        <div class="p-5 border-b border-gray-100" style="background:#e3f2fd;">
-            <div class="font-bold text-base" style="color:#0d47a1;" id="emTitle">✏️ ویرایش عوارض</div>
+        <div class="p-5 border-b border-gray-100" style="background:#eaf2fa;">
+            <div class="font-bold text-base" style="color:#1d4f7a;" id="emTitle">✏️ ویرایش عوارض</div>
             <div class="text-xs text-gray-600 mt-1">تغییرات در تاریخچه ثبت می‌شود</div>
         </div>
 
@@ -383,7 +383,7 @@
 {{-- ═══════════════════════════════════════════════════════ --}}
 <div id="logsModal" class="wf-modal" style="display:none;">
     <div class="wf-modal-box" style="max-width:620px;">
-        <div class="p-5 border-b border-gray-100" style="background:#eceff1;">
+        <div class="p-5 border-b border-gray-100" style="background:#f5efe4;">
             <div class="font-bold text-base text-gray-700">📜 تاریخچه‌ی تغییرات</div>
             <div class="text-xs text-gray-600 mt-1" id="lmTitle">—</div>
         </div>
@@ -414,7 +414,7 @@
         from { transform: scale(.96); opacity: 0; }
         to   { transform: scale(1); opacity: 1; }
     }
-    .wf-tab:hover { background: #f5f7fa; }
+    .wf-tab:hover { background: #fff7e9; }
     .wf-tab.wf-active { background: #fff; }
     .wf-log-row {
         display: flex; gap: 10px; padding: 10px 0;
@@ -463,8 +463,8 @@
         tabs.forEach(t => {
             const on = t.dataset.tab === key;
             t.classList.toggle('wf-active', on);
-            t.style.borderColor = on ? '#2e7d32' : 'transparent';
-            t.style.color = on ? '#1b5e20' : '#607d8b';
+            t.style.borderColor = on ? '#c94a2b' : 'transparent';
+            t.style.color = on ? '#8e2f18' : '#8a7a6a';
         });
         panels.forEach(p => {
             p.style.display = p.dataset.panel === key ? '' : 'none';
@@ -520,22 +520,22 @@
         const val = parseNum(amInput.value);
 
         if (!val) {
-            diffEl.innerHTML = '<span style="color:#c62828;">مبلغ نمی‌تواند خالی یا صفر باشد.</span>';
+            diffEl.innerHTML = '<span style="color:#b3261e;">مبلغ نمی‌تواند خالی یا صفر باشد.</span>';
             return;
         }
         if (!amCurrentValue) {
-            diffEl.innerHTML = '<span style="color:#607d8b;">مبلغ فعلی تعیین نشده بود.</span>';
+            diffEl.innerHTML = '<span style="color:#8a7a6a;">مبلغ فعلی تعیین نشده بود.</span>';
             return;
         }
         if (val === amCurrentValue) {
-            diffEl.innerHTML = '<span style="color:#607d8b;">مبلغ تغییری نکرده است.</span>';
+            diffEl.innerHTML = '<span style="color:#8a7a6a;">مبلغ تغییری نکرده است.</span>';
             return;
         }
 
         const d = val - amCurrentValue;
         const pct = (d / amCurrentValue) * 100;
         const sign = d > 0 ? '+' : '−';
-        const color = d > 0 ? '#e65100' : '#2e7d32';
+        const color = d > 0 ? '#a8730f' : '#c94a2b';
 
         diffEl.innerHTML = '<span style="color:' + color + ';font-weight:bold;">'
             + sign + faNum(Math.abs(d)) + ' ریال  (' + sign
@@ -696,7 +696,7 @@
                 ).join('');
             } catch (err) {
                 document.getElementById('lmBody').innerHTML =
-                    '<div class="text-center py-6 text-sm" style="color:#c62828;">خطا در دریافت تاریخچه.</div>';
+                    '<div class="text-center py-6 text-sm" style="color:#b3261e;">خطا در دریافت تاریخچه.</div>';
             }
         });
     });

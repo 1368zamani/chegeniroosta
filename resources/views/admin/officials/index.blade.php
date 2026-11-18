@@ -31,16 +31,16 @@
                 @if($o->photo)
                     <img src="{{ asset('storage/' . $o->photo) }}" style="width:50px;height:50px;border-radius:50%;object-fit:cover;">
                 @else
-                    <div style="width:50px;height:50px;border-radius:50%;background:#f0f3f7;display:inline-flex;align-items:center;justify-content:center;color:#90a4ae;">👤</div>
+                    <div style="width:50px;height:50px;border-radius:50%;background:#f0f3f7;display:inline-flex;align-items:center;justify-content:center;color:#8a7a6a;">👤</div>
                 @endif
             </td>
             <td><strong>{{ $o->name }}</strong></td>
             <td>{{ $o->position }}</td>
             <td>
                 @if($o->type === 'governor')
-                    <span class="badge" style="background:#c8e6c9;color:#2e7d32;">فرماندار</span>
+                    <span class="badge" style="background:#fbdcd0;color:#c94a2b;">فرماندار</span>
                 @else
-                    <span class="badge" style="background:#e2e8f0;color:#475569;">معاون</span>
+                    <span class="badge" style="background:#e6d8c3;color:#5a4a3c;">معاون</span>
                 @endif
             </td>
             <td>
@@ -55,7 +55,7 @@
                 @include('partials.admin.toggle', ['type' => 'official', 'model' => $o])
                 <form method="POST" action="{{ route('admin.officials.destroy', $o->id) }}" style="display:inline;" onsubmit="return confirm('حذف؟');">
                     @csrf @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" style="background:#c62828;color:#fff;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px;">حذف</button>
+                    <button type="submit" class="btn btn-danger btn-sm" style="background:#b3261e;color:#fff;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px;">حذف</button>
                 </form>
             </td>
         </tr>

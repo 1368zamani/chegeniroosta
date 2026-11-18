@@ -9,8 +9,8 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
-            color: #263238;
+            background: #fff7e9;
+            color: #2b2119;
         }
 
         .container {
@@ -27,7 +27,7 @@
         }
 
         h1 {
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         h3 {
@@ -35,13 +35,13 @@
         }
 
         .meta {
-            color: #78909c;
+            color: #8a7a6a;
             line-height: 2;
         }
 
         .btn {
             display: inline-block;
-            background: #2e7d32;
+            background: #c94a2b;
             color: white;
             text-decoration: none;
             padding: 10px 17px;
@@ -52,16 +52,16 @@
         }
 
         .btn-danger {
-            background: #c62828;
+            background: #b3261e;
         }
 
         .btn-gray {
-            background: #607d8b;
+            background: #8a7a6a;
         }
 
         .message {
-            background: #e8f5e9;
-            color: #2e7d32;
+            background: #fdeee7;
+            color: #c94a2b;
             padding: 14px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -89,7 +89,9 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 
 <body>
 

@@ -5,27 +5,29 @@
     <title>بکاپ‌ها</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #0d3b2e, #14432f); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
+        .header { background: linear-gradient(135deg, #5c2313, #14432f); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 19px; }
         .header a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; }
         .container { max-width: 1000px; margin: auto; padding: 30px 20px; }
-        .success { background: #c8e6c9; color: #2e7d32; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; white-space: pre-line; font-size: 13px; }
+        .success { background: #fbdcd0; color: #c94a2b; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; white-space: pre-line; font-size: 13px; }
         .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 5px 18px rgba(0,0,0,0.06); margin-bottom: 20px; }
         .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-family: inherit; font-size: 14px; cursor: pointer; border: none; }
-        .btn-primary { background: #0d3b2e; color: white; }
-        .btn-primary:hover { background: #2e7d32; }
+        .btn-primary { background: #5c2313; color: white; }
+        .btn-primary:hover { background: #c94a2b; }
         table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; }
-        th, td { padding: 12px 14px; text-align: right; border-bottom: 1px solid #eceff1; font-size: 13px; }
-        th { background: #f8fafc; color: #546e7a; font-weight: 600; }
+        th, td { padding: 12px 14px; text-align: right; border-bottom: 1px solid #f5efe4; font-size: 13px; }
+        th { background: #fffdf9; color: #5a4a3c; font-weight: 600; }
         tr:last-child td { border-bottom: none; }
-        tr:hover { background: #f8fafc; }
-        .empty { text-align: center; padding: 40px; color: #90a4ae; }
+        tr:hover { background: #fffdf9; }
+        .empty { text-align: center; padding: 40px; color: #8a7a6a; }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">
@@ -41,8 +43,8 @@
 
     <div class="card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
         <div>
-            <h3 style="margin:0 0 4px; color:#0d3b2e; font-size:15px;">بکاپ دستی</h3>
-            <p style="margin:0; color:#78909c; font-size:12.5px;">بکاپ فوری از دیتابیس و فایل‌های آپلود</p>
+            <h3 style="margin:0 0 4px; color:#5c2313; font-size:15px;">بکاپ دستی</h3>
+            <p style="margin:0; color:#8a7a6a; font-size:12.5px;">بکاپ فوری از دیتابیس و فایل‌های آپلود</p>
         </div>
         <form method="POST" action="{{ route('admin.backups.run') }}">
             @csrf
@@ -50,7 +52,7 @@
         </form>
     </div>
 
-    <h2 style="color:#0d3b2e; font-size:16px; margin-bottom:14px;">📁 لیست بکاپ‌ها ({{ count($files) }})</h2>
+    <h2 style="color:#5c2313; font-size:16px; margin-bottom:14px;">📁 لیست بکاپ‌ها ({{ count($files) }})</h2>
 
     @if(count($files) > 0)
         <table>
@@ -86,13 +88,13 @@
     @endif
 
     <div class="card" style="margin-top:20px;">
-        <h3 style="margin:0 0 10px; color:#0d3b2e; font-size:14px;">🕐 بکاپ خودکار روزانه</h3>
-        <p style="margin:0; color:#546e7a; font-size:13px; line-height:2;">
+        <h3 style="margin:0 0 10px; color:#5c2313; font-size:14px;">🕐 بکاپ خودکار روزانه</h3>
+        <p style="margin:0; color:#5a4a3c; font-size:13px; line-height:2;">
             برای فعال‌سازی، این دستور رو در سرور اجرا کن:<br>
-            <code style="background:#f5f7fa; padding:6px 12px; border-radius:6px; direction:ltr; display:inline-block; margin-top:6px;">crontab -e</code><br>
+            <code style="background:#fff7e9; padding:6px 12px; border-radius:6px; direction:ltr; display:inline-block; margin-top:6px;">crontab -e</code><br>
             و این خط رو اضافه کن:<br>
-            <code style="background:#f5f7fa; padding:6px 12px; border-radius:6px; direction:ltr; display:inline-block; margin-top:6px;">0 3 * * * cd /var/www/chegeniroosta && php artisan app:backup >> /dev/null 2>&1</code><br>
-            <small style="color:#90a4ae;">یعنی هر شب ساعت ۳ بامداد بکاپ خودکار گرفته می‌شود.</small>
+            <code style="background:#fff7e9; padding:6px 12px; border-radius:6px; direction:ltr; display:inline-block; margin-top:6px;">0 3 * * * cd /var/www/chegeniroosta && php artisan app:backup >> /dev/null 2>&1</code><br>
+            <small style="color:#8a7a6a;">یعنی هر شب ساعت ۳ بامداد بکاپ خودکار گرفته می‌شود.</small>
         </p>
     </div>
 

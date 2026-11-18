@@ -7,15 +7,15 @@
 @php
     $isEdit = $product->exists;
     $fieldStyle = 'width:100%; padding:11px 14px; border:1.5px solid #d7dee3; border-radius:8px; font-family:inherit; font-size:14px;';
-    $labelStyle = 'display:block; font-size:13px; font-weight:bold; color:#37474f; margin-bottom:6px;';
+    $labelStyle = 'display:block; font-size:13px; font-weight:bold; color:#2b2119; margin-bottom:6px;';
     $cardStyle  = 'background:#fff; border-radius:12px; padding:22px; box-shadow:0 4px 16px rgba(0,0,0,.05); margin-bottom:16px;';
-    $hintStyle  = 'font-size:11.5px; color:#90a4ae; margin-top:5px;';
+    $hintStyle  = 'font-size:11.5px; color:#8a7a6a; margin-top:5px;';
 @endphp
 
 <div class="page-title">
     <h2>{{ $isEdit ? '✏️ ویرایش محصول' : '➕ محصول جدید' }} — {{ $village->name }}</h2>
     <a href="{{ route('admin.village.products.index', $village->id) }}" class="btn"
-       style="background:#eceff1; color:#37474f;">← بازگشت</a>
+       style="background:#f5efe4; color:#2b2119;">← بازگشت</a>
 </div>
 
 @if(isset($errors) && $errors->any())
@@ -34,7 +34,7 @@
 
     {{-- ═══ ۱) اطلاعات اصلی ═══ --}}
     <div style="{{ $cardStyle }}">
-        <div style="font-size:14px; font-weight:800; color:#2e7d32; margin-bottom:16px;">
+        <div style="font-size:14px; font-weight:800; color:#c94a2b; margin-bottom:16px;">
             ۱) اطلاعات اصلی محصول
         </div>
 
@@ -78,7 +78,7 @@
 
     {{-- ═══ ۲) قیمت و موجودی ═══ --}}
     <div style="{{ $cardStyle }}">
-        <div style="font-size:14px; font-weight:800; color:#2e7d32; margin-bottom:16px;">
+        <div style="font-size:14px; font-weight:800; color:#c94a2b; margin-bottom:16px;">
             ۲) قیمت و موجودی
         </div>
 
@@ -112,7 +112,7 @@
 
     {{-- ═══ ۳) فروشنده و تحویل ═══ --}}
     <div style="{{ $cardStyle }}">
-        <div style="font-size:14px; font-weight:800; color:#2e7d32; margin-bottom:16px;">
+        <div style="font-size:14px; font-weight:800; color:#c94a2b; margin-bottom:16px;">
             ۳) فروشنده و تحویل
         </div>
 
@@ -145,7 +145,7 @@
 
     {{-- ═══ ۴) تصاویر ═══ --}}
     <div style="{{ $cardStyle }}">
-        <div style="font-size:14px; font-weight:800; color:#2e7d32; margin-bottom:16px;">
+        <div style="font-size:14px; font-weight:800; color:#c94a2b; margin-bottom:16px;">
             ۴) تصاویر محصول
         </div>
 
@@ -159,7 +159,7 @@
 
         @if($isEdit && $product->images->count() > 0)
             <div style="margin-top:16px;">
-                <div style="font-size:12.5px; color:#546e7a; margin-bottom:10px;">
+                <div style="font-size:12.5px; color:#5a4a3c; margin-bottom:10px;">
                     تصاویر فعلی ({{ \App\Support\Number::fa($product->images->count()) }})
                 </div>
                 <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(110px, 1fr)); gap:10px;">
@@ -174,7 +174,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                        style="background:rgba(229,57,53,.92); color:#fff; border:none;
+                                        style="background:rgba(179,38,30,.92); color:#fff; border:none;
                                                width:24px; height:24px; border-radius:50%; cursor:pointer;
                                                font-size:13px; line-height:1;">×</button>
                             </form>
@@ -187,12 +187,12 @@
 
     {{-- ═══ ۵) فایل‌های ضمیمه ═══ --}}
     <div style="{{ $cardStyle }}">
-        <div style="font-size:14px; font-weight:800; color:#2e7d32; margin-bottom:16px;">
+        <div style="font-size:14px; font-weight:800; color:#c94a2b; margin-bottom:16px;">
             ۵) فایل‌های ضمیمه (آپلود / دانلود)
         </div>
 
-        <div style="background:#f1f8e9; border-radius:8px; padding:12px 14px; margin-bottom:14px;
-                    font-size:12.5px; color:#33691e; line-height:1.9;">
+        <div style="background:#fff7dc; border-radius:8px; padding:12px 14px; margin-bottom:14px;
+                    font-size:12.5px; color:#5c2313; line-height:1.9;">
             می‌توانید برای هر محصول فایل‌هایی مثل <strong>کاتالوگ، لیست قیمت، مشخصات فنی، مجوز بهداشت</strong> بارگذاری کنید.
             شهروندان می‌توانند آن‌ها را از صفحه‌ی محصول دانلود کنند.
         </div>
@@ -214,19 +214,19 @@
         </div>
 
         @if($isEdit && $product->files->count() > 0)
-            <div style="margin-top:16px; border-top:1px solid #eceff1; padding-top:14px;">
-                <div style="font-size:12.5px; color:#546e7a; margin-bottom:10px;">
+            <div style="margin-top:16px; border-top:1px solid #f5efe4; padding-top:14px;">
+                <div style="font-size:12.5px; color:#5a4a3c; margin-bottom:10px;">
                     فایل‌های فعلی ({{ \App\Support\Number::fa($product->files->count()) }})
                 </div>
                 @foreach($product->files as $f)
-                    <div style="display:flex; align-items:center; gap:10px; background:#f8fafc;
+                    <div style="display:flex; align-items:center; gap:10px; background:#fffdf9;
                                 border-radius:8px; padding:10px 12px; margin-bottom:8px; flex-wrap:wrap;">
                         <span style="font-size:17px;">{{ $f->icon() }}</span>
-                        <span style="flex:1; min-width:120px; font-size:12.5px; color:#37474f;">
+                        <span style="flex:1; min-width:120px; font-size:12.5px; color:#2b2119;">
                             {{ $f->title }}
-                            <span style="color:#90a4ae; font-size:11.5px;">({{ $f->sizeLabel() }})</span>
+                            <span style="color:#8a7a6a; font-size:11.5px;">({{ $f->sizeLabel() }})</span>
                         </span>
-                        <span style="font-size:11.5px; color:#90a4ae;">
+                        <span style="font-size:11.5px; color:#8a7a6a;">
                             ⬇️ {{ \App\Support\Number::fa(number_format($f->download_count)) }}
                         </span>
                         <form method="POST"
@@ -236,7 +236,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit"
-                                    style="background:#e53935; color:#fff; border:none; border-radius:6px;
+                                    style="background:#b3261e; color:#fff; border:none; border-radius:6px;
                                            padding:5px 12px; font-size:11.5px; cursor:pointer; font-family:inherit;">
                                 🗑 حذف
                             </button>
@@ -249,7 +249,7 @@
 
     {{-- ═══ ۶) وضعیت و ترتیب ═══ --}}
     <div style="{{ $cardStyle }}">
-        <div style="font-size:14px; font-weight:800; color:#2e7d32; margin-bottom:16px;">
+        <div style="font-size:14px; font-weight:800; color:#c94a2b; margin-bottom:16px;">
             ۶) وضعیت نمایش
         </div>
 
@@ -259,7 +259,7 @@
                 <input type="checkbox" name="is_active" value="1"
                        @checked(old('is_active', $product->is_active ?? true))
                        style="width:20px; height:20px;">
-                <span style="font-weight:bold; color:#37474f;">فعال (نمایش در سایت)</span>
+                <span style="font-weight:bold; color:#2b2119;">فعال (نمایش در سایت)</span>
             </label>
 
             <label style="display:flex; align-items:center; gap:9px; cursor:pointer; font-size:13.5px;">
@@ -267,7 +267,7 @@
                 <input type="checkbox" name="is_available" value="1"
                        @checked(old('is_available', $product->is_available ?? true))
                        style="width:20px; height:20px;">
-                <span style="font-weight:bold; color:#37474f;">موجود برای فروش</span>
+                <span style="font-weight:bold; color:#2b2119;">موجود برای فروش</span>
             </label>
 
             <label style="display:flex; align-items:center; gap:9px; cursor:pointer; font-size:13.5px;">
@@ -275,7 +275,7 @@
                 <input type="checkbox" name="is_featured" value="1"
                        @checked(old('is_featured', $product->is_featured ?? false))
                        style="width:20px; height:20px;">
-                <span style="font-weight:bold; color:#37474f;">⭐ محصول ویژه (بالای فهرست)</span>
+                <span style="font-weight:bold; color:#2b2119;">⭐ محصول ویژه (بالای فهرست)</span>
             </label>
         </div>
 
@@ -290,7 +290,7 @@
 
     <div style="display:flex; gap:10px; justify-content:flex-end; margin-bottom:40px;">
         <a href="{{ route('admin.village.products.index', $village->id) }}"
-           class="btn" style="background:#eceff1; color:#37474f;">انصراف</a>
+           class="btn" style="background:#f5efe4; color:#2b2119;">انصراف</a>
         <button type="submit" class="btn btn-primary" style="padding:12px 28px;">
             {{ $isEdit ? '💾 ذخیره‌ی تغییرات' : '➕ ثبت محصول' }}
         </button>

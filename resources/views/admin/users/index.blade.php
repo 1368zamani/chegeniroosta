@@ -4,18 +4,18 @@
 
 <style>
     .tools-bar { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; justify-content: space-between; align-items: center; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .search-box { flex: 1; min-width: 250px; padding: 10px 15px; border: 1px solid #cfd8dc; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; transition: 0.3s; }
-    .search-box:focus { border-color: #2e7d32; box-shadow: 0 0 0 3px rgba(46,125,50,0.1); }
+    .search-box { flex: 1; min-width: 250px; padding: 10px 15px; border: 1px solid #e6d8c3; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; transition: 0.3s; }
+    .search-box:focus { border-color: #c94a2b; box-shadow: 0 0 0 3px rgba(201,74,43,0.1); }
     
     .filter-group { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 15px; background: #fff; padding: 10px 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
     .filter-group span { font-weight: bold; color: #555; font-size: 14px; margin-left: 10px; }
     
-    .tab-btn { background: #e0e0e0; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; color: #455a64; }
-    .tab-btn:hover { background: #cfd8dc; }
-    .tab-btn.active { background: #2e7d32; color: white; font-weight: bold; box-shadow: 0 2px 5px rgba(46,125,50,0.3); }
-    .tab-btn.role-active { background: #1565c0; color: white; }
+    .tab-btn { background: #e6d8c3; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; color: #455a64; }
+    .tab-btn:hover { background: #e6d8c3; }
+    .tab-btn.active { background: #c94a2b; color: white; font-weight: bold; box-shadow: 0 2px 5px rgba(201,74,43,0.3); }
+    .tab-btn.role-active { background: #27689f; color: white; }
     
-    .empty-state { text-align: center; padding: 30px; color: #78909c; font-style: italic; display: none; background: #fff; border-radius: 10px; }
+    .empty-state { text-align: center; padding: 30px; color: #8a7a6a; font-style: italic; display: none; background: #fff; border-radius: 10px; }
 </style>
 
 <div class="page-title">

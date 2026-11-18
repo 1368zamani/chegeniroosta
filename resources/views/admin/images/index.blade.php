@@ -6,8 +6,8 @@
     <title>گالری تصاویر {{ $village->name }}</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
+        .header { background: linear-gradient(135deg, #c94a2b, #8e2f18); color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 19px; }
         .header .nav { display: flex; gap: 10px; }
         .header a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.15); border-radius: 8px; font-size: 13px; }
@@ -15,7 +15,7 @@
 
         .container { max-width: 1200px; margin: auto; padding: 30px 20px; }
 
-        .success { background: #c8e6c9; color: #2e7d32; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; }
+        .success { background: #fbdcd0; color: #c94a2b; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; }
 
         .actions-bar {
             display: flex;
@@ -25,13 +25,13 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .actions-bar h2 { margin: 0; color: #2e7d32; font-size: 18px; }
+        .actions-bar h2 { margin: 0; color: #c94a2b; font-size: 18px; }
         .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-family: inherit; font-size: 13px; cursor: pointer; border: none; display: inline-block; }
-        .btn-primary { background: #2e7d32; color: white; }
-        .btn-primary:hover { background: #1b5e20; }
-        .btn-secondary { background: #cfd8dc; color: #37474f; }
-        .btn-danger { background: #e53935; color: white; }
-        .btn-warning { background: #f9a825; color: white; }
+        .btn-primary { background: #c94a2b; color: white; }
+        .btn-primary:hover { background: #8e2f18; }
+        .btn-secondary { background: #e6d8c3; color: #2b2119; }
+        .btn-danger { background: #b3261e; color: white; }
+        .btn-warning { background: #f5b841; color: white; }
         .btn-sm { padding: 7px 14px; font-size: 12px; }
 
         .gallery-grid {
@@ -55,11 +55,11 @@
         .gallery-caption {
             padding: 12px 14px;
             font-size: 13px;
-            color: #546e7a;
+            color: #5a4a3c;
         }
         .gallery-actions {
             padding: 10px 14px;
-            border-top: 1px solid #eceff1;
+            border-top: 1px solid #f5efe4;
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
@@ -68,7 +68,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #2e7d32;
+            background: #c94a2b;
             color: white;
             font-size: 11px;
             padding: 4px 10px;
@@ -80,7 +80,7 @@
             border-radius: 12px;
             padding: 60px 20px;
             text-align: center;
-            color: #90a4ae;
+            color: #8a7a6a;
             box-shadow: 0 5px 18px rgba(0,0,0,0.06);
         }
         .empty .icon { font-size: 60px; opacity: .4; margin-bottom: 20px; }
@@ -88,7 +88,9 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">

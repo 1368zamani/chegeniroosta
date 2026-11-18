@@ -17,13 +17,13 @@
 body{
     margin:0;
     font-family:Tahoma,Arial,sans-serif;
-    background:#f5f7fa;
-    color:#263238;
+    background:#fff7e9;
+    color:#2b2119;
 }
 
 
 .header{
-    background:#2e7d32;
+    background:#c94a2b;
     color:white;
     padding:20px 30px;
     display:flex;
@@ -110,7 +110,7 @@ text-align:center;
 display:block;
 font-size:32px;
 font-weight:bold;
-color:#2e7d32;
+color:#c94a2b;
 
 }
 
@@ -120,7 +120,7 @@ color:#2e7d32;
 
 display:block;
 margin-top:10px;
-color:#607d8b;
+color:#8a7a6a;
 
 }
 
@@ -131,11 +131,11 @@ color:#607d8b;
 
 margin:35px 0 20px;
 
-color:#2e7d32;
+color:#c94a2b;
 
 font-size:20px;
 
-border-bottom:2px solid #e8f5e9;
+border-bottom:2px solid #fdeee7;
 
 padding-bottom:10px;
 
@@ -167,9 +167,9 @@ box-shadow:0 5px 20px rgba(0,0,0,.08);
 
 text-decoration:none;
 
-color:#263238;
+color:#2b2119;
 
-border-top:4px solid #2e7d32;
+border-top:4px solid #c94a2b;
 
 }
 
@@ -185,7 +185,7 @@ transform:translateY(-3px);
 
 .card h3{
 
-color:#2e7d32;
+color:#c94a2b;
 
 margin-top:0;
 
@@ -195,7 +195,7 @@ margin-top:0;
 
 .card p{
 
-color:#607d8b;
+color:#8a7a6a;
 
 }
 
@@ -204,7 +204,7 @@ color:#607d8b;
 
 .logout{
 
-background:#e53935!important;
+background:#b3261e!important;
 
 }
 
@@ -241,7 +241,9 @@ text-align:center;
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 
 
 <body>

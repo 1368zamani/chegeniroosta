@@ -13,11 +13,11 @@
 .checkbox-field:focus,
 .checkbox-field:active {
     background: #ffffff !important;
-    color: #2e7d32 !important;
+    color: #c94a2b !important;
     padding: 14px 18px !important;
     margin-bottom: 10px !important;
     border-radius: 10px !important;
-    border: 1.5px solid #e8f5e9 !important;
+    border: 1.5px solid #fdeee7 !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
@@ -27,15 +27,15 @@
 
 /* فقط border عوض شه، نه background */
 .checkbox-field:hover {
-    border-color: #2e7d32 !important;
-    box-shadow: 0 2px 8px rgba(21,101,192,0.12) !important;
+    border-color: #c94a2b !important;
+    box-shadow: 0 2px 8px rgba(39,104,159,0.12) !important;
 }
 
 /* متن داخل label همیشه آبی */
 .checkbox-field label,
 .checkbox-field span,
 .checkbox-field * {
-    color: #2e7d32 !important;
+    color: #c94a2b !important;
     background: transparent !important;
     font-weight: 700 !important;
 }
@@ -44,7 +44,7 @@
 .checkbox-field input[type="checkbox"] {
     width: 20px !important;
     height: 20px !important;
-    accent-color: #2e7d32 !important;
+    accent-color: #c94a2b !important;
     cursor: pointer !important;
     flex-shrink: 0 !important;
 }
@@ -52,11 +52,11 @@
 /* اطمینان از کارت سفید */
 .card {
     background: #ffffff !important;
-    color: #2e7d32 !important;
+    color: #c94a2b !important;
 }
 
 .card h3 {
-    color: #1b5e20 !important;
+    color: #8e2f18 !important;
     background: transparent !important;
 }
 </style>
@@ -79,17 +79,17 @@
     background: #ffffff !important;
     background-color: #ffffff !important;
     background-image: none !important;
-    color: #2e7d32 !important;
+    color: #c94a2b !important;
 }
 
 .card {
-    border: 1px solid #e8f5e9 !important;
-    box-shadow: 0 2px 10px rgba(21,101,192,0.06) !important;
+    border: 1px solid #fdeee7 !important;
+    box-shadow: 0 2px 10px rgba(39,104,159,0.06) !important;
 }
 
 .card h3 {
-    color: #1b5e20 !important;
-    border-bottom: 2px solid #e8f5e9 !important;
+    color: #8e2f18 !important;
+    border-bottom: 2px solid #fdeee7 !important;
     font-weight: 800 !important;
 }
 
@@ -103,18 +103,18 @@
 }
 
 .checkbox-field:hover {
-    background: #e8f5e9 !important;
+    background: #fdeee7 !important;
 }
 
 .checkbox-field input[type="checkbox"] {
     width: 20px !important;
     height: 20px !important;
-    accent-color: #2e7d32 !important;
+    accent-color: #c94a2b !important;
     cursor: pointer !important;
 }
 
 label, span {
-    color: #2e7d32 !important;
+    color: #c94a2b !important;
     font-weight: 700 !important;
 }
 
@@ -124,25 +124,25 @@ input[type="number"],
 select,
 textarea {
     background: #ffffff !important;
-    color: #2e7d32 !important;
-    border: 1.5px solid #2e7d32 !important;
+    color: #c94a2b !important;
+    border: 1.5px solid #c94a2b !important;
     border-radius: 8px !important;
     padding: 10px 14px !important;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none !important;
-    border-color: #1b5e20 !important;
-    box-shadow: 0 0 0 3px rgba(21,101,192,0.15) !important;
+    border-color: #8e2f18 !important;
+    box-shadow: 0 0 0 3px rgba(39,104,159,0.15) !important;
 }
 
 .btn-primary {
-    background: #2e7d32 !important;
+    background: #c94a2b !important;
     color: #fff !important;
 }
 
 .btn-success {
-    background: #10b981 !important;
+    background: #e2603c !important;
     color: #fff !important;
 }
 </style>
@@ -153,17 +153,17 @@ input:focus, select:focus, textarea:focus {
 </div>
 
 {{-- ═══ عکس دهیار ═══ --}}
-    <div style="background:#f1f8e9;border:2px solid #2e7d32;border-radius:14px;padding:18px;margin-bottom:20px">
-        <h3 style="margin:0 0 12px;font-size:15px;color:#2e7d32;font-weight:800">📸 عکس دهیار</h3>
+    <div style="background:#fff7dc;border:2px solid #c94a2b;border-radius:14px;padding:18px;margin-bottom:20px">
+        <h3 style="margin:0 0 12px;font-size:15px;color:#c94a2b;font-weight:800">📸 عکس دهیار</h3>
 
         @if(session('success'))
-            <div style="background:#e8f5e9;color:#2e7d32;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">✅ {{ session('success') }}</div>
+            <div style="background:#fdeee7;color:#c94a2b;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">✅ {{ session('success') }}</div>
         @endif
         @if(session('error'))
-            <div style="background:#ffebee;color:#c62828;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">⚠️ {{ session('error') }}</div>
+            <div style="background:#fdeceb;color:#b3261e;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">⚠️ {{ session('error') }}</div>
         @endif
         @if($errors->any())
-            <div style="background:#ffebee;color:#c62828;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">
+            <div style="background:#fdeceb;color:#b3261e;padding:10px 14px;border-radius:9px;margin-bottom:12px;font-weight:700">
                 @foreach($errors->all() as $e) <div>• {{ $e }}</div> @endforeach
             </div>
         @endif
@@ -173,9 +173,9 @@ input:focus, select:focus, textarea:focus {
                 @if($village->dehyar_photo && Storage::disk('public')->exists($village->dehyar_photo))
                     <img src="{{ Storage::disk('public')->url($village->dehyar_photo) }}"
                          alt="{{ $village->dehyar_name }}"
-                         style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #2e7d32;box-shadow:0 4px 14px rgba(21,101,192,0.3)">
+                         style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid #c94a2b;box-shadow:0 4px 14px rgba(39,104,159,0.3)">
                 @else
-                    <div style="width:140px;height:140px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:50px;color:#90a4ae;border:4px solid #2e7d32">👤</div>
+                    <div style="width:140px;height:140px;border-radius:50%;background:#fdeee7;display:flex;align-items:center;justify-content:center;font-size:50px;color:#8a7a6a;border:4px solid #c94a2b">👤</div>
                 @endif
             </div>
 
@@ -184,11 +184,11 @@ input:focus, select:focus, textarea:focus {
                       enctype="multipart/form-data"
                       style="display:flex;flex-direction:column;gap:10px">
                     @csrf
-                    <label style="font-weight:700;color:#37474f;font-size:13px">انتخاب عکس (JPG / PNG / WEBP — حداکثر ۵ مگابایت)</label>
+                    <label style="font-weight:700;color:#2b2119;font-size:13px">انتخاب عکس (JPG / PNG / WEBP — حداکثر ۵ مگابایت)</label>
                     <input type="file" name="dehyar_photo" accept=".jpg,.jpeg,.png,.webp" required
-                           style="padding:10px;border:1.5px solid #cfd8dc;border-radius:8px;background:#fff;font-family:inherit">
+                           style="padding:10px;border:1.5px solid #e6d8c3;border-radius:8px;background:#fff;font-family:inherit">
                     <button type="submit"
-                            style="padding:11px 22px;background:#2e7d32;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit;align-self:flex-start">
+                            style="padding:11px 22px;background:#c94a2b;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit;align-self:flex-start">
                         📤 آپلود عکس
                     </button>
                 </form>
@@ -198,7 +198,7 @@ input:focus, select:focus, textarea:focus {
                           onsubmit="return confirm('حذف عکس دهیار؟')" style="margin-top:10px">
                         @csrf @method('DELETE')
                         <button type="submit"
-                                style="padding:9px 18px;background:#D32F2F;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit">
+                                style="padding:9px 18px;background:#b3261e;color:#fff;border:none;border-radius:9px;font-weight:800;cursor:pointer;font-family:inherit">
                             🗑 حذف عکس فعلی
                         </button>
                     </form>
@@ -212,7 +212,7 @@ input:focus, select:focus, textarea:focus {
 
     <div class="card">
         <h3>👁 نمایش بخش‌ها در سایت</h3>
-        <p style="color:#546e7a; font-size:13px; margin:0 0 16px;">تیک بزنید تا بخش مربوطه در سایت روستا نمایش داده شود.</p>
+        <p style="color:#5a4a3c; font-size:13px; margin:0 0 16px;">تیک بزنید تا بخش مربوطه در سایت روستا نمایش داده شود.</p>
 
         <label class="checkbox-field">
             <input type="checkbox" name="show_stats" value="1" {{ $village->show_stats ? 'checked' : '' }}>
@@ -297,7 +297,7 @@ input:focus, select:focus, textarea:focus {
 
     <div class="card">
         <h3>🏘 اطلاعات جغرافیایی و جمعیتی روستا</h3>
-        <p style="color:#546e7a; font-size:13px; margin:0 0 16px;">اطلاعات پایه روستا که در صفحه اصلی سایت نمایش داده می‌شود.</p>
+        <p style="color:#5a4a3c; font-size:13px; margin:0 0 16px;">اطلاعات پایه روستا که در صفحه اصلی سایت نمایش داده می‌شود.</p>
 
         <div class="row-2">
             <div class="field">
@@ -335,7 +335,7 @@ input:focus, select:focus, textarea:focus {
         <div class="field">
             <label>جمعیت روستا (نفر)</label>
             <input type="number" name="population" value="{{ old('population', $village->population) }}" dir="ltr" placeholder="مثال: 111">
-            <small style="color:#64748b; font-size:12px;">این عدد در کارت‌های اطلاعاتی سایت نمایش داده می‌شود.</small>
+            <small style="color:#5a4a3c; font-size:12px;">این عدد در کارت‌های اطلاعاتی سایت نمایش داده می‌شود.</small>
         </div>
     </div>
 
@@ -361,27 +361,27 @@ input:focus, select:focus, textarea:focus {
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
     <div class="field">
         <label>شماره تماس دهیار</label>
-        <input type="text" name="dehyar_phone" value="{{ old('dehyar_phone', $village->dehyar_phone) }}" dir="ltr" style="width:100%;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;">
+        <input type="text" name="dehyar_phone" value="{{ old('dehyar_phone', $village->dehyar_phone) }}" dir="ltr" style="width:100%;padding:11px 14px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;">
     </div>
     <div class="field">
         <label>ایمیل دهیار</label>
-        <input type="email" name="dehyar_email" value="{{ old('dehyar_email', $village->dehyar_email) }}" dir="ltr" style="width:100%;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;">
+        <input type="email" name="dehyar_email" value="{{ old('dehyar_email', $village->dehyar_email) }}" dir="ltr" style="width:100%;padding:11px 14px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;">
     </div>
 </div>
 
 <div class="field">
     <label>درباره دهیار (بیوگرافی)</label>
-    <textarea name="dehyar_bio" style="width:100%;min-height:100px;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="توضیح کوتاه درباره دهیار...">{{ old('dehyar_bio', $village->dehyar_bio) }}</textarea>
+    <textarea name="dehyar_bio" style="width:100%;min-height:100px;padding:11px 14px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="توضیح کوتاه درباره دهیار...">{{ old('dehyar_bio', $village->dehyar_bio) }}</textarea>
 </div>
 
 <div class="field">
     <label>تحصیلات دهیار</label>
-    <textarea name="dehyar_education" style="width:100%;min-height:80px;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="مثال: کارشناسی مدیریت...">{{ old('dehyar_education', $village->dehyar_education) }}</textarea>
+    <textarea name="dehyar_education" style="width:100%;min-height:80px;padding:11px 14px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="مثال: کارشناسی مدیریت...">{{ old('dehyar_education', $village->dehyar_education) }}</textarea>
 </div>
 
 <div class="field">
     <label>سوابق شغلی دهیار</label>
-    <textarea name="dehyar_experience" style="width:100%;min-height:100px;padding:11px 14px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="مثال: دهیار ... از سال ...">{{ old('dehyar_experience', $village->dehyar_experience) }}</textarea>
+    <textarea name="dehyar_experience" style="width:100%;min-height:100px;padding:11px 14px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="مثال: دهیار ... از سال ...">{{ old('dehyar_experience', $village->dehyar_experience) }}</textarea>
 </div>
         </div>
 
@@ -410,7 +410,7 @@ input:focus, select:focus, textarea:focus {
 
     <div class="card">
         <h3>💳 اطلاعات پرداخت (اختیاری)</h3>
-        <p style="color:#78909c; font-size:12.5px; margin:0 0 16px;">این اطلاعات در قسمت پرداخت عوارض نمایش داده می‌شود.</p>
+        <p style="color:#8a7a6a; font-size:12.5px; margin:0 0 16px;">این اطلاعات در قسمت پرداخت عوارض نمایش داده می‌شود.</p>
 
         <div class="row-2">
             <div class="field">
@@ -427,12 +427,12 @@ input:focus, select:focus, textarea:focus {
             <div class="field">
                 <label>عرض جغرافیایی (Latitude)</label>
                 <input type="text" name="latitude" value="{{ old('latitude', $village->latitude) }}" dir="ltr" placeholder="مثال: 33.49857115">
-                <small style="color:#64748b; font-size:12px;">از گوگل مپ، روی روستا کلیک راست کنید → مختصات را کپی کنید</small>
+                <small style="color:#5a4a3c; font-size:12px;">از گوگل مپ، روی روستا کلیک راست کنید → مختصات را کپی کنید</small>
             </div>
             <div class="field">
                 <label>طول جغرافیایی (Longitude)</label>
                 <input type="text" name="longitude" value="{{ old('longitude', $village->longitude) }}" dir="ltr" placeholder="مثال: 48.02885012">
-                <small style="color:#64748b; font-size:12px;">اولین عدد = lat، دومین عدد = lng</small>
+                <small style="color:#5a4a3c; font-size:12px;">اولین عدد = lat، دومین عدد = lng</small>
             </div>
         </div>
 

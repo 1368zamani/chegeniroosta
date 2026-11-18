@@ -4,12 +4,12 @@
 
 :root {
     --al-bg:       #ffffff;
-    --al-bg-soft:  #f1f8e9;
-    --al-blue:     #2e7d32;
-    --al-blue-dk:  #1b5e20;
-    --al-blue-lt:  #e8f5e9;
-    --al-text:     #2e7d32;
-    --al-border:   #e8f5e9;
+    --al-bg-soft:  #fff7dc;
+    --al-blue:     #c94a2b;
+    --al-blue-dk:  #8e2f18;
+    --al-blue-lt:  #fdeee7;
+    --al-text:     #c94a2b;
+    --al-border:   #fdeee7;
 }
 
 /* ═══ بدنه اصلی ═══ */
@@ -28,7 +28,7 @@ html {
     background: #ffffff !important;
     color: var(--al-blue) !important;
     border: 1px solid var(--al-border) !important;
-    box-shadow: 0 2px 10px rgba(21,101,192,0.06) !important;
+    box-shadow: 0 2px 10px rgba(39,104,159,0.06) !important;
 }
 
 .card h1, .card h2, .card h3, .card h4, .card h5,
@@ -58,7 +58,7 @@ textarea {
 input:focus, select:focus, textarea:focus {
     outline: none !important;
     border-color: var(--al-blue-dk) !important;
-    box-shadow: 0 0 0 3px rgba(21,101,192,0.15) !important;
+    box-shadow: 0 0 0 3px rgba(39,104,159,0.15) !important;
 }
 
 label {
@@ -101,9 +101,9 @@ button.btn {
 }
 .btn-blue { background: var(--al-blue) !important; color: #fff !important; }
 .btn-blue:hover { background: var(--al-blue-dk) !important; }
-.btn-green { background: #10b981 !important; color: #fff !important; }
-.btn-red { background: #D32F2F !important; color: #fff !important; }
-.btn-gray { background: #90a4ae !important; color: #fff !important; }
+.btn-green { background: #e2603c !important; color: #fff !important; }
+.btn-red { background: #b3261e !important; color: #fff !important; }
+.btn-gray { background: #8a7a6a !important; color: #fff !important; }
 
 /* ═══ منوهای کناری و بالایی ═══ */
 .sidebar,
@@ -152,22 +152,22 @@ aside.sidebar,
 }
 
 /* ═══ Pill ها ═══ */
-.pill-unpaid { background: #D32F2F !important; color: #fff !important; }
-.pill-paid { background: #10b981 !important; color: #fff !important; }
-.pill-pending_review { background: #e65100 !important; color: #fff !important; }
-.pill-approved { background: #2e7d32 !important; color: #fff !important; }
-.pill-rejected { background: #607d8b !important; color: #fff !important; }
+.pill-unpaid { background: #b3261e !important; color: #fff !important; }
+.pill-paid { background: #e2603c !important; color: #fff !important; }
+.pill-pending_review { background: #a8730f !important; color: #fff !important; }
+.pill-approved { background: #c94a2b !important; color: #fff !important; }
+.pill-rejected { background: #8a7a6a !important; color: #fff !important; }
 
 /* ═══ Alert ها ═══ */
 .alert-success, .success {
-    background: #e8f5e9 !important;
-    color: #2e7d32 !important;
-    border-right: 4px solid #2e7d32 !important;
+    background: #fdeee7 !important;
+    color: #c94a2b !important;
+    border-right: 4px solid #c94a2b !important;
 }
 .alert-error, .error {
-    background: #ffebee !important;
-    color: #c62828 !important;
-    border-right: 4px solid #c62828 !important;
+    background: #fdeceb !important;
+    color: #b3261e !important;
+    border-right: 4px solid #b3261e !important;
 }
 .alert-info {
     background: var(--al-blue-lt) !important;

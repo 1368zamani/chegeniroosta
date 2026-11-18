@@ -13,7 +13,7 @@
 
         <div class="field">
             <label>بخش</label>
-            <input type="text" value="{{ $news->section->name }}" disabled style="background:#f5f7fa; cursor:not-allowed;">
+            <input type="text" value="{{ $news->section->name }}" disabled style="background:#fff7e9; cursor:not-allowed;">
         </div>
 
         <div class="field">
@@ -36,7 +36,7 @@
             @if($news->image)
                 <img src="{{ asset('storage/' . $news->image) }}" style="max-width:300px; border-radius:8px; margin-bottom:8px;">
             @else
-                <p style="color:#90a4ae; font-size:13px;">تصویری ندارد.</p>
+                <p style="color:#8a7a6a; font-size:13px;">تصویری ندارد.</p>
             @endif
         </div>
 
@@ -55,7 +55,7 @@
 
             @if($news->images->count() > 0)
                 <div style="margin-top:14px;">
-                    <label style="font-size:13px;color:#546e7a;margin-bottom:8px;display:block;">
+                    <label style="font-size:13px;color:#5a4a3c;margin-bottom:8px;display:block;">
                         🖼 عکس‌های فعلی ({{ $news->images->count() }})
                     </label>
                     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;">
@@ -70,7 +70,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            style="background:rgba(229,57,53,.95);color:white;border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1;padding:0;">×</button>
+                                            style="background:rgba(179,38,30,.95);color:white;border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1;padding:0;">×</button>
                                 </form>
                             </div>
                         @endforeach

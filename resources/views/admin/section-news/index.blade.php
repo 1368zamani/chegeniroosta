@@ -8,8 +8,8 @@
 @if(auth()->user()->isSuperAdmin() && $sections->count() > 1)
     <div class="card" style="padding:18px 24px;">
         <form method="GET" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-            <label style="font-size:13px; color:#546e7a;">فیلتر بخش:</label>
-            <select name="section_id" onchange="this.form.submit()" style="padding:8px 14px; border:1px solid #cfd8dc; border-radius:8px; font-family:inherit;">
+            <label style="font-size:13px; color:#5a4a3c;">فیلتر بخش:</label>
+            <select name="section_id" onchange="this.form.submit()" style="padding:8px 14px; border:1px solid #e6d8c3; border-radius:8px; font-family:inherit;">
                 <option value="">همه بخش‌ها</option>
                 @foreach($sections as $s)
                     <option value="{{ $s->id }}" {{ $sectionId == $s->id ? 'selected' : '' }}>{{ $s->name }}</option>
@@ -20,7 +20,7 @@
 @endif
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-    <p style="color:#546e7a; margin:0;">{{ $news->total() }} خبر</p>
+    <p style="color:#5a4a3c; margin:0;">{{ $news->total() }} خبر</p>
     <a href="{{ route('admin.section-news.create') }}" class="btn btn-primary">➕ خبر جدید</a>
 </div>
 
@@ -53,7 +53,7 @@
                             <span class="badge badge-pinned" style="margin-right:6px;">📌 سنجاق</span>
                         @endif
                         @if($item->excerpt)
-                            <div style="color:#90a4ae; font-size:12px; margin-top:4px;">
+                            <div style="color:#8a7a6a; font-size:12px; margin-top:4px;">
                                 {{ \Illuminate\Support\Str::limit($item->excerpt, 60) }}
                             </div>
                         @endif
@@ -66,10 +66,10 @@
                             <span class="badge badge-draft">پیش‌نویس</span>
                         @endif
                     </td>
-                    <td style="font-size:12px; color:#78909c;">
+                    <td style="font-size:12px; color:#8a7a6a;">
                         {{ jalali($item->created_at) }}
                     </td>
-                    <td style="font-size:13px; color:#2e7d32; font-weight:600; white-space:nowrap;">
+                    <td style="font-size:13px; color:#c94a2b; font-weight:600; white-space:nowrap;">
                         👁 {{ \App\Support\Number::fa(number_format($item->stat_views)) }}
                     </td>
                     <td>

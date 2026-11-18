@@ -21,8 +21,8 @@
     </div>
 @endif
 
-<div class="card" style="background:#f1f8e9; border-right:4px solid #2e7d32; margin-bottom:18px;">
-    <p style="margin:0; font-size:13px; color:#33691e; line-height:1.9;">
+<div class="card" style="background:#fff7dc; border-right:4px solid #c94a2b; margin-bottom:18px;">
+    <p style="margin:0; font-size:13px; color:#5c2313; line-height:1.9;">
         این فایل‌ها در <strong>پایین صفحه‌ی «ثبت درخواست»</strong> سایت روستا نمایش داده می‌شوند
         و شهروندان می‌توانند دانلود کنند.
         <br>
@@ -52,19 +52,19 @@
                 <td>
                     <strong style="font-size:14px;">{{ $d->title }}</strong>
                     @if($d->description)
-                        <div style="font-size:12px; color:#78909c; margin-top:3px;">{{ $d->description }}</div>
+                        <div style="font-size:12px; color:#8a7a6a; margin-top:3px;">{{ $d->description }}</div>
                     @endif
                 </td>
-                <td style="font-size:11.5px; color:#607d8b; word-break:break-all;">
+                <td style="font-size:11.5px; color:#8a7a6a; word-break:break-all;">
                     {{ $d->icon() }} {{ \Illuminate\Support\Str::limit($d->file_name, 24) }}
                 </td>
                 <td style="font-size:12.5px;">{{ $d->sizeLabel() }}</td>
                 <td style="font-size:12.5px;">{{ \App\Support\Number::fa(number_format($d->download_count)) }}</td>
                 <td>
                     @if($d->is_active)
-                        <span class="badge" style="background:#c8e6c9;color:#2e7d32;">فعال</span>
+                        <span class="badge" style="background:#fbdcd0;color:#c94a2b;">فعال</span>
                     @else
-                        <span class="badge" style="background:#ffcdd2;color:#c62828;">غیرفعال</span>
+                        <span class="badge" style="background:#f6d5d2;color:#b3261e;">غیرفعال</span>
                     @endif
                 </td>
                 <td style="font-size:12.5px;">{{ \App\Support\Number::fa($d->sort_order) }}</td>
@@ -79,7 +79,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn"
-                                style="background:#e53935; color:#fff; font-size:12px; padding:6px 12px;">
+                                style="background:#b3261e; color:#fff; font-size:12px; padding:6px 12px;">
                             🗑 حذف
                         </button>
                     </form>
@@ -97,7 +97,7 @@
     <div style="background:#fff; border-radius:12px; padding:60px 20px; text-align:center;
                 box-shadow:0 4px 16px rgba(0,0,0,.05);">
         <div style="font-size:44px; margin-bottom:12px; opacity:.5;">📥</div>
-        <p style="color:#90a4ae; margin:0 0 16px; font-size:14px;">
+        <p style="color:#8a7a6a; margin:0 0 16px; font-size:14px;">
             هنوز فایلی بارگذاری نشده است.
         </p>
         <a href="{{ route('admin.village.downloads.create', $village->id) }}"

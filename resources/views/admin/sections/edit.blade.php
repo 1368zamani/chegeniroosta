@@ -5,41 +5,41 @@
     <title>ویرایش {{ $section->name }}</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: #2e7d32; color: white; padding: 20px; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
+        .header { background: #c94a2b; color: white; padding: 20px; }
         .header h1 { margin: 0; font-size: 20px; }
         .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-        .success { background: #c8e6c9; color: #2e7d32; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; }
-        .error { background: #ffcdd2; color: #c62828; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; }
+        .success { background: #fbdcd0; color: #c94a2b; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; }
+        .error { background: #f6d5d2; color: #b3261e; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; }
         .card { background: white; border-radius: 12px; padding: 28px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-        .card h2 { margin: 0 0 20px; font-size: 17px; color: #2e7d32; border-bottom: 2px solid #e8f5e9; padding-bottom: 12px; }
+        .card h2 { margin: 0 0 20px; font-size: 17px; color: #c94a2b; border-bottom: 2px solid #fdeee7; padding-bottom: 12px; }
         .field { margin-bottom: 18px; }
-        .field label { display: block; margin-bottom: 8px; font-size: 13px; color: #546e7a; font-weight: 600; }
+        .field label { display: block; margin-bottom: 8px; font-size: 13px; color: #5a4a3c; font-weight: 600; }
         .field input[type="text"],
         .field input[type="email"],
-        .field textarea { width: 100%; padding: 12px 14px; border: 1px solid #cfd8dc; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; }
-        .field input:focus, .field textarea:focus { border-color: #2e7d32; }
+        .field textarea { width: 100%; padding: 12px 14px; border: 1px solid #e6d8c3; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; }
+        .field input:focus, .field textarea:focus { border-color: #c94a2b; }
         .field textarea { resize: vertical; min-height: 90px; }
         .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
         .checkbox { display: flex; align-items: center; gap: 10px; }
         .checkbox input { width: 20px; height: 20px; }
         .actions { display: flex; gap: 12px; margin-top: 24px; }
         .btn { padding: 12px 24px; border: none; border-radius: 8px; font-family: inherit; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
-        .btn-primary { background: #2e7d32; color: white; }
-        .btn-primary:hover { background: #1b5e20; }
-        .btn-secondary { background: #cfd8dc; color: #37474f; }
-        .btn-secondary:hover { background: #b0bec5; }
-        .btn-danger { background: #e53935; color: white; }
-        .btn-danger:hover { background: #c62828; }
+        .btn-primary { background: #c94a2b; color: white; }
+        .btn-primary:hover { background: #8e2f18; }
+        .btn-secondary { background: #e6d8c3; color: #2b2119; }
+        .btn-secondary:hover { background: #e6d8c3; }
+        .btn-danger { background: #b3261e; color: white; }
+        .btn-danger:hover { background: #b3261e; }
         .photo-preview { display: flex; align-items: center; gap: 20px; }
-        .photo-preview img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #e8f5e9; }
-        .photo-preview .empty { width: 130px; height: 130px; border-radius: 50%; background: #cfd8dc; display: flex; align-items: center; justify-content: center; font-size: 44px; color: #90a4ae; }
+        .photo-preview img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #fdeee7; }
+        .photo-preview .empty { width: 130px; height: 130px; border-radius: 50%; background: #e6d8c3; display: flex; align-items: center; justify-content: center; font-size: 44px; color: #8a7a6a; }
         .photo-actions { display: flex; flex-direction: column; gap: 10px; }
         .file-input { font-size: 13px; }
-        .hint { font-size: 12px; color: #90a4ae; margin-top: 6px; }
+        .hint { font-size: 12px; color: #8a7a6a; margin-top: 6px; }
         .nav-links { margin-bottom: 20px; }
-        .nav-links a { display: inline-block; padding: 10px 18px; background: white; color: #2e7d32; text-decoration: none; border-radius: 8px; margin-right: 10px; font-size: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
-        .nav-links a:hover { background: #2e7d32; color: white; }
+        .nav-links a { display: inline-block; padding: 10px 18px; background: white; color: #c94a2b; text-decoration: none; border-radius: 8px; margin-right: 10px; font-size: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
+        .nav-links a:hover { background: #c94a2b; color: white; }
         @media (max-width: 700px) {
             .row { grid-template-columns: 1fr; }
             .photo-preview { flex-direction: column; align-items: flex-start; }
@@ -48,7 +48,9 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">
@@ -232,7 +234,7 @@
             @if($section->cover_image)
                 <img src="{{ asset('storage/' . $section->cover_image) }}" alt="" style="width: 100%; max-width: 600px; height: auto; border-radius: 10px; object-fit: cover;">
             @else
-                <div style="width: 100%; max-width: 600px; height: 200px; background: #cfd8dc; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #90a4ae; border-radius: 10px;">بدون عکس</div>
+                <div style="width: 100%; max-width: 600px; height: 200px; background: #e6d8c3; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #8a7a6a; border-radius: 10px;">بدون عکس</div>
             @endif
             <div class="photo-actions" style="margin-top: 15px;">
                 <form method="POST" action="{{ route('admin.sections.uploadCover', $section->id) }}" enctype="multipart/form-data">
@@ -255,7 +257,7 @@
     <div class="card" style="display:flex; justify-content:space-between; align-items:center;">
         <div>
             <h2 style="margin:0; border:none; padding:0;">👥 کارکنان بخشداری</h2>
-            <p style="color:#78909c; font-size:13px; margin:5px 0 0;">مدیریت لیست همکاران، سمت‌ها و شماره تماس‌ها</p>
+            <p style="color:#8a7a6a; font-size:13px; margin:5px 0 0;">مدیریت لیست همکاران، سمت‌ها و شماره تماس‌ها</p>
         </div>
         <a href="{{ route('admin.sections.staff.index', $section->id) }}" class="btn btn-primary">مدیریت همکاران ←</a>
     </div>

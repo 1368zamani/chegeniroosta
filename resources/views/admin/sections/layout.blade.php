@@ -18,8 +18,8 @@ box-sizing:border-box;
 body{
 margin:0;
 font-family:Tahoma,Arial,sans-serif;
-background:#f5f7fa;
-color:#263238;
+background:#fff7e9;
+color:#2b2119;
 }
 
 
@@ -54,21 +54,21 @@ display:block;
 padding:12px 15px;
 border-radius:10px;
 text-decoration:none;
-color:#37474f;
+color:#2b2119;
 font-size:14px;
 }
 
 
 .sidebar-menu a:hover,
 .sidebar-menu a.active{
-background:#e8f5e9;
-color:#2e7d32;
+background:#fdeee7;
+color:#c94a2b;
 font-weight:bold;
 }
 
 
 .menu-label{
-color:#78909c;
+color:#8a7a6a;
 font-size:12px;
 margin:20px 10px 10px;
 }
@@ -76,7 +76,7 @@ margin:20px 10px 10px;
 
 .menu-divider{
 height:1px;
-background:#eceff1;
+background:#f5efe4;
 margin:15px 0;
 }
 
@@ -111,7 +111,7 @@ background:white;
 padding:22px;
 border-radius:14px;
 text-decoration:none;
-color:#263238;
+color:#2b2119;
 box-shadow:0 5px 15px rgba(0,0,0,.05);
 }
 
@@ -125,14 +125,14 @@ transform:translateY(-3px);
 display:block;
 font-size:32px;
 font-weight:bold;
-color:#2e7d32;
+color:#c94a2b;
 }
 
 
 .stat-card .label{
 display:block;
 margin-top:8px;
-color:#607d8b;
+color:#8a7a6a;
 }
 
 
@@ -152,19 +152,19 @@ background:white;
 
 
 th{
-background:#e8f5e9;
+background:#fdeee7;
 padding:12px;
 }
 
 
 td{
 padding:12px;
-border-bottom:1px solid #eee;
+border-bottom:1px solid #f5efe4;
 }
 
 
 .btn{
-background:#2e7d32;
+background:#c94a2b;
 color:white;
 padding:8px 15px;
 border-radius:8px;
@@ -193,6 +193,8 @@ padding:15px;
 
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
 <link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/mobile-admin.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
 </head>
 
 <body>
@@ -210,6 +212,7 @@ padding:15px;
 </li>
 
 
+@if(isset($section))
 <li>
 <a href="{{ url('/admin/sections/'.$section->id.'/dashboard') }}">
 📊 داشبورد بخشداری
@@ -235,6 +238,13 @@ padding:15px;
 📩 درخواست‌ها
 </a>
 </li>
+@else
+<li>
+<a href="{{ url('/admin') }}">
+🏠 داشبورد سامانه
+</a>
+</li>
+@endif
 
 
 <li class="menu-divider"></li>
@@ -252,11 +262,13 @@ padding:15px;
 </li>
 
 
+@if(isset($section))
 <li>
 <a href="{{ url('/admin/sections/'.$section->id.'/edit') }}">
 ⚙️ تنظیمات بخش
 </a>
 </li>
+@endif
 
 
 <li>
@@ -283,7 +295,7 @@ padding:15px;
 
 
 @if(session('success'))
-<div style="background:#c8e6c9;padding:15px;border-radius:10px;margin-bottom:20px">
+<div style="background:#fbdcd0;padding:15px;border-radius:10px;margin-bottom:20px">
 {{session('success')}}
 </div>
 @endif

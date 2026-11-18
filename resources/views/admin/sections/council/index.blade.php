@@ -32,7 +32,7 @@
                 @if($m->photo)
                     <img src="{{ asset('storage/' . $m->photo) }}" style="width:50px;height:50px;border-radius:50%;object-fit:cover;">
                 @else
-                    <div style="width:50px;height:50px;border-radius:50%;background:#f0f3f7;display:inline-flex;align-items:center;justify-content:center;color:#90a4ae;">👤</div>
+                    <div style="width:50px;height:50px;border-radius:50%;background:#f0f3f7;display:inline-flex;align-items:center;justify-content:center;color:#8a7a6a;">👤</div>
                 @endif
             </td>
             <td><strong>{{ $m->name }}</strong></td>
@@ -51,7 +51,7 @@
                 @include('partials.admin.toggle', ['type' => 'section-council', 'model' => $m])
                 <form method="POST" action="{{ route('admin.sections.council.destroy', [$section->id, $m->id]) }}" style="display:inline;" onsubmit="return confirm('حذف این عضو؟');">
                     @csrf @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" style="background:#c62828;color:#fff;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px;">حذف</button>
+                    <button type="submit" class="btn btn-danger btn-sm" style="background:#b3261e;color:#fff;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:12px;">حذف</button>
                 </form>
             </td>
         </tr>

@@ -4,28 +4,28 @@
 @section('content')
 <style>
     .guide-container { max-width: 1000px; margin: auto; font-family: Tahoma, sans-serif; line-height: 2; color: #333; }
-    .guide-header { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #0d3b2e, #1b5e20); color: white; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-    .guide-header h1 { margin: 0; font-size: 26px; color: #ffd54f; }
+    .guide-header { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #5c2313, #8e2f18); color: white; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+    .guide-header h1 { margin: 0; font-size: 26px; color: #f5b841; }
     .guide-header p { margin: 10px 0 0; font-size: 15px; opacity: 0.9; }
     
-    .section-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #2e7d32; }
-    .section-card h2 { color: #0d3b2e; font-size: 20px; margin-top: 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .section-card h2 span { background: #e8f5e9; padding: 5px 10px; border-radius: 8px; font-size: 22px; }
+    .section-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #c94a2b; }
+    .section-card h2 { color: #5c2313; font-size: 20px; margin-top: 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f5efe4; padding-bottom: 15px; }
+    .section-card h2 span { background: #fdeee7; padding: 5px 10px; border-radius: 8px; font-size: 22px; }
     
-    .menu-path { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 15px; margin: 10px 0; font-size: 14px; color: #0d3b2e; font-weight: bold; }
+    .menu-path { background: #fffdf9; border: 1px solid #e6d8c3; border-radius: 8px; padding: 10px 15px; margin: 10px 0; font-size: 14px; color: #5c2313; font-weight: bold; }
     .menu-path::before { content: '📌 '; }
     
     .step-list { list-style: none; padding: 0; margin: 15px 0; }
     .step-list li { position: relative; padding-right: 35px; margin-bottom: 15px; }
-    .step-list li::before { content: '✓'; position: absolute; right: 0; top: 2px; width: 22px; height: 22px; background: #2e7d32; color: white; border-radius: 50%; text-align: center; font-size: 14px; line-height: 22px; font-weight: bold; }
+    .step-list li::before { content: '✓'; position: absolute; right: 0; top: 2px; width: 22px; height: 22px; background: #c94a2b; color: white; border-radius: 50%; text-align: center; font-size: 14px; line-height: 22px; font-weight: bold; }
     
-    .alert-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 14px; }
-    .alert-box strong { color: #e65100; }
+    .alert-box { background: #fff7dc; border-right: 4px solid #ff9800; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 14px; }
+    .alert-box strong { color: #a8730f; }
     
-    .menu-list { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
-    .menu-list h4 { color: #166534; margin: 0 0 10px; font-size: 15px; }
+    .menu-list { background: #fff7e9; border: 1px solid #fbdcd0; border-radius: 8px; padding: 15px 20px; margin: 15px 0; }
+    .menu-list h4 { color: #8e2f18; margin: 0 0 10px; font-size: 15px; }
     .menu-list ul { margin: 0; padding-right: 20px; }
-    .menu-list li { color: #15803d; margin-bottom: 5px; font-weight: 600; }
+    .menu-list li { color: #c94a2b; margin-bottom: 5px; font-weight: 600; }
 </style>
 
 <div class="guide-container">
@@ -207,7 +207,7 @@
     </div>
 
     <!-- دکمه‌های بالای پنل -->
-    <div class="section-card" style="border-right-color: #1565c0;">
+    <div class="section-card" style="border-right-color: #27689f;">
         <h2><span>🔝</span> دکمه‌های بالای پنل</h2>
         <p>در بالای صفحه پنل، چند دکمه مهم وجود دارد:</p>
         <ul>
@@ -218,8 +218,8 @@
         </ul>
     </div>
 
-    <div class="alert-box" style="background:#ffebee; border-color:#e53935;">
-        <strong style="color:#c62828;">⚠️ نکات امنیتی مهم:</strong>
+    <div class="alert-box" style="background:#fdeceb; border-color:#b3261e;">
+        <strong style="color:#b3261e;">⚠️ نکات امنیتی مهم:</strong>
         <ul style="margin-bottom:0; margin-top:10px;">
             <li>هرگز نام کاربری و رمز عبور خود را در اختیار دیگران قرار ندهید.</li>
             <li>پس از اتمام کار، حتماً از حساب کاربری <strong>خارج</strong> شوید.</li>
@@ -227,7 +227,7 @@
         </ul>
     </div>
 
-    <p style="text-align:center; color:#888; font-size:12px; margin-top:40px; border-top:1px solid #eee; padding-top:20px;">
+    <p style="text-align:center; color:#888; font-size:12px; margin-top:40px; border-top:1px solid #f5efe4; padding-top:20px;">
         این راهنما در تاریخ ۱۴۰۵/۰۸/۲۳ تهیه شده است. | پشتیبانی: dr.zamani1368@gmail.com
     </p>
 </div>

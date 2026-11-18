@@ -8,6 +8,8 @@
     <script src="{{ asset('vendor/tailwind/tailwind.js') }}"></script>
     <style>body{font-family:Tahoma,sans-serif}@media print{.no-print{display:none!important}}</style>
 <link rel="stylesheet" href="{{ asset('css/mobile-admin.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
 </head>
 <body class="bg-gray-50 min-h-screen text-gray-800">
     <div class="max-w-6xl mx-auto py-6 px-4">@yield('content')</div>

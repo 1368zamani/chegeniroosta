@@ -6,10 +6,10 @@
     <title>روستاهای {{ $section->name }}</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
 
         .header {
-            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            background: linear-gradient(135deg, #c94a2b, #8e2f18);
             color: white;
             padding: 20px 30px;
             display: flex;
@@ -34,8 +34,8 @@
         .container { max-width: 1200px; margin: auto; padding: 30px 20px; }
 
         .success {
-            background: #c8e6c9;
-            color: #2e7d32;
+            background: #fbdcd0;
+            color: #c94a2b;
             padding: 14px 18px;
             border-radius: 10px;
             margin-bottom: 24px;
@@ -54,8 +54,8 @@
             gap: 12px;
         }
 
-        .info-bar h2 { margin: 0; color: #2e7d32; font-size: 18px; }
-        .info-bar .count { color: #78909c; font-size: 13px; }
+        .info-bar h2 { margin: 0; color: #c94a2b; font-size: 18px; }
+        .info-bar .count { color: #8a7a6a; font-size: 13px; }
 
         table {
             width: 100%;
@@ -69,13 +69,13 @@
         th, td {
             padding: 14px 16px;
             text-align: right;
-            border-bottom: 1px solid #eceff1;
+            border-bottom: 1px solid #f5efe4;
             font-size: 13px;
         }
 
-        th { background: #f8fafc; color: #546e7a; font-weight: 600; }
+        th { background: #fffdf9; color: #5a4a3c; font-weight: 600; }
         tr:last-child td { border-bottom: none; }
-        tr:hover { background: #f8fafc; }
+        tr:hover { background: #fffdf9; }
 
         .btn {
             display: inline-block;
@@ -89,17 +89,17 @@
             font-family: inherit;
         }
 
-        .btn-primary { background: #2e7d32; color: white; }
-        .btn-primary:hover { background: #1b5e20; }
-        .btn-warning { background: #f9a825; color: white; }
+        .btn-primary { background: #c94a2b; color: white; }
+        .btn-primary:hover { background: #8e2f18; }
+        .btn-warning { background: #f5b841; color: white; }
         .btn-warning:hover { background: #f57f17; }
-        .btn-danger { background: #e53935; color: white; }
-        .btn-danger:hover { background: #c62828; }
+        .btn-danger { background: #b3261e; color: white; }
+        .btn-danger:hover { background: #b3261e; }
         .btn-toggle { padding: 7px 12px; border-radius: 6px; font-size: 12px; border: none; cursor: pointer; font-family: inherit; margin: 2px; }
-        .btn-toggle-off { background: #e53935; color: white; }
-        .btn-toggle-off:hover { background: #c62828; }
-        .btn-toggle-on { background: #43a047; color: white; }
-        .btn-toggle-on:hover { background: #2e7d32; }
+        .btn-toggle-off { background: #b3261e; color: white; }
+        .btn-toggle-off:hover { background: #b3261e; }
+        .btn-toggle-on { background: #e2603c; color: white; }
+        .btn-toggle-on:hover { background: #c94a2b; }
 
         .badge {
             padding: 3px 8px;
@@ -108,13 +108,13 @@
             display: inline-block;
         }
 
-        .badge-active { background: #c8e6c9; color: #2e7d32; }
-        .badge-inactive { background: #ffcdd2; color: #c62828; }
+        .badge-active { background: #fbdcd0; color: #c94a2b; }
+        .badge-inactive { background: #f6d5d2; color: #b3261e; }
 
         .empty {
             text-align: center;
             padding: 60px 20px;
-            color: #90a4ae;
+            color: #8a7a6a;
             background: white;
             border-radius: 12px;
         }
@@ -127,7 +127,9 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">
@@ -156,16 +158,16 @@
             <span class="count">
                 <span id="visibleCount">{{ $totalCount }}</span> روستا در این بخش
                 —
-                <strong style="color:#2e7d32;">{{ $activeCount }} فعال</strong>
+                <strong style="color:#c94a2b;">{{ $activeCount }} فعال</strong>
                 @if($inactiveCount > 0)
-                    / <strong style="color:#c62828;">{{ $inactiveCount }} غیرفعال</strong>
+                    / <strong style="color:#b3261e;">{{ $inactiveCount }} غیرفعال</strong>
                 @endif
             </span>
         </div>
         <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-            <input type="text" id="villageSearch" placeholder="جستجو در روستاها..." style="padding:10px 14px; border:1px solid #cfd8dc; border-radius:8px; font-family:inherit; font-size:13px; width:200px;" onkeyup="filterVillages()">
+            <input type="text" id="villageSearch" placeholder="جستجو در روستاها..." style="padding:10px 14px; border:1px solid #e6d8c3; border-radius:8px; font-family:inherit; font-size:13px; width:200px;" onkeyup="filterVillages()">
 
-            <a href="{{ route('admin.villages.create', ['section_id' => $section->id]) }}" style="background:#2e7d32; color:white; text-decoration:none; padding:10px 20px; border-radius:8px; font-size:13px;">➕ افزودن روستای جدید</a>
+            <a href="{{ route('admin.villages.create', ['section_id' => $section->id]) }}" style="background:#c94a2b; color:white; text-decoration:none; padding:10px 20px; border-radius:8px; font-size:13px;">➕ افزودن روستای جدید</a>
         </div>
     </div>
 
@@ -174,15 +176,15 @@
          ═══════════════════════════════════════════════════════════ --}}
     @if($totalCount > 0 && auth()->user()->isSuperAdmin())
     <div style="background:#ffffff; border-radius:12px; padding:16px 20px; margin-bottom:20px;
-                box-shadow:0 5px 18px rgba(0,0,0,.05); border-right:4px solid #2e7d32;
+                box-shadow:0 5px 18px rgba(0,0,0,.05); border-right:4px solid #c94a2b;
                 display:flex; justify-content:space-between; align-items:center;
                 flex-wrap:wrap; gap:12px;">
 
         <div>
-            <div style="font-size:14px; font-weight:bold; color:#2e7d32; margin-bottom:3px;">
+            <div style="font-size:14px; font-weight:bold; color:#c94a2b; margin-bottom:3px;">
                 🔄 فعال / غیرفعال کردن گروهی
             </div>
-            <div style="font-size:12px; color:#78909c;">
+            <div style="font-size:12px; color:#8a7a6a;">
                 با یک کلیک، وضعیت <strong>همه‌ی {{ $totalCount }} روستای</strong> این بخش تغییر می‌کند.
             </div>
         </div>
@@ -196,7 +198,7 @@
                 @csrf
                 <input type="hidden" name="state" value="active">
                 <button type="submit"
-                        style="background:#43a047; color:#fff; border:none; cursor:pointer;
+                        style="background:#e2603c; color:#fff; border:none; cursor:pointer;
                                padding:11px 20px; border-radius:9px; font-size:13.5px;
                                font-family:inherit; font-weight:bold; display:inline-flex;
                                align-items:center; gap:7px;"
@@ -218,7 +220,7 @@
                 @csrf
                 <input type="hidden" name="state" value="inactive">
                 <button type="submit"
-                        style="background:#e53935; color:#fff; border:none; cursor:pointer;
+                        style="background:#b3261e; color:#fff; border:none; cursor:pointer;
                                padding:11px 20px; border-radius:9px; font-size:13.5px;
                                font-family:inherit; font-weight:bold; display:inline-flex;
                                align-items:center; gap:7px;"
@@ -266,7 +268,7 @@
                             @endif
                         </td>
                         <td>
-                            @if(auth()->user()->isSuperAdmin()) <a href="{{ route('admin.village.dashboard', $village->id) }}" class="btn" style="background:#2e7d32;color:white;" title="پنل روستا">⚙️ پنل</a> @endif
+                            @if(auth()->user()->isSuperAdmin()) <a href="{{ route('admin.village.dashboard', $village->id) }}" class="btn" style="background:#c94a2b;color:white;" title="پنل روستا">⚙️ پنل</a> @endif
                             <a href="{{ route('admin.villages.edit', $village->id) }}" class="btn btn-primary" title="ویرایش">✏️ ویرایش</a>
                             <a href="{{ route('admin.village.images.index', $village->id) }}" class="btn" style="background:#7b1fa2; color:white;" title="گالری">🖼 گالری</a>
                             <a href="{{ route('admin.village.news.index', $village->id) }}" class="btn btn-warning" title="اخبار">📰 اخبار</a>

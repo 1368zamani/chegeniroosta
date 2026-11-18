@@ -40,12 +40,12 @@
 <div class="card">
     <form method="GET" style="display:flex;gap:10px;flex-wrap:wrap;align-items:end;">
         <div style="flex:1;min-width:200px;">
-            <label style="font-size:13px;color:#64748b;margin-bottom:6px;display:block;">جستجو</label>
-            <input type="text" name="q" value="{{ request('q') }}" placeholder="عنوان، شماره جلسه..." style="width:100%;padding:10px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;">
+            <label style="font-size:13px;color:#5a4a3c;margin-bottom:6px;display:block;">جستجو</label>
+            <input type="text" name="q" value="{{ request('q') }}" placeholder="عنوان، شماره جلسه..." style="width:100%;padding:10px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;">
         </div>
         <div style="min-width:160px;">
-            <label style="font-size:13px;color:#64748b;margin-bottom:6px;display:block;">وضعیت</label>
-            <select name="status" style="width:100%;padding:10px;border:1px solid #cfd8dc;border-radius:8px;font-family:inherit;">
+            <label style="font-size:13px;color:#5a4a3c;margin-bottom:6px;display:block;">وضعیت</label>
+            <select name="status" style="width:100%;padding:10px;border:1px solid #e6d8c3;border-radius:8px;font-family:inherit;">
                 <option value="">— همه —</option>
                 <option value="approved"    @selected(request('status')=='approved')>تصویب شده</option>
                 <option value="in_progress" @selected(request('status')=='in_progress')>در حال اجرا</option>
@@ -77,7 +77,7 @@
             @foreach($resolutions as $res)
                 <tr>
                     <td>{{ $res->session_number ?? '—' }}</td>
-                    <td style="font-size:12px;color:#64748b;">{{ $res->session_date ? jalali($res->session_date) : '—' }}</td>
+                    <td style="font-size:12px;color:#5a4a3c;">{{ $res->session_date ? jalali($res->session_date) : '—' }}</td>
                     <td><strong>{{ $res->title }}</strong></td>
                     <td>
                         <span class="badge" style="background:{{ $res->status_bg }};color:{{ $res->status_color }};">
@@ -85,10 +85,10 @@
                         </span>
                     </td>
                     <td>
-                        <div style="background:#e2e8f0;border-radius:10px;height:8px;width:80px;overflow:hidden;display:inline-block;vertical-align:middle;">
+                        <div style="background:#e6d8c3;border-radius:10px;height:8px;width:80px;overflow:hidden;display:inline-block;vertical-align:middle;">
                             <div style="background:{{ $res->status_color }};height:100%;width:{{ $res->progress_percent }}%;"></div>
                         </div>
-                        <span style="font-size:11px;color:#64748b;">{{ $res->progress_percent }}%</span>
+                        <span style="font-size:11px;color:#5a4a3c;">{{ $res->progress_percent }}%</span>
                     </td>
                     <td>
                         @if($res->is_public)

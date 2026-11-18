@@ -17,13 +17,13 @@ body{
     margin:0;
     font-family:tahoma,Arial;
     background:#fff;
-    color:#263238;
+    color:#2b2119;
 }
 
 
 /* هدر */
 .header{
-    background:#2e7d32;
+    background:#c94a2b;
     color:white;
     padding:20px 30px;
     display:flex;
@@ -53,7 +53,7 @@ body{
 }
 
 .nav a{
-    background:#388e3c;
+    background:#c94a2b;
     color:white !important;
     text-decoration:none;
     padding:10px 18px;
@@ -63,7 +63,7 @@ body{
 }
 
 .nav a:hover{
-    background:#1b5e20;
+    background:#8e2f18;
 }
 
 
@@ -87,7 +87,7 @@ body{
 
 .stat-card{
     background:white;
-    border:1px solid #e8f5e9;
+    border:1px solid #fdeee7;
     border-radius:14px;
     padding:25px;
     text-align:center;
@@ -99,13 +99,13 @@ body{
     display:block;
     font-size:32px;
     font-weight:bold;
-    color:#2e7d32;
+    color:#c94a2b;
 }
 
 
 .stat-card .label{
     margin-top:10px;
-    color:#2e7d32;
+    color:#c94a2b;
 }
 
 
@@ -114,9 +114,9 @@ body{
 
 .section-title{
     margin:35px 0 20px;
-    color:#2e7d32;
+    color:#c94a2b;
     font-size:20px;
-    border-bottom:2px solid #e8f5e9;
+    border-bottom:2px solid #fdeee7;
     padding-bottom:10px;
 }
 
@@ -136,7 +136,7 @@ body{
 
     background:#fff;
     border-radius:15px;
-    border-top:5px solid #2e7d32;
+    border-top:5px solid #c94a2b;
     padding:25px;
     text-decoration:none;
     box-shadow:0 5px 20px rgba(0,0,0,.08);
@@ -146,7 +146,7 @@ body{
 
 .section-card h3{
 
-    color:#2e7d32;
+    color:#c94a2b;
     font-size:20px;
 
 }
@@ -154,7 +154,7 @@ body{
 
 .section-card .count{
 
-    color:#546E7A;
+    color:#5a4a3c;
 
 }
 
@@ -163,7 +163,7 @@ body{
 
     display:inline-block;
     margin-top:15px;
-    background:#2e7d32;
+    background:#c94a2b;
     color:white;
     padding:8px 18px;
     border-radius:8px;
@@ -182,7 +182,9 @@ body{
 
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 
 
 <body>
@@ -243,7 +245,7 @@ body{
 
 <form method="POST" action="{{ url('/logout') }}">
 @csrf
-<button style="background:#D32F2F;color:white;border:0;padding:10px 18px;border-radius:8px">
+<button style="background:#b3261e;color:white;border:0;padding:10px 18px;border-radius:8px">
 خروج
 </button>
 </form>

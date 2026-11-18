@@ -42,7 +42,7 @@
                     <span class="badge badge-inactive">پیش‌نویس</span>
                 @endif
             </td>
-            <td style="font-size:12px; color:#78909c;">{{ jalali($item->created_at) }}</td>
+            <td style="font-size:12px; color:#8a7a6a;">{{ jalali($item->created_at) }}</td>
             <td>
                 <a href="{{ route('admin.village.news.edit', [$village->id, $item->id]) }}" class="btn btn-primary btn-sm">ویرایش</a>
                 @include('partials.admin.toggle', ['type' => 'village-news', 'model' => $item])

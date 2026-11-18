@@ -1,16 +1,16 @@
 /* FINAL OVERRIDE */
 
 body{
-    background:#f5f7fa!important;
-    color:#263238!important;
+    background:#fff7e9!important;
+    color:#2b2119!important;
 }
 
 
 /* همه هدرهای پنل */
 .header{
     background:#ffffff!important;
-    color:#2e7d32!important;
-    border-bottom:3px solid #2e7d32!important;
+    color:#c94a2b!important;
+    border-bottom:3px solid #c94a2b!important;
 }
 
 
@@ -20,13 +20,13 @@ body{
 .header a,
 .header .user,
 .header .user-info{
-    color:#2e7d32!important;
+    color:#c94a2b!important;
 }
 
 
 /* لینک های هدر */
 .header a{
-    background:#e8f5e9!important;
+    background:#fdeee7!important;
 }
 
 
@@ -36,14 +36,14 @@ body{
 button.btn,
 a.btn,
 .create-btn{
-    background:#2e7d32!important;
+    background:#c94a2b!important;
     color:#ffffff!important;
 }
 
 
 .btn:hover,
 .btn-primary:hover{
-    background:#1b5e20!important;
+    background:#8e2f18!important;
 }
 
 
@@ -56,8 +56,8 @@ a{
 
 /* جدول */
 table th{
-    background:#e8f5e9!important;
-    color:#2e7d32!important;
+    background:#fdeee7!important;
+    color:#c94a2b!important;
 }
 
 
@@ -76,16 +76,16 @@ table th{
 }
 
 .sidebar a{
-    color:#2e7d32!important;
+    color:#c94a2b!important;
 }
 
 .sidebar a.active{
-    background:#2e7d32!important;
+    background:#c94a2b!important;
     color:white!important;
 }
 
 
 /* عنوان ها */
 h1,h2,h3,h4{
-    color:#2e7d32;
+    color:#c94a2b;
 }

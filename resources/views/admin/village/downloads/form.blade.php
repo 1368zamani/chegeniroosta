@@ -11,7 +11,7 @@
 <div class="page-title">
     <h2>{{ $isEdit ? '✏️ ویرایش فایل' : '➕ بارگذاری فایل جدید' }} — {{ $village->name }}</h2>
     <a href="{{ route('admin.village.downloads.index', $village->id) }}" class="btn"
-       style="background:#eceff1; color:#37474f;">← بازگشت</a>
+       style="background:#f5efe4; color:#2b2119;">← بازگشت</a>
 </div>
 
 @if($errors->any())
@@ -34,7 +34,7 @@
                              box-shadow:0 4px 16px rgba(0,0,0,.05); margin-bottom:18px;">
 
         <div style="margin-bottom:18px;">
-            <label style="display:block; font-size:13px; font-weight:bold; color:#37474f; margin-bottom:6px;">
+            <label style="display:block; font-size:13px; font-weight:bold; color:#2b2119; margin-bottom:6px;">
                 عنوان فایل *
             </label>
             <input type="text" name="title" required maxlength="200"
@@ -42,13 +42,13 @@
                    placeholder="مثلاً: فرم درخواست کتبی"
                    style="width:100%; padding:11px 14px; border:1.5px solid #d7dee3; border-radius:8px;
                           font-family:inherit; font-size:14px;">
-            <div style="font-size:11.5px; color:#90a4ae; margin-top:5px;">
+            <div style="font-size:11.5px; color:#8a7a6a; margin-top:5px;">
                 این عنوان به شهروند نمایش داده می‌شود.
             </div>
         </div>
 
         <div style="margin-bottom:18px;">
-            <label style="display:block; font-size:13px; font-weight:bold; color:#37474f; margin-bottom:6px;">
+            <label style="display:block; font-size:13px; font-weight:bold; color:#2b2119; margin-bottom:6px;">
                 توضیح کوتاه (اختیاری)
             </label>
             <input type="text" name="description" maxlength="500"
@@ -59,39 +59,39 @@
         </div>
 
         <div style="margin-bottom:18px;">
-            <label style="display:block; font-size:13px; font-weight:bold; color:#37474f; margin-bottom:6px;">
+            <label style="display:block; font-size:13px; font-weight:bold; color:#2b2119; margin-bottom:6px;">
                 فایل {{ $isEdit ? '(اگر خالی بماند، فایل فعلی حفظ می‌شود)' : '*' }}
             </label>
             <input type="file" name="file" {{ $isEdit ? '' : 'required' }}
                    style="width:100%; padding:11px 14px; border:1.5px solid #d7dee3; border-radius:8px;
                           font-family:inherit; font-size:13px; background:#fafbfc;">
-            <div style="font-size:11.5px; color:#90a4ae; margin-top:5px;">
+            <div style="font-size:11.5px; color:#8a7a6a; margin-top:5px;">
                 حداکثر حجم: <strong>{{ \App\Support\Number::fa(number_format($maxKb / 1024)) }} مگابایت</strong>
                 — همه‌ی انواع فایل مجازند (PDF، Word، Excel، تصویر، ZIP و…)
             </div>
 
             @if($isEdit && $download->file_path)
-                <div style="margin-top:12px; background:#f5f7fa; border-radius:8px; padding:12px 14px;
+                <div style="margin-top:12px; background:#fff7e9; border-radius:8px; padding:12px 14px;
                             display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
                     <span style="font-size:18px;">{{ $download->icon() }}</span>
-                    <span style="font-size:12.5px; color:#37474f; word-break:break-all;">
+                    <span style="font-size:12.5px; color:#2b2119; word-break:break-all;">
                         {{ $download->file_name }}
                     </span>
-                    <span style="font-size:11.5px; color:#90a4ae;">({{ $download->sizeLabel() }})</span>
+                    <span style="font-size:11.5px; color:#8a7a6a;">({{ $download->sizeLabel() }})</span>
                 </div>
             @endif
         </div>
 
         <div style="display:flex; gap:18px; flex-wrap:wrap; margin-bottom:18px;">
             <div style="flex:1; min-width:180px;">
-                <label style="display:block; font-size:13px; font-weight:bold; color:#37474f; margin-bottom:6px;">
+                <label style="display:block; font-size:13px; font-weight:bold; color:#2b2119; margin-bottom:6px;">
                     ترتیب نمایش
                 </label>
                 <input type="number" name="sort_order" min="0" max="9999"
                        value="{{ old('sort_order', $download->sort_order ?? 0) }}"
                        style="width:100%; padding:11px 14px; border:1.5px solid #d7dee3; border-radius:8px;
                               font-family:inherit; font-size:14px;" dir="ltr">
-                <div style="font-size:11.5px; color:#90a4ae; margin-top:5px;">عدد کوچکتر = بالاتر</div>
+                <div style="font-size:11.5px; color:#8a7a6a; margin-top:5px;">عدد کوچکتر = بالاتر</div>
             </div>
 
             <div style="flex:1; min-width:180px; display:flex; align-items:flex-end; padding-bottom:6px;">
@@ -100,15 +100,15 @@
                     <input type="checkbox" name="is_active" value="1"
                            @checked(old('is_active', $download->is_active ?? true))
                            style="width:20px; height:20px;">
-                    <span style="font-weight:bold; color:#37474f;">فعال (نمایش به شهروند)</span>
+                    <span style="font-weight:bold; color:#2b2119;">فعال (نمایش به شهروند)</span>
                 </label>
             </div>
         </div>
 
         <div style="display:flex; gap:10px; justify-content:flex-end; padding-top:16px;
-                    border-top:1px solid #eceff1;">
+                    border-top:1px solid #f5efe4;">
             <a href="{{ route('admin.village.downloads.index', $village->id) }}"
-               class="btn" style="background:#eceff1; color:#37474f;">انصراف</a>
+               class="btn" style="background:#f5efe4; color:#2b2119;">انصراف</a>
             <button type="submit" class="btn btn-primary">
                 {{ $isEdit ? '💾 ذخیره‌ی تغییرات' : '📤 بارگذاری فایل' }}
             </button>

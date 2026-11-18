@@ -6,48 +6,50 @@
 <title>آمار سایت</title>
 <style>
     * { box-sizing: border-box; }
-    body { margin:0; background:#f5f7fa; color:#263238; }
+    body { margin:0; background:#fff7e9; color:#2b2119; }
     .wrap { max-width:1150px; margin:auto; padding:24px 18px 60px; }
 
     .top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; }
-    .top h1 { margin:0; font-size:22px; color:#2e7d32; }
-    .top .sub { color:#78909c; font-size:13px; margin-top:4px; }
-    .top a.back { background:#2e7d32; color:#fff; text-decoration:none; padding:9px 18px; border-radius:8px; font-size:13px; }
+    .top h1 { margin:0; font-size:22px; color:#c94a2b; }
+    .top .sub { color:#8a7a6a; font-size:13px; margin-top:4px; }
+    .top a.back { background:#c94a2b; color:#fff; text-decoration:none; padding:9px 18px; border-radius:8px; font-size:13px; }
 
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(165px,1fr)); gap:14px; margin-bottom:24px; }
-    .card { background:#fff; border-radius:12px; padding:18px; box-shadow:0 4px 16px rgba(0,0,0,.05); text-align:center; border-top:3px solid #2e7d32; }
-    .card .num { font-size:26px; font-weight:800; color:#2e7d32; }
-    .card .lbl { font-size:12.5px; color:#607d8b; margin-top:6px; }
+    .card { background:#fff; border-radius:12px; padding:18px; box-shadow:0 4px 16px rgba(0,0,0,.05); text-align:center; border-top:3px solid #c94a2b; }
+    .card .num { font-size:26px; font-weight:800; color:#c94a2b; }
+    .card .lbl { font-size:12.5px; color:#8a7a6a; margin-top:6px; }
 
     .panel { background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 16px rgba(0,0,0,.05); margin-bottom:22px; }
-    .panel h2 { margin:0 0 16px; font-size:16px; color:#2e7d32; padding-bottom:10px; border-bottom:2px solid #e8f5e9; }
+    .panel h2 { margin:0 0 16px; font-size:16px; color:#c94a2b; padding-bottom:10px; border-bottom:2px solid #fdeee7; }
 
     /* ── نمودار میله‌ای بدون هیچ کتابخانه‌ی خارجی ── */
     .chart { display:flex; align-items:flex-end; gap:3px; height:190px; padding:10px 4px 0; }
-    .chart .bar { flex:1; background:linear-gradient(180deg,#43a047,#2e7d32); border-radius:4px 4px 0 0;
+    .chart .bar { flex:1; background:linear-gradient(180deg,#e2603c,#c94a2b); border-radius:4px 4px 0 0;
                   min-height:2px; position:relative; transition:opacity .15s; }
     .chart .bar:hover { opacity:.75; }
-    .chart .bar.zero { background:#e0e0e0; }
+    .chart .bar.zero { background:#e6d8c3; }
     .chart-x { display:flex; gap:3px; margin-top:6px; }
-    .chart-x span { flex:1; text-align:center; font-size:9.5px; color:#90a4ae; }
-    .chart-note { font-size:12px; color:#90a4ae; margin-top:12px; }
+    .chart-x span { flex:1; text-align:center; font-size:9.5px; color:#8a7a6a; }
+    .chart-note { font-size:12px; color:#8a7a6a; margin-top:12px; }
 
     table { width:100%; border-collapse:collapse; }
-    th, td { padding:10px 12px; text-align:right; font-size:13px; border-bottom:1px solid #eceff1; }
-    th { background:#f8fafc; color:#546e7a; font-weight:600; font-size:12.5px; }
-    tr:hover td { background:#f8fafc; }
+    th, td { padding:10px 12px; text-align:right; font-size:13px; border-bottom:1px solid #f5efe4; }
+    th { background:#fffdf9; color:#5a4a3c; font-weight:600; font-size:12.5px; }
+    tr:hover td { background:#fffdf9; }
     .rank { display:inline-flex; width:22px; height:22px; align-items:center; justify-content:center;
-            border-radius:50%; background:#e8f5e9; color:#2e7d32; font-size:11.5px; font-weight:700; }
-    .num-cell { font-weight:700; color:#2e7d32; }
-    .empty { text-align:center; color:#90a4ae; padding:26px 10px; font-size:13.5px; }
+            border-radius:50%; background:#fdeee7; color:#c94a2b; font-size:11.5px; font-weight:700; }
+    .num-cell { font-weight:700; color:#c94a2b; }
+    .empty { text-align:center; color:#8a7a6a; padding:26px 10px; font-size:13.5px; }
     .cols { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
-    .kind { font-size:11.5px; background:#e8f5e9; color:#2e7d32; padding:2px 9px; border-radius:10px; }
-    .note { background:#f1f8e9; border-right:4px solid #7cb342; padding:12px 15px; border-radius:8px;
-            font-size:12.5px; color:#33691e; line-height:2; margin-bottom:20px; }
+    .kind { font-size:11.5px; background:#fdeee7; color:#c94a2b; padding:2px 9px; border-radius:10px; }
+    .note { background:#fff7dc; border-right:4px solid #c94a2b; padding:12px 15px; border-radius:8px;
+            font-size:12.5px; color:#5c2313; line-height:2; margin-bottom:20px; }
     @media (max-width:800px) { .cols { grid-template-columns:1fr; } .chart { height:140px; } }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin-master.css') }}?v=2">
+<link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
 </head>
 <body>
 
@@ -177,7 +179,7 @@
                                 <td><span class="rank">{{ \App\Support\Number::fa($i + 1) }}</span></td>
                                 <td>
                                     @if($row['url'])
-                                        <a href="{{ $row['url'] }}" target="_blank" style="color:#2e7d32;text-decoration:none;">
+                                        <a href="{{ $row['url'] }}" target="_blank" style="color:#c94a2b;text-decoration:none;">
                                             {{ $row['title'] }} ↗
                                         </a>
                                     @else
@@ -217,7 +219,7 @@
                             <td>{{ \Illuminate\Support\Str::limit($row['title'], 60) }}</td>
                             <td><span class="kind">{{ $row['kind'] }}</span></td>
                             <td class="num-cell">{{ \App\Support\Number::fa(number_format($row['downloads'])) }}</td>
-                            <td style="color:#78909c;">{{ \App\Support\Number::fa(number_format($row['views'])) }}</td>
+                            <td style="color:#8a7a6a;">{{ \App\Support\Number::fa(number_format($row['views'])) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

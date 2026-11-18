@@ -46,7 +46,7 @@
 
             @if(isset($news) && $news->images->count() > 0)
                 <div style="margin-top:14px;">
-                    <label style="font-size:13px; color:#546e7a; margin-bottom:8px; display:block;">🖼 عکس‌های فعلی ({{ $news->images->count() }})</label>
+                    <label style="font-size:13px; color:#5a4a3c; margin-bottom:8px; display:block;">🖼 عکس‌های فعلی ({{ $news->images->count() }})</label>
                     <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap:10px;">
                         @foreach($news->images as $img)
                             <div style="position:relative; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.08);">
@@ -56,7 +56,7 @@
                                       style="position:absolute; top:5px; left:5px;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" style="background:rgba(229,57,53,.95); color:white; border:none; width:26px; height:26px; border-radius:50%; cursor:pointer; font-size:14px; line-height:1; padding:0;">×</button>
+                                    <button type="submit" style="background:rgba(179,38,30,.95); color:white; border:none; width:26px; height:26px; border-radius:50%; cursor:pointer; font-size:14px; line-height:1; padding:0;">×</button>
                                 </form>
                             </div>
                         @endforeach

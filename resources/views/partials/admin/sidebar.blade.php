@@ -11,9 +11,9 @@
 <style>
 .unified-sidebar {
     background: #ffffff;
-    border: 1px solid #e8f5e9;
+    border: 1px solid #fdeee7;
     border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(21,101,192,0.08);
+    box-shadow: 0 4px 16px rgba(39,104,159,0.08);
     width: 240px;
     flex-shrink: 0;
     padding: 0;
@@ -24,20 +24,20 @@
     overflow-y: auto;
 }
 .unified-sidebar::-webkit-scrollbar { width: 6px; }
-.unified-sidebar::-webkit-scrollbar-thumb { background: rgba(21,101,192,0.2); border-radius: 3px; }
+.unified-sidebar::-webkit-scrollbar-thumb { background: rgba(39,104,159,0.2); border-radius: 3px; }
 
 /* پروفایل بالای منو */
 .unified-sidebar .sb-profile {
     background: #ffffff;
     padding: 18px 14px;
     text-align: center;
-    border-bottom: 2px solid #e8f5e9;
+    border-bottom: 2px solid #fdeee7;
 }
 .unified-sidebar .sb-profile .avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #2e7d32;
+    background: #c94a2b;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -45,17 +45,17 @@
     margin: 0 auto 10px;
     font-size: 26px;
     font-weight: 900;
-    box-shadow: 0 4px 14px rgba(21,101,192,0.3);
-    border: 3px solid #e8f5e9;
+    box-shadow: 0 4px 14px rgba(39,104,159,0.3);
+    border: 3px solid #fdeee7;
 }
 .unified-sidebar .sb-profile .name {
-    color: #2e7d32;
+    color: #c94a2b;
     font-size: 14px;
     font-weight: 800;
     margin: 0;
 }
 .unified-sidebar .sb-profile .role {
-    color: #2e7d32;
+    color: #c94a2b;
     font-size: 11.5px;
     margin: 4px 0 0;
     font-weight: 700;
@@ -70,7 +70,7 @@
 }
 .unified-sidebar .sb-section {
     font-size: 10.5px;
-    color: #2e7d32;
+    color: #c94a2b;
     font-weight: 900;
     padding: 14px 12px 6px;
     text-transform: uppercase;
@@ -82,7 +82,7 @@
     align-items: center;
     gap: 10px;
     padding: 11px 14px;
-    color: #2e7d32;
+    color: #c94a2b;
     text-decoration: none;
     border-radius: 9px;
     font-size: 13.5px;
@@ -101,32 +101,32 @@
     top: 0;
     bottom: 0;
     width: 0;
-    background: #2e7d32;
+    background: #c94a2b;
     transition: width 0.22s;
 }
 .unified-sidebar .sb-item:hover {
-    background: #e8f5e9;
-    color: #1b5e20;
+    background: #fdeee7;
+    color: #8e2f18;
     padding-right: 22px;
-    border-color: #e8f5e9;
+    border-color: #fdeee7;
 }
 .unified-sidebar .sb-item:hover::before { width: 4px; }
 .unified-sidebar .sb-item.active {
-    background: #2e7d32;
+    background: #c94a2b;
     color: #ffffff !important;
-    box-shadow: 0 3px 12px rgba(21,101,192,0.3);
+    box-shadow: 0 3px 12px rgba(39,104,159,0.3);
 }
-.unified-sidebar .sb-item.active::before { width: 4px; background: #ffd54f; }
-.unified-sidebar .sb-item.active .sb-icon { color: #ffd54f !important; }
+.unified-sidebar .sb-item.active::before { width: 4px; background: #f5b841; }
+.unified-sidebar .sb-item.active .sb-icon { color: #f5b841 !important; }
 .unified-sidebar .sb-item .sb-icon {
     width: 24px;
     text-align: center;
     font-size: 16px;
     flex-shrink: 0;
-    color: #2e7d32;
+    color: #c94a2b;
 }
 .unified-sidebar .sb-item .sb-badge {
-    background: #c62828;
+    background: #b3261e;
     color: #ffffff;
     padding: 2px 8px;
     border-radius: 10px;
@@ -136,7 +136,7 @@
 }
 .unified-sidebar .sb-divider {
     height: 1px;
-    background: #e8f5e9;
+    background: #fdeee7;
     margin: 10px 14px;
 }
 
@@ -144,11 +144,11 @@
 .unified-sidebar .sb-menu form button.sb-item {
     background: #ffffff;
     border: 1px solid transparent;
-    color: #2e7d32 !important;
+    color: #c94a2b !important;
 }
 .unified-sidebar .sb-menu form button.sb-item:hover {
-    background: #e8f5e9;
-    color: #1b5e20 !important;
+    background: #fdeee7;
+    color: #8e2f18 !important;
 }
 
 @media (max-width: 900px) {
@@ -253,7 +253,7 @@
         <li>
             <form method="POST" action="{{ route('logout') }}" style="margin:0">
                 @csrf
-                <button type="submit" class="sb-item" style="background:#ffffff;border:1px solid transparent;width:100%;text-align:right;cursor:pointer;font-family:inherit;color:#2e7d32">
+                <button type="submit" class="sb-item" style="background:#ffffff;border:1px solid transparent;width:100%;text-align:right;cursor:pointer;font-family:inherit;color:#c94a2b">
                     <span class="sb-icon">🚪</span> خروج
                 </button>
             </form>

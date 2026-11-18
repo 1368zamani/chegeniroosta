@@ -15,7 +15,7 @@
 
         body {
             font-family: Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
+            background: #fff7e9;
             padding: 40px;
             margin: 0;
         }
@@ -30,7 +30,7 @@
         }
 
         h1 {
-            color: #2e7d32;
+            color: #c94a2b;
             margin-bottom: 30px;
         }
 
@@ -55,18 +55,18 @@
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #2e7d32;
+            border-color: #c94a2b;
         }
 
         .error {
-            color: #c62828;
+            color: #b3261e;
             font-size: 13px;
             margin-top: 4px;
         }
 
         button {
             margin-top: 25px;
-            background: #2e7d32;
+            background: #c94a2b;
             color: white;
             border: none;
             padding: 13px 30px;
@@ -83,7 +83,7 @@
         .back {
             display: inline-block;
             margin-bottom: 15px;
-            color: #2e7d32;
+            color: #c94a2b;
             text-decoration: none;
         }
 
@@ -92,7 +92,9 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 
 <body>
 

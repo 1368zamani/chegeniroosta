@@ -9,8 +9,8 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
-            color: #263238;
+            background: #fff7e9;
+            color: #2b2119;
         }
 
         .container {
@@ -19,12 +19,12 @@
         }
 
         h1 {
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         .message {
-            background: #e8f5e9;
-            color: #2e7d32;
+            background: #fdeee7;
+            color: #c94a2b;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -52,7 +52,7 @@
 
         .btn {
             display: inline-block;
-            background: #2e7d32;
+            background: #c94a2b;
             color: white;
             text-decoration: none;
             padding: 10px 18px;
@@ -62,26 +62,28 @@
             font-family: inherit;
             font-size: inherit;
         }
-        .btn-toggle-off { background: #e53935; }
-        .btn-toggle-off:hover { background: #c62828; }
-        .btn-toggle-on { background: #43a047; }
-        .btn-toggle-on:hover { background: #2e7d32; }
+        .btn-toggle-off { background: #b3261e; }
+        .btn-toggle-off:hover { background: #b3261e; }
+        .btn-toggle-on { background: #e2603c; }
+        .btn-toggle-on:hover { background: #c94a2b; }
         .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
         .active {
-            color: #2e7d32;
+            color: #c94a2b;
             font-weight: bold;
         }
 
         .inactive {
-            color: #c62828;
+            color: #b3261e;
             font-weight: bold;
         }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 
 <body>
 

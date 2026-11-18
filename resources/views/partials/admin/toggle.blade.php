@@ -15,7 +15,7 @@
     <button type="submit"
             title="{{ $__on ? 'غیرفعال کردن (از سایت برداشته می‌شود)' : 'فعال کردن (در سایت نمایش داده می‌شود)' }}"
             onclick="return confirm('{{ $__on ? 'این مورد غیرفعال شود؟ از سایت برداشته می‌شود ولی حذف نمی‌شود.' : 'این مورد فعال شود و در سایت نمایش داده شود؟' }}')"
-            style="display:inline-block;padding:6px 11px;font-size:12px;font-family:inherit;border:none;border-radius:6px;cursor:pointer;color:#fff;background:{{ $__on ? '#e53935' : '#43a047' }};">
+            style="display:inline-block;padding:6px 11px;font-size:12px;font-family:inherit;border:none;border-radius:6px;cursor:pointer;color:#fff;background:{{ $__on ? '#b3261e' : '#e2603c' }};">
         {{ $__on ? '🔒 غیرفعال' : '🔓 فعال' }}
     </button>
 </form>

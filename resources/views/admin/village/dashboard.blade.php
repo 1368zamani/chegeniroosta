@@ -53,7 +53,7 @@
 
 <div class="card">
     <h3>⚙️ تنظیمات سریع</h3>
-    <p style="color:#546e7a; font-size:13.5px; line-height:2;">
+    <p style="color:#5a4a3c; font-size:13.5px; line-height:2;">
         از منوی سمت راست می‌توانید هر بخش از سایت روستا را مدیریت کنید. برای پنهان یا نمایش هر بخش، به «تنظیمات نمایش» بروید.
     </p>
     <a href="{{ route('admin.village.settings.index', $village->id) }}" class="btn btn-primary" style="margin-top:10px;">⚙️ برو به تنظیمات نمایش</a>

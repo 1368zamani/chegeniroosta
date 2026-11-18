@@ -68,11 +68,11 @@
             <tbody>
                 @foreach($recentSectionRequests as $req)
                     <tr>
-                        <td style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;">{{ $req->tracking_code }}</td>
+                        <td style="font-family:monospace;direction:ltr;color:#c94a2b;font-weight:700;">{{ $req->tracking_code }}</td>
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>
                         <td><span class="badge badge-{{ $req->status }}">{{ $req->status_label }}</span></td>
-                        <td style="font-size:12px;color:#64748b;">{{ jalali($req->created_at) }}</td>
+                        <td style="font-size:12px;color:#5a4a3c;">{{ jalali($req->created_at) }}</td>
                         <td>
                             <a href="{{ route('admin.sections.requests.show', [$section->id, $req->id]) }}" class="btn btn-primary btn-sm">مشاهده</a>
                         </td>
@@ -106,12 +106,12 @@
             <tbody>
                 @foreach($recentVillageRequests as $req)
                     <tr>
-                        <td style="font-family:monospace;direction:ltr;color:#2e7d32;font-weight:700;">{{ $req->tracking_code }}</td>
+                        <td style="font-family:monospace;direction:ltr;color:#c94a2b;font-weight:700;">{{ $req->tracking_code }}</td>
                         <td>{{ optional($req->village)->name ?? '—' }}</td>
                         <td>{{ $req->full_name }}</td>
                         <td>{{ $req->subject }}</td>
                         <td><span class="badge badge-{{ $req->status }}">{{ $req->status_label }}</span></td>
-                        <td style="font-size:12px;color:#64748b;">{{ jalali($req->created_at) }}</td>
+                        <td style="font-size:12px;color:#5a4a3c;">{{ jalali($req->created_at) }}</td>
                     </tr>
                 @endforeach
             </tbody>

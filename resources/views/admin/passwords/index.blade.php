@@ -6,34 +6,36 @@
 <title>مدیریت رمز کاربران</title>
 
 <style>
-    body { font-family: tahoma, Arial, sans-serif; background: #f4f6f8; color: #263238; margin: 0; }
-    .header { background: #2e7d32; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    body { font-family: tahoma, Arial, sans-serif; background: #fffdf9; color: #2b2119; margin: 0; }
+    .header { background: #c94a2b; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     .header h2 { margin: 0; font-size: 20px; }
     .header a { color: #fff; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 6px; font-size: 14px; transition: 0.3s; }
     .header a:hover { background: rgba(255,255,255,0.4); }
     .container { padding: 30px; max-width: 1200px; margin: 0 auto; }
     
     .tools-bar { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; justify-content: space-between; align-items: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .search-box { flex: 1; min-width: 250px; padding: 10px 15px; border: 1px solid #cfd8dc; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; transition: 0.3s; }
-    .search-box:focus { border-color: #2e7d32; box-shadow: 0 0 0 3px rgba(46,125,50,0.1); }
+    .search-box { flex: 1; min-width: 250px; padding: 10px 15px; border: 1px solid #e6d8c3; border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; transition: 0.3s; }
+    .search-box:focus { border-color: #c94a2b; box-shadow: 0 0 0 3px rgba(201,74,43,0.1); }
     
     .tabs { display: flex; gap: 10px; flex-wrap: wrap; }
-    .tab-btn { background: #e0e0e0; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; color: #455a64; }
-    .tab-btn:hover { background: #cfd8dc; }
-    .tab-btn.active { background: #2e7d32; color: white; font-weight: bold; box-shadow: 0 2px 5px rgba(46,125,50,0.3); }
+    .tab-btn { background: #e6d8c3; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; color: #455a64; }
+    .tab-btn:hover { background: #e6d8c3; }
+    .tab-btn.active { background: #c94a2b; color: white; font-weight: bold; box-shadow: 0 2px 5px rgba(201,74,43,0.3); }
 
     table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-    th { background: #e8f5e9; color: #1b5e20; padding: 15px; text-align: right; font-weight: bold; border-bottom: 2px solid #c8e6c9; }
-    td { padding: 12px 15px; border-bottom: 1px solid #eceff1; vertical-align: middle; }
-    tr:hover { background-color: #f9fbe7; }
+    th { background: #fdeee7; color: #8e2f18; padding: 15px; text-align: right; font-weight: bold; border-bottom: 2px solid #fbdcd0; }
+    td { padding: 12px 15px; border-bottom: 1px solid #f5efe4; vertical-align: middle; }
+    tr:hover { background-color: #fffdf9; }
     
-    input[type="password"] { padding: 8px; border: 1px solid #cfd8dc; border-radius: 5px; font-family: inherit; width: 150px; }
-    button.btn-reset { background: #d32f2f; color: white; border: 0; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: inherit; transition: 0.3s; }
-    button.btn-reset:hover { background: #b71c1c; }
+    input[type="password"] { padding: 8px; border: 1px solid #e6d8c3; border-radius: 5px; font-family: inherit; width: 150px; }
+    button.btn-reset { background: #b3261e; color: white; border: 0; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-family: inherit; transition: 0.3s; }
+    button.btn-reset:hover { background: #8c1d17; }
     
-    .empty-state { text-align: center; padding: 30px; color: #78909c; font-style: italic; display: none; }
+    .empty-state { text-align: center; padding: 30px; color: #8a7a6a; font-style: italic; display: none; }
 </style>
 
+<link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
 </head>
 
 <body>
@@ -46,7 +48,7 @@
 <div class="container">
 
     @if(session('success'))
-    <div style="background:#e8f5e9; color:#2e7d32; padding:15px; border-radius:8px; margin-bottom:20px; border-right:4px solid #2e7d32;">
+    <div style="background:#fdeee7; color:#c94a2b; padding:15px; border-radius:8px; margin-bottom:20px; border-right:4px solid #c94a2b;">
         {{ session('success') }}
     </div>
     @endif
@@ -104,7 +106,7 @@
                 <tr data-section="{{ $sectionKey }}" data-search="{{ strtolower($user->name . ' ' . $user->username . ' ' . $roleDisplay) }}">
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->username }}</td>
-                    <td>{{ $roleDisplay }} <br><small style="color:#78909c;">{{ $sectionText }}</small></td>
+                    <td>{{ $roleDisplay }} <br><small style="color:#8a7a6a;">{{ $sectionText }}</small></td>
                     <td>
                         <form method="POST" action="{{ route('admin.passwords.reset',$user->id) }}" style="display:flex; gap:10px; margin:0;">
                             @csrf

@@ -6,10 +6,10 @@
     <title>تنظیمات سایت</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
 
         .header {
-            background: linear-gradient(135deg, #0d3b2e, #14432f);
+            background: linear-gradient(135deg, #5c2313, #14432f);
             color: white;
             padding: 20px 30px;
             display: flex;
@@ -33,16 +33,16 @@
         .container { max-width: 1000px; margin: auto; padding: 30px 20px; }
 
         .success {
-            background: #c8e6c9;
-            color: #2e7d32;
+            background: #fbdcd0;
+            color: #c94a2b;
             padding: 14px 18px;
             border-radius: 10px;
             margin-bottom: 20px;
             font-size: 14px;
         }
         .error {
-            background: #ffcdd2;
-            color: #c62828;
+            background: #f6d5d2;
+            color: #b3261e;
             padding: 14px 18px;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -58,7 +58,7 @@
         }
 
         .card-header {
-            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
+            background: linear-gradient(135deg, #5c2313, #c94a2b);
             color: white;
             padding: 18px 24px;
             font-size: 15px;
@@ -75,7 +75,7 @@
             display: block;
             margin-bottom: 8px;
             font-size: 13px;
-            color: #546e7a;
+            color: #5a4a3c;
             font-weight: 600;
         }
         .field input[type="text"],
@@ -83,7 +83,7 @@
         .field textarea {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid #cfd8dc;
+            border: 1px solid #e6d8c3;
             border-radius: 8px;
             font-family: inherit;
             font-size: 14px;
@@ -91,8 +91,8 @@
         }
         .field input:focus,
         .field textarea:focus {
-            border-color: #2e7d32;
-            box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+            border-color: #c94a2b;
+            box-shadow: 0 0 0 3px rgba(39,104,159,0.1);
         }
         .field textarea {
             min-height: 160px;
@@ -102,12 +102,12 @@
         }
         .hint {
             font-size: 12px;
-            color: #90a4ae;
+            color: #8a7a6a;
             margin-top: 6px;
             line-height: 1.7;
         }
         .hint code {
-            background: #f5f7fa;
+            background: #fff7e9;
             padding: 2px 6px;
             border-radius: 4px;
             direction: ltr;
@@ -134,7 +134,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
             z-index: 10;
-            border: 2px solid #e8f5e9;
+            border: 2px solid #fdeee7;
         }
 
         .btn {
@@ -149,12 +149,12 @@
             transition: all 0.2s;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
+            background: linear-gradient(135deg, #5c2313, #c94a2b);
             color: white;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(13,46,79,0.3); }
-        .btn-secondary { background: #cfd8dc; color: #37474f; }
-        .btn-secondary:hover { background: #b0bec5; }
+        .btn-secondary { background: #e6d8c3; color: #2b2119; }
+        .btn-secondary:hover { background: #e6d8c3; }
 
         @media (max-width: 700px) {
             .container { padding: 20px 15px; }
@@ -164,7 +164,9 @@
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 <body>
 
 <div class="header">

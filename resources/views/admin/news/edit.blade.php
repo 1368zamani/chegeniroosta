@@ -9,7 +9,7 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
+            background: #fff7e9;
         }
 
         .container {
@@ -24,7 +24,7 @@
         }
 
         h1 {
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         label {
@@ -37,7 +37,7 @@
         textarea {
             width: 100%;
             padding: 11px;
-            border: 1px solid #cfd8dc;
+            border: 1px solid #e6d8c3;
             border-radius: 7px;
             font-family: inherit;
             box-sizing: border-box;
@@ -49,8 +49,8 @@
         }
 
         .error {
-            background: #ffebee;
-            color: #c62828;
+            background: #fdeceb;
+            color: #b3261e;
             padding: 15px;
             border-radius: 8px;
         }
@@ -61,7 +61,7 @@
             padding: 11px 20px;
             border: 0;
             border-radius: 7px;
-            background: #2e7d32;
+            background: #c94a2b;
             color: white;
             font-family: inherit;
             text-decoration: none;
@@ -69,14 +69,16 @@
         }
 
         .back {
-            background: #607d8b;
+            background: #8a7a6a;
             display: inline-block;
         }
     </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 <link rel="stylesheet" href="/css/admin-master.css?v=2">
 <link rel="stylesheet" href="{{ asset('css/admin-final-fix.css') }}?v=10">
-<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"></head>
+<link rel="stylesheet" href="/css/admin-header-fix.css?v=1"><link rel="stylesheet" href="{{ asset('css/admin-utils.css') }}?v=1">
+<link rel="stylesheet" href="{{ asset('css/admin-v3.css') }}?v=1">
+</head>
 
 <body>
 
