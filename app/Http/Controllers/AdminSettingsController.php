@@ -21,6 +21,7 @@ class AdminSettingsController extends Controller
             'header_title'       => 'پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی',
             'header_subtitle'    => 'وزارت کشور • استانداری لرستان • فرمانداری چگنی',
             'header_emblem'      => 'images/gov/emblem.png',
+            'hero_image'         => '',
             'banner_text'        => 'دولت چهاردهم، دولت وفاق ملی',
             'banner_highlight_1' => 'دولت چهاردهم',
             'banner_highlight_2' => 'دولت وفاق ملی',
@@ -76,6 +77,13 @@ class AdminSettingsController extends Controller
             $request->validate(['header_emblem_file' => 'image|max:2048']);
             $path = $request->file('header_emblem_file')->store('settings', 'public');
             SiteSetting::set('header_emblem', $path, 'header', 'image');
+        }
+
+        // ---- عکس صفحهٔ اصلی (هیرو) ----
+        if ($request->hasFile('hero_image_file')) {
+            $request->validate(['hero_image_file' => 'image|max:2048']);
+            $path = $request->file('hero_image_file')->store('hero', 'public');
+            SiteSetting::set('hero_image', $path, 'hero', 'image');
         }
 
         // ---- اشعار ----

@@ -220,6 +220,21 @@
                     @endif
                 </div>
 
+                <div class="field">
+                    <label>عکس صفحهٔ اصلی (هیرو)</label>
+                    <input type="file" name="hero_image_file" accept="image/*">
+                    <div class="hint">
+                        فایل فعلی: <code>{{ $settings['hero_image'] }}</code>
+                    </div>
+                    @if($settings['hero_image'])
+                        <img src="{{ asset('storage/' . $settings['hero_image']) }}" class="preview-img" onerror="this.style.display='none'">
+                    @endif
+                    <div class="hint">
+                        این تصویر در کارت شاخص صفحهٔ اصلی (هیرو) نمایش داده می‌شود.
+                        اگر تنظیم نشود، از عکس بخش فعال اول سایت (cover_image) استفاده می‌شود.
+                    </div>
+                </div>
+
             </div>
         </div>
 
