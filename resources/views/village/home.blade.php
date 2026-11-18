@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
 
-    <title>{{ $village->name }} | روستا نما</title>
+    <title>پایگاه اط‌رسانی روستای {{ $village->name }}</title>
 
     <meta name="description"
           content="{{ $village->description ?: 'معرفی و اطلاع‌رسانی روستای '.$village->name }}">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $section->name }} | پایگاه اطلاع‌رسانی</title>
+    <title>پایگاه اط‌رسانی بخش {{ $section->name }}</title>
     <meta name="description" content="{{ $section->description ? \Illuminate\Support\Str::limit(strip_tags($section->description), 155) : 'پایگاه اطلاع‌رسانی بخش ' . $section->name . ' شهرستان چگنی' }}">
     <meta name="theme-color" content="#c94a2b">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
