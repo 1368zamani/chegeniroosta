@@ -12,7 +12,7 @@
     {{-- Tailwind محلی: بدنهٔ صفحات قدیمی روستا بر پایهٔ کلاس‌های کاربردی نوشته شده‌اند --}}
     <script src="{{ asset('vendor/tailwind/tailwind.js') }}"></script>
     @include('partials.tailwind-v3-config')
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=8">
     @yield('head')
     @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">

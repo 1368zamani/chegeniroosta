@@ -57,7 +57,7 @@
 @include('partials.site-animations')
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=8">
 </head>
 <body class="v3-body">
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])

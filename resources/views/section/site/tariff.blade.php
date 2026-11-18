@@ -36,7 +36,7 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; c
 @media (max-width: 700px) { .s-table { font-size: 12px; } .s-table th, .s-table td { padding: 8px 10px; } .s-table .hide-sm { display: none; } }
 </style>
 @include('partials.pwa')
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=8">
 </head>
 <body class="v3-body">
 @include('partials.v3-crumbs', ['crumbs' => [

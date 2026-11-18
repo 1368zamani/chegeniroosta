@@ -141,3 +141,31 @@
     });
 })();
 </script>
+
+<script>
+(function () {
+    'use strict';
+    var boxes = document.querySelectorAll('.feat-big');
+    if (!boxes.length) return;
+    Array.prototype.forEach.call(boxes, function (box) {
+        var slides = Array.prototype.slice.call(box.querySelectorAll('.feat-slide'));
+        if (!slides.length) return;
+        var dots = box.querySelectorAll('.feat-dot');
+        var idx = 0;
+        function go(i) {
+            i = ((i % slides.length) + slides.length) % slides.length;
+            for (var j = 0; j < slides.length; j++) slides[j].classList.toggle('active', j === i);
+            for (var k = 0; k < dots.length; k++) dots[k].classList.toggle('active', k === i);
+            idx = i;
+        }
+        var delay = parseInt(box.getAttribute('data-autoplay'), 10) || 3000;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var t = reduce ? null : window.setInterval(function () { go(idx + 1); }, delay);
+        Array.prototype.forEach.call(dots, function (d) {
+            d.addEventListener('click', function () { go(parseInt(d.getAttribute('data-feat-idx'), 10)); });
+        });
+        box.addEventListener('mouseenter', function () { window.clearInterval(t); });
+        box.addEventListener('mouseleave', function () { window.clearInterval(t); if (!reduce) { t = window.setInterval(function () { go(idx + 1); }, delay); } });
+    });
+})();
+</script>

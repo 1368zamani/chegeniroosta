@@ -104,6 +104,49 @@
             </div>
         @endif
 
+        {{-- ══════════ آخرین اخبار (کادر بزرگ چرخان) ══════════ --}}
+        @if(isset($news) && $news->count() > 0)
+            <section class="block" id="latest" aria-labelledby="latestTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">تازه‌ترین‌ها</span>
+                        <h2 id="latestTitle">آخرین اخبار</h2>
+                        <p>سه خبر آخر بخش {{ $section->name }}</p>
+                    </div>
+                </header>
+
+                <div class="feat-big reveal" data-autoplay="3000">
+                    @foreach($news->take(3) as $fi => $fnews)
+                        <div class="feat-slide {{ $fi === 0 ? 'active' : '' }}" data-feat-idx="{{ $fi }}">
+                            @if($fnews->image)
+                                <img class="feat-bg" src="{{ asset('storage/' . $fnews->image) }}" alt="{{ $fnews->title }}">
+                            @endif
+                            <div class="feat-cap">
+                                <span class="chip"><svg><use href="#i-news"/></svg> {{ $fnews->section->name ?? $section->name }}</span>
+                                <h3>{{ $fnews->title }}</h3>
+                                @if($fnews->excerpt)
+                                    <p>{{ \Illuminate\Support\Str::limit(strip_tags($fnews->excerpt), 160) }}</p>
+                                @endif
+                                <div class="meta">
+                                    @if($fnews->published_at)
+                                        <span><svg><use href="#i-calendar"/></svg> {{ $fnews->published_at ? jalali($fnews->published_at) : jalali($fnews->created_at) }}</span>
+                                    @endif
+                                    @if(($fnews->stat_views ?? 0) > 0)
+                                        <span><svg><use href="#i-eye"/></svg> {{ $__fa($fnews->stat_views) }} بازدید</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="feat-dots">
+                        @foreach($news->take(3) as $fi => $fnews)
+                            <button type="button" class="feat-dot {{ $fi === 0 ? 'active' : '' }}" data-feat-idx="{{ $fi }}" aria-label="خبر {{ $fi + 1 }}"></button>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
+
         {{-- ══════════ اخبار ══════════ --}}
         <section class="block" id="news" aria-labelledby="newsTitle">
             <header class="block-head reveal">

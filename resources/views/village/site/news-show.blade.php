@@ -92,7 +92,7 @@
 @include('partials.site-animations')
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=8">
 </head>
 <body class="v3-body">
 @include('partials.gov-header', ['headerTitle' => 'اخبار روستای ' . $village->name])
@@ -165,7 +165,7 @@ function openFullImage(url) {
     var w = window.open('', '_blank');
     w.document.write('<html><head><title>تصویر</title><style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh;}img{max-width:95vw;max-height:95vh;border-radius:8px;}</style>@include('partials.site-animations')
 @include('partials.pwa')
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=8">
 </head><body class="v3-body"><img src="' + url + '"></body></html>');
     w.document.close();
 }

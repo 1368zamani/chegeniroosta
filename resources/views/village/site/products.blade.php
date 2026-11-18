@@ -181,7 +181,7 @@
     </style>
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=8">
 </head>
 <body class="v3-body">
 @include('partials.v3-village-nav', ['label' => 'محصولات روستا'])

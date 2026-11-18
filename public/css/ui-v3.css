@@ -1237,3 +1237,27 @@ body.v3-body, .v3-body { font-family: var(--font) !important; }
 @media (prefers-reduced-motion: reduce) {
   .news-slider .cards { transition: none; }
 }
+
+/* =====================================================================
+   کادر بزرگ آخرین اخبار — چرخش خودکار سه خبر (FEATURED-NEWS)
+   ===================================================================== */
+.feat-big {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  min-height: 380px;
+  box-shadow: var(--shadow);
+  background: var(--night);
+}
+.feat-slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity .9s cubic-bezier(.22,.7,.2,1), transform .9s cubic-bezier(.22,.7,.2,1); pointer-events: none; }
+.feat-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.feat-slide .feat-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.feat-slide .feat-cap { position: absolute; inset-inline: 0; bottom: 0; padding: 40px 30px 26px; background: linear-gradient(transparent, rgba(43,33,25,.92) 55%, rgba(43,33,25,.9)); color: #fff7e9; }
+.feat-slide .feat-cap .chip { display: inline-flex; margin-bottom: 12px; }
+.feat-slide .feat-cap h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 3vw, 30px); color: #fff7e9; line-height: 1.5; margin: 0; }
+.feat-slide .feat-cap p { margin: 10px 0 0; color: #f2e4cd; font-size: 13px; line-height: 2; }
+.feat-slide .feat-cap .meta { margin-top: 12px; color: #f2e4cd; }
+.feat-slide .feat-cap .meta svg { opacity: .8; }
+.feat-dots { position: absolute; top: 14px; inset-inline-end: 14px; display: flex; gap: 8px; z-index: 5; }
+.feat-dot { width: 9px; height: 9px; border-radius: 999px; background: rgba(255,247,233,.5); border: 0; cursor: pointer; padding: 0; transition: width .25s, background .25s; }
+.feat-dot.active { width: 26px; background: var(--teal-700); }
