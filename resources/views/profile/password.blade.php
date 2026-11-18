@@ -32,8 +32,8 @@
         body {
             margin: 0;
             font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
-            background: linear-gradient(160deg, #eef5ef 0%, #f5f7fa 60%);
-            color: #263238;
+            background: linear-gradient(160deg, #eef5ef 0%, #fff7e9 60%);
+            color: #2b2119;
             min-height: 100vh;
         }
 
@@ -48,22 +48,22 @@
         }
         .head .icon {
             width: 68px; height: 68px; margin: 0 auto 12px;
-            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            background: linear-gradient(135deg, #c94a2b, #8e2f18);
             border-radius: 20px;
             display: flex; align-items: center; justify-content: center;
             font-size: 32px;
-            box-shadow: 0 8px 24px rgba(46,125,50,.28);
+            box-shadow: 0 8px 24px rgba(201,74,43,.28);
         }
         .head h1 {
             margin: 0 0 6px;
             font-size: 21px;
-            color: #1b5e20;
+            color: #8e2f18;
             font-weight: 800;
         }
         .head p {
             margin: 0;
             font-size: 12.5px;
-            color: #78909c;
+            color: #8a7a6a;
         }
 
         .card {
@@ -71,25 +71,25 @@
             border-radius: 16px;
             padding: 26px 24px;
             box-shadow: 0 10px 40px rgba(13,46,79,.08);
-            border: 1px solid #eef2ef;
+            border: 1px solid #fffdf9;
         }
 
         .who {
             display: flex; align-items: center; gap: 12px;
-            background: #f1f8e9;
+            background: #fff3e6;
             border-radius: 11px;
             padding: 12px 14px;
             margin-bottom: 20px;
         }
         .who .avatar {
             width: 40px; height: 40px; border-radius: 50%;
-            background: #c8e6c9; color: #1b5e20;
+            background: #f7d9cc; color: #8e2f18;
             display: flex; align-items: center; justify-content: center;
             font-size: 18px; font-weight: 800; flex-shrink: 0;
         }
         .who .info { flex: 1; min-width: 0; }
-        .who .name { font-size: 13.5px; font-weight: 700; color: #1b5e20; }
-        .who .role { font-size: 11.5px; color: #78909c; margin-top: 2px; }
+        .who .name { font-size: 13.5px; font-weight: 700; color: #8e2f18; }
+        .who .role { font-size: 11.5px; color: #8a7a6a; margin-top: 2px; }
 
         .alert {
             border-radius: 10px;
@@ -99,14 +99,14 @@
             margin-bottom: 16px;
         }
         .alert.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-            border-right: 4px solid #2e7d32;
+            background: #fdeee7;
+            color: #c94a2b;
+            border-right: 4px solid #c94a2b;
         }
         .alert.error {
             background: #ffebee;
-            color: #c62828;
-            border-right: 4px solid #c62828;
+            color: #b3401f;
+            border-right: 4px solid #b3401f;
         }
 
         .field { margin-bottom: 16px; }
@@ -115,7 +115,7 @@
             display: block;
             font-size: 12.5px;
             font-weight: 700;
-            color: #37474f;
+            color: #4a3a2c;
             margin-bottom: 6px;
         }
 
@@ -135,10 +135,10 @@
         }
         input:focus {
             outline: none;
-            border-color: #2e7d32;
-            box-shadow: 0 0 0 3px rgba(46,125,50,.12);
+            border-color: #c94a2b;
+            box-shadow: 0 0 0 3px rgba(201,74,43,.12);
         }
-        input.is-invalid { border-color: #e53935; }
+        input.is-invalid { border-color: #e2603c; }
 
         .toggle {
             position: absolute;
@@ -150,13 +150,13 @@
             cursor: pointer;
             font-size: 16px;
             padding: 4px 6px;
-            color: #90a4ae;
+            color: #a2948a;
             line-height: 1;
         }
 
         .hint {
             font-size: 11.5px;
-            color: #90a4ae;
+            color: #a2948a;
             margin-top: 5px;
             line-height: 1.8;
         }
@@ -169,7 +169,7 @@
         .strength.is-shown { display: block; }
         .strength-bar {
             height: 5px;
-            background: #eceff1;
+            background: #f7f0e6;
             border-radius: 3px;
             overflow: hidden;
             margin-bottom: 5px;
@@ -182,19 +182,19 @@
         }
         .strength-text {
             font-size: 11px;
-            color: #90a4ae;
+            color: #a2948a;
         }
 
         .error-text {
             font-size: 11.5px;
-            color: #e53935;
+            color: #e2603c;
             margin-top: 5px;
         }
 
         .submit {
             width: 100%;
             padding: 13px;
-            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            background: linear-gradient(135deg, #c94a2b, #8e2f18);
             color: #fff;
             border: none;
             border-radius: 10px;
@@ -203,12 +203,12 @@
             font-weight: 800;
             cursor: pointer;
             margin-top: 6px;
-            box-shadow: 0 5px 18px rgba(46,125,50,.28);
+            box-shadow: 0 5px 18px rgba(201,74,43,.28);
             transition: transform .18s, box-shadow .18s;
         }
         .submit:hover {
             transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(46,125,50,.34);
+            box-shadow: 0 8px 24px rgba(201,74,43,.34);
         }
         .submit:active { transform: translateY(0); }
 
@@ -217,21 +217,21 @@
             text-align: center;
             margin-top: 16px;
             font-size: 12.5px;
-            color: #2e7d32;
+            color: #c94a2b;
             text-decoration: none;
         }
         .back:hover { text-decoration: underline; }
 
         .security-note {
-            background: #f5f7fa;
+            background: #fff7e9;
             border-radius: 10px;
             padding: 12px 14px;
             margin-top: 18px;
             font-size: 11.5px;
-            color: #607d8b;
+            color: #6b5a4a;
             line-height: 1.9;
         }
-        .security-note strong { color: #37474f; }
+        .security-note strong { color: #4a3a2c; }
 
         @media (max-width: 560px) {
             .wrap { margin: 18px auto 40px; }
@@ -368,10 +368,10 @@ function checkStrength(value) {
     if (/[^A-Za-z0-9\u0600-\u06FF\u06F0-\u06F9]/.test(value)) score++;
 
     var pct, color, label;
-    if (score <= 2)      { pct = 30;  color = '#e53935'; label = 'ضعیف'; }
-    else if (score === 3){ pct = 60;  color = '#f9a825'; label = 'متوسط'; }
-    else if (score === 4){ pct = 82;  color = '#2e7d32'; label = 'خوب'; }
-    else                 { pct = 100; color = '#1b5e20'; label = 'قوی'; }
+    if (score <= 2)      { pct = 30;  color = '#e2603c'; label = 'ضعیف'; }
+    else if (score === 3){ pct = 60;  color = '#e0a02a'; label = 'متوسط'; }
+    else if (score === 4){ pct = 82;  color = '#c94a2b'; label = 'خوب'; }
+    else                 { pct = 100; color = '#8e2f18'; label = 'قوی'; }
 
     fill.style.width = pct + '%';
     fill.style.backgroundColor = color;

@@ -16,18 +16,18 @@
     @if($news->image)
         <meta property="og:image" content="{{ asset('storage/' . $news->image) }}">
     @endif
-    <meta name="theme-color" content="#0d3b2e">
+    <meta name="theme-color" content="#5c2313">
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f0f3f7; color: #263238; line-height: 1.9; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f0f3f7; color: #2b2119; line-height: 1.9; }
         .s-container { max-width: 1200px; margin: auto; padding: 0 15px; }
 
         .breadcrumb {
             padding: 14px 0;
-            color: #78909c;
+            color: #8a7a6a;
             font-size: 12.5px;
         }
-        .breadcrumb a { color: #2e7d32; text-decoration: none; }
+        .breadcrumb a { color: #c94a2b; text-decoration: none; }
         .breadcrumb a:hover { text-decoration: underline; }
 
         .two-columns {
@@ -38,13 +38,13 @@
         }
 
         .box { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(13,46,79,0.06); margin-bottom: 20px; overflow: hidden; }
-        .box-header { padding: 14px 18px; border-bottom: 2px solid #eceff1; display: flex; align-items: center; justify-content: space-between; }
-        .box-header h3 { margin: 0; color: #0d3b2e; font-size: 14.5px; font-weight: 800; }
-        .box-header .line { width: 40px; height: 3px; background: #ffd54f; border-radius: 2px; }
+        .box-header { padding: 14px 18px; border-bottom: 2px solid #f7f0e6; display: flex; align-items: center; justify-content: space-between; }
+        .box-header h3 { margin: 0; color: #5c2313; font-size: 14.5px; font-weight: 800; }
+        .box-header .line { width: 40px; height: 3px; background: #f5b841; border-radius: 2px; }
         .box-body { padding: 24px; }
 
         .article-title {
-            color: #0d3b2e;
+            color: #5c2313;
             font-size: 24px;
             font-weight: 800;
             margin: 0 0 14px;
@@ -53,10 +53,10 @@
         .article-meta {
             display: flex;
             gap: 18px;
-            color: #90a4ae;
+            color: #a2948a;
             font-size: 12.5px;
             padding-bottom: 16px;
-            border-bottom: 1px solid #eceff1;
+            border-bottom: 1px solid #f7f0e6;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
@@ -70,14 +70,14 @@
         .article-body {
             font-size: 15px;
             line-height: 2.1;
-            color: #37474f;
+            color: #4a3a2c;
         }
         .article-body p { margin: 0 0 16px; }
 
         .back-link {
             display: inline-block;
             margin-top: 24px;
-            color: #2e7d32;
+            color: #c94a2b;
             text-decoration: none;
             font-size: 13.5px;
         }
@@ -86,8 +86,8 @@
         .related-list { list-style: none; margin: 0; padding: 0; }
         .related-list li { border-bottom: 1px solid #f0f3f7; }
         .related-list li:last-child { border-bottom: none; }
-        .related-list a { display: block; padding: 12px 14px; color: #37474f; text-decoration: none; font-size: 13px; line-height: 1.7; }
-        .related-list a:hover { background: #f5f7fa; color: #2e7d32; }
+        .related-list a { display: block; padding: 12px 14px; color: #4a3a2c; text-decoration: none; font-size: 13px; line-height: 1.7; }
+        .related-list a:hover { background: #fff7e9; color: #c94a2b; }
 
         @media (max-width: 900px) {
             .two-columns { grid-template-columns: 1fr; }
@@ -558,8 +558,8 @@ a[href^="tel:"] {
 
 {{-- section-news-public-gallery --}}
 @if($news->images && $news->images->count() > 0)
-    <div style="margin: 35px 0; padding: 25px; background: #f8fafc; border-radius: 14px; border: 1px solid #e2e8f0;">
-        <h3 style="color: #2e7d32; font-size: 18px; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid #2e7d32; display: flex; align-items: center; gap: 8px;">
+    <div style="margin: 35px 0; padding: 25px; background: #fffdf9; border-radius: 14px; border: 1px solid #efe2d1;">
+        <h3 style="color: #c94a2b; font-size: 18px; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid #c94a2b; display: flex; align-items: center; gap: 8px;">
             🖼 گالری تصاویر این خبر ({{ $news->images->count() }})
         </h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;">
@@ -572,7 +572,7 @@ a[href^="tel:"] {
                          loading="lazy"
                          style="width: 100%; height: 180px; object-fit: cover; display: block;">
                     @if($img->caption)
-                        <div style="padding: 10px 12px; font-size: 12.5px; color: #546e7a; text-align: center; background: #f8fafc;">
+                        <div style="padding: 10px 12px; font-size: 12.5px; color: #6b5a4a; text-align: center; background: #fffdf9;">
                             {{ $img->caption }}
                         </div>
                     @endif
@@ -584,7 +584,7 @@ a[href^="tel:"] {
     <style>
         .section-news-gallery-item:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(13,59,46,.18) !important;
+            box-shadow: 0 12px 30px rgba(92,35,19,.18) !important;
         }
         .sg-lightbox-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,.92);
@@ -604,7 +604,7 @@ a[href^="tel:"] {
         <style>
         /* ============ NEWS-CARD-DARK-2026 ============ */
         .news-list-item {
-            background: #0d3b2e !important;
+            background: #5c2313 !important;
             border-radius: 10px !important;
             padding: 14px 16px !important;
             margin-bottom: 10px !important;
@@ -613,11 +613,11 @@ a[href^="tel:"] {
         .news-list-item h4, .news-list-item h4 a, .news-list-item p,
         .news-list-item span, .news-list-item .meta, .news-list-item .date,
         .news-list-item .news-content, .news-list-item .news-content * {
-            color: #333333 !important;
-            -webkit-text-fill-color: #333333 !important;
+            color: #2b2119 !important;
+            -webkit-text-fill-color: #2b2119 !important;
         }
-        .news-list-item h4 a:hover { color: #ffd54f !important; }
-        .news-list-item:hover { background: #14432f !important; }
+        .news-list-item h4 a:hover { color: #f5b841 !important; }
+        .news-list-item:hover { background: #5c2313 !important; }
         /* ============ END ============ */
         </style>
         </style>

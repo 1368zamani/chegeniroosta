@@ -10,7 +10,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            background: linear-gradient(135deg, #c94a2b 0%, #8e2f18 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -32,7 +32,7 @@
         }
         .brand h1 {
             font-size: 1.4rem;
-            color: #2e7d32;
+            color: #c94a2b;
             margin-bottom: .35rem;
         }
         .brand p {
@@ -60,7 +60,7 @@
         }
         input:focus {
             outline: none;
-            border-color: #2e7d32;
+            border-color: #c94a2b;
             background: #fff;
             box-shadow: 0 0 0 3px rgba(15,118,110,.15);
         }
@@ -75,7 +75,7 @@
         button {
             width: 100%;
             padding: .85rem;
-            background: #2e7d32;
+            background: #c94a2b;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -85,7 +85,7 @@
             cursor: pointer;
             transition: background .15s;
         }
-        button:hover { background: #1b5e20; }
+        button:hover { background: #8e2f18; }
         .errors {
             background: #fef2f2;
             border: 1px solid #fecaca;

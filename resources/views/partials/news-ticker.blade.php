@@ -1,21 +1,21 @@
 @if(isset($news) && $news->count() > 0)
 <style>
     .news-ticker {
-        background: #065f46;
+        background: #5c2313;
         color: #fff;
         height: 52px;
         overflow: hidden;
         position: relative;
-        border-top: 2px solid #ffd54f;
-        border-bottom: 2px solid #ffd54f;
+        border-top: 2px solid #f5b841;
+        border-bottom: 2px solid #f5b841;
         box-shadow: 0 4px 15px rgba(0,0,0,0.18);
         display: flex;
         align-items: stretch;
         font-family: 'Vazirmatn', Tahoma, sans-serif;
     }
     .news-ticker-label {
-        background: #ffd54f;
-        color: #0d3b2e;
+        background: #f5b841;
+        color: #5c2313;
         padding: 0 18px;
         display: flex;
         align-items: center;
@@ -60,14 +60,14 @@
         font-size: 14px;
         font-weight: 600;
     }
-    .news-ticker-item a:hover { color: #ffd54f; }
+    .news-ticker-item a:hover { color: #f5b841; }
     .news-ticker-item .title {
         overflow: hidden;
         text-overflow: ellipsis;
         color: #ff5252 !important;
     }
     .news-ticker-item .badge {
-        background: #e53935;
+        background: #e2603c;
         color: #fff;
         padding: 2px 8px;
         border-radius: 12px;
@@ -76,14 +76,14 @@
         flex-shrink: 0;
     }
     .news-ticker-item .date {
-        color: #90a4ae;
+        color: #a2948a;
         font-size: 11.5px;
         margin-right: auto;
         flex-shrink: 0;
     }
     .news-ticker-next {
         background: rgba(255,255,255,0.08);
-        color: #ffd54f;
+        color: #f5b841;
         border: none;
         width: 44px;
         cursor: pointer;

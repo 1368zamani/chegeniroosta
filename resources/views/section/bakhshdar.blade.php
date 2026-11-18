@@ -12,28 +12,28 @@
     <meta name="robots" content="index, follow">
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
-        .header { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 20px; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
+        .header { background: linear-gradient(135deg, #c94a2b, #8e2f18); color: white; padding: 20px; }
         .header-inner { width: min(1150px, 92%); margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .header h1 { margin: 0; font-size: 20px; }
         .header a { color: white; text-decoration: none; font-size: 14px; }
         .container { width: min(900px, 92%); margin: auto; padding: 40px 0; }
         .profile-card { background: white; border-radius: 16px; box-shadow: 0 10px 35px rgba(0,0,0,0.08); overflow: hidden; }
-        .profile-top { display: flex; gap: 30px; padding: 35px; background: linear-gradient(135deg, #e8f5e9, #f5f7fa); align-items: center; flex-wrap: wrap; }
+        .profile-top { display: flex; gap: 30px; padding: 35px; background: linear-gradient(135deg, #fdeee7, #fff7e9); align-items: center; flex-wrap: wrap; }
         .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 8px 25px rgba(21,101,192,0.25); flex-shrink: 0; }
-        .profile-photo-placeholder { width: 180px; height: 180px; border-radius: 50%; background: #cfd8dc; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #90a4ae; border: 5px solid white; flex-shrink: 0; }
-        .profile-info h2 { margin: 0 0 8px; color: #2e7d32; font-size: 26px; }
-        .profile-info .role { color: #546e7a; font-size: 15px; margin-bottom: 12px; }
-        .profile-info .contact { font-size: 14px; color: #607d8b; line-height: 2; }
-        .profile-info .contact a { color: #2e7d32; text-decoration: none; direction: ltr; display: inline-block; }
+        .profile-photo-placeholder { width: 180px; height: 180px; border-radius: 50%; background: #e6d8c3; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #a2948a; border: 5px solid white; flex-shrink: 0; }
+        .profile-info h2 { margin: 0 0 8px; color: #c94a2b; font-size: 26px; }
+        .profile-info .role { color: #6b5a4a; font-size: 15px; margin-bottom: 12px; }
+        .profile-info .contact { font-size: 14px; color: #6b5a4a; line-height: 2; }
+        .profile-info .contact a { color: #c94a2b; text-decoration: none; direction: ltr; display: inline-block; }
         .profile-body { padding: 35px; }
         .profile-section { margin-bottom: 35px; }
         .profile-section:last-child { margin-bottom: 0; }
-        .profile-section h3 { color: #2e7d32; font-size: 18px; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 2px solid #e8f5e9; }
-        .profile-section p { color: #546e7a; line-height: 2; margin: 0; }
+        .profile-section h3 { color: #c94a2b; font-size: 18px; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 2px solid #fdeee7; }
+        .profile-section p { color: #6b5a4a; line-height: 2; margin: 0; }
         .timeline-list { list-style: none; margin: 0; padding: 0; }
-        .timeline-list li { padding: 12px 20px; border-right: 3px solid #2e7d32; margin-bottom: 10px; background: #f8fafc; border-radius: 6px; color: #37474f; line-height: 1.8; }
-        .empty-note { color: #90a4ae; font-style: italic; font-size: 14px; }
+        .timeline-list li { padding: 12px 20px; border-right: 3px solid #c94a2b; margin-bottom: 10px; background: #fffdf9; border-radius: 6px; color: #4a3a2c; line-height: 1.8; }
+        .empty-note { color: #a2948a; font-style: italic; font-size: 14px; }
         @media (max-width: 700px) {
             .profile-top { flex-direction: column; text-align: center; padding: 25px; }
             .profile-photo, .profile-photo-placeholder { width: 140px; height: 140px; }
@@ -52,7 +52,7 @@
             height: 220px;
             border-radius: 12px;
             object-fit: cover;
-            border: 3px solid #ffd54f;
+            border: 3px solid #f5b841;
             box-shadow: 0 8px 25px rgba(255,213,79,0.4);
             display: block;
             margin: 0 auto 14px;
@@ -62,21 +62,21 @@
             max-width: 220px;
             height: 220px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
+            background: linear-gradient(135deg, #fdeee7, #fff7e9);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 80px;
-            color: #90a4ae;
+            color: #a2948a;
             margin: 0 auto 14px;
-            border: 3px solid #ffd54f;
+            border: 3px solid #f5b841;
             box-shadow: 0 8px 25px rgba(255,213,79,0.3);
         }
         .bakhshdar-side-card .label {
             display: inline-block;
             font-size: 11px;
-            background: #0d3b2e;
-            color: #ffd54f;
+            background: #5c2313;
+            color: #f5b841;
             padding: 3px 14px;
             border-radius: 14px;
             margin-bottom: 10px;
@@ -84,18 +84,18 @@
         }
         .bakhshdar-side-card h4 {
             margin: 0 0 4px;
-            color: #0d3b2e;
+            color: #5c2313;
             font-size: 17px;
             font-weight: 800;
         }
         .bakhshdar-side-card .role {
             font-size: 12.5px;
-            color: #78909c;
+            color: #8a7a6a;
             margin: 0 0 16px;
         }
         .bakhshdar-side-card .btn {
             display: inline-block;
-            background: #0d3b2e;
+            background: #5c2313;
             color: #fff;
             padding: 10px 22px;
             border-radius: 8px;
@@ -105,8 +105,8 @@
             transition: all 0.2s;
         }
         .bakhshdar-side-card .btn:hover {
-            background: #ffd54f;
-            color: #0d3b2e;
+            background: #f5b841;
+            color: #5c2313;
             transform: translateY(-2px);
         }
 
@@ -202,7 +202,7 @@ a[href^="tel:"] {
             <div class="profile-section">
                 <h3>🎓 تحصیلات</h3>
                 @if(!empty(trim((string) ($section->bakhshdar_education ?? ''))))
-                    <p style="white-space: pre-line; line-height: 2; color: #546e7a;">{{ $section->bakhshdar_education }}</p>
+                    <p style="white-space: pre-line; line-height: 2; color: #6b5a4a;">{{ $section->bakhshdar_education }}</p>
                 @else
                     <p class="empty-note">اطلاعات تحصیلات در حال تکمیل است.</p>
                 @endif
@@ -211,7 +211,7 @@ a[href^="tel:"] {
             <div class="profile-section">
                 <h3>💼 سوابق شغلی</h3>
                 @if(!empty(trim((string) ($section->bakhshdar_experience ?? ''))))
-                    <p style="white-space: pre-line; line-height: 2; color: #546e7a;">{{ $section->bakhshdar_experience }}</p>
+                    <p style="white-space: pre-line; line-height: 2; color: #6b5a4a;">{{ $section->bakhshdar_experience }}</p>
                 @else
                     <p class="empty-note">اطلاعات سوابق در حال تکمیل است.</p>
                 @endif

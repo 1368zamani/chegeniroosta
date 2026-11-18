@@ -10,10 +10,10 @@
     <title>اخبار و اطلاعیه‌ها | {{ $section->name }}</title>
     <meta name="description" content="آخرین اخبار و اطلاعیه‌های بخش {{ $section->name }}">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0d3b2e">
+    <meta name="theme-color" content="#5c2313">
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f0f3f7; color: #263238; line-height: 1.8; }
+        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #f0f3f7; color: #2b2119; line-height: 1.8; }
         .s-container { max-width: 1200px; margin: auto; padding: 0 15px; }
 
         
@@ -28,19 +28,19 @@
         }
 
         .box { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(13,46,79,0.06); margin-bottom: 20px; overflow: hidden; }
-        .box-header { padding: 14px 18px; border-bottom: 2px solid #eceff1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .box-header h3 { margin: 0; color: #0d3b2e; font-size: 15px; font-weight: 800; }
-        .box-header .line { width: 40px; height: 3px; background: #ffd54f; border-radius: 2px; }
+        .box-header { padding: 14px 18px; border-bottom: 2px solid #f7f0e6; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .box-header h3 { margin: 0; color: #5c2313; font-size: 15px; font-weight: 800; }
+        .box-header .line { width: 40px; height: 3px; background: #f5b841; border-radius: 2px; }
         .box-body { padding: 18px; }
 
-        .news-list-item { padding: 16px 0; border-bottom: 1px solid #eceff1; }
+        .news-list-item { padding: 16px 0; border-bottom: 1px solid #f7f0e6; }
         .news-list-item:last-child { border-bottom: none; }
         .news-list-item h4 { margin: 0 0 6px; font-size: 15px; line-height: 1.6; }
-        .news-list-item h4 a { color: #0d3b2e; text-decoration: none; }
-        .news-list-item h4 a:hover { color: #2e7d32; }
-        .news-list-item .meta { font-size: 11.5px; color: #90a4ae; margin-bottom: 8px; }
-        .news-list-item p { margin: 0; color: #546e7a; font-size: 13px; line-height: 1.9; }
-        .pin-badge { display: inline-block; background: #ffd54f; color: #0d3b2e; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 700; }
+        .news-list-item h4 a { color: #5c2313; text-decoration: none; }
+        .news-list-item h4 a:hover { color: #c94a2b; }
+        .news-list-item .meta { font-size: 11.5px; color: #a2948a; margin-bottom: 8px; }
+        .news-list-item p { margin: 0; color: #6b5a4a; font-size: 13px; line-height: 1.9; }
+        .pin-badge { display: inline-block; background: #f5b841; color: #5c2313; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 700; }
 
         .pagination-wrap { text-align: center; padding: 20px 0; }
         .pagination-wrap nav { display: inline-block; }
@@ -48,8 +48,8 @@
         .quick-links { list-style: none; margin: 0; padding: 0; }
         .quick-links li { border-bottom: 1px solid #f0f3f7; }
         .quick-links li:last-child { border-bottom: none; }
-        .quick-links a { display: block; padding: 10px 14px; color: #37474f; text-decoration: none; font-size: 13px; }
-        .quick-links a:hover { background: #f5f7fa; color: #2e7d32; }
+        .quick-links a { display: block; padding: 10px 14px; color: #4a3a2c; text-decoration: none; font-size: 13px; }
+        .quick-links a:hover { background: #fff7e9; color: #c94a2b; }
 
         @media (max-width: 900px) {
             .two-columns { grid-template-columns: 1fr; }
@@ -485,19 +485,19 @@ a[href^="tel:"] {
 
         .news-list-item { transition: all .25s ease; }
         .news-list-item:hover {
-            background: #0d3b2e !important;
+            background: #5c2313 !important;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(13,46,79,0.3);
         }
         .news-list-item:hover h1, .news-list-item:hover h2, .news-list-item:hover h3, .news-list-item:hover h4, .news-list-item:hover h5,
         .news-list-item:hover p, .news-list-item:hover a, .news-list-item:hover .date, .news-list-item:hover .meta, .news-list-item:hover span {
-            color: #333333 !important;
+            color: #2b2119 !important;
         }
 
         <style>
         /* ============ NEWS-CARD-DARK-2026 ============ */
         .news-list-item {
-            background: #0d3b2e !important;
+            background: #5c2313 !important;
             border-radius: 10px !important;
             padding: 14px 16px !important;
             margin-bottom: 10px !important;
@@ -506,11 +506,11 @@ a[href^="tel:"] {
         .news-list-item h4, .news-list-item h4 a, .news-list-item p,
         .news-list-item span, .news-list-item .meta, .news-list-item .date,
         .news-list-item .news-content, .news-list-item .news-content * {
-            color: #333333 !important;
-            -webkit-text-fill-color: #333333 !important;
+            color: #2b2119 !important;
+            -webkit-text-fill-color: #2b2119 !important;
         }
-        .news-list-item h4 a:hover { color: #ffd54f !important; }
-        .news-list-item:hover { background: #14432f !important; }
+        .news-list-item h4 a:hover { color: #f5b841 !important; }
+        .news-list-item:hover { background: #5c2313 !important; }
         /* ============ END ============ */
         </style>
         </style>
@@ -549,7 +549,7 @@ a[href^="tel:"] {
                             {{ $news->links() }}
                         </div>
                     @else
-                        <div style="text-align:center;padding:30px;color:#90a4ae;">هنوز خبری منتشر نشده است.</div>
+                        <div style="text-align:center;padding:30px;color:#a2948a;">هنوز خبری منتشر نشده است.</div>
                     @endif
                 </div>
             </div>

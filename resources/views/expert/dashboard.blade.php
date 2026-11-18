@@ -12,7 +12,7 @@
 <div class="row g-3 mb-4">
     <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-icon" style="background: linear-gradient(135deg,#2e7d32,#0d3b2e);">
+            <div class="stat-icon" style="background: linear-gradient(135deg,#c94a2b,#5c2313);">
                 <i class="bi bi-list-check"></i>
             </div>
             <div class="stat-value">{{ number_format($stats['total_tariffs']) }}</div>
@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-icon" style="background: linear-gradient(135deg,#388e3c,#1b5e20);">
+            <div class="stat-icon" style="background: linear-gradient(135deg,#b3401f,#8e2f18);">
                 <i class="bi bi-list-ol"></i>
             </div>
             <div class="stat-value">{{ number_format($stats['total_items']) }}</div>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-icon" style="background: linear-gradient(135deg,#10b981,#047857);">
+            <div class="stat-icon" style="background: linear-gradient(135deg,#c94a2b,#047857);">
                 <i class="bi bi-sliders"></i>
             </div>
             <div class="stat-value">{{ number_format($stats['total_parameters']) }}</div>

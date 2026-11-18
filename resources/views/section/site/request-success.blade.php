@@ -13,12 +13,12 @@
 <div class="wrap">
     <a href="{{ url('/') }}" class="back">→ بازگشت به صفحه بخش</a>
     <div class="card" style="text-align:center">
-        <h1 style="color:#16a34a">✅ درخواست شما ثبت شد</h1>
+        <h1 style="color:#c94a2b">✅ درخواست شما ثبت شد</h1>
         <p class="subtitle">کد پیگیری خود را نزد خود نگه دارید.</p>
 
         <div class="track-code" id="code">{{ $request->tracking_code }}</div>
 
-        <p style="color:#64748b; font-size:.9rem; margin-bottom:1rem">
+        <p style="color:#6b5a4a; font-size:.9rem; margin-bottom:1rem">
             برای پیگیری وضعیت، این کد را در بخش «پیگیری درخواست» وارد کنید.
         </p>
 

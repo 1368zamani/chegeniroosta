@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: linear-gradient(135deg, #b71c1c, #c62828);
+            background: linear-gradient(135deg, #8e2f18, #b3401f);
             color: white;
             min-height: 100vh;
             display: flex;
@@ -22,7 +22,7 @@
         .err-code {
             font-size: 130px;
             font-weight: 900;
-            color: #ffd54f;
+            color: #f5b841;
             line-height: 1;
             margin: 0;
             text-shadow: 0 8px 30px rgba(0,0,0,0.5);
@@ -36,8 +36,8 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 14px;
-            background: #ffd54f;
-            color: #0d3b2e;
+            background: #f5b841;
+            color: #5c2313;
             transition: all 0.2s;
         }
         .err-btn:hover { background: #ffb300; transform: translateY(-2px); }

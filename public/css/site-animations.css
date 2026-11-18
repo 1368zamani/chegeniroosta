@@ -54,7 +54,7 @@
 .js-anim .section-card:hover,
 .js-anim .village-card:hover {
     transform: translateY(-9px) scale(1.015);
-    box-shadow: 0 22px 52px rgba(46, 125, 50, .20);
+    box-shadow: 0 22px 52px rgba(201, 74, 43, .20);
 }
 
 /* آیکون: شناور شدن آرام */

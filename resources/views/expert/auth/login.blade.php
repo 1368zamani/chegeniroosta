@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
-            background: linear-gradient(135deg, #2e7d32 0%, #0d3b2e 100%);
+            background: linear-gradient(135deg, #c94a2b 0%, #5c2313 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -26,7 +26,7 @@
             overflow: hidden;
         }
         .login-header {
-            background: linear-gradient(135deg, #2e7d32, #0d3b2e);
+            background: linear-gradient(135deg, #c94a2b, #5c2313);
             color: white;
             padding: 2rem;
             text-align: center;
@@ -36,14 +36,14 @@
         .form-control {
             padding: 0.8rem 1rem;
             border-radius: 10px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #efe2d1;
         }
         .form-control:focus {
-            border-color: #2e7d32;
+            border-color: #c94a2b;
             box-shadow: 0 0 0 3px rgba(26,84,144,0.1);
         }
         .btn-login {
-            background: linear-gradient(135deg, #2e7d32, #0d3b2e);
+            background: linear-gradient(135deg, #c94a2b, #5c2313);
             border: none;
             padding: 0.9rem;
             border-radius: 10px;

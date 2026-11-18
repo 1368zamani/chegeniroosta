@@ -13,7 +13,7 @@
         width: 100%;
         height: 420px;
         overflow: hidden;
-        background: #0d3b2e;
+        background: #5c2313;
     }
     .s-slide {
         position: absolute;
@@ -46,7 +46,7 @@
         color: #fff;
         padding: 10px 20px;
         border-radius: 8px;
-        border-right: 3px solid #ffd54f;
+        border-right: 3px solid #f5b841;
         font-family: 'Vazirmatn', Tahoma, sans-serif;
         font-size: 15px;
         font-weight: 600;
@@ -72,7 +72,7 @@
         padding: 0;
     }
     .s-dot.active {
-        background: #ffd54f;
+        background: #f5b841;
         width: 32px;
         border-radius: 5px;
         box-shadow: 0 0 12px rgba(255,213,79,0.6);
@@ -102,7 +102,7 @@
     .s-slider:hover .s-slider-nav { opacity: 1; }
     .s-slider-nav:hover {
         background: rgba(255,213,79,0.85);
-        color: #0d3b2e;
+        color: #5c2313;
     }
     .s-slider-prev { right: 20px; }
     .s-slider-next { left: 20px; }

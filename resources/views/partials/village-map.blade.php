@@ -14,14 +14,14 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 3px 14px rgba(0, 0, 0, .07);
-            border: 1px solid #e8eee9;
+            border: 1px solid #f2e4cd;
         }
 
         .v-map-canvas {
             position: relative;
             width: 100%;
             height: 300px;
-            background: #eef2ee;
+            background: #f8f1e6;
         }
         #vVillageMap {
             width: 100%;
@@ -41,10 +41,10 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            background: linear-gradient(135deg, #eef2ee, #e3ece5, #eef2ee);
+            background: linear-gradient(135deg, #f8f1e6, #f3e8d9, #f8f1e6);
             background-size: 200% 200%;
             animation: vMapShift 2.4s ease-in-out infinite;
-            color: #4b6b52;
+            color: #6b5847;
             font-size: 13px;
             z-index: 2;
             transition: opacity .35s ease;
@@ -59,8 +59,8 @@
         .v-map-spinner {
             width: 38px;
             height: 38px;
-            border: 3px solid #c8e6c9;
-            border-top-color: #2e7d32;
+            border: 3px solid #f7d9cc;
+            border-top-color: #c94a2b;
             border-radius: 50%;
             animation: vMapSpin .9s linear infinite;
         }
@@ -77,8 +77,8 @@
             gap: 10px;
             padding: 24px;
             text-align: center;
-            background: #f8faf8;
-            color: #4b6b52;
+            background: #fffdf9;
+            color: #6b5847;
             font-size: 13.5px;
             line-height: 1.9;
             z-index: 3;
@@ -89,8 +89,8 @@
             display: flex;
             gap: 10px;
             padding: 14px;
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
+            background: #fffdf9;
+            border-top: 1px solid #efe2d1;
             flex-wrap: wrap;
         }
         .v-map-btn {
@@ -98,7 +98,7 @@
             min-width: 150px;
             text-align: center;
             padding: 9px 14px;
-            background: #2e7d32;
+            background: #c94a2b;
             color: #fff !important;
             text-decoration: none;
             border-radius: 8px;
@@ -106,13 +106,13 @@
             font-size: .85rem;
             transition: background .2s ease;
         }
-        .v-map-btn:hover { background: #1b5e20; color: #fff !important; }
+        .v-map-btn:hover { background: #8e2f18; color: #fff !important; }
         .v-map-btn-secondary {
-            background: #f1f5f9;
-            color: #2e7d32 !important;
-            border: 1px solid #cbd5e1;
+            background: #f7f0e6;
+            color: #c94a2b !important;
+            border: 1px solid #e6d8c3;
         }
-        .v-map-btn-secondary:hover { background: #e8f5e9; }
+        .v-map-btn-secondary:hover { background: #fdeee7; }
 
         .leaflet-popup-content {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
@@ -321,7 +321,7 @@
             /* آیکون سبز سفارشی */
             var icon = L.divIcon({
                 className: '',
-                html: '<svg width="40" height="40" viewBox="0 0 24 24" fill="#2e7d32" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" stroke="#fff" stroke-width="0.8"/></svg>',
+                html: '<svg width="40" height="40" viewBox="0 0 24 24" fill="#c94a2b" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" stroke="#fff" stroke-width="0.8"/></svg>',
                 iconSize: [40, 40],
                 iconAnchor: [20, 40],
                 popupAnchor: [0, -38]
@@ -344,14 +344,14 @@
 
 @else
     {{-- ═══ این روستا مختصات ندارد — کارت جایگزین با جست‌وجو در نقشه ═══ --}}
-    <div class="v-map-fallback" style="margin:20px 0; background:#fff; border:1px solid #e8eee9;
+    <div class="v-map-fallback" style="margin:20px 0; background:#fff; border:1px solid #f2e4cd;
                 border-radius:12px; box-shadow:0 3px 14px rgba(0,0,0,.06); overflow:hidden;">
         <div style="padding:22px 18px; text-align:center;">
             <div style="font-size:32px; margin-bottom:8px;">🗺</div>
-            <div style="font-weight:700; color:#1b5e20; font-size:14px; margin-bottom:5px;">
+            <div style="font-weight:700; color:#8e2f18; font-size:14px; margin-bottom:5px;">
                 موقعیت {{ $village->name }} روی نقشه
             </div>
-            <div style="color:#607d8b; font-size:12.5px; line-height:1.9; margin-bottom:14px;">
+            <div style="color:#6b5a4a; font-size:12.5px; line-height:1.9; margin-bottom:14px;">
                 @if($village->address)
                     📍 {{ $village->address }}<br>
                 @endif
@@ -361,14 +361,14 @@
             <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
                 <a href="https://www.google.com/maps/search/?api=1&query={{ $__mapsQuery }}"
                    target="_blank" rel="noopener"
-                   style="padding:11px 20px; background:#2e7d32; color:#fff; text-decoration:none;
+                   style="padding:11px 20px; background:#c94a2b; color:#fff; text-decoration:none;
                           border-radius:8px; font-weight:600; font-size:13.5px;">
                     🔍 جست‌وجو در گوگل مپ
                 </a>
                 <a href="https://www.openstreetmap.org/search?query={{ $__mapsQuery }}"
                    target="_blank" rel="noopener"
-                   style="padding:11px 20px; background:#f1f5f9; color:#2e7d32;
-                          border:1px solid #cbd5e1; text-decoration:none;
+                   style="padding:11px 20px; background:#f7f0e6; color:#c94a2b;
+                          border:1px solid #e6d8c3; text-decoration:none;
                           border-radius:8px; font-weight:600; font-size:13.5px;">
                     🗺 جست‌وجو در OpenStreetMap
                 </a>

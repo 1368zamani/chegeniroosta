@@ -11,13 +11,13 @@
     <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style>
         :root {
-            --expert-primary: #2e7d32;
-            --expert-dark: #0d3b2e;
-            --expert-light: #e8f5e9;
+            --expert-primary: #c94a2b;
+            --expert-dark: #5c2313;
+            --expert-light: #fdeee7;
         }
         body {
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
-            background: #f5f7fa;
+            background: #fff7e9;
             min-height: 100vh;
         }
         .expert-header {
@@ -93,9 +93,9 @@
             font-weight: 600;
             color: var(--expert-dark);
         }
-        .badge-draft { background: #fef3c7; color: #92400e; }
-        .badge-published { background: #d1fae5; color: #065f46; }
-        .badge-approved { background: #e2e8f0; color: #475569; }
+        .badge-draft { background: #fdf1dc; color: #92400e; }
+        .badge-published { background: #d1fae5; color: #5c2313; }
+        .badge-approved { background: #efe2d1; color: #6b5a4a; }
     </style>
     @stack('styles')
 </head>

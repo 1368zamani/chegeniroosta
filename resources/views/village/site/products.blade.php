@@ -14,8 +14,8 @@
         body {
             margin: 0;
             font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
-            color: #263238;
+            background: #fff7e9;
+            color: #2b2119;
         }
 
         .wrap { width: min(1140px, 94%); margin: 26px auto 60px; padding: 0 10px; }
@@ -27,19 +27,19 @@
         }
         .back-link {
             display: inline-flex; align-items: center; gap: 7px;
-            background: #fff; color: #2e7d32; text-decoration: none;
+            background: #fff; color: #c94a2b; text-decoration: none;
             padding: 10px 18px; border-radius: 10px; font-size: 13.5px; font-weight: 600;
-            border: 1px solid #dfe7e1; box-shadow: 0 2px 8px rgba(0,0,0,.04);
+            border: 1px solid #efe2d1; box-shadow: 0 2px 8px rgba(0,0,0,.04);
             transition: background .2s, transform .2s;
         }
-        .back-link:hover { background: #e8f5e9; transform: translateY(-1px); }
+        .back-link:hover { background: #fdeee7; transform: translateY(-1px); }
 
         .page-title {
-            font-size: 25px; color: #0d3b2e; margin: 0 0 6px;
+            font-size: 25px; color: #5c2313; margin: 0 0 6px;
             font-weight: 800;
         }
-        .page-title span { color: #2e7d32; }
-        .page-sub { color: #78909c; font-size: 13.5px; margin: 0 0 26px; }
+        .page-title span { color: #c94a2b; }
+        .page-sub { color: #8a7a6a; font-size: 13.5px; margin: 0 0 26px; }
 
         /* ── جست‌وجو و فیلتر ── */
         .filters {
@@ -49,25 +49,25 @@
         .search-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
         .search-row input[type="text"] {
             flex: 1; min-width: 200px; padding: 11px 16px;
-            border: 1.5px solid #dfe7e1; border-radius: 9px;
+            border: 1.5px solid #efe2d1; border-radius: 9px;
             font-family: inherit; font-size: 13.5px;
         }
         .search-row button {
-            padding: 11px 24px; background: #2e7d32; color: #fff;
+            padding: 11px 24px; background: #c94a2b; color: #fff;
             border: none; border-radius: 9px; font-family: inherit;
             font-size: 13.5px; font-weight: 700; cursor: pointer;
             transition: background .2s;
         }
-        .search-row button:hover { background: #1b5e20; }
+        .search-row button:hover { background: #8e2f18; }
 
         .chips { display: flex; gap: 8px; flex-wrap: wrap; }
         .chip {
             padding: 7px 15px; border-radius: 20px; font-size: 12.5px;
-            text-decoration: none; background: #f1f5f4; color: #4b6b52;
+            text-decoration: none; background: #fffdf9; color: #6b5847;
             border: 1px solid transparent; transition: all .2s;
         }
-        .chip:hover { background: #e8f5e9; }
-        .chip.active { background: #2e7d32; color: #fff; font-weight: 700; }
+        .chip:hover { background: #fdeee7; }
+        .chip.active { background: #c94a2b; color: #fff; font-weight: 700; }
 
         /* ── شبکه‌ی محصولات ── */
         .grid {
@@ -82,66 +82,66 @@
             text-decoration: none; color: inherit;
             display: flex; flex-direction: column;
             transition: transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s;
-            border: 1px solid #eef2ef;
+            border: 1px solid #fffdf9;
             position: relative;
         }
         .p-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 16px 38px rgba(13,59,46,.14);
+            box-shadow: 0 16px 38px rgba(92,35,19,.14);
         }
 
         .p-thumb {
             width: 100%; height: 175px; object-fit: cover; display: block;
-            background: #e8f5e9;
+            background: #fdeee7;
         }
         .p-thumb-ph {
             width: 100%; height: 175px; display: flex; align-items: center;
             justify-content: center; font-size: 52px;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            background: linear-gradient(135deg, #fdeee7, #f7d9cc);
         }
 
         .p-body { padding: 15px; display: flex; flex-direction: column; flex: 1; }
 
         .p-cat {
-            display: inline-block; font-size: 10.5px; color: #2e7d32;
-            background: #e8f5e9; padding: 3px 10px; border-radius: 11px;
+            display: inline-block; font-size: 10.5px; color: #c94a2b;
+            background: #fdeee7; padding: 3px 10px; border-radius: 11px;
             margin-bottom: 8px; align-self: flex-start;
         }
 
         .p-body h3 {
-            margin: 0 0 7px; font-size: 15px; color: #0d3b2e;
+            margin: 0 0 7px; font-size: 15px; color: #5c2313;
             line-height: 1.6; font-weight: 700;
         }
 
         .p-desc {
-            color: #607d8b; font-size: 12.5px; line-height: 1.85;
+            color: #6b5a4a; font-size: 12.5px; line-height: 1.85;
             margin: 0 0 12px; flex: 1;
         }
 
         .p-foot {
             display: flex; justify-content: space-between; align-items: center;
             gap: 8px; flex-wrap: wrap; padding-top: 11px;
-            border-top: 1px solid #f1f5f4;
+            border-top: 1px solid #fffdf9;
         }
-        .p-price { font-size: 14px; font-weight: 800; color: #2e7d32; }
-        .p-price small { font-size: 10.5px; font-weight: 500; color: #78909c; }
+        .p-price { font-size: 14px; font-weight: 800; color: #c94a2b; }
+        .p-price small { font-size: 10.5px; font-weight: 500; color: #8a7a6a; }
 
         .p-badge {
             position: absolute; top: 11px; right: 11px;
-            background: #ffd54f; color: #6d4c00;
+            background: #f5b841; color: #6d4c00;
             font-size: 10.5px; font-weight: 800;
             padding: 4px 11px; border-radius: 11px;
             box-shadow: 0 2px 8px rgba(0,0,0,.12);
         }
         .p-badge-sold {
             position: absolute; top: 11px; left: 11px;
-            background: #e53935; color: #fff;
+            background: #e2603c; color: #fff;
             font-size: 10.5px; font-weight: 800;
             padding: 4px 11px; border-radius: 11px;
         }
         .p-files {
             position: absolute; bottom: 11px; left: 11px;
-            background: rgba(255,255,255,.94); color: #2e7d32;
+            background: rgba(255,255,255,.94); color: #c94a2b;
             font-size: 10.5px; font-weight: 700;
             padding: 3px 9px; border-radius: 10px;
         }
@@ -152,17 +152,17 @@
             text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.05);
         }
         .empty .icon { font-size: 52px; margin-bottom: 14px; opacity: .5; }
-        .empty p { color: #90a4ae; font-size: 14px; margin: 0; }
+        .empty p { color: #a2948a; font-size: 14px; margin: 0; }
 
         /* ── صفحه‌بندی ── */
         .pagination { margin-top: 30px; display: flex; justify-content: center; }
         .pagination nav { display: flex; gap: 6px; flex-wrap: wrap; }
         .pagination a, .pagination span {
             padding: 8px 14px; border-radius: 8px; background: #fff;
-            color: #2e7d32; text-decoration: none; font-size: 13px;
+            color: #c94a2b; text-decoration: none; font-size: 13px;
             box-shadow: 0 2px 8px rgba(0,0,0,.05);
         }
-        .pagination .current { background: #2e7d32; color: #fff; font-weight: 700; }
+        .pagination .current { background: #c94a2b; color: #fff; font-weight: 700; }
 
         @media (max-width: 640px) {
             .grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 12px; }
@@ -254,7 +254,7 @@
                         <div class="p-foot">
                             <span class="p-price">{{ $p->priceLabel() }}</span>
                             @if($p->unit)
-                                <small style="color:#90a4ae; font-size:11px;">{{ $p->unit }}</small>
+                                <small style="color:#a2948a; font-size:11px;">{{ $p->unit }}</small>
                             @endif
                         </div>
                     </div>

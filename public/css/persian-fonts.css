@@ -22,34 +22,34 @@
 
     /* ── رنگ اصلی سایت (سبز) ──
        ⚠️ فقط همین چند خط را عوض کنید تا رنگ کل سایت تغییر کند. */
-    --brand-primary: #2e7d32;         /* سبز اصلی — دکمه‌ها، لینک‌ها، تیترها */
-    --brand-primary-dark: #1b5e20;    /* سبز تیره — حالت hover */
-    --brand-primary-light: #388e3c;   /* سبز روشن */
-    --brand-title: #2e7d32;           /* رنگ عنوان سایت */
+    --brand-primary: #c94a2b;         /* سبز اصلی — دکمه‌ها، لینک‌ها، تیترها */
+    --brand-primary-dark: #8e2f18;    /* سبز تیره — حالت hover */
+    --brand-primary-light: #b3401f;   /* سبز روشن */
+    --brand-title: #c94a2b;           /* رنگ عنوان سایت */
 
     /* ── سبز تیره‌ی سازمانی (هدر و فوتر) ── */
-    --brand-dark: #0d3b2e;
+    --brand-dark: #5c2313;
 
     /* ── رنگ‌های وضعیت ── */
-    --state-success: #16a34a;         /* موفق / پاسخ داده شده */
+    --state-success: #c94a2b;         /* موفق / پاسخ داده شده */
     --state-success-soft: #d1fae5;
     --state-warning: #f59e0b;         /* در انتظار */
-    --state-warning-soft: #fef3c7;
-    --state-danger: #dc2626;          /* خطا / رد شده */
+    --state-warning-soft: #fdf1dc;
+    --state-danger: #b3401f;          /* خطا / رد شده */
     --state-danger-soft: #fee2e2;
-    --state-neutral: #475569;         /* عادی / ثبت شده */
-    --state-neutral-soft: #e2e8f0;
+    --state-neutral: #6b5a4a;         /* عادی / ثبت شده */
+    --state-neutral-soft: #efe2d1;
 
     /* ── رنگ تأکیدی ── */
-    --brand-gold: #ffd54f;
+    --brand-gold: #f5b841;
 
     /* ── متن و پس‌زمینه ── */
-    --text-main: #263238;
-    --text-muted: #546e7a;
-    --text-soft: #78909c;
-    --bg-page: #f5f7fa;
+    --text-main: #2b2119;
+    --text-muted: #6b5a4a;
+    --text-soft: #8a7a6a;
+    --bg-page: #fff7e9;
     --bg-card: #ffffff;
-    --bg-tint: #e8f5e9;               /* سبز خیلی روشن برای کارت‌ها */
+    --bg-tint: #fdeee7;               /* سبز خیلی روشن برای کارت‌ها */
 
     /* ── شکل و سایه ── */
     --radius-card: 12px;

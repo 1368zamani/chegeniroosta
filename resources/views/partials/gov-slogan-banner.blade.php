@@ -4,11 +4,11 @@
 
 <style>
     .gov-slogan-banner {
-        background: linear-gradient(135deg, #0d3b2e 0%, #14432f 100%);
+        background: linear-gradient(135deg, #5c2313 0%, #5c2313 100%);
         position: relative;
         overflow: hidden;
         padding: 40px 20px;
-        border-bottom: 4px solid #ffd54f;
+        border-bottom: 4px solid #f5b841;
     }
 
     .gov-slogan-banner::before {
@@ -36,7 +36,7 @@
         overflow: hidden;
         box-shadow: 0 15px 45px rgba(0,0,0,0.4), 0 0 0 4px rgba(255,213,79,0.3);
         aspect-ratio: 4/3;
-        background: #14432f;
+        background: #5c2313;
     }
 
     .gov-leader-photo img {
@@ -68,7 +68,7 @@
         gap: 8px;
         background: rgba(255,213,79,0.2);
         border: 1px solid rgba(255,213,79,0.4);
-        color: #ffd54f;
+        color: #f5b841;
         padding: 8px 18px;
         border-radius: 30px;
         font-size: 13px;
@@ -86,7 +86,7 @@
     }
 
     .gov-slogan-text .highlight {
-        color: #ffd54f;
+        color: #f5b841;
         position: relative;
     }
 
@@ -106,12 +106,12 @@
         backdrop-filter: blur(10px);
         padding: 16px 22px;
         border-radius: 12px;
-        border-right: 4px solid #ffd54f;
+        border-right: 4px solid #f5b841;
     }
 
     .gov-slogan-quote-icon {
         font-size: 32px;
-        color: #ffd54f;
+        color: #f5b841;
         flex-shrink: 0;
     }
 

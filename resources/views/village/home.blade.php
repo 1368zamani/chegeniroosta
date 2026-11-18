@@ -23,8 +23,8 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
-            color: #263238;
+            background: #fff7e9;
+            color: #2b2119;
             line-height: 1.9;
         }
 
@@ -51,7 +51,7 @@
         }
 
         .brand {
-            color: #2e7d32;
+            color: #c94a2b;
             font-size: 22px;
             font-weight: bold;
         }
@@ -68,11 +68,11 @@
         }
 
         .nav-links a:hover {
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         .hero {
-            background: linear-gradient(135deg, #2e7d32, #388e3c);
+            background: linear-gradient(135deg, #c94a2b, #b3401f);
             color: white;
             padding: 80px 20px;
         }
@@ -115,12 +115,12 @@
 
         .section-title h2 {
             margin: 0 0 5px;
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         .section-title p {
             margin: 0;
-            color: #78909c;
+            color: #8a7a6a;
         }
 
         .stats {
@@ -140,11 +140,11 @@
         .stat-number {
             font-size: 26px;
             font-weight: bold;
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         .stat-label {
-            color: #78909c;
+            color: #8a7a6a;
             font-size: 13px;
         }
 
@@ -170,11 +170,11 @@
 
         .news-card h3 {
             margin-top: 0;
-            color: #2e7d32;
+            color: #c94a2b;
         }
 
         .news-card p {
-            color: #607d8b;
+            color: #6b5a4a;
         }
 
         .gallery {
@@ -203,8 +203,8 @@
         }
 
         footer {
-            background: #263238;
-            color: #cfd8dc;
+            background: #2b2119;
+            color: #e6d8c3;
             text-align: center;
             padding: 35px 20px;
         }
@@ -213,7 +213,7 @@
             background: white;
             border-radius: 12px;
             padding: 25px;
-            color: #78909c;
+            color: #8a7a6a;
         }
 
         @media(max-width: 850px) {

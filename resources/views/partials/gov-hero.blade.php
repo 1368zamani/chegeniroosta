@@ -6,7 +6,7 @@
     .gov-hero {
         position: relative;
         min-height: 320px;
-        background: linear-gradient(135deg, #0d3b2e 0%, #14432f 100%);
+        background: linear-gradient(135deg, #5c2313 0%, #5c2313 100%);
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -58,7 +58,7 @@
     .gov-hero-line {
         width: 80px;
         height: 4px;
-        background: #ffd54f;
+        background: #f5b841;
         margin: 20px auto 24px;
         border-radius: 2px;
         box-shadow: 0 0 20px rgba(255,213,79,0.6);
@@ -79,7 +79,7 @@
         gap: 8px;
         background: rgba(255,213,79,0.15);
         border: 1px solid rgba(255,213,79,0.4);
-        color: #ffd54f;
+        color: #f5b841;
         padding: 8px 18px;
         border-radius: 30px;
         font-size: 13px;

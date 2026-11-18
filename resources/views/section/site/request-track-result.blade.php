@@ -14,7 +14,7 @@
     <a href="{{ url('/') }}" class="back">→ بازگشت به صفحه بخش</a>
     <div class="card">
         @if($found)
-            <h1 style="color:#16a34a">✅ درخواست پیدا شد</h1>
+            <h1 style="color:#c94a2b">✅ درخواست پیدا شد</h1>
             <p class="subtitle">وضعیت فعلی درخواست شما:</p>
 
             <div style="text-align:center; margin-bottom:1rem">
@@ -28,13 +28,13 @@
             <div class="info-row"><div class="k">توضیحات:</div><div class="v">{{ $found->description }}</div></div>
 
             @if($found->admin_response)
-                <div style="background:#f1f8e9; border-right:4px solid #2e7d32; padding:1rem; border-radius:8px; margin-top:1rem">
-                    <strong style="color:#1b5e20">پاسخ بخشداری:</strong>
+                <div style="background:#fff3e6; border-right:4px solid #c94a2b; padding:1rem; border-radius:8px; margin-top:1rem">
+                    <strong style="color:#8e2f18">پاسخ بخشداری:</strong>
                     <p style="margin-top:.5rem">{{ $found->admin_response }}</p>
                 </div>
             @endif
         @else
-            <h1 style="color:#dc2626">❌ درخواستی با این کد پیدا نشد</h1>
+            <h1 style="color:#b3401f">❌ درخواستی با این کد پیدا نشد</h1>
             <p class="subtitle">لطفاً کد پیگیری را دوباره بررسی کنید.</p>
         @endif
 

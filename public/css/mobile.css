@@ -36,7 +36,7 @@ button,
 input[type="checkbox"],
 input[type="radio"],
 select {
-    -webkit-tap-highlight-color: rgba(46, 125, 50, .16);
+    -webkit-tap-highlight-color: rgba(201, 74, 43, .16);
 }
 
 /* ── جلوگیری از زوم خودکار iOS هنگام فوکوس روی فرم ── */

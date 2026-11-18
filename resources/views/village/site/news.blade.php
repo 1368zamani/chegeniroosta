@@ -6,10 +6,10 @@
     <title>اخبار {{ $village->name }} | پایگاه اطلاع‌رسانی</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
+        body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
         .wrap { width: min(1100px, 94%); margin: 30px auto; padding: 0 10px; }
-        .page-title { font-size: 26px; color: #0d3b2e; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #ffd54f; }
-        .page-title span { color: #2e7d32; }
+        .page-title { font-size: 26px; color: #5c2313; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #f5b841; }
+        .page-title span { color: #c94a2b; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .news-card {
             background: white; border-radius: 14px; overflow: hidden;
@@ -17,35 +17,35 @@
             transition: transform .25s ease, box-shadow .25s ease;
             display: flex; flex-direction: column;
         }
-        .news-card:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(13,59,46,.15); }
-        .news-thumb { width: 100%; height: 200px; object-fit: cover; display: block; background: #e8f5e9; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(92,35,19,.15); }
+        .news-thumb { width: 100%; height: 200px; object-fit: cover; display: block; background: #fdeee7; }
         .news-thumb-placeholder {
             width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9); font-size: 60px; color: #90a4ae;
+            background: linear-gradient(135deg, #fdeee7, #f7d9cc); font-size: 60px; color: #a2948a;
         }
         .news-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-        .news-meta { font-size: 12px; color: #78909c; margin-bottom: 8px; display: flex; gap: 12px; flex-wrap: wrap; }
-        .news-meta .pinned { background: #ffd54f; color: #0d3b2e; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
-        .news-body h3 { margin: 0 0 10px; font-size: 17px; color: #0d3b2e; line-height: 1.6; }
+        .news-meta { font-size: 12px; color: #8a7a6a; margin-bottom: 8px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .news-meta .pinned { background: #f5b841; color: #5c2313; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
+        .news-body h3 { margin: 0 0 10px; font-size: 17px; color: #5c2313; line-height: 1.6; }
         .news-body h3 a { color: inherit; text-decoration: none; }
-        .news-body h3 a:hover { color: #2e7d32; }
-        .news-excerpt { color: #546e7a; font-size: 13.5px; line-height: 1.9; margin: 0 0 15px; flex: 1; }
+        .news-body h3 a:hover { color: #c94a2b; }
+        .news-excerpt { color: #6b5a4a; font-size: 13.5px; line-height: 1.9; margin: 0 0 15px; flex: 1; }
         .news-btn {
-            display: inline-block; padding: 9px 18px; background: #0d3b2e; color: #fff;
+            display: inline-block; padding: 9px 18px; background: #5c2313; color: #fff;
             text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 600;
             align-self: flex-start; transition: background .2s;
         }
-        .news-btn:hover { background: #ffd54f; color: #0d3b2e; }
+        .news-btn:hover { background: #f5b841; color: #5c2313; }
         .pagination { margin-top: 30px; display: flex; justify-content: center; }
         .pagination a, .pagination span {
             display: inline-block; padding: 8px 14px; margin: 0 4px; border-radius: 6px;
-            background: white; color: #0d3b2e; text-decoration: none; font-size: 13px;
+            background: white; color: #5c2313; text-decoration: none; font-size: 13px;
             box-shadow: 0 2px 6px rgba(0,0,0,.06);
         }
-        .pagination .active { background: #0d3b2e; color: #fff; }
+        .pagination .active { background: #5c2313; color: #fff; }
         .empty-box {
             background: white; padding: 60px 20px; text-align: center;
-            border-radius: 14px; color: #90a4ae; font-size: 15px;
+            border-radius: 14px; color: #a2948a; font-size: 15px;
         }
         .empty-box .icon { font-size: 60px; margin-bottom: 15px; }
         @media (max-width: 700px) {
@@ -117,7 +117,7 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
     }
     .news-card .news-body {
-        color: #333333 !important;
+        color: #2b2119 !important;
         width: 100% !important;
     }
     .news-card .news-body h3 a {
@@ -127,7 +127,7 @@
         font-size: 18px !important;
     }
     .news-card .news-body h3 a:hover {
-        color: #c62828 !important;
+        color: #b3401f !important;
     }
     .news-card .news-body .news-excerpt {
         color: #4b5563 !important;
@@ -144,7 +144,7 @@
     }
     .news-card .news-btn {
         display: inline-block !important;
-        background-color: #10b981 !important;
+        background-color: #c94a2b !important;
         color: white !important;
         padding: 8px 18px !important;
         border-radius: 6px !important;
@@ -154,7 +154,7 @@
         transition: 0.3s !important;
     }
     .news-card .news-btn:hover {
-        background-color: #059669 !important;
+        background-color: #b3401f !important;
     }
     .news-thumb {
         width: 150px !important;
@@ -198,14 +198,14 @@
         font-size: 14px !important;
     }
     .pagination li a:hover {
-        background: #10b981 !important;
+        background: #c94a2b !important;
         color: white !important;
-        border-color: #10b981 !important;
+        border-color: #c94a2b !important;
     }
     .pagination li.active span, .pagination li[aria-current="page"] span {
-        background: #10b981 !important;
+        background: #c94a2b !important;
         color: white !important;
-        border-color: #10b981 !important;
+        border-color: #c94a2b !important;
         font-weight: bold !important;
     }
     .pagination svg {

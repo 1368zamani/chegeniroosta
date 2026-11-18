@@ -14,20 +14,20 @@
         body {
             margin: 0;
             font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
-            background: #f5f7fa;
-            color: #263238;
+            background: #fff7e9;
+            color: #2b2119;
         }
 
         .wrap { width: min(1140px, 94%); margin: 24px auto 60px; padding: 0 10px; }
 
         .back-link {
             display: inline-flex; align-items: center; gap: 7px;
-            background: #fff; color: #2e7d32; text-decoration: none;
+            background: #fff; color: #c94a2b; text-decoration: none;
             padding: 10px 18px; border-radius: 10px; font-size: 13.5px; font-weight: 600;
-            border: 1px solid #dfe7e1; box-shadow: 0 2px 8px rgba(0,0,0,.04);
+            border: 1px solid #efe2d1; box-shadow: 0 2px 8px rgba(0,0,0,.04);
             margin-bottom: 20px; transition: background .2s;
         }
-        .back-link:hover { background: #e8f5e9; }
+        .back-link:hover { background: #fdeee7; }
 
         /* ── چیدمان دو ستونی ── */
         .product-main {
@@ -42,16 +42,16 @@
         .gallery {
             background: #fff; border-radius: 16px; overflow: hidden;
             box-shadow: 0 6px 24px rgba(0,0,0,.07);
-            border: 1px solid #eef2ef;
+            border: 1px solid #fffdf9;
         }
         .gallery-main {
             width: 100%; height: 380px; object-fit: cover; display: block;
-            background: #e8f5e9;
+            background: #fdeee7;
         }
         .gallery-main-ph {
             width: 100%; height: 380px; display: flex; align-items: center;
             justify-content: center; font-size: 96px;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            background: linear-gradient(135deg, #fdeee7, #f7d9cc);
         }
         .thumbs {
             display: flex; gap: 8px; padding: 10px; overflow-x: auto;
@@ -63,34 +63,34 @@
             transition: border-color .2s, transform .2s;
         }
         .thumb:hover { transform: scale(1.05); }
-        .thumb.active { border-color: #2e7d32; }
+        .thumb.active { border-color: #c94a2b; }
 
         /* ── اطلاعات ── */
         .info-card {
             background: #fff; border-radius: 16px; padding: 24px;
             box-shadow: 0 6px 24px rgba(0,0,0,.07);
-            border: 1px solid #eef2ef;
+            border: 1px solid #fffdf9;
         }
 
         .cat-badge {
-            display: inline-block; font-size: 11.5px; color: #2e7d32;
-            background: #e8f5e9; padding: 5px 14px; border-radius: 13px;
+            display: inline-block; font-size: 11.5px; color: #c94a2b;
+            background: #fdeee7; padding: 5px 14px; border-radius: 13px;
             margin-bottom: 12px; font-weight: 700;
         }
 
         .info-card h1 {
-            margin: 0 0 14px; font-size: 24px; color: #0d3b2e;
+            margin: 0 0 14px; font-size: 24px; color: #5c2313;
             line-height: 1.5; font-weight: 800;
         }
 
         .price-row {
             display: flex; align-items: baseline; gap: 10px;
-            padding: 16px 0; border-top: 1px solid #f1f5f4;
-            border-bottom: 1px solid #f1f5f4; margin-bottom: 16px;
+            padding: 16px 0; border-top: 1px solid #fffdf9;
+            border-bottom: 1px solid #fffdf9; margin-bottom: 16px;
             flex-wrap: wrap;
         }
-        .price { font-size: 27px; font-weight: 800; color: #2e7d32; }
-        .price-note { font-size: 12px; color: #90a4ae; }
+        .price { font-size: 27px; font-weight: 800; color: #c94a2b; }
+        .price-note { font-size: 12px; color: #a2948a; }
 
         .specs { display: grid; gap: 11px; margin-bottom: 18px; }
         .spec {
@@ -98,45 +98,45 @@
             gap: 12px; font-size: 13.5px; padding: 9px 13px;
             background: #f8faf9; border-radius: 9px;
         }
-        .spec-label { color: #78909c; }
-        .spec-value { font-weight: 700; color: #37474f; }
+        .spec-label { color: #8a7a6a; }
+        .spec-value { font-weight: 700; color: #4a3a2c; }
 
         .status-ok {
-            display: inline-block; background: #e8f5e9; color: #2e7d32;
+            display: inline-block; background: #fdeee7; color: #c94a2b;
             padding: 4px 13px; border-radius: 11px; font-size: 12.5px; font-weight: 700;
         }
         .status-out {
-            display: inline-block; background: #ffebee; color: #c62828;
+            display: inline-block; background: #ffebee; color: #b3401f;
             padding: 4px 13px; border-radius: 11px; font-size: 12.5px; font-weight: 700;
         }
 
         .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
         .btn-call {
             flex: 1; min-width: 170px; text-align: center;
-            padding: 14px 20px; background: #2e7d32; color: #fff !important;
+            padding: 14px 20px; background: #c94a2b; color: #fff !important;
             text-decoration: none; border-radius: 11px; font-weight: 800;
             font-size: 14.5px; transition: background .2s, transform .2s;
-            box-shadow: 0 4px 14px rgba(46,125,50,.25);
+            box-shadow: 0 4px 14px rgba(201,74,43,.25);
         }
-        .btn-call:hover { background: #1b5e20; transform: translateY(-2px); }
+        .btn-call:hover { background: #8e2f18; transform: translateY(-2px); }
         .btn-secondary {
             flex: 1; min-width: 140px; text-align: center;
-            padding: 14px 20px; background: #f1f5f4; color: #2e7d32 !important;
+            padding: 14px 20px; background: #fffdf9; color: #c94a2b !important;
             text-decoration: none; border-radius: 11px; font-weight: 700;
-            font-size: 13.5px; border: 1px solid #dfe7e1;
+            font-size: 13.5px; border: 1px solid #efe2d1;
             transition: background .2s;
         }
-        .btn-secondary:hover { background: #e8f5e9; }
+        .btn-secondary:hover { background: #fdeee7; }
 
         /* ── بخش توضیحات ── */
         .section-card {
             background: #fff; border-radius: 16px; padding: 24px;
             box-shadow: 0 6px 24px rgba(0,0,0,.06);
-            border: 1px solid #eef2ef; margin-bottom: 20px;
+            border: 1px solid #fffdf9; margin-bottom: 20px;
         }
         .section-card h2 {
-            margin: 0 0 16px; font-size: 17px; color: #0d3b2e;
-            padding-bottom: 12px; border-bottom: 2px solid #e8f5e9;
+            margin: 0 0 16px; font-size: 17px; color: #5c2313;
+            padding-bottom: 12px; border-bottom: 2px solid #fdeee7;
             display: flex; align-items: center; gap: 8px;
         }
         .description {
@@ -153,17 +153,17 @@
             text-decoration: none; color: inherit;
             transition: border-color .2s, background .2s, transform .2s;
         }
-        .file-item:hover { border-color: #2e7d32; background: #f1f8e9; transform: translateY(-1px); }
+        .file-item:hover { border-color: #c94a2b; background: #fff3e6; transform: translateY(-1px); }
         .file-icon {
-            width: 42px; height: 42px; border-radius: 10px; background: #e8f5e9;
+            width: 42px; height: 42px; border-radius: 10px; background: #fdeee7;
             display: flex; align-items: center; justify-content: center;
             font-size: 21px; flex-shrink: 0;
         }
         .file-meta { flex: 1; min-width: 0; }
-        .file-title { font-size: 13.5px; font-weight: 700; color: #1b5e20; }
-        .file-size { font-size: 11.5px; color: #90a4ae; margin-top: 2px; }
+        .file-title { font-size: 13.5px; font-weight: 700; color: #8e2f18; }
+        .file-size { font-size: 11.5px; color: #a2948a; margin-top: 2px; }
         .file-dl {
-            font-size: 12.5px; font-weight: 800; color: #2e7d32;
+            font-size: 12.5px; font-weight: 800; color: #c94a2b;
             white-space: nowrap; flex-shrink: 0;
         }
 
@@ -174,18 +174,18 @@
         }
         .more-card {
             background: #fafbfa; border-radius: 12px; overflow: hidden;
-            text-decoration: none; color: inherit; border: 1px solid #eef2ef;
+            text-decoration: none; color: inherit; border: 1px solid #fffdf9;
             transition: transform .25s, box-shadow .25s;
         }
-        .more-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(13,59,46,.12); }
+        .more-card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(92,35,19,.12); }
         .more-card img { width: 100%; height: 110px; object-fit: cover; display: block; }
         .more-ph {
             width: 100%; height: 110px; display: flex; align-items: center; justify-content: center;
-            font-size: 34px; background: #e8f5e9;
+            font-size: 34px; background: #fdeee7;
         }
         .more-body { padding: 11px; }
-        .more-body h4 { margin: 0 0 5px; font-size: 12.5px; color: #0d3b2e; line-height: 1.6; }
-        .more-price { font-size: 12px; font-weight: 800; color: #2e7d32; }
+        .more-body h4 { margin: 0 0 5px; font-size: 12.5px; color: #5c2313; line-height: 1.6; }
+        .more-price { font-size: 12px; font-weight: 800; color: #c94a2b; }
 
         @media (max-width: 820px) {
             .product-main { grid-template-columns: 1fr; gap: 16px; }
@@ -312,7 +312,7 @@
             </div>
 
             @if($product->seller_phone)
-                <div style="text-align:center; margin-top:12px; font-size:12.5px; color:#78909c; direction:ltr;">
+                <div style="text-align:center; margin-top:12px; font-size:12.5px; color:#8a7a6a; direction:ltr;">
                     {{ $product->seller_phone }}
                 </div>
             @endif

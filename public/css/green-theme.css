@@ -4,9 +4,9 @@
    ═══════════════════════════════════════════════════ */
 
 :root {
-    --green-dark:  #0d3b2e;
-    --green-mid:   #065f46;
-    --green-light: #10b981;
+    --green-dark:  #5c2313;
+    --green-mid:   #5c2313;
+    --green-light: #c94a2b;
     --green-soft:  #d1fae5;
     --green-pale:  #f0fdf4;
     --text-dark:   #0a2a20;
@@ -27,7 +27,7 @@ header,
 .main-header,
 header.gov-header {
     background: var(--green-dark) !important;
-    background-image: linear-gradient(135deg, #0d3b2e 0%, #0a2a20 100%) !important;
+    background-image: linear-gradient(135deg, #5c2313 0%, #0a2a20 100%) !important;
     border-bottom: 3px solid var(--green-light) !important;
     color: #fff !important;
 }
@@ -39,7 +39,7 @@ footer,
 footer.gov-footer,
 .gov-footer-main {
     background: var(--green-dark) !important;
-    background-image: linear-gradient(135deg, #0d3b2e 0%, #0a2a20 100%) !important;
+    background-image: linear-gradient(135deg, #5c2313 0%, #0a2a20 100%) !important;
     border-top: 4px solid var(--green-light) !important;
     color: #fff !important;
 }
@@ -120,14 +120,14 @@ input[type="submit"]:hover {
     background: #ffffff !important;
     border-radius: 14px !important;
     border: 1px solid rgba(16,185,129,0.15) !important;
-    box-shadow: 0 4px 15px rgba(13,59,46,0.08) !important;
+    box-shadow: 0 4px 15px rgba(92,35,19,0.08) !important;
 }
 
 .card:hover, .v-news-card:hover, .v-facility-card:hover,
 .news-list-item:hover {
     background: var(--green-dark) !important;
     color: #ffffff !important;
-    box-shadow: 0 10px 30px rgba(13,59,46,0.25) !important;
+    box-shadow: 0 10px 30px rgba(92,35,19,0.25) !important;
 }
 
 .card:hover *,
@@ -182,18 +182,18 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ═══ ۸. حذف همه آبی‌های باقیمانده ═══ */
-[style*="#0d3b2e"], [style*="#2e7d32"], [style*="#2e7d32"],
-[style*="#388e3c"], [style*="#388e3c"], [style*="#1b5e20"] {
+[style*="#5c2313"], [style*="#c94a2b"], [style*="#c94a2b"],
+[style*="#b3401f"], [style*="#b3401f"], [style*="#8e2f18"] {
     background-color: var(--green-dark) !important;
 }
-[style*="color: #2e7d32"], [style*="color:#2e7d32"],
-[style*="color: #1b5e20"], [style*="color:#1b5e20"] {
+[style*="color: #c94a2b"], [style*="color:#c94a2b"],
+[style*="color: #8e2f18"], [style*="color:#8e2f18"] {
     color: var(--green-light) !important;
 }
 
 /* ═══ ۹. نوار تیکر اخبار ═══ */
 .news-ticker {
-    background: linear-gradient(90deg, #0d3b2e 0%, #065f46 50%, #0d3b2e 100%) !important;
+    background: linear-gradient(90deg, #5c2313 0%, #5c2313 50%, #5c2313 100%) !important;
     border-top: 2px solid var(--green-light) !important;
     border-bottom: 2px solid var(--green-light) !important;
 }

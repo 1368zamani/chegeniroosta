@@ -6,15 +6,15 @@
 <title>مصوبات شورای اسلامی {{ $village->name }}</title>
 <style>
 * { box-sizing: border-box; }
-body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #f5f7fa; color: #263238; }
+body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
 .wrap { max-width: 1000px; margin: 30px auto; padding: 0 15px; }
-.page-title { font-size: 26px; color: #2e7d32; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #ffd54f; }
-.page-title span { color: #1b5e20; }
+.page-title { font-size: 26px; color: #c94a2b; margin: 0 0 25px; padding-bottom: 15px; border-bottom: 3px solid #f5b841; }
+.page-title span { color: #8e2f18; }
 
 .res-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 25px; }
-.res-stat { background: white; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.06); border-top: 4px solid #2e7d32; }
-.res-stat .num { font-size: 22px; font-weight: 800; color: #2e7d32; display: block; }
-.res-stat .lbl { font-size: 12px; color: #78909c; margin-top: 4px; }
+.res-stat { background: white; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,.06); border-top: 4px solid #c94a2b; }
+.res-stat .num { font-size: 22px; font-weight: 800; color: #c94a2b; display: block; }
+.res-stat .lbl { font-size: 12px; color: #8a7a6a; margin-top: 4px; }
 
 .res-card {
     background: white;
@@ -22,37 +22,37 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
     padding: 22px 24px;
     margin-bottom: 16px;
     box-shadow: 0 4px 15px rgba(0,0,0,.06);
-    border-right: 5px solid #2e7d32;
+    border-right: 5px solid #c94a2b;
     transition: transform .2s, box-shadow .2s;
 }
-.res-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(46,125,50,.12); }
+.res-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,74,43,.12); }
 
-.res-card.status-approved { border-right-color: #475569; }
+.res-card.status-approved { border-right-color: #6b5a4a; }
 .res-card.status-in_progress { border-right-color: #f59e0b; }
-.res-card.status-completed { border-right-color: #16a34a; }
+.res-card.status-completed { border-right-color: #c94a2b; }
 .res-card.status-suspended { border-right-color: #6b7280; }
-.res-card.status-rejected { border-right-color: #dc2626; }
+.res-card.status-rejected { border-right-color: #b3401f; }
 
 .res-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
-.res-title { margin: 0; font-size: 18px; color: #1b5e20; line-height: 1.5; flex: 1; min-width: 250px; }
+.res-title { margin: 0; font-size: 18px; color: #8e2f18; line-height: 1.5; flex: 1; min-width: 250px; }
 .res-badge { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
 
-.res-meta { display: flex; flex-wrap: wrap; gap: 16px; color: #78909c; font-size: 12.5px; margin-bottom: 14px; }
+.res-meta { display: flex; flex-wrap: wrap; gap: 16px; color: #8a7a6a; font-size: 12.5px; margin-bottom: 14px; }
 .res-meta span { display: inline-flex; align-items: center; gap: 5px; }
 
-.res-description { color: #546e7a; line-height: 2; font-size: 14px; margin-bottom: 18px; white-space: pre-line; }
+.res-description { color: #6b5a4a; line-height: 2; font-size: 14px; margin-bottom: 18px; white-space: pre-line; }
 
 .res-progress { margin-top: 15px; }
-.res-progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 6px; }
-.res-progress-bar { background: #e2e8f0; border-radius: 10px; height: 12px; overflow: hidden; }
+.res-progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #6b5a4a; margin-bottom: 6px; }
+.res-progress-bar { background: #efe2d1; border-radius: 10px; height: 12px; overflow: hidden; }
 .res-progress-fill { height: 100%; border-radius: 10px; transition: width .5s ease; }
 
-.res-note { background: #f8fafc; border-right: 3px solid #2e7d32; padding: 12px 16px; border-radius: 8px; margin-top: 14px; font-size: 13px; color: #546e7a; line-height: 1.9; }
-.res-note strong { color: #1b5e20; display: block; margin-bottom: 6px; }
+.res-note { background: #fffdf9; border-right: 3px solid #c94a2b; padding: 12px 16px; border-radius: 8px; margin-top: 14px; font-size: 13px; color: #6b5a4a; line-height: 1.9; }
+.res-note strong { color: #8e2f18; display: block; margin-bottom: 6px; }
 
-.res-attachment { display: inline-block; margin-top: 12px; padding: 7px 16px; background: #f1f8e9; color: #2e7d32; text-decoration: none; border-radius: 8px; font-size: 13px; border: 1px solid #a5d6a7; }
+.res-attachment { display: inline-block; margin-top: 12px; padding: 7px 16px; background: #fff3e6; color: #c94a2b; text-decoration: none; border-radius: 8px; font-size: 13px; border: 1px solid #f0c9b8; }
 
-.empty-box { background: white; padding: 60px 20px; text-align: center; border-radius: 14px; color: #90a4ae; }
+.empty-box { background: white; padding: 60px 20px; text-align: center; border-radius: 14px; color: #a2948a; }
 .empty-box .icon { font-size: 60px; margin-bottom: 14px; }
 
 @media (max-width: 700px) {
@@ -141,7 +141,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
                     <a href="{{ route('download.file', ['resolution', $res->id]) }}" class="res-attachment">
                         📎 دانلود فایل پیوست
                         @if($res->stat_downloads > 0)
-                            <span style="color:#607d8b;font-size:12px;">({{ \App\Support\Number::fa(number_format($res->stat_downloads)) }} دانلود)</span>
+                            <span style="color:#6b5a4a;font-size:12px;">({{ \App\Support\Number::fa(number_format($res->stat_downloads)) }} دانلود)</span>
                         @endif
                     </a>
                 @endif

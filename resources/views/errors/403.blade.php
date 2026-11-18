@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: linear-gradient(135deg, #37474f, #546e7a);
+            background: linear-gradient(135deg, #4a3a2c, #6b5a4a);
             color: white;
             min-height: 100vh;
             display: flex;
@@ -22,7 +22,7 @@
         .err-code {
             font-size: 130px;
             font-weight: 900;
-            color: #ffd54f;
+            color: #f5b841;
             line-height: 1;
             margin: 0;
             text-shadow: 0 8px 30px rgba(0,0,0,0.5);
@@ -39,7 +39,7 @@
             font-size: 14px;
             transition: all 0.2s;
         }
-        .err-btn-primary { background: #ffd54f; color: #0d3b2e; }
+        .err-btn-primary { background: #f5b841; color: #5c2313; }
         .err-btn-primary:hover { background: #ffb300; transform: translateY(-2px); }
         .err-btn-secondary {
             background: rgba(255,255,255,0.15);

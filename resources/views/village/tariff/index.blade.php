@@ -9,9 +9,9 @@
             'title' => 'عوارض پسماند',
             'icon'  => '🗑',
             'desc'  => 'جمع‌آوری و دفع زباله‌ی خانگی، تجاری و صنعتی',
-            'color' => '#2e7d32',
-            'soft'  => '#e8f5e9',
-            'border'=> '#a5d6a7',
+            'color' => '#c94a2b',
+            'soft'  => '#fdeee7',
+            'border'=> '#f0c9b8',
         ],
         'new_build' => [
             'title' => 'ساخت‌وساز جدید',
@@ -66,7 +66,7 @@
     </div>
 
     @if($errors->any())
-        <div class="mb-5 p-4 rounded-xl text-sm" style="background:#ffebee;color:#b71c1c;border-right:4px solid #c62828;">
+        <div class="mb-5 p-4 rounded-xl text-sm" style="background:#ffebee;color:#8e2f18;border-right:4px solid #b3401f;">
             @foreach($errors->all() as $e)<div>• {{ $e }}</div>@endforeach
         </div>
     @endif
@@ -203,8 +203,8 @@
         {{-- ─── مودال اطلاعات پرداخت‌کننده ─── --}}
         <div id="payerModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,23,42,.55);align-items:center;justify-content:center;padding:16px;">
             <div style="background:#fff;border-radius:16px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.28);">
-                <div class="p-5 border-b border-gray-100" style="background:#e8f5e9;">
-                    <div class="font-bold text-base" style="color:#1b5e20;">📝 اطلاعات شما برای صدور فیش</div>
+                <div class="p-5 border-b border-gray-100" style="background:#fdeee7;">
+                    <div class="font-bold text-base" style="color:#8e2f18;">📝 اطلاعات شما برای صدور فیش</div>
                     <div class="text-xs text-gray-600 mt-1">
                         جمع مبلغ انتخابی: <strong id="modalTotal" class="font-mono">—</strong>
                     </div>
@@ -236,7 +236,7 @@
                                class="w-full border-2 border-gray-300 rounded-lg p-2.5 focus:border-emerald-500 focus:outline-none">
                     </div>
 
-                    <div class="rounded-lg p-3 mb-4 text-xs leading-relaxed" style="background:#f1f8e9;color:#33691e;">
+                    <div class="rounded-lg p-3 mb-4 text-xs leading-relaxed" style="background:#fff3e6;color:#33691e;">
                         با تأیید، فیش برای شما صادر می‌شود و شماره پیگیری دریافت می‌کنید.
                         پرداخت پس از تأیید کارشناس انجام می‌شود.
                     </div>
@@ -245,7 +245,7 @@
                         <button type="button" id="payerCancel"
                                 class="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 text-sm font-bold">انصراف</button>
                         <button type="submit" id="submitBtn"
-                                class="px-5 py-2 rounded-lg text-white text-sm font-bold" style="background:#2e7d32;">
+                                class="px-5 py-2 rounded-lg text-white text-sm font-bold" style="background:#c94a2b;">
                             📄 صدور فیش
                         </button>
                     </div>
@@ -255,7 +255,7 @@
     </form>
 
     {{-- ═══════════════════ نوار جمع کل ═══════════════════ --}}
-    <div id="summaryBox" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;background:#fff;border-top:4px solid #2e7d32;box-shadow:0 -6px 24px rgba(0,0,0,.12);padding:14px 16px;">
+    <div id="summaryBox" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;background:#fff;border-top:4px solid #c94a2b;box-shadow:0 -6px 24px rgba(0,0,0,.12);padding:14px 16px;">
         <div class="container mx-auto flex flex-wrap items-center justify-between gap-3">
             <div class="flex-1 min-w-0">
                 <div class="text-xs text-gray-500 mb-1">آیتم‌های انتخاب‌شده:</div>
@@ -263,11 +263,11 @@
             </div>
             <div class="text-center px-3">
                 <div class="text-xs text-gray-500">جمع کل:</div>
-                <div id="summaryTotal" class="text-xl font-extrabold font-mono" style="color:#2e7d32;">۰</div>
+                <div id="summaryTotal" class="text-xl font-extrabold font-mono" style="color:#c94a2b;">۰</div>
                 <div id="summaryToman" class="text-[11px] text-gray-500">ریال</div>
             </div>
             <button type="button" id="continueBtn"
-                    class="px-6 py-3 rounded-xl text-white font-bold text-sm" style="background:#2e7d32;">
+                    class="px-6 py-3 rounded-xl text-white font-bold text-sm" style="background:#c94a2b;">
                 ادامه →
             </button>
         </div>
@@ -332,8 +332,8 @@
     function showSubTab(key) {
         subTabs.forEach(t => {
             const on = t.dataset.sub === key;
-            t.style.background = on ? '#1565c0' : '#eceff1';
-            t.style.color = on ? '#fff' : '#546e7a';
+            t.style.background = on ? '#1565c0' : '#f7f0e6';
+            t.style.color = on ? '#fff' : '#6b5a4a';
         });
         subPanels.forEach(p => {
             p.style.display = p.dataset.subpanel === key ? '' : 'none';
@@ -359,8 +359,8 @@
 
             const card = document.getElementById('card-' + id);
             if (card) {
-                card.style.borderColor = cb.checked ? '#2e7d32' : '#e0e0e0';
-                card.style.background  = cb.checked ? '#f1f8e9' : '#fff';
+                card.style.borderColor = cb.checked ? '#c94a2b' : '#e0e0e0';
+                card.style.background  = cb.checked ? '#fff3e6' : '#fff';
             }
 
             updateSummary();

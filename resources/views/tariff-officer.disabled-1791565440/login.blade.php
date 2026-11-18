@@ -31,8 +31,8 @@ body {
 }
 .icon { text-align: center; font-size: 56px; margin-bottom: 12px; }
 h1 { text-align: center; color: #1e5b9c; margin: 0 0 6px; font-size: 20px; }
-.subtitle { text-align: center; color: #78909c; font-size: 13px; margin-bottom: 28px; line-height: 1.7; }
-label { display: block; color: #37474f; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.subtitle { text-align: center; color: #8a7a6a; font-size: 13px; margin-bottom: 28px; line-height: 1.7; }
+label { display: block; color: #4a3a2c; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 14px;
@@ -48,7 +48,7 @@ input[type=text]:focus, input[type=password]:focus {
     box-shadow: 0 0 0 4px rgba(30,91,156,0.1);
 }
 .form-group { margin-bottom: 16px; }
-.remember { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #546e7a; margin-bottom: 20px; cursor: pointer; }
+.remember { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b5a4a; margin-bottom: 20px; cursor: pointer; }
 .remember input { margin: 0; cursor: pointer; }
 .btn-login {
     width: 100%;
@@ -70,7 +70,7 @@ input[type=text]:focus, input[type=password]:focus {
 .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 .error-box {
     background: #fee2e2;
-    border-right: 4px solid #dc2626;
+    border-right: 4px solid #b3401f;
     color: #991b1b;
     padding: 12px 16px;
     border-radius: 8px;
@@ -80,7 +80,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 .error-box ul { margin: 0; padding-right: 20px; }
 .notice {
-    background: #fef3c7;
+    background: #fdf1dc;
     border-right: 4px solid #d97706;
     color: #78350f;
     padding: 12px 16px;
@@ -90,7 +90,7 @@ input[type=text]:focus, input[type=password]:focus {
     margin-top: 20px;
 }
 .back-link { text-align: center; margin-top: 22px; }
-.back-link a { color: #78909c; text-decoration: none; font-size: 13px; }
+.back-link a { color: #8a7a6a; text-decoration: none; font-size: 13px; }
 .back-link a:hover { color: #1e5b9c; }
 </style>
 </head>

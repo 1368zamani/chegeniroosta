@@ -4,898 +4,692 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $village->name }} | روستا نما</title>
-    <meta name="description" content="{{ $village->description ?: 'اطلاعات و اخبار روستای ' . $village->name }}">
+    <meta name="description" content="{{ $village->description ? \Illuminate\Support\Str::limit(strip_tags($village->description), 155) : 'اطلاعات و اخبار روستای ' . $village->name }}">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0d3b2e">
-
-    <style>
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #eef2f7; color: #263238; }
-
-        .container { width: min(1100px, 92%); margin: auto; padding: 30px 0; }
-
-        .section-title {
-            color: #0d3b2e;
-            font-size: 20px;
-            font-weight: 800;
-            margin: 30px 0 18px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e8f5e9;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* ============ اطلاعات روستا ============ */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin-bottom: 30px;
-        }
-        .info-item {
-            background: white;
-            border-radius: 10px;
-            padding: 16px 18px;
-            box-shadow: 0 3px 12px rgba(13,46,79,0.06);
-            border-right: 4px solid #2e7d32;
-        }
-        .info-item .label {
-            display: block;
-            font-size: 12.5px;
-            color: #78909c;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-        .info-item .value {
-            display: block;
-            font-size: 16px;
-            color: #0d3b2e;
-            font-weight: 800;
-        }
-        .info-item .value a { color: #2e7d32; text-decoration: none; direction: ltr; display: inline-block; }
-
-        /* ============ گالری تصاویر ============ */
-        .v-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 14px;
-            margin-bottom: 30px;
-        }
-        .v-gallery-item {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            transition: transform .2s;
-        }
-        .v-gallery-item:hover { transform: translateY(-3px); }
-        .v-gallery-item img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            display: block;
-        }
-        .v-gallery-caption {
-            padding: 10px 12px;
-            font-size: 12.5px;
-            color: #546e7a;
-            text-align: center;
-        }
-
-        /* ============ اخبار ============ */
-        .v-news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 18px;
-            margin-bottom: 30px;
-        }
-        .v-news-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        .v-news-card .body { padding: 18px; }
-        .v-news-card h4 { margin: 0 0 8px; color: #0d3b2e; font-size: 15px; }
-        .v-news-card .date { color: #90a4ae; font-size: 12px; margin-bottom: 8px; }
-        .v-news-card p { margin: 0; color: #607d8b; font-size: 13px; line-height: 1.8; }
-
-        /* ✨ افکت hover روی کارت خبر */
-        .v-news-card { transition: all .25s ease; cursor: pointer; }
-        .v-news-card:hover {
-            background: #0d3b2e !important;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(13,46,79,0.3);
-        }
-        .v-news-card:hover h4,
-        .v-news-card:hover h4 a,
-        .v-news-card:hover p,
-        .v-news-card:hover .date {
-            color: #ffffff !important;
-        }
-
-
-        /* ============ امکانات ============ */
-        .v-facilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 14px;
-            margin-bottom: 30px;
-        }
-        .v-facility-card {
-            background: white;
-            border-radius: 12px;
-            padding: 18px 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 2px solid #e8f5e9;
-        }
-        .v-facility-card.unavailable { border-color: #ffcdd2; opacity: 0.6; }
-        .v-facility-card .icon { font-size: 30px; display: block; margin-bottom: 8px; }
-        .v-facility-card .name { font-size: 13px; font-weight: 700; color: #0d3b2e; }
-        .v-facility-card .status { font-size: 11px; color: #78909c; margin-top: 4px; }
-
-        /* ============ شورا ============ */
-        .v-council-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 30px;
-        }
-        .v-council-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px 16px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-        .v-council-card .photo {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 32px;
-            color: #90a4ae;
-            border: 3px solid #ffd54f;
-            overflow: hidden;
-        }
-        .v-council-card .photo img { width: 100%; height: 100%; object-fit: cover; }
-        .v-council-card h5 { margin: 0 0 4px; color: #0d3b2e; font-size: 14px; }
-        .v-council-card .position { color: #c62828; font-size: 12px; font-weight: 700; margin: 0 0 8px; }
-        .v-council-card .phone { color: #2e7d32; font-size: 12.5px; text-decoration: none; direction: ltr; display: inline-block; }
-
-        /* ============ جاذبه‌ها ============ */
-        .v-attractions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 18px;
-            margin-bottom: 30px;
-        }
-        .v-attraction-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-        .v-attraction-card .image {
-            width: 100%; height: 160px;
-            background: linear-gradient(135deg, #e8f5e9, #f5f7fa);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 50px;
-            color: #90a4ae;
-            overflow: hidden;
-        }
-        .v-attraction-card .image img { width: 100%; height: 100%; object-fit: cover; }
-        .v-attraction-card .body { padding: 16px; }
-        .v-attraction-card h5 { margin: 0 0 6px; color: #0d3b2e; font-size: 15px; }
-        .v-attraction-card .category {
-            display: inline-block; background: #e8f5e9; color: #2e7d32;
-            font-size: 10.5px; padding: 2px 10px; border-radius: 10px;
-            font-weight: 700; margin-bottom: 8px;
-        }
-        .v-attraction-card p { margin: 0; color: #607d8b; font-size: 12.5px; line-height: 1.8; }
-
-        /* ============ درخواست مردمی ============ */
-        .v-request-box {
-            background: linear-gradient(135deg, #0d3b2e, #2e7d32);
-            color: white;
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(13,46,79,0.2);
-            margin-bottom: 30px;
-        }
-        .v-request-box h3 { margin: 0 0 12px; font-size: 22px; }
-        .v-request-box p { margin: 0 0 22px; opacity: 0.9; font-size: 14px; line-height: 1.9; }
-        .v-request-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .v-btn {
-            display: inline-block; padding: 12px 28px; border-radius: 10px;
-            text-decoration: none; font-weight: 700; font-size: 14px;
-        }
-        .v-btn-primary { background: #ffd54f; color: #0d3b2e; }
-        .v-btn-secondary { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
-
-        @media (max-width: 700px) {
-            .info-grid { grid-template-columns: 1fr; }
-            .v-gallery-grid { grid-template-columns: repeat(2, 1fr); }
-            .v-gallery-item img { height: 120px; }
-            .v-facilities-grid { grid-template-columns: repeat(2, 1fr); }
-            .v-council-grid { grid-template-columns: repeat(2, 1fr); }
-            .v-attractions-grid { grid-template-columns: 1fr; }
-        }
-    
-/* ═══════ تعرفه عوارض — dropdown ═══════ */
-.v-tariff-dropdown { position: relative; display: inline-block; }
-.v-tariff-dropdown .v-btn-tariff {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    border: none;
-    font-family: inherit;
-    transition: all .2s;
-}
-.v-tariff-dropdown .v-btn-tariff:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(30,91,156,0.25); }
-.v-tariff-dropdown .v-caret {
-    display: inline-block;
-    font-size: 11px;
-    transition: transform .25s ease;
-    opacity: 0.9;
-}
-.v-tariff-dropdown.open .v-caret { transform: rotate(180deg); }
-.v-tariff-dropdown .v-tariff-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    min-width: 280px;
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 20px 55px rgba(30,91,156,0.20), 0 4px 12px rgba(0,0,0,0.08);
-    padding: 8px 0;
-    z-index: 99999;
-    overflow: hidden;
-    border: 1px solid #e8f5e9;
-}
-@keyframes vMenuIn {
-    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-.v-tariff-dropdown.open .v-tariff-menu {
-    display: block;
-    animation: vMenuIn .22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-}
-.v-tariff-dropdown .v-tariff-menu a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 20px;
-    color: #37474f;
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 500;
-    transition: background .15s, color .15s, padding-right .15s;
-    white-space: nowrap;
-    border-right: 3px solid transparent;
-}
-.v-tariff-dropdown .v-tariff-menu a:hover {
-    background: linear-gradient(90deg, #f1f8e9, #e8f5e9);
-    color: #2e7d32;
-    border-right-color: #2e7d32;
-    padding-right: 24px;
-}
-.v-tariff-dropdown .v-tariff-menu a .m-icon {
-    font-size: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: #f1f8e9;
-    border-radius: 8px;
-    flex-shrink: 0;
-}
-.v-tariff-dropdown .v-tariff-menu .menu-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #e8f5e9 30%, #e8f5e9 70%, transparent);
-    margin: 6px 12px;
-}
-.v-tariff-dropdown .v-tariff-menu .menu-label {
-    font-size: 10.5px;
-    color: #94a3b8;
-    padding: 10px 20px 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-}
-.v-tariff-dropdown .v-tariff-menu .menu-note {
-    font-size: 11.5px;
-    color: #78350f;
-    background: #fef3c7;
-    padding: 10px 20px;
-    line-height: 1.7;
-    border-right: 3px solid #d97706;
-    margin: 4px 12px 8px;
-    border-radius: 8px;
-}
-</style>
-
-<style>
-/* CARD-HOVER-2026 */
-.info-item,
-.info-card,
-[class*="info-"] {
-    transition: transform .25s ease, box-shadow .25s ease !important;
-}
-.info-item:hover,
-.info-card:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 24px rgba(13,46,79,0.15) !important;
-}
-.v-gallery-item:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 30px rgba(13,46,79,0.18) !important;
-}
-/* tel: — لینک تماس */
-a[href^="tel:"] {
-    direction: ltr;
-    display: inline-block;
-    font-weight: 600;
-}
-
-        /* ============ کارت دهیار کناری (مثل بخشدار) ============ */
-        .dehyar-side-card {
-            float: left;
-            width: 260px;
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 24px 18px;
-            margin: 0 20px 20px 0;
-            box-shadow: 0 6px 22px rgba(30,91,156,0.12);
-            border-top: 4px solid #2e7d32;
-            text-align: center;
-            display: block;
-        }
-        .dehyar-side-card img {
-            width: 120px !important;
-            height: 120px !important;
-            border-radius: 50% !important;
-            object-fit: cover !important;
-            border: 4px solid #e8f5e9 !important;
-            display: block !important;
-            margin: 0 auto 12px !important;
-        }
-        .dehyar-side-card > div[style*="linear-gradient"] {
-            width: 120px !important;
-            height: 120px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            font-size: 48px !important;
-            margin: 0 auto 12px !important;
-        }
-        .dehyar-side-card > div[style*="flex: 1"] {
-            display: block !important;
-            min-width: 0 !important;
-            width: 100% !important;
-        }
-        .dehyar-side-card h3 {
-            font-size: 16px !important;
-            margin: 8px 0 6px !important;
-            color: #2e7d32 !important;
-            text-align: center !important;
-            font-weight: 800 !important;
-        }
-        .dehyar-side-card p {
-            font-size: 12.5px !important;
-            text-align: center !important;
-            margin: 0 0 14px !important;
-            color: #78909c !important;
-            line-height: 1.7 !important;
-        }
-        .dehyar-side-card > a {
-            display: inline-block !important;
-            background: #2e7d32 !important;
-            color: #ffffff !important;
-            padding: 10px 20px !important;
-            border-radius: 8px !important;
-            text-decoration: none !important;
-            font-weight: 700 !important;
-            font-size: 13px !important;
-            white-space: normal !important;
-        }
-        @media (max-width: 800px) {
-            .dehyar-side-card {
-                float: none;
-                width: 100%;
-                margin: 0 0 20px 0;
-            }
-        }
-
-        /* ═══ VILLAGE-LAYOUT-2COL ═══ */
-        .village-layout {
-            display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 24px;
-            align-items: start;
-        }
-        .village-main {
-            min-width: 0;
-        }
-        .village-sidebar {
-            position: sticky;
-            top: 16px;
-        }
-        .village-sidebar .dehyar-side-card {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 22px 16px;
-            box-shadow: 0 6px 22px rgba(30,91,156,0.12);
-            border-top: 4px solid #2e7d32;
-            text-align: center;
-            display: block;
-            float: none;
-            width: 100%;
-        }
-        .village-sidebar .dehyar-side-card img {
-            width: 130px !important;
-            height: 130px !important;
-            border-radius: 50% !important;
-            object-fit: cover !important;
-            border: 4px solid #e8f5e9 !important;
-            display: block !important;
-            margin: 0 auto 12px !important;
-        }
-        .village-sidebar .dehyar-side-card > div[style*="linear-gradient"] {
-            width: 130px !important;
-            height: 130px !important;
-            margin: 0 auto 12px !important;
-            font-size: 56px !important;
-        }
-        .village-sidebar .dehyar-side-card > div[style*="flex: 1"] {
-            display: block !important;
-            width: 100% !important;
-        }
-        .village-sidebar .dehyar-side-card h3 {
-            font-size: 16px !important;
-            color: #2e7d32 !important;
-            text-align: center !important;
-            margin: 8px 0 6px !important;
-            font-weight: 800 !important;
-        }
-        .village-sidebar .dehyar-side-card p {
-            font-size: 12.5px !important;
-            text-align: center !important;
-            color: #78909c !important;
-            margin: 0 0 12px !important;
-        }
-        .village-sidebar .dehyar-side-card > a {
-            display: inline-block !important;
-            background: #2e7d32 !important;
-            color: #fff !important;
-            padding: 10px 20px !important;
-            border-radius: 8px !important;
-            text-decoration: none !important;
-            font-weight: 700 !important;
-            font-size: 13px !important;
-        }
-        @media (max-width: 900px) {
-            .village-layout {
-                grid-template-columns: 1fr;
-            }
-            .village-sidebar {
-                position: static;
-                order: -1;
-            }
-        }
-</style>
-
-<link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-<link rel="stylesheet" href="{{ asset('css/green-theme.css') }}">
-@include('partials.site-animations')
-@include('partials.pwa')
+    <meta name="theme-color" content="#c94a2b">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=3">
+    @include('partials.pwa')
 </head>
-<body>
+<body class="v3-body">
 
 @php
     $__villageSection = null;
     if (isset($village) && $village->section_id) {
         $__villageSection = \App\Models\Section::find($village->section_id);
     }
+
+    $__fa = function ($n) {
+        return \App\Support\Number::fa(number_format((int) $n));
+    };
+
+    $__neighbors = collect();
+    if ($village->section_id) {
+        $__neighbors = \App\Models\Village::where('section_id', $village->section_id)
+            ->where('is_active', true)
+            ->where('id', '!=', $village->id)
+            ->orderBy('name')
+            ->limit(6)
+            ->get();
+    }
+
+    $__resolutionCount = \App\Models\VillageCouncilResolution::where('village_id', $village->id)
+        ->where('is_public', true)->count();
 @endphp
-@include('partials.gov-header', [
-    'headerTitle' => 'پایگاه اطلاع‌رسانی روستای ' . ($village->name ?? ''),
-    'section' => $__villageSection
-])
 
-<div class="container">
+@include('partials.gov-header')
 
-    <div class="village-layout">
-        <main class="village-main">
+<main>
+    <div class="v3-wrap">
 
-    {{-- ============ درباره روستا ============ --}}
-    @if($village->description)
-        <h2 class="section-title">📝 درباره {{ $village->name }}</h2>
-        <div class="v-request-box" style="background:white; color:#546e7a; text-align:right; box-shadow:0 3px 12px rgba(13,46,79,0.06); padding:20px 24px; font-size:14px; line-height:2;">
-            {!! nl2br(e($village->description)) !!}
-        </div>
-    @endif
-
-    {{-- ============ اطلاعات روستا ============ --}}
-    <h2 class="section-title">📋 اطلاعات روستا</h2>
-    <div class="info-grid">
-        @if($village->households)
-            <div class="info-item">
-                <span class="label">👥 تعداد خانوار</span>
-                <span class="value">{{ number_format($village->households) }} خانوار</span>
-            </div>
-        @endif
-        @if($village->population)
-            <div class="info-item">
-                <span class="label">🧑 جمعیت</span>
-                <span class="value">{{ number_format($village->population) }} نفر</span>
-            </div>
-        @endif
-        @if($village->area)
-            <div class="info-item">
-                <span class="label">📐 مساحت</span>
-                <span class="value">{{ number_format($village->area, 1) }} هکتار</span>
-            </div>
-        @endif
-        @if($village->section)
-            <div class="info-item">
-                <span class="label">📍 بخش</span>
-                <span class="value">{{ $village->section }}</span>
-            </div>
-        @endif
-        @if($village->district)
-            <div class="info-item">
-                <span class="label">🏘 دهستان</span>
-                <span class="value">{{ $village->district }}</span>
-            </div>
-        @endif
-        @if($village->county)
-            <div class="info-item">
-                <span class="label">🗺 شهرستان</span>
-                <span class="value">{{ $village->county }}</span>
-            </div>
-        @endif
-        @if($village->province)
-            <div class="info-item">
-                <span class="label">🏞 استان</span>
-                <span class="value">{{ $village->province }}</span>
-            </div>
-        @endif
-        @if($village->council_head_name)
-            <div class="info-item">
-                <span class="label">👥 رئیس شورا</span>
-                <span class="value">{{ $village->council_head_name }}</span>
-            </div>
-        @endif
-        @if($village->email)
-            <div class="info-item">
-                <span class="label">✉️ ایمیل</span>
-                <span class="value"><a href="mailto:{{ $village->email }}">{{ $village->email }}</a></span>
-            </div>
-        @endif
-        @if($village->address)
-            <div class="info-item">
-                <span class="label">🏠 آدرس</span>
-                <span class="value">{{ $village->address }}</span>
-            </div>
-        @endif
-    </div>
-
-    {{-- ============ اخبار ============ --}}
-    @if(isset($news) && $news->count() > 0)
-        <h2 class="section-title">📰 اخبار {{ $village->name }}</h2>
-        <div class="v-news-grid">
-            @foreach($news as $item)
-                <div class="v-news-card">
-                    <div class="body">
-                        <h4>
-                            @if($item->is_pinned)
-                                <span style="color:#f9a825;">📌</span>
-                            @endif
-                            {{ $item->title }}
-                        </h4>
-                        <div class="date">🗓 {{ jalali($item->created_at) }}</div>
-                        <p>{{ \Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->body), 140) }}</p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    {{-- ============ گالری تصاویر ============ --}}
-    @if(isset($images) && $images->count() > 0)
-        <h2 class="section-title">🖼 گالری تصاویر {{ $village->name }}</h2>
-        <div class="v-gallery-grid">
-            @foreach($images as $image)
-                <div class="v-gallery-item"
-                     data-image-src="{{ asset('storage/' . $image->image) }}"
-                     data-title="{{ $image->title }}"
-                     data-description="{{ $image->description }}">
-                    <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->title ?: $village->name }}" loading="lazy">
-                    @if($image->title)
-                        <div class="v-gallery-caption">{{ $image->title }}</div>
-                    @endif
-                </div>
-            @endforeach
-        </div>
-    @endif
-{{-- ============ پروژه‌ها ============ --}}
-    @if(isset($projects) && $projects->count() > 0)
-        <h2 class="section-title">🏗 پروژه‌های عمرانی</h2>
-        <div class="v-news-grid">
-            @foreach($projects as $project)
-                <div class="v-news-card">
-                    <div class="body">
-                        <h4>{{ $project->title }}</h4>
-                        <div class="date">{{ $project->progress }}% پیشرفت</div>
-                        @if($project->description)
-                            <p>{{ \Illuminate\Support\Str::limit($project->description, 120) }}</p>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    {{-- ============ امکانات ============ --}}
-    @if(isset($facilities) && $facilities->count() > 0)
-        <h2 class="section-title">🏛 امکانات {{ $village->name }}</h2>
-        <div class="v-facilities-grid">
-            @foreach($facilities as $facility)
-                <div class="v-facility-card {{ $facility->is_available ? '' : 'unavailable' }}">
-                    <span class="icon">{{ $facility->icon ?: '🏛' }}</span>
-                    <div class="name">{{ $facility->name }}</div>
-                    <div class="status">{{ $facility->is_available ? 'دارد' : 'ندارد' }}</div>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    {{-- ============ شورا ============ --}}
-    @if(isset($councilMembers) && $councilMembers->count() > 0)
-        <h2 class="section-title">👥 شورای اسلامی روستا</h2>
-        <div class="v-council-grid">
-            @foreach($councilMembers as $member)
-                <div class="v-council-card">
-                    <div class="photo">
-                        @if($member->photo)
-                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}">
-                        @else
-                            👤
-                        @endif
-                    </div>
-                    <h5>{{ $member->name }}</h5>
-                    <p class="position">{{ $member->position }}</p>
-                    @if($member->phone)
-                        <a href="tel:{{ $member->phone }}" class="phone">📞 {{ $member->phone }}</a>
-                    @endif
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    {{-- ============ جاذبه‌ها ============ --}}
-    @if(isset($attractions) && $attractions->count() > 0)
-        <h2 class="section-title">🏞 جاذبه‌های {{ $village->name }}</h2>
-        <div class="v-attractions-grid">
-            @foreach($attractions as $attr)
-                <div class="v-attraction-card">
-                    <div class="image">
-                        @if($attr->image)
-                            <img src="{{ asset('storage/' . $attr->image) }}" alt="{{ $attr->name }}">
-                        @else
-                            🏞
-                        @endif
-                    </div>
-                    <div class="body">
-                        @if($attr->category)
-                            <span class="category">{{ $attr->category }}</span>
-                        @endif
-                        <h5>{{ $attr->name }}</h5>
-                        @if($attr->description)
-                            <p>{{ \Illuminate\Support\Str::limit($attr->description, 100) }}</p>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    {{-- ============ مصوبات شورای اسلامی ============ --}}
-    @php
-        $resolutionCount = \App\Models\VillageCouncilResolution::where('village_id', $village->id)
-            ->where('is_public', true)->count();
-    @endphp
-
-    <div style="background: white; border-radius: 14px; padding: 25px 28px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(13,46,79,0.06); border-right: 5px solid #2e7d32;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
-            <div>
-                <h3 style="margin: 0 0 8px; color: #2e7d32; font-size: 19px;">📋 مصوبات شورای اسلامی</h3>
-                <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
-                    @if($resolutionCount > 0)
-                        {{ $resolutionCount }} مصوبه ثبت شده — مشاهده و پیگیری میزان پیشرفت
-                    @else
-                        به‌زودی مصوبات شورای اسلامی روستا در این بخش منتشر می‌شود.
-                    @endif
-                </p>
-            </div>
-            <a href="{{ route('village.site.resolutions', $village->slug) }}"
-               style="display: inline-block; background: #2e7d32; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
-                مشاهده مصوبات ←
-            </a>
-        </div>
-    </div>
-
-    {{-- ============ محصولات روستا (فروش) ============ --}}
-    <div style="background:#fff; border-radius:14px; padding:25px 28px; margin-bottom:30px;
-                box-shadow:0 4px 20px rgba(13,46,79,0.06); border-right:5px solid #f9a825;">
-        <div style="display:flex; justify-content:space-between; align-items:center;
-                    flex-wrap:wrap; gap:14px; margin-bottom:{{ ($featuredProducts ?? collect())->count() ? '18px' : '0' }};">
-            <div>
-                <h3 style="margin:0 0 8px; color:#2e7d32; font-size:19px;">🛒 محصولات روستا</h3>
-                <p style="margin:0; color:#546e7a; font-size:13.5px; line-height:1.9;">
-                    @if(($productCount ?? 0) > 0)
-                        {{ \App\Support\Number::fa(number_format($productCount)) }} محصول محلی برای فروش
-                        — عسل، لبنیات، صنایع دستی و…
-                    @else
-                        محصولات محلی و قابل فروش روستا — به‌زودی اضافه می‌شود.
-                    @endif
-                </p>
-            </div>
-            <a href="{{ route('village.site.products', $village->slug) }}"
-               style="display:inline-block; background:#f9a825; color:#fff; padding:11px 24px;
-                      border-radius:8px; text-decoration:none; font-weight:700; font-size:14px; white-space:nowrap;">
-                مشاهده محصولات ←
-            </a>
-        </div>
-
-        @if(isset($featuredProducts) && $featuredProducts->count() > 0)
-            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px;">
-                @foreach($featuredProducts as $fp)
-                    @php $fpimg = $fp->images->first(); @endphp
-                    <a href="{{ route('village.site.products.show', [$village->slug, $fp->slug]) }}"
-                       style="background:#fafbfa; border:1px solid #eef2ef; border-radius:11px;
-                              overflow:hidden; text-decoration:none; color:inherit;">
-                        @if($fpimg)
-                            <img src="{{ asset('storage/' . $fpimg->image) }}" alt="{{ $fp->title }}"
-                                 style="width:100%; height:100px; object-fit:cover; display:block;" loading="lazy">
-                        @else
-                            <div style="width:100%; height:100px; display:flex; align-items:center;
-                                        justify-content:center; font-size:32px; background:#e8f5e9;">
-                                {{ $fp->categoryIcon() }}
-                            </div>
-                        @endif
-                        <div style="padding:9px 11px;">
-                            <div style="font-size:12.5px; font-weight:700; color:#0d3b2e; line-height:1.6;">
-                                {{ \Illuminate\Support\Str::limit($fp->title, 34) }}
-                            </div>
-                            <div style="font-size:12px; font-weight:800; color:#2e7d32; margin-top:4px;">
-                                {{ $fp->priceLabel() }}
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        @endif
-    </div>
-
-    {{-- ============ فایل‌های قابل دانلود روستا ============ --}}
-    @if(isset($downloads) && $downloads->isNotEmpty())
-        <div style="margin-bottom:30px;">
-            @include('partials.village-downloads', ['downloads' => $downloads, 'village' => $village])
-        </div>
-    @endif
-
-    {{-- ============ معرفی دهیار ============ --}}
-
-    {{-- ============ درخواست مردمی ============ --}}
-    <div class="v-request-box">
-        <h3>📩 درخواست خود را ثبت کنید</h3>
-        <p>درخواست‌های خود در زمینه آب، برق، گاز، راه و ... را آنلاین ثبت کنید و با کد پیگیری دنبال کنید.</p>
-        <div class="v-request-buttons">
-            <a href="{{ route('village.site.request.create', $village->slug) }}" class="v-btn v-btn-primary">✍️ ثبت درخواست</a>
-            <a href="{{ route('village.site.request.track', $village->slug) }}" class="v-btn v-btn-secondary">🔍 پیگیری</a>
-            <div class="v-tariff-dropdown" id="vTariffDropdown">
-                <button type="button" class="v-btn v-btn-primary v-btn-tariff">
-                    <span>🧾 تعرفه عوارض و بهای خدمات</span>
-                    <span class="v-caret">▾</span>
-                </button>
-                <div class="v-tariff-menu" role="menu">
-                    <div class="menu-label">مشاهده</div>
-                    <a href="{{ route('village.tariff.index', $village->slug) }}" role="menuitem">
-                        <span class="m-icon">📋</span>
-                        <span>تعرفه‌ی کامل سال جاری</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</main>
-
-<aside class="village-sidebar">
-    @if($village->dehyar_name)
-        <div class="dehyar-side-card">
-            @if($village->dehyar_photo)
-                <img src="{{ asset('storage/' . $village->dehyar_photo) }}" alt="{{ $village->dehyar_name }}"
-                     style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #e8f5e9;">
+        <div class="crumbs">
+            <a href="{{ request()->getScheme() }}://{{ config('app.base_domain') }}">پرتال چگنی</a>
+            <span>/</span>
+            @if($__villageSection)
+                <a href="{{ request()->getScheme() }}://{{ $__villageSection->subdomain ?: 'visian' }}.{{ config('app.base_domain') }}">بخش {{ $__villageSection->name }}</a>
             @else
-                <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #90a4ae; border: 3px solid #e8f5e9;">👤</div>
+                <a href="{{ request()->getScheme() }}://{{ config('app.base_domain') }}/#sections">بخش‌ها</a>
             @endif
-            <div style="flex: 1; min-width: 200px;">
-                <h3 style="margin: 0 0 6px; color: #2e7d32; font-size: 18px;">👤 دهیار روستا: {{ $village->dehyar_name }}</h3>
-                <p style="margin: 0; color: #546e7a; font-size: 13.5px; line-height: 1.9;">
-                    برای مشاهده اطلاعات کامل، تحصیلات، سوابق و راه‌های تماس، صفحه اختصاصی دهیار را ببینید.
-                </p>
-            </div>
-            <a href="{{ route('village.site.dehyar', $village->slug) }}"
-               style="display: inline-block; background: #2e7d32; color: white; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap;">
-                مشاهده پروفایل دهیار ←
-            </a>
+            <span>/</span>
+            <b>روستای {{ $village->name }}</b>
         </div>
-    @endif
-</aside>
+
+        {{-- ══════════ هیرو ══════════ --}}
+        <section class="hero">
+            <div class="hero-copy reveal">
+                <span class="eyebrow"><i></i> روستای {{ $village->name }}@if($village->section) · بخش {{ $village->section }}@endif</span>
+                <h1>روستای <em>{{ $village->name }}</em></h1>
+                <p class="lede">
+                    @if($village->welcome_text)
+                        {{ \Illuminate\Support\Str::limit(strip_tags($village->welcome_text), 190) }}
+                    @else
+                        صفحهٔ رسمی روستای {{ $village->name }}؛ اینجا خبرهای روستا، اطلاعات تماس دهیاری و خدمات محلی را می‌بینید.
+                    @endif
+                </p>
+
+                <div class="hero-tags">
+                    @if($village->households > 0)
+                        <span class="tag"><svg><use href="#i-homes"/></svg> {{ $__fa($village->households) }} خانوار</span>
+                    @endif
+                    @if($village->population > 0)
+                        <span class="tag"><svg><use href="#i-users"/></svg> {{ $__fa($village->population) }} نفر</span>
+                    @endif
+                    @if($village->distance_to_center)
+                        <span class="tag gold"><svg><use href="#i-pin"/></svg> {{ $village->distance_to_center }} کیلومتر تا مرکز بخش</span>
+                    @endif
+                    @if(isset($stats['active_projects']) && $stats['active_projects'] > 0)
+                        <span class="tag"><svg><use href="#i-chart"/></svg> {{ $__fa($stats['active_projects']) }} طرح عمرانی</span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="hero-art reveal" style="--d:120ms">
+                <div class="arch">
+                    <div class="arch-medallion">
+                        <div class="ring"><span>{{ mb_substr($village->name, 0, 1) }}</span></div>
+                        <b>روستای {{ $village->name }}</b>
+                        <small>بخش {{ $village->section ?: 'چگنی' }} · {{ $village->province ?: 'لرستان' }}</small>
+                    </div>
+                </div>
+                @if($village->population > 0)
+                    <div class="float-card fc-1"><b>{{ $__fa($village->population) }}</b><span>نفر جمعیت</span></div>
+                @endif
+                @if($village->households > 0)
+                    <div class="float-card fc-2"><b>{{ $__fa($village->households) }}</b><span>خانوار</span></div>
+                @endif
+            </div>
+        </section>
+
+        @if($village->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($village->cover_image))
+            <div class="vg-cover reveal">
+                <img src="{{ asset('storage/' . $village->cover_image) }}" alt="{{ $village->name }}" loading="lazy">
+            </div>
+        @endif
+
+        {{-- ══════════ اعداد کلیدی ══════════ --}}
+        <div class="facts" id="facts">
+            @if($village->population > 0)
+                <div class="fact reveal"><small>جمعیت</small><b>{{ $__fa($village->population) }}</b><span>نفر</span></div>
+            @endif
+            @if($village->households > 0)
+                <div class="fact reveal" style="--d:60ms"><small>خانوار</small><b>{{ $__fa($village->households) }}</b><span>خانوار</span></div>
+            @endif
+            @if($village->distance_to_center)
+                <div class="fact reveal" style="--d:120ms"><small>فاصله تا مرکز بخش</small><b>{{ $village->distance_to_center }}</b><span>کیلومتر</span></div>
+            @endif
+            @if($village->area)
+                <div class="fact reveal" style="--d:180ms"><small>مساحت</small><b>{{ $__fa($village->area) }}</b><span>هکتار</span></div>
+            @elseif($village->hectares)
+                <div class="fact reveal" style="--d:180ms"><small>مساحت</small><b>{{ $__fa($village->hectares) }}</b><span>هکتار</span></div>
+            @endif
+        </div>
+
+        <nav class="tabs" aria-label="بخش‌های صفحه">
+            <a class="on" href="#vnewsTitle">اخبار</a>
+            <a href="#vaboutTitle">معرفی</a>
+            @if(isset($images) && $images->count() > 0)<a href="#vgalTitle">تصاویر</a>@endif
+            @if(isset($facilities) && $facilities->count() > 0)<a href="#facTitle">امکانات</a>@endif
+            @if(isset($featuredProducts) && $featuredProducts->count() > 0)<a href="#prodTitle">محصولات</a>@endif
+            <a href="#reqTitle">خدمات</a>
+            <a href="#mapTitle">نقشه</a>
+        </nav>
+
+        {{-- ══════════ دربارهٔ روستا ══════════ --}}
+        <section class="block" style="margin-top:34px" aria-labelledby="vaboutTitle">
+            <header class="block-head reveal">
+                <div>
+                    <span class="kicker-line">دربارهٔ روستا</span>
+                    <h2 id="vaboutTitle">دربارهٔ {{ $village->name }}</h2>
+                    <p>معرفی روستا و دهیاری</p>
+                </div>
+                @if($village->dehyar_name)
+                    <a class="link-more" href="{{ route('village.site.dehyar', $village->slug) }}">معرفی دهیار <svg><use href="#i-arrow"/></svg></a>
+                @endif
+            </header>
+
+            <div class="cols">
+                <div class="panel reveal">
+                    <h3>{{ $village->name }}</h3>
+                    <div class="vg-prose">
+                        @if($village->description)
+                            {!! nl2br(e($village->description)) !!}
+                        @elseif($village->history_text)
+                            {!! nl2br(e($village->history_text)) !!}
+                        @else
+                            <span class="vg-muted">توضیحات این روستا در حال تکمیل است.</span>
+                        @endif
+                        @if($village->naming_story)
+                            <p class="vg-note"><b>داستان نام‌گذاری:</b> {{ $village->naming_story }}</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="panel reveal" style="--d:90ms">
+                    <h3>دهیار روستا</h3>
+                    @if($village->dehyar_name)
+                        <div class="person" style="background:transparent;box-shadow:none;padding:0 0 12px;border-bottom:1px dashed #efe2d1">
+                            @if($village->dehyar_photo)
+                                <img class="vg-av" src="{{ asset('storage/' . $village->dehyar_photo) }}" alt="{{ $village->dehyar_name }}" loading="lazy">
+                            @else
+                                <span class="vg-av vg-av-ph">{{ mb_substr($village->dehyar_name, 0, 1) }}</span>
+                            @endif
+                            <span><b>{{ $village->dehyar_name }}</b><small>دهیار {{ $village->name }}</small></span>
+                        </div>
+                        @if($village->dehyar_phone)
+                            <div class="kv"><span>تلفن دهیاری</span><b dir="ltr">{{ $village->dehyar_phone }}</b></div>
+                        @elseif($village->phone)
+                            <div class="kv"><span>تلفن دهیاری</span><b dir="ltr">{{ $village->phone }}</b></div>
+                        @endif
+                        @if($village->dehyar_email)
+                            <div class="kv"><span>رایانامه</span><b dir="ltr">{{ $village->dehyar_email }}</b></div>
+                        @endif
+                        <div class="kv"><span>ساعات پاسخگویی</span><b>۸ تا ۱۴</b></div>
+                        <a class="link-more" style="margin-top:12px" href="{{ route('village.site.dehyar', $village->slug) }}">پروفایل کامل دهیار <svg><use href="#i-arrow"/></svg></a>
+                    @else
+                        <p class="vg-muted">اطلاعات دهیار این روستا هنوز ثبت نشده است.</p>
+                    @endif
+                </div>
+            </div>
+        </section>
+
+        {{-- ══════════ اخبار + اطلاعات روستا ══════════ --}}
+        <div class="cols" style="margin-top:34px">
+            <section aria-labelledby="vnewsTitle">
+                <header class="block-head reveal" style="margin-bottom:14px">
+                    <div>
+                        <span class="kicker-line">آخرین‌ها</span>
+                        <h2 id="vnewsTitle">خبرهای روستای {{ $village->name }}</h2>
+                        <p>اخبار و اطلاعیه‌های منتشرشدهٔ دهیاری</p>
+                    </div>
+                    <a class="link-more" href="{{ route('village.site.news', $village->slug) }}">همهٔ اخبار <svg><use href="#i-arrow"/></svg></a>
+                </header>
+
+                @if(isset($news) && $news->count() > 0)
+                    <div class="vnews">
+                        @foreach($news as $i => $item)
+                            @php $__tone = ['a', 'b', 'c'][$i % 3]; @endphp
+                            <a class="vn reveal" href="{{ route('village.site.news.show', [$village->slug, $item->slug]) }}" style="--d:{{ ($i % 3) * 60 }}ms">
+                                <span class="thumb {{ $__tone }}" @if($item->image) style="background-image:url('{{ asset('storage/' . $item->image) }}');background-size:cover;background-position:center" @endif></span>
+                                <div>
+                                    <h3>
+                                        @if($item->is_pinned)<span class="vg-pin">مهم</span>@endif
+                                        {{ $item->title }}
+                                    </h3>
+                                    <p>{{ \Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->body), 130) }}</p>
+                                    <div class="meta">
+                                        <span><svg><use href="#i-calendar"/></svg> {{ jalali($item->published_at ?: $item->created_at) }}</span>
+                                        @if(($item->stat_views ?? 0) > 0)
+                                            <span><svg><use href="#i-eye"/></svg> {{ $__fa($item->stat_views) }} بازدید</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="empty-note reveal">هنوز خبری برای این روستا منتشر نشده است.</div>
+                @endif
+            </section>
+
+            <aside>
+                <div class="panel reveal">
+                    <h3>اطلاعات روستا</h3>
+                    @if($village->section)
+                        <div class="kv"><span>بخش</span><b>{{ $village->section }}</b></div>
+                    @endif
+                    @if($village->district)
+                        <div class="kv"><span>دهستان</span><b>{{ $village->district }}</b></div>
+                    @endif
+                    @if($village->county)
+                        <div class="kv"><span>شهرستان</span><b>{{ $village->county }}</b></div>
+                    @endif
+                    @if($village->province)
+                        <div class="kv"><span>استان</span><b>{{ $village->province }}</b></div>
+                    @endif
+                    @if($village->council_head_name)
+                        <div class="kv"><span>رئیس شورا</span><b>{{ $village->council_head_name }}</b></div>
+                    @endif
+                    @if($village->address)
+                        <div class="kv"><span>نشانی</span><b>{{ $village->address }}</b></div>
+                    @endif
+                    @if($village->email)
+                        <div class="kv"><span>رایانامه</span><b dir="ltr">{{ $village->email }}</b></div>
+                    @endif
+                    <div class="chips">
+                        @if($__villageSection)
+                            <a href="{{ request()->getScheme() }}://{{ $__villageSection->subdomain ?: 'visian' }}.{{ config('app.base_domain') }}">سایت بخش</a>
+                        @endif
+                        <a href="#mapTitle">نقشهٔ روستا</a>
+                        <a href="{{ route('village.site.request.create', $village->slug) }}">خدمات الکترونیک</a>
+                    </div>
+                </div>
+
+                @if($__neighbors->count() > 0)
+                    <div class="panel reveal" style="margin-top:14px;--d:90ms">
+                        <h3>روستاهای هم‌جوار</h3>
+                        <div class="chips">
+                            @foreach($__neighbors as $nb)
+                                <a href="{{ route('public.village.show', $nb->slug) }}">{{ $nb->name }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </aside>
+        </div>
+
+        {{-- ══════════ گالری ══════════ --}}
+        @if(isset($images) && $images->count() > 0)
+            <section class="block sub-block" aria-labelledby="vgalTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">تصاویر</span>
+                        <h2 id="vgalTitle">گالری تصاویر {{ $village->name }}</h2>
+                        <p>تصاویر روستا، مراسم‌ها و طرح‌های اجراشده</p>
+                    </div>
+                    <a class="link-more" href="{{ route('village.site.gallery', $village->slug) }}">همهٔ تصاویر <svg><use href="#i-arrow"/></svg></a>
+                </header>
+                <div class="gallery">
+                    @foreach($images as $i => $image)
+                        @php $__tone = ['a', 'b', 'c', 'd'][$i % 4]; @endphp
+                        <div class="gph {{ $__tone }} v-gallery-item reveal"
+                             style="--d:{{ ($i % 4) * 60 }}ms"
+                             data-image-src="{{ asset('storage/' . $image->image) }}"
+                             data-title="{{ $image->title }}"
+                             data-description="{{ $image->description }}">
+                            <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->title ?: $village->name }}" loading="lazy">
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- ══════════ پروژه‌های عمرانی ══════════ --}}
+        @if(isset($projects) && $projects->count() > 0)
+            <section class="block sub-block" aria-labelledby="projTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">عمران</span>
+                        <h2 id="projTitle">پروژه‌های عمرانی {{ $village->name }}</h2>
+                        <p>طرح‌های در دست اجرا و تکمیل‌شده</p>
+                    </div>
+                    <a class="link-more" href="{{ route('village.site.projects', $village->slug) }}">همهٔ پروژه‌ها <svg><use href="#i-arrow"/></svg></a>
+                </header>
+                <div class="vg-projs">
+                    @foreach($projects as $i => $project)
+                        <div class="vg-proj reveal" style="--d:{{ ($i % 3) * 60 }}ms">
+                            <div class="vg-proj-head">
+                                <span class="vg-ico"><svg><use href="#i-chart"/></svg></span>
+                                <b>{{ $project->title }}</b>
+                            </div>
+                            @if($project->description)
+                                <p>{{ \Illuminate\Support\Str::limit($project->description, 110) }}</p>
+                            @endif
+                            <div class="vg-bar"><span style="width:{{ max(0, min(100, (int) $project->progress)) }}%"></span></div>
+                            <small>{{ $__fa($project->progress) }}٪ پیشرفت</small>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- ══════════ امکانات ══════════ --}}
+        @if(isset($facilities) && $facilities->count() > 0)
+            <section class="block sub-block" aria-labelledby="facTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">زیرساخت</span>
+                        <h2 id="facTitle">امکانات {{ $village->name }}</h2>
+                        <p>خدمات و زیرساخت‌های موجود در روستا</p>
+                    </div>
+                </header>
+                <div class="items">
+                    @foreach($facilities as $i => $facility)
+                        <div class="item reveal {{ $facility->is_available ? '' : 'vg-off' }}" style="--d:{{ ($i % 4) * 60 }}ms">
+                            <span class="ic">{{ $facility->icon ?: '🏛' }}</span>
+                            <span>
+                                <b>{{ $facility->name }}</b>
+                                <small>{{ $facility->is_available ? 'موجود در روستا' : 'در حال پیگیری' }}</small>
+                            </span>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- ══════════ شورای اسلامی ══════════ --}}
+        @if(isset($councilMembers) && $councilMembers->count() > 0)
+            <section class="block sub-block" aria-labelledby="councilTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">شورا</span>
+                        <h2 id="councilTitle">شورای اسلامی روستا</h2>
+                        <p>اعضای شورای اسلامی {{ $village->name }}</p>
+                    </div>
+                    <a class="link-more" href="{{ route('village.site.council', $village->slug) }}">صفحهٔ شورا <svg><use href="#i-arrow"/></svg></a>
+                </header>
+                <div class="people">
+                    @foreach($councilMembers as $i => $member)
+                        <div class="person reveal" style="--d:{{ ($i % 3) * 60 }}ms">
+                            @if($member->photo)
+                                <img class="vg-av" src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}" loading="lazy">
+                            @else
+                                <span class="av">{{ mb_substr($member->name, 0, 1) }}</span>
+                            @endif
+                            <span>
+                                <b>{{ $member->name }}</b>
+                                <small>{{ $member->position }}</small>
+                                @if($member->phone)
+                                    <a class="vg-tel" href="tel:{{ $member->phone }}" dir="ltr">{{ $member->phone }}</a>
+                                @endif
+                            </span>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- ══════════ جاذبه‌ها ══════════ --}}
+        @if(isset($attractions) && $attractions->count() > 0)
+            <section class="block sub-block" aria-labelledby="attrTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">جاذبه‌ها</span>
+                        <h2 id="attrTitle">جاذبه‌های {{ $village->name }}</h2>
+                        <p>طبیعت، تاریخ و زیارتگاه‌های روستا</p>
+                    </div>
+                    <a class="link-more" href="{{ route('village.site.attractions', $village->slug) }}">همهٔ جاذبه‌ها <svg><use href="#i-arrow"/></svg></a>
+                </header>
+                <div class="prods">
+                    @foreach($attractions as $i => $attr)
+                        <div class="prod reveal" style="--d:{{ ($i % 4) * 60 }}ms">
+                            <div class="ph" @if($attr->image) style="background-image:url('{{ asset('storage/' . $attr->image) }}');background-size:cover;background-position:center" @endif>
+                                @unless($attr->image)<svg><use href="#i-pin"/></svg>@endunless
+                            </div>
+                            <b>{{ $attr->name }}</b>
+                            <small>{{ $attr->category ?: \Illuminate\Support\Str::limit($attr->description, 40) }}</small>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- ══════════ مصوبات شورا ══════════ --}}
+        <section class="block sub-block" aria-labelledby="decTitle">
+            <header class="block-head reveal">
+                <div>
+                    <span class="kicker-line">مصوبات</span>
+                    <h2 id="decTitle">مصوبات شورای اسلامی</h2>
+                    <p>مصوبات ثبت‌شده در سامانه</p>
+                </div>
+                <a class="link-more" href="{{ route('village.site.resolutions', $village->slug) }}">همهٔ مصوبات <svg><use href="#i-arrow"/></svg></a>
+            </header>
+            <div class="vg-cta reveal">
+                <div>
+                    <b><svg><use href="#i-doc"/></svg> {{ $__fa($__resolutionCount) }} مصوبه ثبت شده</b>
+                    <p>
+                        @if($__resolutionCount > 0)
+                            مشاهده و پیگیری میزان پیشرفت مصوبات شورای اسلامی {{ $village->name }}
+                        @else
+                            به‌زودی مصوبات شورای اسلامی روستا در این بخش منتشر می‌شود.
+                        @endif
+                    </p>
+                </div>
+                <a class="vg-cta-btn" href="{{ route('village.site.resolutions', $village->slug) }}">مشاهدهٔ مصوبات <svg><use href="#i-arrow"/></svg></a>
+            </div>
+        </section>
+
+        {{-- ══════════ محصولات روستا ══════════ --}}
+        <section class="block sub-block" aria-labelledby="prodTitle">
+            <header class="block-head reveal">
+                <div>
+                    <span class="kicker-line">اقتصاد روستا</span>
+                    <h2 id="prodTitle">محصولات روستا</h2>
+                    <p>
+                        @if(($productCount ?? 0) > 0)
+                            {{ $__fa($productCount) }} محصول محلی برای فروش — عسل، لبنیات، صنایع دستی و…
+                        @else
+                            محصولات محلی و قابل فروش روستا — به‌زودی اضافه می‌شود.
+                        @endif
+                    </p>
+                </div>
+                <a class="link-more" href="{{ route('village.site.products', $village->slug) }}">مشاهدهٔ محصولات <svg><use href="#i-arrow"/></svg></a>
+            </header>
+
+            @if(isset($featuredProducts) && $featuredProducts->count() > 0)
+                <div class="prods">
+                    @foreach($featuredProducts as $i => $fp)
+                        @php $fpimg = $fp->images->first(); @endphp
+                        <a class="prod reveal" href="{{ route('village.site.products.show', [$village->slug, $fp->slug]) }}" style="--d:{{ ($i % 4) * 60 }}ms">
+                            <div class="ph" @if($fpimg) style="background-image:url('{{ asset('storage/' . $fpimg->image) }}');background-size:cover;background-position:center" @endif>
+                                @unless($fpimg){{ $fp->categoryIcon() }}@endunless
+                            </div>
+                            <b>{{ \Illuminate\Support\Str::limit($fp->title, 34) }}</b>
+                            <small class="vg-price">{{ $fp->priceLabel() }}</small>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+        </section>
+
+        {{-- ══════════ فایل‌ها و فرم‌ها ══════════ --}}
+        @if(isset($downloads) && $downloads->isNotEmpty())
+            <section class="block sub-block" aria-labelledby="fileTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">دریافت</span>
+                        <h2 id="fileTitle">فایل‌ها و فرم‌های قابل دانلود</h2>
+                        <p>فرم‌ها و بخشنامه‌های مورد نیاز اهالی</p>
+                    </div>
+                    <a class="link-more" href="{{ route('village.site.downloads', $village->slug) }}">همهٔ فایل‌ها <svg><use href="#i-arrow"/></svg></a>
+                </header>
+                <div class="files">
+                    @foreach($downloads as $i => $d)
+                        <a class="file reveal" href="{{ route('village.site.download', [$village->slug, $d->id]) }}" style="--d:{{ ($i % 4) * 60 }}ms">
+                            <span class="ic"><svg><use href="#i-doc"/></svg></span>
+                            <span>
+                                <b>{{ $d->title }}</b>
+                                <small>
+                                    {{ $d->sizeLabel() }}
+                                    @if($d->download_count > 0) · {{ $__fa($d->download_count) }} بار دانلود @endif
+                                </small>
+                            </span>
+                            <span class="dl">دریافت</span>
+                        </a>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- ══════════ ثبت درخواست ══════════ --}}
+        <section class="block sub-block" aria-labelledby="reqTitle">
+            <header class="block-head reveal">
+                <div>
+                    <span class="kicker-line">خدمات</span>
+                    <h2 id="reqTitle">درخواست خود را ثبت کنید</h2>
+                    <p>درخواست شما مستقیماً برای دهیاری {{ $village->name }} ارسال می‌شود</p>
+                </div>
+            </header>
+
+            <div class="vg-req reveal">
+                <div class="vg-req-txt">
+                    <b><svg><use href="#i-send"/></svg> سامانهٔ درخواست‌های مردمی</b>
+                    <p>درخواست‌های خود در زمینهٔ آب، برق، گاز، راه و … را آنلاین ثبت کنید و با کد پیگیری دنبال کنید.</p>
+                </div>
+                <div class="vg-req-actions">
+                    <a class="vg-btn-primary" href="{{ route('village.site.request.create', $village->slug) }}"><svg><use href="#i-send"/></svg> ثبت درخواست</a>
+                    <a class="vg-btn-ghost" href="{{ route('village.site.request.track', $village->slug) }}"><svg><use href="#i-search"/></svg> پیگیری</a>
+                    <div class="vg-tariff" id="vTariffDropdown">
+                        <button type="button" class="vg-btn-ghost vg-btn-tariff">
+                            <span><svg><use href="#i-doc"/></svg> تعرفهٔ عوارض</span>
+                            <span class="vg-caret">▾</span>
+                        </button>
+                        <div class="vg-tariff-menu" role="menu">
+                            <span class="vg-menu-label">مشاهده</span>
+                            <a href="{{ route('village.tariff.index', $village->slug) }}" role="menuitem">
+                                <svg><use href="#i-doc"/></svg> تعرفهٔ کامل سال جاری
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- ══════════ نقشه ══════════ --}}
+        <section class="block sub-block" aria-labelledby="mapTitle">
+            <header class="block-head reveal">
+                <div>
+                    <span class="kicker-line">موقعیت</span>
+                    <h2 id="mapTitle">موقعیت {{ $village->name }} روی نقشه</h2>
+                    <p>بخش {{ $village->section ?: 'چگنی' }}، شهرستان {{ $village->county ?: 'چگنی' }}، استان {{ $village->province ?: 'لرستان' }}</p>
+                </div>
+            </header>
+            @include('partials.village-map', ['village' => $village])
+        </section>
+
     </div>
-</div>
-
-{{-- ============ موقعیت روی نقشه ============ --}}
-{{-- پارشال خودش هر دو حالت را پوشش می‌دهد:
-     با مختصات → نقشه‌ی زنده
-     بدون مختصات → کارت جایگزین با جست‌وجو در نقشه --}}
-<h2 class="section-title">📍 موقعیت {{ $village->name }} روی نقشه</h2>
-@include('partials.village-map', ['village' => $village])
-
-
-<script>
-(function () {
-    function initTariffDropdown() {
-        var dd = document.getElementById('vTariffDropdown');
-        if (!dd) return;
-
-        var btn = dd.querySelector('.v-btn-tariff');
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            dd.classList.toggle('open');
-        });
-
-        document.addEventListener('click', function (e) {
-            if (!dd.contains(e.target)) dd.classList.remove('open');
-        });
-
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') dd.classList.remove('open');
-        });
-
-        // بستن هنگام کلیک روی آیتم‌های داخل
-        dd.querySelectorAll('.v-tariff-menu a').forEach(function (a) {
-            a.addEventListener('click', function () { dd.classList.remove('open'); });
-        });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTariffDropdown);
-    } else {
-        initTariffDropdown();
-    }
-})();
-</script>
+</main>
 
 @include('partials.gov-footer')
 @include('partials.back-to-top')
 @include('partials.gallery-lightbox')
+
+<style>
+    /* ═══ استایل‌های اختصاصی صفحهٔ روستا — پیشوند vg ═══ */
+    .vg-cover { margin-top: 22px; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 50px -34px rgba(74,27,15,.5); }
+    .vg-cover img { display: block; width: 100%; max-height: 380px; object-fit: cover; }
+    .facts { grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); }
+
+    .vg-prose { font-size: 13.5px; line-height: 2.1; color: #5a4a3c; text-align: justify; }
+    .vg-muted { color: #8a7a6a; font-style: italic; }
+    .vg-note { margin: 14px 0 0; padding: 12px 14px; background: #fdf1dc; border-radius: 14px; font-size: 12.5px; line-height: 2; color: #7a5842; }
+    .vg-note b { color: #8a5a08; }
+
+    .vg-av { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none; display: grid; place-items: center; background: #fdeee7; color: #c94a2b; font-family: 'Lalezar', Tahoma, sans-serif; font-size: 21px; }
+    .vg-tel { display: inline-block; margin-top: 4px; font-family: 'Tanha', Tahoma, sans-serif; font-size: 11.5px; color: #c94a2b; text-decoration: none; }
+    .vg-pin { display: inline-block; font-family: 'Tanha', Tahoma, sans-serif; font-size: 10.5px; font-weight: 700; background: #fdf1dc; color: #8a5a08; padding: 1px 7px; border-radius: 999px; margin-inline-end: 6px; vertical-align: 2px; }
+
+    .vg-projs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .vg-proj { background: #fffdf9; border-radius: 20px; padding: 18px; box-shadow: 0 12px 30px -26px rgba(74,27,15,.5); }
+    .vg-proj-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+    .vg-proj-head b { font-size: 13.5px; line-height: 1.8; }
+    .vg-ico { width: 32px; height: 32px; border-radius: 10px; flex: none; display: grid; place-items: center; background: #fdeee7; color: #c94a2b; }
+    .vg-ico svg { width: 16px; height: 16px; }
+    .vg-proj p { margin: 0 0 12px; font-size: 12.5px; line-height: 1.9; color: #8a7a6a; }
+    .vg-bar { height: 7px; border-radius: 999px; background: #f3ead9; overflow: hidden; }
+    .vg-bar span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #f5b841, #e2603c); }
+    .vg-proj small { display: block; margin-top: 7px; font-family: 'Tanha', Tahoma, sans-serif; font-size: 11.5px; color: #8a7a6a; }
+
+    .item.vg-off { opacity: .55; }
+    .item .ic { font-size: 17px; }
+
+    .prod { text-decoration: none; color: inherit; }
+    .prod .ph { overflow: hidden; }
+    .vg-price { color: #c94a2b !important; font-weight: 700; }
+
+    .vg-cta {
+        display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+        background: linear-gradient(150deg, #fdf1dc, #fbe6cf);
+        border-radius: 24px; padding: 22px 24px;
+        box-shadow: inset 0 0 0 1px #f3ddb8;
+    }
+    .vg-cta b { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: #5c2313; }
+    .vg-cta b svg { width: 17px; height: 17px; color: #b8801a; }
+    .vg-cta p { margin: 6px 0 0; font-size: 13px; line-height: 2; color: #7a5842; }
+
+    .vg-req {
+        display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap;
+        background: linear-gradient(150deg, #fdeee7, #fbdcd0);
+        border-radius: 26px; padding: 24px 26px;
+        box-shadow: inset 0 0 0 1px rgba(201,74,43,.16);
+    }
+    .vg-req-txt b { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: #5c2313; }
+    .vg-req-txt b svg { width: 17px; height: 17px; color: #c94a2b; }
+    .vg-req-txt p { margin: 6px 0 0; font-size: 13px; line-height: 2; color: #7a5842; max-width: 520px; }
+    .vg-req-actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+    .vg-btn-primary, .vg-btn-ghost {
+        display: inline-flex; align-items: center; gap: 7px;
+        padding: 12px 20px; border-radius: 999px; font-size: 13px; font-weight: 700;
+        text-decoration: none; white-space: nowrap; cursor: pointer; border: 0;
+    }
+    .vg-btn-primary { background: linear-gradient(150deg, #e2603c, #c94a2b); color: #fff7e9; box-shadow: 0 14px 26px -18px rgba(201,74,43,.9); }
+    .vg-btn-ghost { background: #fffdf9; color: #8e2f18; box-shadow: inset 0 0 0 1px rgba(201,74,43,.22); font-family: 'Mikhak', Tahoma, sans-serif; }
+    .vg-btn-primary svg, .vg-btn-ghost svg { width: 14px; height: 14px; }
+    .vg-btn-primary:hover { filter: brightness(1.05); }
+    .vg-btn-ghost:hover { background: #fff; }
+    .vg-cta-btn {
+        display: inline-flex; align-items: center; gap: 7px; flex: none;
+        background: linear-gradient(150deg, #f5b841, #d99413); color: #4a2b00;
+        padding: 12px 22px; border-radius: 999px; font-size: 13px; font-weight: 700;
+        text-decoration: none; white-space: nowrap; box-shadow: 0 14px 26px -18px rgba(184,128,26,.9);
+    }
+    .vg-cta-btn svg { width: 14px; height: 14px; }
+
+    .vg-tariff { position: relative; }
+    .vg-tariff-menu {
+        position: absolute; inset-inline-start: 0; top: calc(100% + 8px); z-index: 30;
+        min-width: 240px; background: #fffdf9; border-radius: 16px; padding: 8px;
+        box-shadow: 0 24px 50px -26px rgba(74,27,15,.5), inset 0 0 0 1px #f2e4cd;
+        display: none;
+    }
+    .vg-tariff.open .vg-tariff-menu { display: block; }
+    .vg-menu-label { display: block; padding: 6px 10px; font-family: 'Tanha', Tahoma, sans-serif; font-size: 11px; color: #8a7a6a; }
+    .vg-tariff-menu a {
+        display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 11px;
+        font-size: 12.5px; color: #5a4a3c; text-decoration: none;
+    }
+    .vg-tariff-menu a:hover { background: #fdeee7; color: #c94a2b; }
+    .vg-tariff-menu a svg { width: 14px; height: 14px; }
+
+    @media (max-width: 900px) {
+        .vg-projs { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+        .vg-projs { grid-template-columns: 1fr; }
+        .vg-req, .vg-cta { padding: 20px; }
+        .vg-req-actions { width: 100%; }
+        .vg-req-actions > a, .vg-tariff, .vg-tariff .vg-btn-tariff { width: 100%; justify-content: center; }
+        .vg-tariff-menu { width: 100%; }
+        .vg-cta-btn { width: 100%; justify-content: center; }
+    }
+</style>
+
+<script>
+    (function () {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+            });
+        }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        function initTariff() {
+            var dd = document.getElementById('vTariffDropdown');
+            if (!dd) return;
+            var btn = dd.querySelector('.vg-btn-tariff');
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                dd.classList.toggle('open');
+            });
+            document.addEventListener('click', function (e) {
+                if (!dd.contains(e.target)) dd.classList.remove('open');
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') dd.classList.remove('open');
+            });
+            dd.querySelectorAll('.vg-tariff-menu a').forEach(function (a) {
+                a.addEventListener('click', function () { dd.classList.remove('open'); });
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTariff);
+        } else {
+            initTariff();
+        }
+    })();
+</script>
 
 </body>
 </html>
