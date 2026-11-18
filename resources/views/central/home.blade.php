@@ -155,7 +155,50 @@
                 </section>
             @endif
 
-            @php $__cards = ($news ?? collect())->slice(1, 6); @endphp
+            {{-- ══════════ آخرین اخبار (کادر بزرگ چرخان) ══════════ --}}
+        @if(isset($news) && $news->count() > 0)
+            <section class="block" id="latest" aria-labelledby="latestTitle">
+                <header class="block-head reveal">
+                    <div>
+                        <span class="kicker-line">تازه‌ترین‌ها</span>
+                        <h2 id="latestTitle">آخرین اخبار</h2>
+                        <p>پنج خبر آخر از همهٔ بخش‌ها</p>
+                    </div>
+                </header>
+
+                <div class="feat-big reveal" data-autoplay="3000">
+                    @foreach($news->take(5) as $fi => $fnews)
+                        <div class="feat-slide {{ $fi === 0 ? 'active' : '' }}" data-feat-idx="{{ $fi }}">
+                            @if($fnews->image)
+                                <img class="feat-bg" src="{{ asset('storage/' . $fnews->image) }}" alt="{{ $fnews->title }}">
+                            @endif
+                            <div class="feat-cap">
+                                <span class="chip"><svg><use href="#i-news"/></svg> {{ $fnews->section->name ?? 'بخش' }}</span>
+                                <h3>{{ $fnews->title }}</h3>
+                                @if($fnews->excerpt)
+                                    <p>{{ \Illuminate\Support\Str::limit(strip_tags($fnews->excerpt), 160) }}</p>
+                                @endif
+                                <div class="meta">
+                                    @if($fnews->published_at)
+                                        <span><svg><use href="#i-calendar"/></svg> {{ \App\Support\Number::fa(\Morilog\Jalali\Jalalian::fromCarbon($fnews->published_at)->format('Y/m/d')) }}</span>
+                                    @endif
+                                    @if(($fnews->stat_views ?? 0) > 0)
+                                        <span><svg><use href="#i-eye"/></svg> {{ \App\Support\Number::fa(number_format($fnews->stat_views)) }} بازدید</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="feat-dots">
+                        @foreach($news->take(5) as $fi => $fnews)
+                            <button type="button" class="feat-dot {{ $fi === 0 ? 'active' : '' }}" data-feat-idx="{{ $fi }}" aria-label="خبر {{ $fi + 1 }}"></button>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
+
+        @php $__cards = ($news ?? collect())->slice(1, 6); @endphp
             @if($__cards->count() > 0)
                 <div class="news-slider reveal">
                     <div class="news-viewport">
