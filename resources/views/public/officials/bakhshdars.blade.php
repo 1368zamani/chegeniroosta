@@ -22,7 +22,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
 </style>
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
 </head>
 <body class="v3-body">
 

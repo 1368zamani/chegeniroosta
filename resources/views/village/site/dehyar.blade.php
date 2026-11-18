@@ -49,7 +49,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 @include('partials.site-animations')
 @include('partials.pwa')
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
 </head>
 <body class="v3-body">
 

@@ -117,36 +117,50 @@
 
             @if(isset($news) && $news->count() > 0)
                 <div class="cols">
-                    <div>
-                        <div class="cards" style="grid-template-columns:repeat(2,1fr)">
-                            @foreach($news->take(6) as $i => $item)
-                                @php
-                                    $__tone = ['tone-a', 'tone-b', 'tone-c'][$i % 3];
-                                    $__glyph = ['i-sprout', 'i-chart', 'i-pin', 'i-news'][$i % 4];
-                                @endphp
-                                <a class="card {{ $__tone }} reveal" href="{{ route('section.news.show', $item->slug) }}" style="--d:{{ ($i % 2) * 80 }}ms">
-                                    <div class="img">
-                                        @if($item->image)
-                                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
-                                        @else
-                                            <span class="art"><span class="glyph"><svg><use href="#{{ $__glyph }}"/></svg></span></span>
-                                        @endif
-                                        @if($item->is_pinned)
-                                            <span class="cat"><span class="chip">مهم</span></span>
-                                        @endif
-                                    </div>
-                                    <div class="body">
-                                        <h3>{{ $item->title }}</h3>
-                                        <p class="excerpt">{{ \Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->content), 130) }}</p>
-                                        <div class="meta">
-                                            <span><svg><use href="#i-calendar"/></svg> {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}</span>
-                                            @if(($item->stat_views ?? 0) > 0)
-                                                <span><svg><use href="#i-eye"/></svg> {{ $__fa($item->stat_views) }} بازدید</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforeach
+                    <div class="news-col">
+                        <div class="news-slider per-2 reveal">
+                            <div class="news-viewport">
+                                <div class="cards news-track">
+                                    @foreach($news->take(6) as $i => $item)
+                                        @php
+                                            $__tone = ['tone-a', 'tone-b', 'tone-c'][$i % 3];
+                                            $__glyph = ['i-sprout', 'i-chart', 'i-pin', 'i-news'][$i % 4];
+                                        @endphp
+                                        <a class="card {{ $__tone }}" href="{{ route('section.news.show', $item->slug) }}">
+                                            <div class="img">
+                                                @if($item->image)
+                                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
+                                                @else
+                                                    <span class="art"><span class="glyph"><svg><use href="#{{ $__glyph }}"/></svg></span></span>
+                                                @endif
+                                                @if($item->is_pinned)
+                                                    <span class="cat"><span class="chip">مهم</span></span>
+                                                @endif
+                                            </div>
+                                            <div class="body">
+                                                <h3>{{ $item->title }}</h3>
+                                                <p class="excerpt">{{ \Illuminate\Support\Str::limit($item->excerpt ?: strip_tags($item->content), 130) }}</p>
+                                                <div class="meta">
+                                                    <span><svg><use href="#i-calendar"/></svg> {{ $item->published_at ? jalali($item->published_at) : jalali($item->created_at) }}</span>
+                                                    @if(($item->stat_views ?? 0) > 0)
+                                                        <span><svg><use href="#i-eye"/></svg> {{ $__fa($item->stat_views) }} بازدید</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="news-nav">
+                                <button type="button" class="news-arrow news-prev" aria-label="خبرهای پیشین">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                                </button>
+                                <div class="news-dots" aria-label="صفحه‌های اخبار"></div>
+                                <button type="button" class="news-arrow news-next" aria-label="خبرهای بعدی">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -533,5 +547,6 @@
         }
     })();
 </script>
+@include('partials.news-slider')
 </body>
 </html>

@@ -64,7 +64,7 @@ body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; backgroun
 <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
 @include('partials.site-animations')
 @include('partials.pwa')
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
 </head>
 <body class="v3-body">
 

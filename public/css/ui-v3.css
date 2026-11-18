@@ -1175,3 +1175,65 @@ body.v3-body, .v3-body { font-family: var(--font) !important; }
   .hsym-plate { inset-inline: 14px; bottom: 14px; padding: 9px 12px; }
   .hsym-plate b { font-size: 22px; }
 }
+
+
+/* =====================================================================
+   اسلایدر خودکار کارت‌های خبر  (NEWS-SLIDER-V3)
+   کارت‌ها دست‌نخورده می‌مانند؛ فقط در یک ریل افقی قرار می‌گیرند و
+   به‌صورت خودکار (با فلش، نقطه و کشیدن لمسی) جابه‌جا می‌شوند.
+   ===================================================================== */
+.news-slider { --per: 3; --gap: 22px; position: relative; min-width: 0; }
+.news-slider.per-2 { --per: 2; }
+.news-col { min-width: 0; }
+
+.news-viewport { overflow: hidden; padding: 10px 0 22px; }
+
+.news-slider .cards {
+  display: flex; flex-wrap: nowrap;
+  grid-template-columns: none;
+  gap: var(--gap);
+  transition: transform .55s cubic-bezier(.22, .7, .2, 1);
+  will-change: transform;
+}
+.news-slider .cards > .card {
+  flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));
+  max-width: calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));
+}
+
+.news-nav {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin-top: 4px;
+}
+.news-arrow {
+  flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  background: var(--paper); color: var(--teal-700);
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  transition: background .2s, color .2s, transform .2s, border-color .2s;
+}
+.news-arrow:hover { background: var(--teal-700); color: #fff; border-color: transparent; transform: translateY(-2px); }
+.news-arrow:active { transform: translateY(0); }
+.news-arrow svg {
+  width: 20px; height: 20px;
+  stroke: currentColor; fill: none; stroke-width: 2.4;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.news-dots { display: flex; align-items: center; gap: 8px; }
+.news-dot {
+  width: 9px; height: 9px; padding: 0; border-radius: 999px; cursor: pointer;
+  background: #e6d8c3; border: 0; transition: width .25s, background .25s;
+}
+.news-dot.active { width: 26px; background: var(--teal-700); }
+
+@media (max-width: 980px) {
+  .news-slider { --per: 2; }
+  .news-slider.per-2 { --per: 2; }
+}
+@media (max-width: 620px) {
+  .news-slider { --per: 1; }
+  .news-slider.per-2 { --per: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-slider .cards { transition: none; }
+}

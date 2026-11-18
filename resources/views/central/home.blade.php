@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=7">
     @include('partials.pwa')
 </head>
 <body class="v3-body">
@@ -149,38 +149,52 @@
 
             @php $__cards = ($news ?? collect())->slice(1, 6); @endphp
             @if($__cards->count() > 0)
-                <div class="cards">
-                    @foreach($__cards as $i => $item)
-                        @php $__tone = ['tone-a', 'tone-b', 'tone-c'][$i % 3]; @endphp
-                        <a class="card {{ $__tone }} reveal" href="{{ $__newsUrl($item) ?: '#' }}" style="--d:{{ ($i % 3) * 70 }}ms">
-                            <div class="img">
-                                @if($item->image)
-                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
-                                @else
-                                    <span class="art">
-                                        <span class="glyph"><svg><use href="#i-news"/></svg></span>
-                                    </span>
-                                @endif
-                                @if($item->section)
-                                    <span class="cat"><span class="chip">{{ $item->section->name }}</span></span>
-                                @endif
-                            </div>
-                            <div class="body">
-                                <h3>{{ $item->title }}</h3>
-                                @if($item->excerpt)
-                                    <p class="excerpt">{{ \Illuminate\Support\Str::limit(strip_tags($item->excerpt), 120) }}</p>
-                                @endif
-                                <div class="meta">
-                                    @if($item->published_at)
-                                        <span><svg><use href="#i-calendar"/></svg> {{ \App\Support\Number::fa(\Morilog\Jalali\Jalalian::fromCarbon($item->published_at)->format('Y/m/d')) }}</span>
-                                    @endif
-                                    @if(($item->stat_views ?? 0) > 0)
-                                        <span><svg><use href="#i-eye"/></svg> {{ \App\Support\Number::fa(number_format($item->stat_views)) }} بازدید</span>
-                                    @endif
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
+                <div class="news-slider reveal">
+                    <div class="news-viewport">
+                        <div class="cards news-track">
+                            @foreach($__cards as $i => $item)
+                                @php $__tone = ['tone-a', 'tone-b', 'tone-c'][$i % 3]; @endphp
+                                <a class="card {{ $__tone }}" href="{{ $__newsUrl($item) ?: '#' }}">
+                                    <div class="img">
+                                        @if($item->image)
+                                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
+                                        @else
+                                            <span class="art">
+                                                <span class="glyph"><svg><use href="#i-news"/></svg></span>
+                                            </span>
+                                        @endif
+                                        @if($item->section)
+                                            <span class="cat"><span class="chip">{{ $item->section->name }}</span></span>
+                                        @endif
+                                    </div>
+                                    <div class="body">
+                                        <h3>{{ $item->title }}</h3>
+                                        @if($item->excerpt)
+                                            <p class="excerpt">{{ \Illuminate\Support\Str::limit(strip_tags($item->excerpt), 120) }}</p>
+                                        @endif
+                                        <div class="meta">
+                                            @if($item->published_at)
+                                                <span><svg><use href="#i-calendar"/></svg> {{ \App\Support\Number::fa(\Morilog\Jalali\Jalalian::fromCarbon($item->published_at)->format('Y/m/d')) }}</span>
+                                            @endif
+                                            @if(($item->stat_views ?? 0) > 0)
+                                                <span><svg><use href="#i-eye"/></svg> {{ \App\Support\Number::fa(number_format($item->stat_views)) }} بازدید</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="news-nav">
+                        <button type="button" class="news-arrow news-prev" aria-label="خبرهای پیشین">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                        </button>
+                        <div class="news-dots" aria-label="صفحه‌های اخبار"></div>
+                        <button type="button" class="news-arrow news-next" aria-label="خبرهای بعدی">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+                        </button>
+                    </div>
                 </div>
             @elseif(!$__featured)
                 <div class="empty-note reveal">هنوز خبری منتشر نشده است.</div>
@@ -275,5 +289,6 @@
         }
     })();
 </script>
+@include('partials.news-slider')
 </body>
 </html>
