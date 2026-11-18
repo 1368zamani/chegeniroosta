@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
     @include('partials.pwa')
 </head>
 <body class="v3-body">
@@ -52,17 +52,30 @@
                 </div>
             </div>
 
-            <div class="hero-art reveal" style="--d:120ms">
-                <div class="arch">
-                    <div class="arch-medallion">
-                        <div class="ring"><span>چ</span></div>
-                        <b>شهرستان چگنی</b>
-                        <small>استان لرستان</small>
-                    </div>
-                </div>
-                <div class="float-card fc-1"><b>{{ \App\Support\Number::fa(number_format($sections->count())) }}</b><span>بخش</span></div>
-                <div class="float-card fc-2"><b>{{ \App\Support\Number::fa(number_format($sections->sum(fn($s) => $s->villages()->count()))) }}</b><span>روستا</span></div>
-            </div>
+            @php
+                $__portalPhoto = null;
+                foreach ($sections as $__s) {
+                    if ($__s->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($__s->cover_image)) {
+                        $__portalPhoto = asset('storage/' . $__s->cover_image);
+                        break;
+                    }
+                }
+            @endphp
+            @include('partials.hero-art', [
+                'order' => ['photo', 'symbol'],
+                'photo' => $__portalPhoto,
+                'alt' => 'شهرستان چگنی',
+                'pin' => 'شهرستان چگنی · لرستان',
+                'kicker' => 'پایگاه اطلاع‌رسانی',
+                'title' => 'چگنی',
+                'subtitle' => 'شهرستان چگنی · استان لرستان',
+                'stats' => [
+                    \App\Support\Number::fa(number_format($sections->count())) . ' بخش',
+                    \App\Support\Number::fa(number_format($sections->sum(fn($s) => $s->villages()->count()))) . ' روستا',
+                    \App\Support\Number::fa(number_format($newsTotal ?? ($news->count() ?? 0))) . ' خبر',
+                ],
+                'initial' => 'چ',
+            ])
         </section>
 
         {{-- ══════════ آخرین اخبار بخش‌ها ══════════ --}}

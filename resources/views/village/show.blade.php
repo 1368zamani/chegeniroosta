@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
     @include('partials.pwa')
 </head>
 <body class="v3-body">
@@ -86,24 +86,43 @@
                 </div>
             </div>
 
-            <div class="hero-art reveal" style="--d:120ms">
-                <div class="arch">
-                    <div class="arch-medallion">
-                        <div class="ring"><span>{{ mb_substr($village->name, 0, 1) }}</span></div>
-                        <b>روستای {{ $village->name }}</b>
-                        <small>بخش {{ $village->section ?: 'چگنی' }} · {{ $village->province ?: 'لرستان' }}</small>
-                    </div>
-                </div>
-                @if($village->population > 0)
-                    <div class="float-card fc-1"><b>{{ $__fa($village->population) }}</b><span>نفر جمعیت</span></div>
-                @endif
-                @if($village->households > 0)
-                    <div class="float-card fc-2"><b>{{ $__fa($village->households) }}</b><span>خانوار</span></div>
-                @endif
-            </div>
+            @php
+                $__vCover = ($village->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($village->cover_image))
+                    ? asset('storage/' . $village->cover_image)
+                    : null;
+                $__vDehyar = ($village->dehyar_photo && \Illuminate\Support\Facades\Storage::disk('public')->exists($village->dehyar_photo))
+                    ? asset('storage/' . $village->dehyar_photo)
+                    : null;
+                $__vVariant = $__vDehyar ? 'dehyar' : ($__vCover ? 'photo' : 'symbol');
+            @endphp
+            @include('partials.hero-art', [
+                'order' => ['dehyar', 'photo', 'symbol'],
+                'photo' => $__vCover,
+                'dehyarPhoto' => $__vDehyar,
+                'dehyar' => [
+                    'name' => $village->dehyar_name,
+                    'role' => 'دهیار روستا',
+                    'org' => 'دهیاری ' . $village->name . ($village->section ? ' · بخش ' . $village->section : ''),
+                    'phone' => $village->dehyar_phone,
+                    'hours' => $village->dehyar_hours,
+                    'url' => route('village.site.dehyar', $village->slug),
+                    'cta' => 'پروفایل دهیار',
+                ],
+                'alt' => 'روستای ' . $village->name,
+                'pin' => 'روستای ' . $village->name,
+                'kicker' => 'پایگاه اطلاع‌رسانی روستا',
+                'title' => $village->name,
+                'subtitle' => 'روستای ' . $village->name . ($village->section ? ' · بخش ' . $village->section : '') . ' · ' . ($village->province ?: 'لرستان'),
+                'stats' => array_filter([
+                    $village->population > 0 ? $__fa($village->population) . ' نفر' : null,
+                    $village->households > 0 ? $__fa($village->households) . ' خانوار' : null,
+                    $village->distance_to_center ? $village->distance_to_center . ' کیلومتر تا مرکز بخش' : null,
+                ]),
+                'initial' => mb_substr($village->name, 0, 1),
+            ])
         </section>
 
-        @if($village->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($village->cover_image))
+        @if($__vCover && $__vVariant !== 'photo')
             <div class="vg-cover reveal">
                 <img src="{{ asset('storage/' . $village->cover_image) }}" alt="{{ $village->name }}" loading="lazy">
             </div>

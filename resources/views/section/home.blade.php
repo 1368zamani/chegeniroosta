@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=5">
+    <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
     @include('partials.pwa')
 </head>
 <body class="v3-body">
@@ -77,20 +77,28 @@
                 </div>
             </div>
 
-            <div class="hero-art reveal" style="--d:120ms">
-                <div class="arch">
-                    <div class="arch-medallion">
-                        <div class="ring"><span>{{ mb_substr($section->name, 0, 1) }}</span></div>
-                        <b>بخش {{ $section->name }}</b>
-                        <small>شهرستان {{ $section->county ?: 'چگنی' }} · {{ $section->province ?: 'لرستان' }}</small>
-                    </div>
-                </div>
-                <div class="float-card fc-1"><b>{{ $__fa($__vCount) }}</b><span>روستا</span></div>
-                <div class="float-card fc-2"><b>{{ $__fa($__nCount) }}</b><span>خبر</span></div>
-            </div>
+            @php
+                $__secPhoto = ($section->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($section->cover_image))
+                    ? asset('storage/' . $section->cover_image)
+                    : null;
+            @endphp
+            @include('partials.hero-art', [
+                'order' => ['photo', 'symbol'],
+                'photo' => $__secPhoto,
+                'alt' => 'بخش ' . $section->name,
+                'pin' => 'بخش ' . $section->name,
+                'kicker' => 'پایگاه اطلاع‌رسانی بخشداری',
+                'title' => $section->name,
+                'subtitle' => 'شهرستان ' . ($section->county ?: 'چگنی') . ' · ' . ($section->province ?: 'لرستان'),
+                'stats' => [
+                    $__fa($__vCount) . ' روستا',
+                    $__fa($__nCount) . ' خبر',
+                ],
+                'initial' => mb_substr($section->name, 0, 1),
+            ])
         </section>
 
-        @if($section->cover_image)
+        @if($section->cover_image && !$__secPhoto && \Illuminate\Support\Facades\Storage::disk('public')->exists($section->cover_image))
             <div class="sh-cover reveal">
                 <img src="{{ asset('storage/' . $section->cover_image) }}" alt="{{ $section->name }}" loading="lazy">
             </div>
