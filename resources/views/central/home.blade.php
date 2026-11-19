@@ -86,75 +86,6 @@
             ])
         </section>
 
-        {{-- ══════════ آخرین اخبار بخش‌ها ══════════ --}}
-        <section class="block" id="news" aria-labelledby="newsTitle">
-            <header class="block-head reveal">
-                <div>
-                    <span class="kicker-line">تازه‌ترین‌ها</span>
-                    <h2 id="newsTitle">آخرین اخبار بخش‌ها</h2>
-                    <p>خبرهای همهٔ بخش‌های شهرستان چگنی — به ترتیب تاریخ انتشار</p>
-                </div>
-                <a class="link-more" href="#news">همهٔ اخبار <svg><use href="#i-arrow"/></svg></a>
-            </header>
-
-            @php
-                $__featured = ($news ?? collect())->first();
-                $__rest = ($news ?? collect())->slice(1, 6);
-                $__newsUrl = function ($item) {
-                    $sec = $item->section;
-                    if ($sec && $sec->subdomain) {
-                        return request()->getScheme() . '://' . $sec->subdomain . '.' . config('app.base_domain') . '/news/' . $item->slug;
-                    }
-                    return null;
-                };
-            @endphp
-
-            @if($__featured)
-                <section class="feature reveal" aria-label="خبر ویژه">
-                    <a class="feature-main" href="{{ $__newsUrl($__featured) ?: '#' }}">
-                        @if($__featured->image)
-                            <span class="bg" style="background-image:url('{{ asset('storage/' . $__featured->image) }}')"></span>
-                        @else
-                            <span class="bg"></span>
-                        @endif
-                        <span class="veil"></span>
-                        <div class="copy">
-                            @if($__featured->section)
-                                <span class="chip"><svg><use href="#i-pin"/></svg> بخش {{ $__featured->section->name }}</span>
-                            @endif
-                            <h2>{{ $__featured->title }}</h2>
-                            @if($__featured->excerpt)
-                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($__featured->excerpt), 160) }}</p>
-                            @endif
-                            <div class="meta">
-                                @if($__featured->published_at)
-                                    <span><svg><use href="#i-calendar"/></svg> {{ \App\Support\Number::fa(\Morilog\Jalali\Jalalian::fromCarbon($__featured->published_at)->format('Y/m/d')) }}</span>
-                                @endif
-                                @if(($__featured->stat_views ?? 0) > 0)
-                                    <span><svg><use href="#i-eye"/></svg> {{ \App\Support\Number::fa(number_format($__featured->stat_views)) }} بازدید</span>
-                                @endif
-                            </div>
-                        </div>
-                    </a>
-
-                    <div class="feature-side">
-                        @foreach($__rest->take(3) as $mini)
-                            <a class="mini" href="{{ $__newsUrl($mini) ?: '#' }}">
-                                <span class="mimg" @if($mini->image) style="background-image:url('{{ asset('storage/' . $mini->image) }}')" @endif></span>
-                                <span class="mbody">
-                                    <h3>{{ \Illuminate\Support\Str::limit($mini->title, 90) }}</h3>
-                                    <span class="meta">
-                                        @if($mini->published_at)
-                                            <span><svg><use href="#i-calendar"/></svg> {{ \App\Support\Number::fa(\Morilog\Jalali\Jalalian::fromCarbon($mini->published_at)->format('Y/m/d')) }}</span>
-                                        @endif
-                                    </span>
-                                </span>
-                            </a>
-                        @endforeach
-                    </div>
-                </section>
-            @endif
-
             {{-- ══════════ آخرین اخبار (کادر بزرگ چرخان) ══════════ --}}
         @if(isset($news) && $news->count() > 0)
             <section class="block" id="latest" aria-labelledby="latestTitle">
@@ -198,7 +129,17 @@
             </section>
         @endif
 
-        @php $__cards = ($news ?? collect())->slice(1, 6); @endphp
+            @php
+                $__newsUrl = function ($item) {
+                    $sec = $item->section;
+                    if ($sec && $sec->subdomain) {
+                        return request()->getScheme() . '://' . $sec->subdomain . '.' . config('app.base_domain') . '/news/' . $item->slug;
+                    }
+                    return null;
+                };
+            @endphp
+
+            @php $__cards = ($news ?? collect())->slice(1, 6); @endphp
             @if($__cards->count() > 0)
                 <div class="news-slider reveal">
                     <div class="news-viewport">
@@ -250,7 +191,6 @@
             @elseif(!$__featured)
                 <div class="empty-note reveal">هنوز خبری منتشر نشده است.</div>
             @endif
-        </section>
 
         {{-- ══════════ بخش‌ها ══════════ --}}
         <section class="block" id="sections" aria-labelledby="sectionsTitle">
