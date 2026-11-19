@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $village->name }} | روستا نما</title>
+    <title>پایگاه اط‌رسانی روستای {{ $village->name }}</title>
     <meta name="description" content="{{ $village->description ? \Illuminate\Support\Str::limit(strip_tags($village->description), 155) : 'اطلاعات و اخبار روستای ' . $village->name }}">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#c94a2b">

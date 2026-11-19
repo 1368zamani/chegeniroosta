@@ -233,20 +233,6 @@
                             </div>
                         @endif
 
-                        @if($__vCount > 0)
-                            <div class="panel reveal" style="margin-top:16px">
-                                <h3>روستاهای بخش</h3>
-                                @foreach($villages->take(6) as $v)
-                                    <a class="kv" href="{{ route('public.village.show', $v->slug) }}" style="text-decoration:none;color:inherit">
-                                        <span>{{ $v->name }}</span>
-                                        <b>ورود ←</b>
-                                    </a>
-                                @endforeach
-                                @if($__vCount > 6)
-                                    <a class="link-more" style="margin-top:10px" href="#villages">همهٔ {{ $__fa($__vCount) }} روستا <svg><use href="#i-arrow"/></svg></a>
-                                @endif
-                            </div>
-                        @endif
                     </aside>
                 </div>
             @else
