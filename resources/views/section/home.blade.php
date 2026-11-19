@@ -439,7 +439,7 @@
     }
     .sh-ticker-label svg { width: 14px; height: 14px; }
     .sh-ticker-track { flex: 1; overflow: hidden; display: flex; align-items: center; }
-    .sh-ticker-move { display: inline-flex; align-items: center; gap: 36px; white-space: nowrap; animation: sh-scroll 55s linear infinite; }
+    .sh-ticker-move { display: inline-flex; align-items: center; gap: 36px; white-space: nowrap; animation-name: sh-scroll; animation-duration: 55s; animation-timing-function: linear; animation-iteration-count: infinite; animation-play-state: running; }
     .sh-ticker-move a {
         font-size: 12.5px; color: #5c2313; text-decoration: none;
         display: inline-flex; align-items: center; gap: 8px;
@@ -534,6 +534,9 @@
     .sh-expert-btn:hover { filter: brightness(1.05); }
 
     @media (max-width: 900px) { .sh-two { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) {
+        .sh-ticker-move { animation: sh-scroll 55s linear infinite !important; }
+    }
     @media (max-width: 720px) {
         .sh-ticker-label { font-size: 11.5px; padding-inline-end: 22px; }
         .sh-ticker-more { display: none; }
