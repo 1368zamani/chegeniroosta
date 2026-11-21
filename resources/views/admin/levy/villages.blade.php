@@ -39,34 +39,39 @@
             </thead>
             <tbody class="divide-y divide-slate-100" id="paramsRows">
                 @foreach($params as $i => $p)
+                    @php $formId = 'param-form-' . $p->id; @endphp
                     <tr data-name="{{ $p->village?->name ?? '' }}">
-                        <form method="POST" action="{{ route('admin.levy.villages.update', $p) }}">
-                            @csrf @method('PUT')
-                            <td class="p-3 text-slate-500" dir="ltr">{{ \App\Support\Number::money($i + 1) }}</td>
-                            <td class="p-3 font-semibold">{{ $p->village?->name }}</td>
-                            <td class="p-3">
-                                <select name="group" class="border border-slate-300 rounded px-2 py-1 text-xs">
-                                    @foreach(['الف','ب','ج'] as $g)
-                                        <option value="{{ $g }}" {{ $p->group === $g ? 'selected' : '' }}>{{ $g }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td class="p-3"><input type="text" name="transaction_value" value="{{ $p->transaction_value }}" class="w-24 border border-slate-300 rounded px-2 py-1 text-xs" dir="ltr"></td>
-                            <td class="p-3 font-bold text-blue-800" dir="ltr">{{ \App\Support\Number::money($p->final_coefficient) }}</td>
-                            <td class="p-3"><input type="text" name="construction_coefficient" value="{{ $p->construction_coefficient }}" class="w-20 border border-slate-300 rounded px-2 py-1 text-xs" dir="ltr"></td>
-                            <td class="p-3"><input type="text" name="density_coefficient" value="{{ $p->density_coefficient }}" class="w-20 border border-slate-300 rounded px-2 py-1 text-xs" dir="ltr"></td>
-                            <td class="p-3">
-                                <select name="density_area_source" class="border border-slate-300 rounded px-2 py-1 text-xs">
-                                    <option value="Q" {{ $p->density_area_source === 'Q' ? 'selected' : '' }}>مساحت ساخت (Q)</option>
-                                    <option value="R" {{ $p->density_area_source === 'R' ? 'selected' : '' }}>مساحت ملک (R)</option>
-                                </select>
-                                @if($p->density_area_source === 'R')
-                                    <div class="text-[10px] text-amber-700 mt-1" title="در اکسل اصلی، سلول T64 (امیرآباد) از مساحت ملک R بجای مساحت ساخت Q استفاده میکند.">استثناء اکسل: مساحت ملک</div>
-                                @endif
-                            </td>
-                            <td class="p-3 text-[11px] text-slate-500">{{ $p->source_note }}</td>
-                            <td class="p-3 no-print"><button type="submit" class="px-3 py-1 rounded bg-slate-800 text-white text-xs hover:bg-slate-900">ذخیره</button></td>
-                        </form>
+                        {{-- فرم داخل سلول قرار میگیرد تا توسط تجزیهکنندهٔ HTML حذف نشود؛
+                             سایر فیلدها و دکمه با ویژگی form به آن متصل میشوند. --}}
+                        <td class="p-3 text-slate-500" dir="ltr">
+                            <form id="{{ $formId }}" method="POST" action="{{ route('admin.levy.villages.update', $p) }}" class="hidden">
+                                @csrf @method('PUT')
+                            </form>
+                            {{ \App\Support\Number::money($i + 1) }}
+                        </td>
+                        <td class="p-3 font-semibold">{{ $p->village?->name }}</td>
+                        <td class="p-3">
+                            <select name="group" form="{{ $formId }}" class="border border-slate-300 rounded px-2 py-1 text-xs">
+                                @foreach(['الف','ب','ج'] as $g)
+                                    <option value="{{ $g }}" {{ $p->group === $g ? 'selected' : '' }}>{{ $g }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td class="p-3"><input type="text" name="transaction_value" form="{{ $formId }}" value="{{ $p->transaction_value }}" class="w-24 border border-slate-300 rounded px-2 py-1 text-xs" dir="ltr"></td>
+                        <td class="p-3 font-bold text-blue-800" dir="ltr">{{ \App\Support\Number::money($p->final_coefficient) }}</td>
+                        <td class="p-3"><input type="text" name="construction_coefficient" form="{{ $formId }}" value="{{ $p->construction_coefficient }}" class="w-20 border border-slate-300 rounded px-2 py-1 text-xs" dir="ltr"></td>
+                        <td class="p-3"><input type="text" name="density_coefficient" form="{{ $formId }}" value="{{ $p->density_coefficient }}" class="w-20 border border-slate-300 rounded px-2 py-1 text-xs" dir="ltr"></td>
+                        <td class="p-3">
+                            <select name="density_area_source" form="{{ $formId }}" class="border border-slate-300 rounded px-2 py-1 text-xs">
+                                <option value="Q" {{ $p->density_area_source === 'Q' ? 'selected' : '' }}>مساحت ساخت (Q)</option>
+                                <option value="R" {{ $p->density_area_source === 'R' ? 'selected' : '' }}>مساحت ملک (R)</option>
+                            </select>
+                            @if($p->density_area_source === 'R')
+                                <div class="text-[10px] text-amber-700 mt-1" title="در اکسل اصلی، سلول T64 (امیرآباد) از مساحت ملک R بجای مساحت ساخت Q استفاده میکند.">استثناء اکسل: مساحت ملک</div>
+                            @endif
+                        </td>
+                        <td class="p-3 text-[11px] text-slate-500">{{ $p->source_note }}</td>
+                        <td class="p-3 no-print"><button type="submit" form="{{ $formId }}" class="px-3 py-1 rounded bg-slate-800 text-white text-xs hover:bg-slate-900">ذخیره</button></td>
                     </tr>
                 @endforeach
             </tbody>
