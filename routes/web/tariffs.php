@@ -46,8 +46,8 @@ Route::middleware(['auth'])
     });
 
 // ماشین‌حساب عمومی (بدون احراز هویت)
-Route::post('/village/{slug}/tariff/calculate',
-    [\App\Http\Controllers\LegacyLevyController::class, 'index'])
+Route::post('/village/{slug}/levy/calculate',
+    [\App\Http\Controllers\Public\PublicLevyController::class, 'calculate'])
     ->name('tariff.public.calculate');
 
 // فرم‌های چاپی تعرفه

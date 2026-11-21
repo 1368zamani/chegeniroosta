@@ -31,4 +31,8 @@ Route::middleware(['web', 'auth'])->prefix('admin/levy')->name('admin.levy.')->g
 
     Route::get('/export/excel',        [LevyController::class, 'exportExcel'])->name('export.excel');
     Route::get('/export/excel/{file}', [LevyController::class, 'exportFile'])->name('export.file');
+    Route::get('/requests', [\App\Http\Controllers\Admin\LevyRequestController::class, 'index'])->name('requests.index');
+    Route::get('/requests/{levyRequest}', [\App\Http\Controllers\Admin\LevyRequestController::class, 'show'])->name('requests.show');
+    Route::post('/requests/{levyRequest}/approve', [\App\Http\Controllers\Admin\LevyRequestController::class, 'approve'])->name('requests.approve');
+    Route::post('/requests/{levyRequest}/reject', [\App\Http\Controllers\Admin\LevyRequestController::class, 'reject'])->name('requests.reject');
 });

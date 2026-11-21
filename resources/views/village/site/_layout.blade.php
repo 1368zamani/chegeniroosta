@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'پایگاه اط‌رسانی روستای ' . ($village->name ?? 'روستا'))</title>
+    <title>@yield('title', 'پایگاه اطلاعرسانی روستای ' . ($village->name ?? 'روستا'))</title>
     <meta name="theme-color" content="#c94a2b">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
