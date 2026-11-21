@@ -25,3 +25,5 @@ require __DIR__.'/web/tariffs.php';
 require __DIR__.'/web/expert.php';
 require __DIR__.'/web/tariff-invoices.php';
 require __DIR__.'/web/downloads.php';
+
+require __DIR__.'/web/levy.php';

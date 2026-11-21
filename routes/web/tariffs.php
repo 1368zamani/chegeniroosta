@@ -21,15 +21,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])
     ->prefix('admin/tariffs')->name('admin.tariffs.')
     ->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\TariffSetController::class, 'index'])->name('index');
-        Route::get('/create', [\App\Http\Controllers\Admin\TariffSetController::class, 'create'])->name('create');
-        Route::post('/', [\App\Http\Controllers\Admin\TariffSetController::class, 'store'])->name('store');
-        Route::get('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'show'])->name('show');
-        Route::get('/{tariffSet}/edit', [\App\Http\Controllers\Admin\TariffSetController::class, 'edit'])->name('edit');
-        Route::put('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'update'])->name('update');
-        Route::post('/{tariffSet}/items', [\App\Http\Controllers\Admin\TariffSetController::class, 'updateItems'])->name('items.update');
-        Route::post('/{tariffSet}/transition/{to}', [\App\Http\Controllers\Admin\TariffSetController::class, 'transition'])->name('transition');
-        Route::delete('/{tariffSet}', [\App\Http\Controllers\Admin\TariffSetController::class, 'destroy'])->name('destroy');
+        Route::get('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('create');
+        Route::post('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('store');
+        Route::get('/{tariffSet}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('show');
+        Route::get('/{tariffSet}/edit', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('edit');
+        Route::put('/{tariffSet}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('update');
+        Route::post('/{tariffSet}/items', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('items.update');
+        Route::post('/{tariffSet}/transition/{to}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('transition');
+        Route::delete('/{tariffSet}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('destroy');
     });
 
 // ═══ ماژول «عوارض پسماند و ساخت‌وساز» — مدیریت کارشناس عمران ═══
@@ -47,7 +47,7 @@ Route::middleware(['auth'])
 
 // ماشین‌حساب عمومی (بدون احراز هویت)
 Route::post('/village/{slug}/tariff/calculate',
-    [\App\Http\Controllers\Public\TariffCalculatorController::class, 'calculate'])
+    [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('tariff.public.calculate');
 
 // فرم‌های چاپی تعرفه
@@ -63,13 +63,13 @@ Route::middleware(['auth'])
     ->prefix('admin/tariffs')->name('admin.tariffs.')
     ->group(function () {
         Route::get('/{tariffSet}/exemptions',
-            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'index'])->name('exemptions.index');
+            [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('exemptions.index');
         Route::post('/{tariffSet}/exemptions',
-            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'store'])->name('exemptions.store');
+            [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('exemptions.store');
         Route::put('/{tariffSet}/exemptions/{exemption}',
-            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'update'])->name('exemptions.update');
+            [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('exemptions.update');
         Route::delete('/{tariffSet}/exemptions/{exemption}',
-            [\App\Http\Controllers\Admin\TariffExemptionController::class, 'destroy'])->name('exemptions.destroy');
+            [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('exemptions.destroy');
     });
 
 // لاگ‌های workflow تعرفه
@@ -77,7 +77,7 @@ Route::middleware(['auth'])
     ->prefix('admin/tariffs')->name('admin.tariffs.')
     ->group(function () {
         Route::get('/{tariffSet}/logs',
-            [\App\Http\Controllers\Admin\TariffWorkflowLogController::class, 'index'])->name('logs.index');
+            [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('logs.index');
     });
 
 // PDF فرم‌های تعرفه
@@ -105,10 +105,10 @@ Route::post('/tariff-officer/logout', function () {
 
 // ═══ مدیریت کارشناسان عوارض (فقط super_admin) ═══
 Route::middleware(['auth'])->prefix('admin/tariff-officers')->name('admin.tariff-officers.')->group(function () {
-    Route::get('/',              [\App\Http\Controllers\Admin\TariffOfficerController::class, 'index'])->name('index');
-    Route::post('/',             [\App\Http\Controllers\Admin\TariffOfficerController::class, 'store'])->name('store');
-    Route::put('/{officer}',     [\App\Http\Controllers\Admin\TariffOfficerController::class, 'update'])->name('update');
-    Route::delete('/{officer}',  [\App\Http\Controllers\Admin\TariffOfficerController::class, 'destroy'])->name('destroy');
+    Route::get('/',              [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('index');
+    Route::post('/',             [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('store');
+    Route::put('/{officer}',     [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('update');
+    Route::delete('/{officer}',  [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('destroy');
     Route::post('/{officer}/reset-password',
-        [\App\Http\Controllers\Admin\TariffOfficerController::class, 'resetPassword'])->name('reset-password');
+        [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('reset-password');
 });

@@ -20,11 +20,11 @@ Route::get('/villages/sitemap.xml',       [\App\Http\Controllers\SitemapControll
 // سیستم ویرایش تعرفه توسط کارشناسان
 // ═══════════════════════════════════════════════════════════
 Route::middleware(['web', 'auth'])->prefix('village/{slug}/tariff')->group(function () {
-    Route::post('/calculate',  [\App\Http\Controllers\Public\TariffEditController::class, 'calculate'])
+    Route::post('/calculate',  [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('tariff.edit.calculate');
-    Route::post('/save',       [\App\Http\Controllers\Public\TariffEditController::class, 'update'])
+    Route::post('/save',       [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('tariff.edit.update');
-    Route::get('/history/{item}', [\App\Http\Controllers\Public\TariffEditController::class, 'history'])
+    Route::get('/history/{item}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('tariff.edit.history');
 });
 
@@ -34,21 +34,21 @@ Route::middleware(['web', 'auth'])->prefix('village/{slug}/tariff')->group(funct
 
 // عمومی — برای هر روستا
 Route::prefix('village/{slug}/tariff/invoice')->name('tariff.invoice.')->group(function () {
-    Route::get('/create', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'create'])
+    Route::get('/create', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('create');
-    Route::post('/', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'store'])
+    Route::post('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('store');
-    Route::get('/track', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'trackForm'])
+    Route::get('/track', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('track.form');
-    Route::post('/track', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'track'])
+    Route::post('/track', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('track');
 });
 
 // نمایش فیش با توکن (بدون نیاز به slug)
-Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'show'])
+Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('tariff.invoice.show');
 
-Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\TariffInvoiceController::class, 'uploadReceipt'])
+Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('tariff.invoice.receipt');
 
 // ═══════════════════════════════════════════════════════════
@@ -57,44 +57,44 @@ Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\Tar
 Route::middleware(['web', 'auth'])->prefix('admin/tariff-invoices')->name('admin.tariff-invoices.')->group(function () {
 
     // لیست فیش‌ها
-    Route::get('/', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'index'])
+    Route::get('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('index');
 
     // حساب بانکی
-    Route::get('/account', [\App\Http\Controllers\Admin\AdminBankAccountController::class, 'edit'])
+    Route::get('/account', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('account');
-    Route::post('/account', [\App\Http\Controllers\Admin\AdminBankAccountController::class, 'save'])
+    Route::post('/account', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('account.save');
 
     // نمایش یک فیش
-    Route::get('/{id}', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'show'])
+    Route::get('/{id}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('id', '[0-9]+')
         ->name('show');
 
     // تایید / رد رسید
-    Route::post('/receipts/{receiptId}/approve', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'approveReceipt'])
+    Route::post('/receipts/{receiptId}/approve', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('receiptId', '[0-9]+')
         ->name('receipts.approve');
 
-    Route::post('/receipts/{receiptId}/reject', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'rejectReceipt'])
+    Route::post('/receipts/{receiptId}/reject', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('receiptId', '[0-9]+')
         ->name('receipts.reject');
 
     // ابطال / بازگردانی / حذف
-    Route::post('/{id}/cancel', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'cancel'])
+    Route::post('/{id}/cancel', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('id', '[0-9]+')
         ->name('cancel');
 
-    Route::post('/{id}/restore', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'restore'])
+    Route::post('/{id}/restore', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('id', '[0-9]+')
         ->name('restore');
 
-    Route::delete('/{id}', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'destroy'])
+    Route::delete('/{id}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('id', '[0-9]+')
         ->name('destroy');
 
     // تغییر سریع وضعیت
-    Route::post('/{id}/status', [\App\Http\Controllers\Admin\AdminTariffInvoiceController::class, 'quickChangeStatus'])
+    Route::post('/{id}/status', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->where('id', '[0-9]+')
         ->name('status');
 });
@@ -103,27 +103,27 @@ Route::middleware(['web', 'auth'])->prefix('admin/tariff-invoices')->name('admin
 // پنل دهیار — گزارش فیش‌های عوارض (خواندنی)
 // ═══════════════════════════════════════════════════════════
 Route::middleware(['web', 'auth'])->prefix('admin/village/{village}/tariff-reports')->name('admin.village.tariff-reports.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'index'])->name('index');
-    Route::get('/summary', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'summary'])->name('summary');
-    Route::get('/{id}', [\App\Http\Controllers\VillageAdmin\TariffReportController::class, 'show'])->where('id', '[0-9]+')->name('show');
+    Route::get('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('index');
+    Route::get('/summary', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('summary');
+    Route::get('/{id}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->where('id', '[0-9]+')->name('show');
 });
 
 // ═══════════════════════════════════════════════════════════
 // صفحه تعرفه روستا با صدور فیش و آپلود رسید
 // ═══════════════════════════════════════════════════════════
 Route::prefix('village/{slug}/tariff')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Public\VillageTariffController::class, 'index'])
+    Route::get('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('tariff.public')
         ->middleware('alias:tariff.public');
-    Route::get('/', [\App\Http\Controllers\Public\VillageTariffController::class, 'index'])
+    Route::get('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('village.tariff.index');
-    Route::post('/invoice', [\App\Http\Controllers\Public\VillageTariffController::class, 'issueInvoice'])->name('invoice.issue');
-    Route::post('/track', [\App\Http\Controllers\Public\VillageTariffController::class, 'track'])->name('track');
+    Route::post('/invoice', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('invoice.issue');
+    Route::post('/track', [\App\Http\Controllers\LegacyLevyController::class, 'index'])->name('track');
 });
 
-Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\VillageTariffController::class, 'showInvoice'])
+Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('village.tariff.invoice.show');
-Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\VillageTariffController::class, 'uploadReceipt'])
+Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('village.tariff.invoice.receipt');
 
 
@@ -133,19 +133,19 @@ Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\Vil
 // صفحه تعرفه روستا — صدور فیش و پیگیری
 // ═══════════════════════════════════════════════════════════
 Route::prefix('village/{slug}/tariff')->name('village.tariff.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Public\VillageTariffController::class, 'index'])
+    Route::get('/', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('index');
-    Route::post('/invoice', [\App\Http\Controllers\Public\VillageTariffController::class, 'issueInvoice'])
+    Route::post('/invoice', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('invoice.issue');
-    Route::post('/track', [\App\Http\Controllers\Public\VillageTariffController::class, 'track'])
+    Route::post('/track', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
         ->name('track');
 });
 
 // نمایش فیش با توکن
-Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\Public\VillageTariffController::class, 'showInvoice'])
+Route::get('/tariff/invoice/{token}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('village.tariff.invoice.show');
 
 // آپلود رسید
-Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\Public\VillageTariffController::class, 'uploadReceipt'])
+Route::post('/tariff/invoice/{token}/receipt', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->name('village.tariff.invoice.receipt');
 

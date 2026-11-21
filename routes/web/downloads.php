@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | ═══════════════════════════════════════════════════════════ */
 
 // PDF رسمی تعرفه‌ی منتشرشده (فرم ۲ و فرم ۳)
-Route::get('/download/tariff-pdf/{tariffSet}/{form?}', [\App\Http\Controllers\DownloadController::class, 'tariffPdf'])
+Route::get('/download/tariff-pdf/{tariffSet}/{form?}', [\App\Http\Controllers\LegacyLevyController::class, 'index'])
     ->where('tariffSet', '[0-9]+')
     ->where('form', 'form[0-9]+')
     ->name('download.tariff-pdf');

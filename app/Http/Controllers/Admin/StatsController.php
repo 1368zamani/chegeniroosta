@@ -66,7 +66,9 @@ class StatsController extends Controller
         } else {
             $villageIds = Village::where('section_id', $sectionId)->pluck('id')->all();
             $newsIds    = SectionNews::where('section_id', $sectionId)->pluck('id')->all();
-            $setIds     = TariffSet::whereIn('village_id', $villageIds)->pluck('id')->all();
+            $setIds     = \Illuminate\Support\Facades\Schema::hasTable('tariff_sets')
+                ? TariffSet::whereIn('village_id', $villageIds)->pluck('id')->all()
+                : [];
             $resIds     = VillageCouncilResolution::whereIn('village_id', $villageIds)->pluck('id')->all();
 
             $totals = ContentStat::query()

@@ -8,6 +8,7 @@ use App\Models\TariffTitle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Morilog\Jalali\Jalalian;
@@ -62,11 +63,24 @@ class WorksFeeController extends Controller
     {
         abort_unless(Gate::allows('works-fees.view'), 403);
 
-        $titles = TariffTitle::categorized()
+        // جدول tariff_items بخشی از ساختار قدیمی عوارض است که پس از تهیهٔ بکاپ حذف شد.
+        // ماژول works-fees تنها به tariff_titles و tariff_change_logs وابسته است؛
+        // در نبود جدول مذکور، شمارش آیتمها صفر محاسبه میشود تا ماژول دچار خطا نشود.
+        $titlesQuery = TariffTitle::categorized()
             ->with(['lastEditor:id,name'])
-            ->withCount('items')
-            ->ordered()
-            ->get();
+            ->ordered();
+
+        if (Schema::hasTable('tariff_items')) {
+            $titlesQuery->withCount('items');
+        }
+
+        $titles = $titlesQuery->get();
+
+        if (! Schema::hasTable('tariff_items')) {
+            $titles->each(function (TariffTitle $t) {
+                $t->setAttribute('items_count', 0);
+            });
+        }
 
         $groups = [];
         foreach (self::GROUP_KEYS as $key) {
