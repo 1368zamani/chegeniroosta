@@ -550,6 +550,9 @@
                             <a href="{{ route('village.tariff.index', $village->slug) }}" role="menuitem">
                                 <svg><use href="#i-doc"/></svg> تعرفهٔ کامل سال جاری
                             </a>
+                            <a href="{{ route('village.tariff.index', $village->slug) }}#waste" role="menuitem">
+                                <svg><use href="#i-doc"/></svg> پرداخت عوارض پسماند
+                            </a>
                         </div>
                     </div>
                 </div>

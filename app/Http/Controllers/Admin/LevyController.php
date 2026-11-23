@@ -14,6 +14,7 @@ use App\Support\Number;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 
 class LevyController extends Controller
@@ -28,6 +29,24 @@ class LevyController extends Controller
     private function en($value)
     {
         return Number::en($value);
+    }
+
+    /** مشاهدهٔ صفحات کاری عوارض (گزارشها جدایند) */
+    private function authorizeView(): void
+    {
+        abort_unless(Gate::allows('levy.view'), 403);
+    }
+
+    /** ویرایش اعداد پروندهٔ اکسل و ضرایب روستاها — مسئول عمرانی */
+    private function authorizeManage(): void
+    {
+        abort_unless(Gate::allows('levy.manage'), 403, 'ویرایش عوارض فقط توسط مسئول عمرانی بخشداری مجاز است.');
+    }
+
+    /** مشاهدهٔ گزارشها — شامل ادمین روستا */
+    private function authorizeReport(): void
+    {
+        abort_unless(Gate::allows('levy.report'), 403);
     }
 
     private function log(LevyFile $file, string $action, array $changes = []): void
@@ -59,6 +78,7 @@ class LevyController extends Controller
 
     public function dashboard()
     {
+        $this->authorizeView();
         $villages = Village::all();
         $files = LevyFile::with('village', 'params', 'lines')->get();
 
@@ -75,6 +95,7 @@ class LevyController extends Controller
     /** ضرایب مرجع تمام روستاها (قابل ویرایش توسط کارشناس) */
     public function villages()
     {
+        $this->authorizeView();
         $params = LevyVillageParam::with('village')->get()
             ->sortBy(fn($p) => $p->village?->name ?? '');
 
@@ -83,6 +104,7 @@ class LevyController extends Controller
 
     public function paramsUpdate(Request $request, LevyVillageParam $param)
     {
+        $this->authorizeManage();
         $v = $request->validate([
             'group'                    => ['required', 'string', 'max:4'],
             'transaction_value'        => ['required', 'numeric', 'min:0'],
@@ -111,6 +133,7 @@ class LevyController extends Controller
 
     public function accounts()
     {
+        $this->authorizeView();
         return view('admin.levy.accounts', [
             'accounts' => LevyAccount::orderBy('sort_order')->get(),
         ]);
@@ -122,6 +145,7 @@ class LevyController extends Controller
 
     public function filesIndex(Request $request)
     {
+        $this->authorizeView();
         $search = trim((string) $request->get('search', ''));
         $status = (string) $request->get('status', '');
 
@@ -145,6 +169,7 @@ class LevyController extends Controller
 
     public function filesCreate()
     {
+        $this->authorizeManage();
         return view('admin.levy.files.create', [
             'villages' => Village::orderBy('name')->get(),
             'params'   => LevyVillageParam::all()->keyBy('village_id'),
@@ -155,6 +180,7 @@ class LevyController extends Controller
 
     public function filesStore(Request $request)
     {
+        $this->authorizeManage();
         $data = $this->validateData($request);
 
         $exists = LevyFile::withTrashed()
@@ -190,6 +216,7 @@ class LevyController extends Controller
 
     public function filesShow(LevyFile $file)
     {
+        $this->authorizeView();
         $file->load('village', 'params', 'lines', 'audits.user');
 
         return view('admin.levy.files.show', [
@@ -200,6 +227,7 @@ class LevyController extends Controller
 
     public function filesUpdate(Request $request, LevyFile $file)
     {
+        $this->authorizeManage();
         $data = $this->validateData($request, $file);
 
         return DB::transaction(function () use ($data, $file) {
@@ -224,6 +252,7 @@ class LevyController extends Controller
     /** ذخیرهٔ خودکار (AJAX) */
     public function filesAutosave(Request $request, LevyFile $file): JsonResponse
     {
+        $this->authorizeManage();
         $data = $this->validateData($request, $file);
 
         return DB::transaction(function () use ($data, $file) {
@@ -255,6 +284,7 @@ class LevyController extends Controller
 
     public function filesDestroy(LevyFile $file)
     {
+        $this->authorizeManage();
         $this->log($file, 'حذف پرونده (بایگانی نرم)', ['village' => $file->village?->name]);
         $file->delete();
 
@@ -263,6 +293,7 @@ class LevyController extends Controller
 
     public function filesAudit(LevyFile $file)
     {
+        $this->authorizeView();
         $file->load('village');
         return view('admin.levy.files.audit', [
             'file'   => $file,
@@ -276,12 +307,14 @@ class LevyController extends Controller
 
     public function reportsVillage(LevyFile $file)
     {
+        $this->authorizeReport();
         $file->load('village', 'params', 'lines');
         return view('admin.levy.reports.village', ['file' => $file]);
     }
 
     public function reportsAll()
     {
+        $this->authorizeReport();
         $files = LevyFile::with('village', 'params', 'lines')->get();
         return view('admin.levy.reports.all', [
             'files'  => $files,
@@ -291,6 +324,7 @@ class LevyController extends Controller
 
     public function reportsCompare()
     {
+        $this->authorizeReport();
         $files = LevyFile::with('village', 'params', 'lines')->get()
             ->sortByDesc(fn($f) => $f->final_levy)->values();
         return view('admin.levy.reports.compare', ['files' => $files]);
@@ -298,6 +332,7 @@ class LevyController extends Controller
 
     public function reportsIncomplete()
     {
+        $this->authorizeReport();
         $files = LevyFile::with('village', 'params', 'lines')
             ->where('status', '!=', 'complete')->get();
         return view('admin.levy.reports.incomplete', ['files' => $files]);
@@ -309,6 +344,7 @@ class LevyController extends Controller
 
     public function exportFile(LevyFile $file)
     {
+        $this->authorizeReport();
         $file->load('village', 'params', 'lines');
         $xlsx = LevyXlsxWriter::build(collect([$file]));
 
@@ -321,6 +357,7 @@ class LevyController extends Controller
 
     public function exportExcel()
     {
+        $this->authorizeReport();
         $files = LevyFile::with('village', 'params', 'lines')->get();
         $xlsx = LevyXlsxWriter::build($files);
 

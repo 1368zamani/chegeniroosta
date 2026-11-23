@@ -1,15 +1,24 @@
 <div class="no-print bg-white rounded-lg shadow-sm border border-slate-200 px-4 py-3 mb-5">
     <div class="flex flex-wrap items-center gap-2">
         <span class="font-bold text-slate-700 ml-2">زیرسامانه عوارض احداث بنا</span>
-        <a href="{{ route('admin.levy.dashboard') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.dashboard') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">داشبورد</a>
-        <a href="{{ route('admin.levy.villages') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.villages') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">ضرایب روستاها</a>
-        <a href="{{ route('admin.levy.accounts') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.accounts') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">حسابها</a>
-        <a href="{{ route('admin.levy.files.index') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.files.*') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">پروندهها</a>
-        <a href="{{ route('admin.levy.requests.index') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.requests.*') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">درخواستهای مردمی</a>
-        <a href="{{ route('admin.levy.reports.all') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.reports.all') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">گزارش تجمیعی</a>
-        <a href="{{ route('admin.levy.reports.compare') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.reports.compare') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">مقایسه روستاها</a>
-        <a href="{{ route('admin.levy.reports.incomplete') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.reports.incomplete') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">اطلاعات ناقص</a>
-        <a href="{{ route('admin.levy.export.excel') }}" class="px-3 py-1.5 rounded text-sm bg-blue-700 text-white hover:bg-blue-800 mr-auto">خروجی اکسل</a>
+
+        @can('levy.view')
+            <a href="{{ route('admin.levy.dashboard') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.dashboard') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">داشبورد</a>
+            <a href="{{ route('admin.levy.villages') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.villages') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">ضرایب روستاها</a>
+            <a href="{{ route('admin.levy.accounts') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.accounts') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">حسابها</a>
+            <a href="{{ route('admin.levy.files.index') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.files.*') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">پروندهها</a>
+        @endcan
+
+        @can('levy.review')
+            <a href="{{ route('admin.levy.requests.index') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.requests.*') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">درخواستهای مردمی</a>
+        @endcan
+
+        @can('levy.report')
+            <a href="{{ route('admin.levy.reports.all') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.reports.all') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">گزارش تجمیعی</a>
+            <a href="{{ route('admin.levy.reports.compare') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.reports.compare') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">مقایسه روستاها</a>
+            <a href="{{ route('admin.levy.reports.incomplete') }}" class="px-3 py-1.5 rounded text-sm {{ request()->routeIs('admin.levy.reports.incomplete') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}">اطلاعات ناقص</a>
+            <a href="{{ route('admin.levy.export.excel') }}" class="px-3 py-1.5 rounded text-sm bg-blue-700 text-white hover:bg-blue-800 mr-auto">خروجی اکسل</a>
+        @endcan
     </div>
 </div>
 

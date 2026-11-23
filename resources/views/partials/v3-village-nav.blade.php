@@ -19,6 +19,7 @@
         ['label' => 'محصولات', 'url' => route('village.site.products', $__slug), 'on' => request()->routeIs('village.site.products*')],
         ['label' => 'فایل‌ها', 'url' => route('village.site.downloads', $__slug), 'on' => request()->routeIs('village.site.downloads')],
         ['label' => 'عوارض', 'url' => route('village.tariff.index', $__slug), 'on' => request()->routeIs('village.tariff.*')],
+        ['label' => 'عوارض پسماند', 'url' => route('village.tariff.index', $__slug) . '#waste', 'on' => false],
         ['label' => 'ثبت درخواست', 'url' => route('village.site.request.create', $__slug), 'on' => request()->routeIs('village.site.request.*')],
     ];
 @endphp

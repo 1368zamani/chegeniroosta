@@ -3,7 +3,9 @@
 @section('content')
 <div class="p-4 md:p-6" dir="rtl">
     <div class="no-print mb-4 flex flex-wrap gap-2 items-center">
-        <a href="{{ route('admin.levy.files.show', $file) }}" class="px-3 py-2 rounded bg-slate-100 text-slate-700 text-sm hover:bg-slate-200">← بازگشت به پرونده</a>
+        @can('levy.view')
+            <a href="{{ route('admin.levy.files.show', $file) }}" class="px-3 py-2 rounded bg-slate-100 text-slate-700 text-sm hover:bg-slate-200">← بازگشت به پرونده</a>
+        @endcan
         <button onclick="window.print()" class="px-4 py-2 rounded bg-slate-800 text-white text-sm hover:bg-slate-900 no-print">چاپ گزارش</button>
         <a href="{{ route('admin.levy.export.file', $file) }}" class="px-4 py-2 rounded bg-blue-700 text-white text-sm hover:bg-blue-800 no-print">خروجی اکسل</a>
     </div>

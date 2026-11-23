@@ -17,7 +17,8 @@ use Morilog\Jalali\Jalalian;
  * مدیریت «عوارض پسماند» و «عوارض ساخت‌وساز» توسط کارشناس عمران.
  *
  * دسترسی‌ها در AppServiceProvider با Gate تعریف شده‌اند:
- *   works-fees.view    → مدیر سامانه، کارشناس فنی، کارشناس مالی، ادمین بخش/روستا
+ *   works-fees.view    → managing، کارشناس فنی، کارشناس مالی، ادمین بخش
+ *                         (ادمین روستا فقط به گزارش عوارض دسترسی دارد)
  *   works-fees.manage  → مدیر سامانه + کارشناس فنی (همه) · کارشناس مالی (فقط پسماند)
  */
 class WorksFeeController extends Controller

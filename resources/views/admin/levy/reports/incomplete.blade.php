@@ -25,7 +25,9 @@
                         </div>
                         <div class="flex items-center gap-3">
                             <span class="text-xs text-slate-500">تکمیل: {{ \App\Support\Number::money($f->completion_percent) }}٪</span>
-                            <a href="{{ route('admin.levy.files.show', $f) }}" class="text-xs text-blue-700 hover:underline no-print">تکمیل اطلاعات ←</a>
+                            @can('levy.view')
+                                <a href="{{ route('admin.levy.files.show', $f) }}" class="text-xs text-blue-700 hover:underline no-print">تکمیل اطلاعات ←</a>
+                            @endcan
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 mb-3">

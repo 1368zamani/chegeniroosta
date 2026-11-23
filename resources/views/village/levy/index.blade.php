@@ -202,8 +202,8 @@
     function activate(tab) {
         tabs.forEach(function (t) {
             var on = t === tab;
-            t.style.borderBottom = on ? '3px solid ' + (on.dataset.tab === 'construction' ? '#27689f' : '#2e7d32') : '3px solid transparent';
-            t.style.color = on ? (on.dataset.tab === 'construction' ? '#27689f' : '#2e7d32') : '#6b7280';
+            t.style.borderBottom = on ? '3px solid ' + (t.dataset.tab === 'construction' ? '#27689f' : '#2e7d32') : '3px solid transparent';
+            t.style.color = on ? (t.dataset.tab === 'construction' ? '#27689f' : '#2e7d32') : '#6b7280';
         });
         panels.forEach(function (p) { p.style.display = p.dataset.panel === tab.dataset.tab ? '' : 'none'; });
         typeInput.value = tab.dataset.tab;
@@ -278,6 +278,9 @@
 
     // مقداردهی اولیهٔ تب بر اساس مقدار قدیمی فرم
     var oldType = @json(old('type', 'construction'));
+    // لینک مستقیم «عوارض پسماند» از منوی سایت روستا تب پسماند را باز میکند
+    var hashType = (window.location.hash || '').replace(/^#/, '');
+    if (hashType === 'waste' || hashType === 'construction') { oldType = hashType; }
     var initial = Array.prototype.find.call(tabs, function (t) { return t.dataset.tab === oldType; }) || tabs[0];
     activate(initial);
 })();

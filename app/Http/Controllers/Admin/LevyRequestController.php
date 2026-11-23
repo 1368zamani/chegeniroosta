@@ -6,14 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\LevyPublicRequest;
 use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * بررسی درخواستهای مردمی عوارض (تأیید / رد رسید پرداخت)
  */
 class LevyRequestController extends Controller
 {
+    /** بررسی رسیدها: عمرانی + مالی + managing (ادمین روستا هیچ دسترسی ندارد) */
+    private function authorizeReview(): void
+    {
+        abort_unless(Gate::allows('levy.review'), 403);
+    }
+
     public function index(Request $request)
     {
+        $this->authorizeReview();
         $query = LevyPublicRequest::with('village')->orderByDesc('id');
 
         if ($status = $request->get('status')) {
@@ -51,6 +59,7 @@ class LevyRequestController extends Controller
 
     public function show(LevyPublicRequest $levyRequest)
     {
+        $this->authorizeReview();
         $levyRequest->load('village', 'items', 'events.user', 'reviewer');
 
         return view('admin.levy.requests.show', ['row' => $levyRequest]);
@@ -58,6 +67,7 @@ class LevyRequestController extends Controller
 
     public function approve(LevyPublicRequest $levyRequest)
     {
+        $this->authorizeReview();
         $levyRequest->update([
             'status'      => 'approved',
             'reviewed_by' => auth()->id(),
@@ -71,6 +81,7 @@ class LevyRequestController extends Controller
 
     public function reject(Request $request, LevyPublicRequest $levyRequest)
     {
+        $this->authorizeReview();
         $data = $request->validate([
             'review_note' => ['required', 'string', 'max:1000'],
         ], [

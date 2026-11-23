@@ -46,7 +46,8 @@ class AppServiceProvider extends ServiceProvider
             return $user->isSuperAdmin()
                 || $user->isTechnicalOfficer()
                 || $user->isFinancialOfficer()
-                || in_array($user->role, ['section_admin', 'village_admin'], true);
+                || $user->isSectionAdmin();
+            // ادمین روستا فقط به گزارش عوارض دسترسی دارد، نه به پنل تعیین مبالغ.
         });
 
         /**
@@ -64,6 +65,42 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return false;
+        });
+
+        // ═══ Gateهای اختصاصی زیرسامانهٔ «عوارض احداث بنا» ═══
+        //
+        // اصل دسترسیها:
+        //   • ویرایش اعداد پروندهها/ضرایب روستاها → فقط مسئول عمرانی بخشداری (+ managing)
+        //   • تأیید/رد رسید پرداخت                 → عمرانی + مالی + managing
+        //   • ادمین روستا                          → فقط مشاهدهٔ گزارش عوارض
+
+        /** مشاهدهٔ صفحات کاری عوارض (غیر از گزارشها) */
+        Gate::define('levy.view', function (User $user) {
+            return $user->isSuperAdmin()
+                || $user->isTechnicalOfficer()
+                || $user->isFinancialOfficer()
+                || $user->isSectionAdmin();
+        });
+
+        /** پر کردن/ویرایش اعداد پروندهٔ اکسل و ضرایب مرجع روستاها */
+        Gate::define('levy.manage', function (User $user) {
+            return $user->isSuperAdmin() || $user->isTechnicalOfficer();
+        });
+
+        /** بررسی و تأیید/رد رسیدهای پرداخت مردمی */
+        Gate::define('levy.review', function (User $user) {
+            return $user->isSuperAdmin()
+                || $user->isTechnicalOfficer()
+                || $user->isFinancialOfficer();
+        });
+
+        /** مشاهدهٔ گزارش عوارض — شامل ادمین روستا */
+        Gate::define('levy.report', function (User $user) {
+            return $user->isSuperAdmin()
+                || $user->isSectionAdmin()
+                || $user->isVillageAdmin()
+                || $user->isTechnicalOfficer()
+                || $user->isFinancialOfficer();
         });
 
         // ═══ Registry محاسبه‌گرهای تعرفه ═══
