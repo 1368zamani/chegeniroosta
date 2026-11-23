@@ -99,27 +99,48 @@
                             فعلاً قلم فعالی برای عوارض پسماند ثبت نشده است.
                         </div>
                     @else
-                        <div class="space-y-2">
-                            @foreach($wasteTitles as $title)
-                                <div class="waste-row flex flex-wrap items-center gap-3 p-3 rounded-lg border border-gray-200"
-                                     data-price="{{ (int) $title->base_amount }}"
-                                     data-id="{{ $title->id }}">
-                                    <label class="flex items-center gap-2 flex-1 min-w-[200px] cursor-pointer">
-                                        <input type="checkbox" class="waste-check" name="items[{{ $loop->index }}][enabled]" value="1">
-                                        <input type="hidden" name="items[{{ $loop->index }}][id]" value="{{ $title->id }}">
-                                        <span class="text-sm text-gray-800">{{ $title->name_fa }}</span>
-                                    </label>
-                                    <span class="text-xs text-gray-500">{{ $title->unit }}</span>
-                                    <span class="text-sm font-bold text-gray-700" dir="ltr">{{ Number::money($title->base_amount) }} ریال</span>
-                                    <input type="text" inputmode="numeric" dir="ltr"
-                                           class="waste-qty w-20 border border-gray-300 rounded p-1.5 text-left text-sm"
-                                           name="items[{{ $loop->index }}][qty]" value="1">
+                        {{-- انتخاب اقلام بهصورت کشویی --}}
+                        <div id="wasteRows" class="space-y-3">
+                            <div class="waste-row flex flex-wrap items-end gap-3 p-3 rounded-lg border border-gray-200"
+                                 data-index="0">
+                                <div class="flex-1 min-w-[220px]">
+                                    <label class="block text-xs font-bold text-gray-600 mb-1">قلم پسماند</label>
+                                    <select class="waste-select w-full border border-gray-300 rounded-lg p-2 text-sm focus:border-emerald-500 focus:outline-none"
+                                            name="items[0][id]">
+                                        @foreach($wasteTitles as $title)
+                                            <option value="{{ $title->id }}"
+                                                    data-price="{{ (int) $title->base_amount }}"
+                                                    data-unit="{{ $title->unit }}"
+                                                    @selected($loop->first)>{{ $title->name_fa }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            @endforeach
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-600 mb-1">تعداد / مقدار</label>
+                                    <input type="text" inputmode="numeric" dir="ltr"
+                                           class="waste-qty w-24 border border-gray-300 rounded-lg p-2 text-left text-sm"
+                                           name="items[0][qty]" value="1">
+                                </div>
+                                <div class="min-w-[150px]">
+                                    <div class="text-xs text-gray-500">قیمت واحد</div>
+                                    <div class="waste-price text-sm font-bold text-gray-700" dir="ltr">
+                                        {{ Number::money($wasteTitles->first()->base_amount) }} ریال
+                                    </div>
+                                </div>
+                                <input type="hidden" class="waste-enabled" name="items[0][enabled]" value="1">
+                                <button type="button" class="waste-remove mb-1 text-rose-600 text-xs hover:underline"
+                                        title="حذف این قلم" style="display:none;">حذف</button>
+                            </div>
                         </div>
-                        <button type="button" id="calcWaste"
-                                class="mt-4 px-5 py-2.5 rounded-lg text-white text-sm font-bold hover:opacity-90"
-                                style="background:#2e7d32;">محاسبه مبلغ</button>
+                        <div class="mt-3 flex flex-wrap items-center gap-3">
+                            <button type="button" id="addWasteRow"
+                                    class="px-4 py-2 rounded-lg border border-emerald-600 text-emerald-700 text-sm font-bold hover:bg-emerald-50">
+                                + افزودن قلم دیگر
+                            </button>
+                            <button type="button" id="calcWaste"
+                                    class="px-5 py-2.5 rounded-lg text-white text-sm font-bold hover:opacity-90"
+                                    style="background:#2e7d32;">محاسبه مبلغ</button>
+                        </div>
                     @endif
                 </div>
 
@@ -221,6 +242,57 @@
     }
     function fmt(n) { return toFa(Number(n).toLocaleString('en-US')); }
 
+    // ── اقلام پسماند: ردیفهای کشویی ─────────────────────────────
+    var wasteRows = document.getElementById('wasteRows');
+    var addWasteBtn = document.getElementById('addWasteRow');
+
+    function refreshWasteRow(row) {
+        var sel = row.querySelector('.waste-select');
+        var opt = sel && sel.selectedOptions[0];
+        var price = opt ? (parseInt(opt.dataset.price, 10) || 0) : 0;
+        row.querySelector('.waste-price').textContent = fmt(price) + ' ریال';
+    }
+
+    function reindexWaste() {
+        if (!wasteRows) { return; }
+        var rows = wasteRows.querySelectorAll('.waste-row');
+        rows.forEach(function (row, i) {
+            row.dataset.index = i;
+            row.querySelectorAll('[name]').forEach(function (el) {
+                el.name = el.name.replace(/\[\d+\]/, '[' + i + ']');
+            });
+            var remove = row.querySelector('.waste-remove');
+            if (remove) { remove.style.display = rows.length > 1 ? '' : 'none'; }
+        });
+    }
+
+    if (wasteRows) {
+        wasteRows.querySelectorAll('.waste-row').forEach(refreshWasteRow);
+        wasteRows.addEventListener('change', function (e) {
+            if (e.target.classList.contains('waste-select')) {
+                refreshWasteRow(e.target.closest('.waste-row'));
+            }
+        });
+        wasteRows.addEventListener('click', function (e) {
+            if (e.target.classList.contains('waste-remove')) {
+                if (wasteRows.querySelectorAll('.waste-row').length > 1) {
+                    e.target.closest('.waste-row').remove();
+                    reindexWaste();
+                }
+            }
+        });
+        if (addWasteBtn) {
+            addWasteBtn.addEventListener('click', function () {
+                var first = wasteRows.querySelector('.waste-row');
+                if (!first) { return; }
+                var clone = first.cloneNode(true);
+                wasteRows.appendChild(clone);
+                refreshWasteRow(clone);
+                reindexWaste();
+            });
+        }
+    }
+
     function render(data) {
         if (!data.ok) { resultBox.textContent = 'خطا در محاسبه.'; return; }
         resultBox.innerHTML = '<span class="text-gray-600 text-xs">مبلغ قابل پرداخت:</span> '
@@ -265,10 +337,12 @@
         calcWaste.addEventListener('click', function () {
             var payload = { type: 'waste' };
             var i = 0;
-            document.querySelectorAll('.waste-row').forEach(function (row) {
-                if (!row.querySelector('.waste-check').checked) { return; }
-                payload['items[' + i + '][id]'] = row.dataset.id;
+            document.querySelectorAll('#wasteRows .waste-row').forEach(function (row) {
+                var sel = row.querySelector('.waste-select');
+                if (!sel || !sel.value) { return; }
+                payload['items[' + i + '][id]'] = sel.value;
                 payload['items[' + i + '][qty]'] = row.querySelector('.waste-qty').value || '1';
+                payload['items[' + i + '][enabled]'] = '1';
                 i++;
             });
             if (i === 0) { resultBox.textContent = 'حداقل یک قلم پسماند را انتخاب کنید.'; return; }

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Expert;
 
 use App\Http\Controllers\Controller;
-use App\Models\TariffSet;
-use App\Models\TariffItem;
-use App\Models\TariffParameter;
-use App\Models\TariffExemption;
-use App\Models\TariffInvoice;
+use App\Models\LevyFile;
+use App\Models\LevyPublicRequest;
+use App\Models\TariffTitle;
 use App\Models\Village;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ExpertDashboardController extends Controller
@@ -18,69 +15,38 @@ class ExpertDashboardController extends Controller
     {
         $user = Auth::user();
 
-        // ═══ شناسه روستاهای مجاز بر اساس بخش کاربر ═══
+        // روستاهای مجاز بر اساس بخش/روستای کاربر
         $villageIds = null;
-        if ($user->role !== 'super_admin') {
-            $villageQuery = Village::query();
+        if (!$user->isSuperAdmin()) {
+            $query = Village::query();
             if ($user->section_id) {
-                $villageQuery->where('section_id', $user->section_id);
+                $query->where('section_id', $user->section_id);
             } elseif ($user->village_id) {
-                $villageQuery->where('id', $user->village_id);
+                $query->where('id', $user->village_id);
             }
-            $villageIds = $villageQuery->pluck('id')->toArray();
+            $villageIds = $query->pluck('id')->all();
         }
 
-        if (!\Illuminate\Support\Facades\Schema::hasTable('tariff_sets')) {
-            $stats = [
-                'total_tariffs'    => 0,
-                'total_items'      => 0,
-                'total_parameters' => 0,
-                'total_exemptions' => 0,
-                'total_villages'   => $villageIds ? count($villageIds) : Village::count(),
-                'total_users'      => User::count(),
-                'total_invoices'   => 0,
-            ];
-            $recentTariffs = collect();
-            $draftTariffs  = collect();
-        } else {
-            // ═══ آمار کامل ═══
-            $stats = [
-                'total_tariffs'    => $villageIds
-                    ? TariffSet::whereIn('village_id', $villageIds)->count()
-                    : TariffSet::count(),
-                'total_items'      => $villageIds
-                    ? TariffItem::whereHas('set', fn($q) => $q->whereIn('village_id', $villageIds))->count()
-                    : TariffItem::count(),
-                'total_parameters' => $villageIds
-                    ? TariffParameter::whereHas('set', fn($q) => $q->whereIn('village_id', $villageIds))->count()
-                    : TariffParameter::count(),
-                'total_exemptions' => $villageIds
-                    ? TariffExemption::whereHas('set', fn($q) => $q->whereIn('village_id', $villageIds))->count()
-                    : TariffExemption::count(),
-                'total_villages'   => $villageIds ? count($villageIds) : Village::count(),
-                'total_users'      => User::count(),
-                'total_invoices'   => $villageIds
-                    ? TariffInvoice::whereIn('village_id', $villageIds)->count()
-                    : TariffInvoice::count(),
-            ];
-
-            // ═══ تعرفه‌های اخیر ═══
-            $tariffQuery = TariffSet::with('village')->orderByDesc('id')->limit(10);
-            if ($villageIds) {
-                $tariffQuery->whereIn('village_id', $villageIds);
-            }
-            $recentTariffs = $tariffQuery->get();
-
-            // ═══ پیش‌نویس‌ها ═══
-            $draftQuery = TariffSet::with('village')->where('status', 'draft')->orderByDesc('id')->limit(10);
-            if ($villageIds) {
-                $draftQuery->whereIn('village_id', $villageIds);
-            }
-            $draftTariffs = $draftQuery->get();
-
-
+        $filesQuery = LevyFile::query();
+        $requestQuery = LevyPublicRequest::query();
+        if ($villageIds !== null) {
+            $filesQuery->whereIn('village_id', $villageIds);
+            $requestQuery->whereIn('village_id', $villageIds);
         }
 
-        return view('expert.dashboard', compact('user', 'stats', 'recentTariffs', 'draftTariffs'));
+        $stats = [
+            'total_files'    => $filesQuery->count(),
+            'waste_titles'   => TariffTitle::where('category', 'waste')->where('is_active', 1)->count(),
+            'pending_reqs'   => (clone $requestQuery)->whereIn('status', ['awaiting_receipt', 'under_review'])->count(),
+            'total_villages' => $villageIds !== null ? count($villageIds) : Village::count(),
+        ];
+
+        $recentRequests = (clone $requestQuery)
+            ->with('village')
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get();
+
+        return view('expert.dashboard', compact('user', 'stats', 'recentRequests'));
     }
 }

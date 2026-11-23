@@ -107,7 +107,7 @@
             <i class="bi bi-clipboard-data" style="font-size: 2rem;"></i>
             <div>
                 <h5 class="mb-0 fw-bold">پنل کارشناسان فنی و مالی</h5>
-                <small class="opacity-75">سامانه تعرفه‌های دهیاری چگنی روستا</small>
+                <small class="opacity-75">سامانه عوارض دهیاری چگنی روستا</small>
             </div>
         </div>
         <div class="d-flex align-items-center gap-3">
@@ -134,36 +134,41 @@
                     <i class="bi bi-speedometer2"></i> داشبورد
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('expert.tariffs.*') ? 'active' : '' }}"
-                   href="{{ route('expert.tariffs.index') }}">
-                    <i class="bi bi-list-check"></i> تعرفه‌ها
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('expert.tariff-invoices.*') ? 'active' : '' }}"
-                   href="{{ route('expert.tariff-invoices.index') }}">
-                    <i class="bi bi-receipt"></i> 📋 فیش‌های عوارض
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('expert.parameters.*') ? 'active' : '' }}"
-                   href="{{ route('expert.parameters.index') }}">
-                    <i class="bi bi-sliders"></i> مفروضات
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('expert.items.*') ? 'active' : '' }}"
-                   href="{{ route('expert.items.index') }}">
-                    <i class="bi bi-list-ol"></i> آیتم‌ها
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('expert.exemptions.*') ? 'active' : '' }}"
-                   href="{{ route('expert.exemptions.index') }}">
-                    <i class="bi bi-shield-check"></i> معافیت‌ها
-                </a>
-            </li>
+            @can('levy.view')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.levy.dashboard') }}">
+                        <i class="bi bi-list-check"></i> عوارض احداث بنا
+                    </a>
+                </li>
+            @endcan
+            @can('works-fees.view')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.works-fees.index') }}">
+                        <i class="bi bi-cash-coin"></i> مبالغ پسماند
+                    </a>
+                </li>
+            @endcan
+            @can('levy.review')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.levy.requests.index') }}">
+                        <i class="bi bi-receipt"></i> درخواستها و رسیدها
+                    </a>
+                </li>
+            @endcan
+            @can('levy.manage')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.levy.villages') }}">
+                        <i class="bi bi-sliders"></i> ضرایب روستاها
+                    </a>
+                </li>
+            @endcan
+            @can('levy.report')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.levy.reports.all') }}">
+                        <i class="bi bi-bar-chart"></i> گزارشها
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </nav>

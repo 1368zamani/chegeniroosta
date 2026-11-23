@@ -14,7 +14,7 @@ class EnsureExpertAccess
         'section_admin',    // ادمین بخش
         'fee_officer',      // کارشناس مالی
         'tariff_officer',   // کارشناس تعرفه
-        'village_admin',    // ادمین روستا (فقط برای تعرفه‌های روستای خودش)
+        // ادمین روستا عضو پنل کارشناسان نیست؛ دسترسی او فقط به گزارش عوارض است.
     ];
 
     public function handle(Request $request, Closure $next)
@@ -27,7 +27,7 @@ class EnsureExpertAccess
         }
 
         if (!in_array($user->role, self::ALLOWED_ROLES, true)) {
-            Auth::logout();
+            // بدون خروج از حساب کاربری، فقط به صفحهٔ ورود پنل کارشناسان هدایت شود.
             return redirect()->route('expert.login')
                 ->withErrors(['identifier' => 'شما دسترسی به پنل کارشناسان ندارید.']);
         }
