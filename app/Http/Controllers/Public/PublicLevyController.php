@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Mpdf\Mpdf;
 use Morilog\Jalali\Jalalian;
 use App\Models\BankAccount;
 use App\Models\LevyPublicRequest;
@@ -329,15 +329,42 @@ class PublicLevyController extends Controller
 
         abort_unless($row->village && $row->village->is_active, 404);
 
-        $pdf = Pdf::loadView('village.levy.receipt-pdf', [
+        $html = view('village.levy.receipt-pdf', [
             'requestRow'  => $row,
             'village'     => $row->village,
             'account'     => $this->accountFor($row->village),
             'amountWords' => $this->amountInWords((int) $row->amount),
             'issuedAt'    => Jalalian::fromCarbon($row->created_at)->format('Y/m/d'),
-        ])->setPaper('a4', 'portrait');
+        ])->render();
 
-        return $pdf->download('levy-receipt-' . $row->tracking_code . '.pdf');
+        // DomPDF فاقد الگوریتم RTL/bidi است و متن فارسی را برعکس میچیند.
+        // mPDF بهصورت بومی جهت راستبهچپ و شکلدهی حروف فارسی را پشتیبانی میکند.
+        $mpdf = new Mpdf([
+            'mode'           => 'fa',
+            'format'         => 'A4',
+            'margin_left'    => 14,
+            'margin_right'   => 14,
+            'margin_top'     => 14,
+            'margin_bottom'  => 14,
+            'tempDir'        => storage_path('framework/mpdf'),
+            'fontDir'        => [public_path('fonts')],
+            'fontdata'       => [
+                'btitr' => ['R' => 'BTitrBold.ttf', 'useOTL' => 0],
+            ],
+            'default_font'   => 'dejavusans',
+        ]);
+
+        $mpdf->SetTitle('رسید پرداخت عوارض — ' . $row->tracking_code);
+        $mpdf->WriteHTML($html);
+
+        return response(
+            $mpdf->Output('', 'S'),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="levy-receipt-' . $row->tracking_code . '.pdf"',
+            ]
+        );
     }
 
     public function receipt(Request $request, string $token)

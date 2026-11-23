@@ -36,6 +36,10 @@ routes/web.php.bak-*
 routes/web.php.backup-*
 *.sqlite
 
+# PDF generator caches (created at runtime on the server)
+storage/fonts/*
+storage/framework/mpdf/*
+
 # production-generated artifacts (kept on server, not in git)
 /public/qrcodes/
 /public/villages-qr*.html
