@@ -16,9 +16,17 @@
                     کد پیگیری: <strong dir="ltr" class="text-gray-700">{{ $requestRow->tracking_code }}</strong>
                 </p>
             </div>
-            <span class="px-3 py-1.5 rounded-full text-xs font-bold {{ $requestRow->statusColor() }}">
-                {{ $requestRow->statusLabel() }}
-            </span>
+            <div class="flex flex-wrap items-center gap-2">
+                <a href="{{ route('village.tariff.invoice.receipt.pdf', $requestRow->tracking_code) }}"
+                   target="_blank" rel="noopener"
+                   class="px-4 py-2 rounded-lg text-white text-sm font-bold hover:opacity-90"
+                   style="background:#1565c0;">
+                    📄 دانلود رسید پرداخت (PDF)
+                </a>
+                <span class="px-3 py-1.5 rounded-full text-xs font-bold {{ $requestRow->statusColor() }}">
+                    {{ $requestRow->statusLabel() }}
+                </span>
+            </div>
         </div>
 
         @if(session('success'))
@@ -43,6 +51,12 @@
                 <div class="text-xs text-gray-500 mb-1">مبلغ قابل پرداخت</div>
                 <div class="text-2xl font-bold text-emerald-700">{{ Number::money($requestRow->amount) }} ریال</div>
                 <div class="text-xs text-gray-500 mt-2">نوع: {{ $requestRow->typeLabel() }}</div>
+                <div class="mt-3 text-xs">
+                    <a href="{{ route('village.tariff.invoice.receipt.pdf', $requestRow->tracking_code) }}"
+                       target="_blank" rel="noopener" class="text-blue-700 underline">
+                        دریافت فیش پرداخت (PDF) و مراجعه به بانک
+                    </a>
+                </div>
             </div>
             <div class="rounded-2xl p-5 border" style="background:#eef6fb;border-color:#b9d9ec;">
                 <h3 class="text-sm font-bold mb-2" style="color:#1565c0;">💳 حساب واریز</h3>
@@ -59,7 +73,8 @@
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 md:p-6 mb-5">
             <h2 class="text-base font-bold text-gray-800 mb-3">📤 آپلود رسید پرداخت</h2>
             <p class="text-xs text-gray-500 mb-4">
-                تصویر رسید واریز (JPG، PNG یا PDF — حداکثر ۵ مگابایت) را بارگذاری نمایید تا توسط کارشناس بررسی شود.
+                فیش پرداخت (PDF) را از بالای صفحه دانلود و به بانک مراجعه نمایید. سپس تصویر رسید واریز
+                (JPG، PNG یا PDF — حداکثر ۵ مگابایت) را بارگذاری نمایید تا توسط کارشناس بررسی شود.
             </p>
             <form method="POST" enctype="multipart/form-data"
                   action="{{ route('village.tariff.invoice.receipt', $requestRow->tracking_code) }}">

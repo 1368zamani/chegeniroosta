@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Morilog\Jalali\Jalalian;
 use App\Models\BankAccount;
 use App\Models\LevyPublicRequest;
 use App\Models\LevyVillageParam;
@@ -315,6 +317,29 @@ class PublicLevyController extends Controller
         return view('village.levy.show', ['requestRow' => $row, 'village' => $row->village]);
     }
 
+    /**
+     * رسید/فیش پرداخت قابل دانلود — برای عوارض احداث بنا و پسماند.
+     * دسترسی صرفاً با کد پیگیری است (مانند صفحهٔ جزئیات درخواست).
+     */
+    public function receiptPdf(string $token)
+    {
+        $row = LevyPublicRequest::where('tracking_code', $token)
+            ->with('village', 'items')
+            ->firstOrFail();
+
+        abort_unless($row->village && $row->village->is_active, 404);
+
+        $pdf = Pdf::loadView('village.levy.receipt-pdf', [
+            'requestRow'  => $row,
+            'village'     => $row->village,
+            'account'     => $this->accountFor($row->village),
+            'amountWords' => $this->amountInWords((int) $row->amount),
+            'issuedAt'    => Jalalian::fromCarbon($row->created_at)->format('Y/m/d'),
+        ])->setPaper('a4', 'portrait');
+
+        return $pdf->download('levy-receipt-' . $row->tracking_code . '.pdf');
+    }
+
     public function receipt(Request $request, string $token)
     {
         $row = LevyPublicRequest::where('tracking_code', $token)->firstOrFail();
@@ -344,5 +369,65 @@ class PublicLevyController extends Controller
         $row->addEvent('receipt_uploaded', 'آپلود رسید پرداخت');
 
         return back()->with('success', 'رسید پرداخت ارسال شد و در وضعیت بررسی قرار گرفت.');
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // تبدیل مبلغ به حروف فارسی (صرفاً جهت درج در رسید پرداخت)
+    // ═══════════════════════════════════════════════════════════
+
+    private function amountInWords(int $number): string
+    {
+        if ($number <= 0) {
+            return 'صفر ریال';
+        }
+
+        $ones = ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'];
+        $teens = ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'];
+        $tens = ['', '', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'];
+        $hundreds = ['', 'یکصد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'];
+
+        $parts = [];
+        foreach ([[1000000000, 'میلیارد'], [1000000, 'میلیون'], [1000, 'هزار'], [1, '']] as [$unit, $label]) {
+            if ($number < $unit) {
+                continue;
+            }
+            $value = intdiv($number, $unit);
+            $number %= $unit;
+            $words = $this->underThousandWords($value, $ones, $teens, $tens, $hundreds);
+            if ($words !== '') {
+                $parts[] = trim($words . ' ' . $label);
+            }
+        }
+
+        return implode(' و ', $parts) . ' ریال';
+    }
+
+    private function underThousandWords(
+        int $number,
+        array $ones,
+        array $teens,
+        array $tens,
+        array $hundreds
+    ): string {
+        $parts = [];
+
+        if ($number >= 100) {
+            $parts[] = $hundreds[intdiv($number, 100)];
+            $number %= 100;
+        }
+
+        if ($number >= 10 && $number < 20) {
+            $parts[] = $teens[$number - 10];
+        } else {
+            if ($number >= 20) {
+                $parts[] = $tens[intdiv($number, 10)];
+                $number %= 10;
+            }
+            if ($number > 0) {
+                $parts[] = $ones[$number];
+            }
+        }
+
+        return implode(' و ', $parts);
     }
 }

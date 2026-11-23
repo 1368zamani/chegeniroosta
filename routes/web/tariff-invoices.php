@@ -39,10 +39,12 @@ Route::prefix('village/{slug}/tariff')->group(function () {
 });
 
 Route::get('/tariff/invoice/{token}', [PublicLevyController::class, 'show'])->name('village.tariff.invoice.show');
+Route::get('/tariff/invoice/{token}/receipt-pdf', [PublicLevyController::class, 'receiptPdf'])->name('village.tariff.invoice.receipt.pdf');
 Route::post('/tariff/invoice/{token}/receipt', [PublicLevyController::class, 'receipt'])->name('village.tariff.invoice.receipt');
 
 // نامهای قدیمی فیش / رسید (URI مستقل)
 Route::get('/tariff/levy/request/{token}', [PublicLevyController::class, 'show'])->name('tariff.invoice.show');
+Route::get('/tariff/levy/request/{token}/receipt-pdf', [PublicLevyController::class, 'receiptPdf'])->name('tariff.invoice.receipt.pdf');
 Route::post('/tariff/levy/request/{token}/receipt', [PublicLevyController::class, 'receipt'])->name('tariff.invoice.receipt');
 
 // ═══════════════════════════════════════════════════════════
