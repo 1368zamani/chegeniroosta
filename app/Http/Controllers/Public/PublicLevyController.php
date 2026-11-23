@@ -347,10 +347,6 @@ class PublicLevyController extends Controller
             'margin_top'     => 14,
             'margin_bottom'  => 14,
             'tempDir'        => storage_path('framework/mpdf'),
-            'fontDir'        => [public_path('fonts')],
-            'fontdata'       => [
-                'btitr' => ['R' => 'BTitrBold.ttf', 'useOTL' => 0],
-            ],
             'default_font'   => 'dejavusans',
         ]);
 
