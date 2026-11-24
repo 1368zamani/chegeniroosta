@@ -1,9 +1,23 @@
+@php
+    $deputyMetaDescription = 'معرفی ' . $deputy->name
+        . ($deputy->position ? ' — ' . $deputy->position : '')
+        . '، سوابق، تحصیلات و راههای ارتباطی در پرتال چگنی.';
+@endphp
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>معرفی {{ $deputy->name }} - معاون فرماندار چگنی</title>
+<meta name="description" content="{{ $deputyMetaDescription }}">
+<meta name="robots" content="index, follow">
+<meta property="og:site_name" content="پرتال چگنی">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{ $deputy->name }} — معاون فرماندار چگنی">
+<meta property="og:description" content="{{ $deputyMetaDescription }}">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="{{ url()->current() }}">
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
