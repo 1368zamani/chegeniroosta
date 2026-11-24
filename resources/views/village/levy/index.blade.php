@@ -1,5 +1,6 @@
 @extends('village.site._layout')
 @section('title', 'عوارض روستا — ' . $village->name)
+@section('seo_robots', request()->routeIs('tariff.invoice.create') ? 'noindex, nofollow' : 'index, follow')
 
 @php
     use App\Support\Number;

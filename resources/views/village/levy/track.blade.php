@@ -1,5 +1,6 @@
 @extends('village.site._layout')
 @section('title', 'پیگیری درخواست عوارض — ' . $village->name)
+@section('seo_robots', request()->routeIs('tariff.invoice.track.form') ? 'noindex, nofollow' : 'index, follow')
 
 @section('content')
 <div class="container mx-auto px-4 py-8" dir="rtl">
