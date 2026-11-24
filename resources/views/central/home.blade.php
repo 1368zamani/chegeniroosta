@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پایگاه اط‌رسانی بخش‌های شهرستان چگنی</title>
+    <title>چگنی روستا | پایگاه اطلاعرسانی بخش‌های شهرستان چگنی</title>
     <meta name="description" content="سامانه رسمی معرفی و اطلاع‌رسانی بخش‌های شهرستان چگنی، استان لرستان">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#c94a2b">
 
     <meta property="og:site_name" content="پایگاه اط‌رسانی بخش‌های شهرستان چگنی">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی">
+    <meta property="og:title" content="چگنی روستا | پایگاه اطلاع‌رسانی بخش‌های شهرستان چگنی">
     <meta property="og:description" content="سامانه رسمی معرفی و اطلاع‌رسانی بخش‌های شهرستان چگنی">
     <meta property="og:url" content="{{ url()->current() }}">
 

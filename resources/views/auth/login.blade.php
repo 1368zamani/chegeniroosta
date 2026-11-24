@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>ورود | سامانه چه‌گنی روستا</title>
+    <title>ورود | سامانه چگنی روستا</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="{{ url()->current() }}">
     {{-- فونت وزیرمتن به‌صورت محلی از css/persian-fonts.css لود می‌شود — نیازی به CDN نیست --}}
@@ -112,7 +112,7 @@
     <div class="card">
         <div class="brand">
             <h1>سامانه مدیریت روستا</h1>
-            <p>چه‌گنی روستا — ورود به پنل مدیریت</p>
+            <p>چگنی روستا — ورود به پنل مدیریت</p>
         </div>
 
         @if ($errors->any())
@@ -163,7 +163,7 @@
         </form>
 
         <div class="footer">
-            © {{ date('Y') }} چه‌گنی روستا
+            © {{ date('Y') }} چگنی روستا
         </div>
     </div>
 </body>
