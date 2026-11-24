@@ -11,6 +11,7 @@
     <meta name="description" content="{{ $news->excerpt ?: Illuminate\Support\Str::limit(strip_tags($news->content), 150) }}">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="{{ $news->title }}">
+    <meta property="og:description" content="{{ $news->excerpt ?: Illuminate\Support\Str::limit(strip_tags($news->content), 150) }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url()->current() }}">
     @if($news->image)
