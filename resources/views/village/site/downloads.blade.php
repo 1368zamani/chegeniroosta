@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فایل‌های دانلود {{ $village->name }} | پایگاه اطلاع‌رسانی</title>
     <meta name="description" content="فایل‌ها، فرم‌ها و مستندات قابل دانلود روستای {{ $village->name }}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:site_name" content="دهیاری روستای {{ $village->name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="فایلهای دانلود روستای {{ $village->name }}">
+    <meta property="og:description" content="فایلها، فرمها و مستندات قابل دانلود روستای {{ $village->name }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
     @include('partials.site-animations')
