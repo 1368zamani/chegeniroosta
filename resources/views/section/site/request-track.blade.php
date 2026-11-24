@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="{{ url()->current() }}">
 <title>پیگیری درخواست | بخشداری {{ $section->name }}</title>
 {{-- فونت وزیرمتن اکنون محلی از css/persian-fonts.css لود می‌شود (قبلاً از jsDelivr بود) --}}
 @include('section.site._styles')
