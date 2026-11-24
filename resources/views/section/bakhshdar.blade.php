@@ -10,6 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرفی بخشدار {{ $section->name }}</title>
     <meta name="robots" content="index, follow">
+    <meta name="description" content="معرفی بخشدار {{ $section->name }}، سوابق و راههای ارتباطی با بخشداری بخش در پرتال چگنی.">
+    <meta property="og:site_name" content="بخشداری {{ $section->name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="معرفی بخشدار {{ $section->name }}">
+    <meta property="og:description" content="معرفی بخشدار {{ $section->name }}، سوابق و راههای ارتباطی با بخشداری بخش در پرتال چگنی.">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="{{ url()->current() }}">
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
