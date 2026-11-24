@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تعرفه عوارض و بهای خدمات | بخشداری {{ $section->name }}</title>
+<title>عوارض روستاهای بخش {{ $section->name }} | پرتال چگنی</title>
+<meta name="description" content="عوارض احداث بنا و پسماند روستاهای بخش {{ $section->name }}؛ مشاهده تنظیمات هر روستا و پرداخت به حساب دهیاری در پرتال چگنی.">
+<meta name="robots" content="index, follow">
+<meta property="og:site_name" content="بخشداری {{ $section->name }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="عوارض روستاهای بخش {{ $section->name }}">
+<meta property="og:description" content="عوارض احداث بنا و پسماند روستاهای بخش {{ $section->name }}؛ مشاهده تنظیمات هر روستا و پرداخت به حساب دهیاری در پرتال چگنی.">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="{{ url()->current() }}">
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; padding-bottom: 40px; }
@@ -42,23 +51,22 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; c
 @include('partials.v3-crumbs', ['crumbs' => [
     ['label' => 'پرتال چگنی', 'url' => url('/')],
     ['label' => 'بخش ' . $section->name, 'url' => url('/')],
-    ['label' => 'تعرفهٔ عوارض'],
+    ['label' => 'عوارض روستاها'],
 ]])
 <div class="s-header">
-    <h1>🧾 تعرفه عوارض و بهای خدمات دهیاری‌ها</h1>
-    <p>بخشداری {{ $section->name }} — سال جاری</p>
+    <h1>🧾 عوارض روستاهای بخش {{ $section->name }}</h1>
+    <p>برای مشاهده مبلغ و پرداخت، روستای خود را انتخاب کنید.</p>
     <a href="{{ url('/') }}" class="back">← بازگشت به صفحه‌ی بخشداری</a>
 </div>
 <div class="s-container">
     <div class="s-warning">
-        ⚠️ دریافت وجه نقد توسط دهیار یا کارکنان <strong>ممنوع</strong> است. وجوه باید به حساب بانکی دهیاری واریز شود.<br>
+        ⚠️ مبلغ عوارض بر اساس تنظیمات مصوب هر روستا محاسبه میشود و وجوه باید به حساب بانکی همان دهیاری واریز شود.<br>
         📖 مبنای قانونی: تبصره ۱ ماده ۲ قانون درآمد پایدار و هزینه شهرداری‌ها و دهیاری‌ها.
     </div>
     <div class="s-stats">
         <div class="s-stat"><div class="num">{{ number_format($stats['total']) }}</div><div class="label">کل روستاهای بخش</div></div>
-        <div class="s-stat ok"><div class="num">{{ number_format($stats['published']) }}</div><div class="label">تعرفه‌ی منتشرشده</div></div>
-        <div class="s-stat warn"><div class="num">{{ number_format($stats['pending']) }}</div><div class="label">در حال اقدام</div></div>
-        <div class="s-stat"><div class="num">{{ number_format($stats['none']) }}</div><div class="label">بدون تعرفه</div></div>
+        <div class="s-stat ok"><div class="num">{{ number_format($stats['ready']) }}</div><div class="label">عوارض تنظیمشده</div></div>
+        <div class="s-stat warn"><div class="num">{{ number_format($stats['pending']) }}</div><div class="label">تنظیمنشده</div></div>
     </div>
     <div class="s-card">
         <div class="card-head">
@@ -70,31 +78,22 @@ body { margin: 0; font-family: Tahoma, Arial, sans-serif; background: #fff7e9; c
         @else
             <table class="s-table">
                 <thead><tr>
-                    <th>#</th><th>نام روستا</th><th class="hide-sm">سال تعرفه</th><th>وضعیت</th><th>عملیات</th>
+                    <th>#</th><th>نام روستا</th><th>وضعیت عوارض</th><th>عملیات</th>
                 </tr></thead>
                 <tbody>
                     @foreach($villages as $i => $village)
-                        @php
-                            $pubSet = $published->get($village->id);
-                            $anySet = $allSets->get($village->id)?->first();
-                        @endphp
+                        @php $param = $params->get($village->id); @endphp
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ $village->name }}</td>
-                            <td class="hide-sm">
-                                @if($pubSet) {{ $pubSet->jalali_year }}
-                                @elseif($anySet) {{ $anySet->jalali_year }} (پیش‌نویس)
-                                @else — @endif
-                            </td>
                             <td>
-                                @if($pubSet) <span class="s-badge ok">✓ منتشر شده</span>
-                                @elseif($anySet) <span class="s-badge wait">⏳ {{ $anySet->statusLabel() }}</span>
-                                @else <span class="s-badge none">— بدون تعرفه</span>
+                                @if($param) <span class="s-badge ok">✓ تنظیم شده</span>
+                                @else <span class="s-badge none">— تنظیم نشده</span>
                                 @endif
                             </td>
                             <td>
-                                @if($pubSet)
-                                    <a href="{{ route('village.tariff.index', $village->slug) }}" class="s-link">مشاهده →</a>
+                                @if($param)
+                                    <a href="{{ route('village.tariff.index', $village->slug) }}" class="s-link">مشاهده عوارض →</a>
                                 @else
                                     <span style="color:#a2948a;font-size:12px;">—</span>
                                 @endif
