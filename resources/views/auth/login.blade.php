@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ورود | سامانه چه‌گنی روستا</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="{{ url()->current() }}">
     {{-- فونت وزیرمتن به‌صورت محلی از css/persian-fonts.css لود می‌شود — نیازی به CDN نیست --}}
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
