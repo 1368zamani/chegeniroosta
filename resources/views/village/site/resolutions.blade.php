@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مصوبات شورای اسلامی {{ $village->name }}</title>
+<meta name="description" content="مصوبات عمومی شورای اسلامی روستای {{ $village->name }} و صورتجلسات منتشرشده آن در پرتال چگنی.">
+<meta name="robots" content="index, follow">
+<meta property="og:site_name" content="دهیاری روستای {{ $village->name }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="مصوبات شورای اسلامی {{ $village->name }}">
+<meta property="og:description" content="مصوبات عمومی شورای اسلامی روستای {{ $village->name }} و صورتجلسات منتشرشده آن در پرتال چگنی.">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="{{ url()->current() }}">
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }
