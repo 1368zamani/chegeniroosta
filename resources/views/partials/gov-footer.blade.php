@@ -92,7 +92,7 @@
                     @if(isset($section) && $section->email)
                         <li><a href="mailto:{{ $section->email }}"><svg><use href="#i-mail"/></svg> {{ $section->email }}</a></li>
                     @endif
-                    <li><a href="{{ $__ftrBase }}"><svg><use href="#i-globe"/></svg> {{ config('app.base_domain') }}</a></li>
+                    <li><a href="{{ $__ftrBase }}"><svg><use href="#i-globe"/></svg> چگنی روستا</a></li>
                 </ul>
             </div>
         </div>

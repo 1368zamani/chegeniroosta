@@ -20,6 +20,7 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
     @include('partials.pwa')
+    @include('partials.org-jsonld')
 </head>
 <body class="v3-body">
 
