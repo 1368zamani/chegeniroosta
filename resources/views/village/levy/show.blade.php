@@ -1,5 +1,6 @@
 @extends('village.site._layout')
 @section('title', 'درخواست عوارض — ' . $requestRow->tracking_code)
+@section('seo_robots', 'noindex, nofollow')
 
 @php
     use App\Support\Number;

@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'پایگاه اطلاعرسانی روستای ' . ($village->name ?? 'روستا'))</title>
+    @hasSection('seo_description')
+        <meta name="description" content="@yield('seo_description')">
+    @else
+        <meta name="description" content="{{ 'پایگاه اطلاعرسانی روستای ' . ($village->name ?? 'روستا') . ' — اخبار، معرفی روستا، امکانات، پروژهها و خدمات دهیاری.' }}">
+    @endif
+    <meta name="robots" content="@yield('seo_robots', 'index, follow')">
+    <meta property="og:site_name" content="دهیاری روستای {{ $village->name ?? 'روستا' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@yield('og_title', 'پایگاه اطلاعرسانی روستای ' . ($village->name ?? 'روستا'))">
+    <meta property="og:description" content="@yield('og_description', 'اخبار، معرفی روستا، امکانات، پروژهها و خدمات دهیاری.')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary">
     <meta name="theme-color" content="#c94a2b">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
