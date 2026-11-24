@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پایگاه اط‌رسانی بخش {{ $section->name }}</title>
+    <title>پایگاه اطلاعرسانی بخش {{ $section->name }}</title>
     <meta name="description" content="{{ $section->description ? \Illuminate\Support\Str::limit(strip_tags($section->description), 155) : 'پایگاه اطلاع‌رسانی بخش ' . $section->name . ' شهرستان چگنی' }}">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#c94a2b">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
@@ -12,6 +13,17 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="stylesheet" href="{{ asset('css/ui-v3.css') }}?v=6">
     @include('partials.pwa')
+    {{-- Open Graph --}}
+    <meta property="og:site_name" content="وزارت کشور - استانداری لرستان">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پایگاه اطلاعرسانی بخش {{ $section->name }}">
+    <meta property="og:description" content="{{ $section->description ? \Illuminate\Support\Str::limit(strip_tags($section->description), 160) : 'پایگاه اطلاعرسانی بخش ' . $section->name . ' شهرستان چگنی' }}">
+    <meta property="og:image" content="{{ asset('images/logo-gov-lorestan.svg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="پایگاه اطلاعرسانی بخش {{ $section->name }}">
+    <meta name="twitter:description" content="{{ $section->description ? \Illuminate\Support\Str::limit(strip_tags($section->description), 160) : 'پایگاه اطلاعرسانی بخش ' . $section->name . ' شهرستان چگنی' }}">
+    <meta name="twitter:image" content="{{ asset('images/logo-gov-lorestan.svg') }}">
 </head>
 <body class="v3-body">
 
@@ -28,7 +40,7 @@
 {{-- ══════════ نوار خبری ══════════ --}}
 @if(isset($news) && $news->count() > 0)
     <div class="sh-ticker">
-        <span class="sh-ticker-label"><svg><use href="#i-news"/></svg> آخرین اخبار</span>
+        <span class="sh-ticker-label"><svg><use href="#i-news"/></svg> تازه‌ترین‌ها</span>
         <div class="sh-ticker-track">
             <div class="sh-ticker-move">
                 @foreach([0, 1] as $__dup)
@@ -57,7 +69,7 @@
         <section class="hero">
             <div class="hero-copy reveal">
                 <span class="eyebrow"><i></i> بخش {{ $section->name }} · شهرستان {{ $section->county ?: 'چگنی' }}</span>
-                <h1>خبرهای <em>{{ $section->name }}</em></h1>
+                <h1>پایگاه اطلاع‌رسانی بخشداری <em>{{ $section->name }}</em></h1>
                 <p class="lede">
                     {{ $__fa($__vCount) }} روستا، یک بخشداری و یک پایگاه واحد. اخبار، اطلاعیه‌ها و خدمات بخش {{ $section->name }} را از همین‌جا دنبال کنید.
                 </p>

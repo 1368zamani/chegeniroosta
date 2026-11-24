@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>شورای اسلامی بخش {{ $section->name }}</title>
+<meta name="description" content="اعضای شورای اسلامی بخش {{ $section->name }}، معرفی و راههای ارتباطی با شورای بخش در پرتال چگنی.">
+<meta name="robots" content="index, follow">
+<meta property="og:site_name" content="بخشداری {{ $section->name }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="شورای اسلامی بخش {{ $section->name }}">
+<meta property="og:description" content="اعضای شورای اسلامی بخش {{ $section->name }}، معرفی و راههای ارتباطی با شورای بخش در پرتال چگنی.">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="{{ url()->current() }}">
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #fff7e9; color: #2b2119; }

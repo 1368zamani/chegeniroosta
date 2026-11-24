@@ -10,6 +10,12 @@
     <title>اخبار و اطلاعیه‌ها | {{ $section->name }}</title>
     <meta name="description" content="آخرین اخبار و اطلاعیه‌های بخش {{ $section->name }}">
     <meta name="robots" content="index, follow">
+    <meta property="og:site_name" content="بخشداری {{ $section->name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="اخبار بخش {{ $section->name }}">
+    <meta property="og:description" content="آخرین اخبار و اطلاعیههای بخش {{ $section->name }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary">
     <meta name="theme-color" content="#5c2313">
     <style>
         * { box-sizing: border-box; }
