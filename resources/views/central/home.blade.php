@@ -34,7 +34,7 @@
             <div class="hero-copy reveal">
                 <span class="eyebrow"><i></i> سامانهٔ رسمی اطلاع‌رسانی · استان لرستان</span>
                 <h1>به <em>چگنی</em> خوش آمدید</h1>
-                <p class="lede">یک پایگاه واحد برای اخبار، خدمات و معرفی روستاها. هر بخش صفحهٔ مستقل خود را دارد و هر روستا نشانی دائمی.</p>
+                <p class="lede">چگنی روستا یک پایگاه واحد برای <a href="/all-news">اخبار</a>، خدمات و معرفی روستاهاست. از <a href="/#sections">فهرست بخش‌های شهرستان</a> وارد صفحهٔ بخش موردنظر شوید؛ هر روستا نشانی دائمی دارد.</p>
 
                 <form class="search" role="search" action="{{ route('search.index') }}" method="GET">
                     <svg><use href="#i-search"/></svg>
