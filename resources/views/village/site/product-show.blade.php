@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $product->title }} | محصولات {{ $village->name }}</title>
     <meta name="description" content="{{ $product->short_description ?: $product->title }}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:site_name" content="دهیاری روستای {{ $village->name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $product->title }} | محصولات {{ $village->name }}">
+    <meta property="og:description" content="{{ $product->short_description ?: $product->title }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary">
 
     <link rel="stylesheet" href="{{ asset('css/persian-fonts.css') }}">
     @include('partials.site-animations')
