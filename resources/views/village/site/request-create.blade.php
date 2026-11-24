@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ثبت درخواست | {{ $village->name }}</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="{{ url()->current() }}">
 {{-- فونت وزیرمتن اکنون محلی از css/persian-fonts.css لود می‌شود (قبلاً از jsDelivr بود) --}}
 @include('village.site._styles')
 
